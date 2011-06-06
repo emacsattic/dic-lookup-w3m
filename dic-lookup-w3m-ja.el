@@ -849,43 +849,112 @@
     utf-8 nil "Kodensha")
 
    ;; livedoor translator
-   ("tr-ej-livedoor" "http://translate.livedoor.com/"
-    utf-8 "clear_flg=1&src_text=%s&trns_type=1,2&sumit=$BK]Lu(B" "Amikai")
-   ("tr-je-livedoor" "http://translate.livedoor.com/"
-    utf-8 "clear_flg=1&src_text=%s&trns_type=2,1&sumit=$BK]Lu(B" "Amikai")
-   ("tr-jk-livedoor" "http://translate.livedoor.com/korean/"
-    utf-8 "clear_flg=1&src_text=%s&trns_type=2,9&sumit=$BK]Lu(B" "Amikai")
-   ("tr-kj-livedoor" "http://translate.livedoor.com/korean/"
-    utf-8 "clear_flg=1&src_text=%s&trns_type=9,2&sumit=$BK]Lu(B" "Amikai")
-   ("tr-jc-livedoor" "http://translate.livedoor.com/chinese/"
-    utf-8 "clear_flg=1&src_text=%s&trns_type=2,6&sumit=$BK]Lu(B" "Amikai")
-   ("tr-cj-livedoor" "http://translate.livedoor.com/chinese/"
-    utf-8 "clear_flg=1&src_text=%s&trns_type=6,2&sumit=$BK]Lu(B" "Amikai")
-   ("tr-eg-livedoor" "http://translate.livedoor.com/german/"
-    utf-8 "clear_flg=1&src_text=%s&trns_type=1,4&sumit=$BK]Lu(B" "Amikai")
-   ("tr-ge-livedoor" "http://translate.livedoor.com/german/"
-    utf-8 "clear_flg=1&src_text=%s&trns_type=4,1&sumit=$BK]Lu(B" "Amikai")
-   ("tr-ef-livedoor" "http://translate.livedoor.com/french/"
-    utf-8 "clear_flg=1&src_text=%s&trns_type=1,5&sumit=$BK]Lu(B" "Amikai")
-   ("tr-sf-livedoor" "http://translate.livedoor.com/french/"
-    utf-8 "clear_flg=1&src_text=%s&trns_type=5,1&sumit=$BK]Lu(B" "Amikai")
-   ("tr-ei-livedoor" "http://translate.livedoor.com/italian/"
-    utf-8 "clear_flg=1&src_text=%s&trns_type=1,8&sumit=$BK]Lu(B" "Amikai")
-   ("tr-si-livedoor" "http://translate.livedoor.com/italian/"
-    utf-8 "clear_flg=1&src_text=%s&trns_type=8,1&sumit=$BK]Lu(B" "Amikai")
-   ("tr-es-livedoor" "http://translate.livedoor.com/spanish/"
-    utf-8 "clear_flg=1&src_text=%s&trns_type=1,3&sumit=$BK]Lu(B" "Amikai")
-   ("tr-se-livedoor" "http://translate.livedoor.com/spanish/"
-    utf-8 "clear_flg=1&src_text=%s&trns_type=3,1&sumit=$BK]Lu(B" "Amikai")
-   ("tr-ep-livedoor" "http://translate.livedoor.com/portuguese/"
-    utf-8 "clear_flg=1&src_text=%s&trns_type=1,10&sumit=$BK]Lu(B" "Amikai")
-   ("tr-sp-livedoor" "http://translate.livedoor.com/portuguese/"
-    utf-8 "clear_flg=1&src_text=%s&trns_type=10,1&sumit=$BK]Lu(B" "Amikai")
+   ("tr-zhja-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=zh&translateParams.tlang=ja&translateParams.originalText=%s")
+   ("tr-koja-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=ko&translateParams.tlang=ja&translateParams.originalText=%s")
+   ("tr-ptja-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=pt&translateParams.tlang=ja&translateParams.originalText=%s")
+   ("tr-esja-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=es&translateParams.tlang=ja&translateParams.originalText=%s")
+   ("tr-itja-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=it&translateParams.tlang=ja&translateParams.originalText=%s")
+   ("tr-frja-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=fr&translateParams.tlang=ja&translateParams.originalText=%s")
+   ("tr-deja-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=de&translateParams.tlang=ja&translateParams.originalText=%s")
+   ("tr-jazh-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=ja&translateParams.tlang=zh&translateParams.originalText=%s")
+   ("tr-jako-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=ja&translateParams.tlang=ko&translateParams.originalText=%s")
+   ("tr-japt-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=ja&translateParams.tlang=pt&translateParams.originalText=%s")
+   ("tr-jaes-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=ja&translateParams.tlang=es&translateParams.originalText=%s")
+   ("tr-jait-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=ja&translateParams.tlang=it&translateParams.originalText=%s")
+   ("tr-jafr-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=ja&translateParams.tlang=fr&translateParams.originalText=%s")
+   ("tr-jade-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=ja&translateParams.tlang=de&translateParams.originalText=%s")
+   ("tr-je-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=ja&translateParams.tlang=en&translateParams.originalText=%s")
+   ("tr-pten-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=pt&translateParams.tlang=en&translateParams.originalText=%s")
+   ("tr-esen-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=es&translateParams.tlang=en&translateParams.originalText=%s")
+   ("tr-iten-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=it&translateParams.tlang=en&translateParams.originalText=%s")
+   ("tr-fren-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=fr&translateParams.tlang=en&translateParams.originalText=%s")
+   ("tr-deen-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=de&translateParams.tlang=en&translateParams.originalText=%s")
+   ("tr-enpt-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=en&translateParams.tlang=pt&translateParams.originalText=%s")
+   ("tr-enes-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=en&translateParams.tlang=es&translateParams.originalText=%s")
+   ("tr-enit-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=en&translateParams.tlang=it&translateParams.originalText=%s")
+   ("tr-enfr-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=en&translateParams.tlang=fr&translateParams.originalText=%s")
+   ("tr-ende-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=en&translateParams.tlang=de&translateParams.originalText=%s")
+   ("tr-ej-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
+    "translateParams.slang=en&translateParams.tlang=ja&translateParams.originalText=%s")
+
    ;; livedoor web page translator
    ("tr-ej-url-livedoor"
-    "http://translate.livedoor.jp/amiweb/browser.jsp?lang=JA&toolbar=yes&c_id=livedoor&url=%s&langpair=1,2" utf-8 nil "Amikai")
+    "http://livedoor-translate.naver.jp/site/translate/enja/%s" utf-8)
+   ("tr-ende-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/ende/%s" utf-8)
+   ("tr-enfr-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/enfr/%s" utf-8)
+   ("tr-enit-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/enit/%s" utf-8)
+   ("tr-enes-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/enes/%s" utf-8)
+   ("tr-enpt-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/enpt/%s" utf-8)
+   ("tr-deen-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/deen/%s" utf-8)
+   ("tr-fren-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/fren/%s" utf-8)
+   ("tr-iten-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/iten/%s" utf-8)
+   ("tr-esen-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/esen/%s" utf-8)
+   ("tr-pten-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/pten/%s" utf-8)
    ("tr-je-url-livedoor"
-    "http://translate.livedoor.jp/amiweb/browser.jsp?lang=JA&toolbar=yes&c_id=livedoor&url=%s&langpair=2,1" utf-8 nil "Amikai")
+    "http://livedoor-translate.naver.jp/site/translate/jaen/%s" utf-8)
+   ("tr-jade-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/jade/%s" utf-8)
+   ("tr-jafr-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/jafr/%s" utf-8)
+   ("tr-jait-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/jait/%s" utf-8)
+   ("tr-jaes-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/jaes/%s" utf-8)
+   ("tr-japt-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/japt/%s" utf-8)
+   ("tr-jako-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/jako/%s" utf-8)
+   ("tr-jazh-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/jazh/%s" utf-8)
+   ("tr-deja-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/deja/%s" utf-8)
+   ("tr-frja-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/frja/%s" utf-8)
+   ("tr-itja-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/itja/%s" utf-8)
+   ("tr-esja-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/esja/%s" utf-8)
+   ("tr-ptja-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/ptja/%s" utf-8)
+   ("tr-koja-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/koja/%s" utf-8)
+   ("tr-zhja-url-livedoor"
+    "http://livedoor-translate.naver.jp/site/translate/zhja/%s" utf-8)
 
    ;; fresheye translator
    ,@(dic-lookup-w3m-search-engine-postget
@@ -1720,17 +1789,19 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
 	)
 
        ;; livedoor translator
-       ("\\`http://translate\\.livedoor\\.com/"
+       ("http://livedoor-translate\\.naver\\.jp/"
 	(w3m-filter-delete-regions
-	 "<body[^>]*>" "<textarea [^>]*name=\"src_text\"[^>]*>" t nil t t)
+	 "<body[^>]*>" "<textarea [^>]*name=\"translateParams.originalText\"[^>]*>" t nil t t)
 	(w3m-filter-replace-regexp
-	 "\\(<textarea [^>]*name=\"tar_text\"[^>]*>\\)" "\\1<hr>")
+	 "\\(<textarea [^>]*name=\"text02\"[^>]*>\\)" "\\1<hr>")
 	(w3m-filter-delete-regions
-	 "</textarea>" "<textarea [^>]*name=\"tar_text\"[^>]*>" nil nil t t)
+	 "</textarea>" "<textarea [^>]*name=\"text02\"[^>]*>" nil nil t t)
 	(w3m-filter-delete-regions "</textarea>" "</body>" nil t)
+	(w3m-filter-delete-regions "<!--/MdAd01-->" "</html>")
+	(w3m-filter-delete-regions "<!--/MdAd02-->" "</html>")
 	(w3m-filter-replace-regexp "\\(\\. \\|$B!#(B\\)" "\\1<br>")
 	)
-       ("\\`http://translate\\.livedoor\\.com/$"
+       ("\\`http://livedoor-translate\\.naver\\.jp/"
 	dic-lookup-w3m-filter-eword-anchor dic-lookup-w3m-favorite-ej-engine)
 
        ;; fresheye translator
@@ -1741,7 +1812,7 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
 	 "\\(<textarea [^>]*name=\"gen_text2\"[^>]*>\\)" "\\1<hr>")
 	(w3m-filter-delete-regions
 	 "</textarea>" "<textarea [^>]*name=\"gen_text2\"[^>]*>" nil nil t t)
-	(w3m-filter-delete-regions "</textarea>" "</body>" nil t)
+	(w3m-filter-delete-regions "</textarea>" "</body>" nil t nil t)
 	(w3m-filter-replace-regexp "\n" "<br>")
 	(dic-lookup-w3m-filter-eword-anchor dic-lookup-w3m-favorite-ej-engine)
 	)
