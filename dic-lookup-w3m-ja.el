@@ -83,11 +83,11 @@
    ;; ALC
    ("ej-alc" "http://eow.alc.co.jp/%s/UTF-8/" utf-8 nil "$B1Q<-O:(B")
    ("ej-alc-business-put" "http://home.alc.co.jp/db/owa/bdicn_sch" utf-8
-    "word_in=%s&stage=sch" "$B%S%8%M%91Q8l<-=q(B")
+    "w=%s" "$B%S%8%M%91Q8l<-=q(B")
    ("ej-alc-gogen-put" "http://home.alc.co.jp/db/owa/etm_sch" shift_jis
     "instr=%s&stg=1" "$B8l8;<-E5(B")
    ("ej-alc-business"
-    "http://home.alc.co.jp/db/owa/bdicn_sch?word_in=%s&stage=sch"
+    "http://home.alc.co.jp/db/owa/bdicn_sch?w=%s"
     utf-8 nil "$B%S%8%M%91Q8l<-=q(B")
    ("ej-alc-gogen" "http://home.alc.co.jp/db/owa/etm_sch?instr=%s&stg=1"
     shift_jis nil "$B8l8;<-E5(B")
@@ -225,29 +225,17 @@
 
    ;; infoseek
    ("ej-infoseek"
-    "http://dictionary.infoseek.co.jp/?spa=1&sc=1&se=on&lp=0&gr=ml&qt=%s&sm=1&sv=2T"
-    euc-jp nil "EXCEED$B1QOB<-E5(B")
+    "http://dictionary.infoseek.ne.jp/search/result?q=%s&t=0&r=ejje"
+    utf-8 nil "$B%W%m%0%l%C%7%V1QOBCf<-E5(B($BBh#4HG(B)")
    ("je-infoseek"
-    "http://dictionary.infoseek.co.jp/?spa=1&sc=1&se=on&lp=0&gr=ml&qt=%s&sm=1&sv=2T"
-    euc-jp nil "EXCEED$BOB1Q<-E5(B")
+    "http://dictionary.infoseek.ne.jp/search/result?q=%s&t=0&r=ejje"
+    utf-8 nil "$B%W%m%0%l%C%7%VOB1QCf<-E5(B($BBh#3HG(B)")
    ("jj-infoseek"
-    "http://dictionary.infoseek.co.jp/?spa=1&sc=1&se=on&lp=0&gr=ml&qt=%s&sm=1&sv=KO"
-    euc-jp nil "$BBg<-NS(B $BBhFsHG(B")
-   ("jj-katakana-infoseek"
-    "http://dictionary.infoseek.co.jp/?spa=1&sc=1&se=on&lp=0&gr=ml&qt=%s&sm=1&sv=KN"
-    euc-jp nil "$B%3%s%5%$%9(B $B%+%?%+%J8l<-E5Bh#2HG(B")
-   ("kanji-infoseek"
-    "http://dictionary.infoseek.co.jp/?sc=1&se=on&lp=0&gr=kj&sv=KJ&qt=%s&qty=&qtb=&qtk=0"
-    euc-jp nil "$B4A;z<-=q(B $B;0>JF2(B")
-   ("kanji-yomi-infoseek"
-    "http://dictionary.infoseek.co.jp/?sc=1&se=on&lp=0&gr=kj&sv=KJ&qt=&qty=%s&qtb=&qtk=0"
-    euc-jp nil "$B4A;z<-=q(B $B;0>JF2(B")
-   ("kanji-busyu-infoseek"
-    "http://dictionary.infoseek.co.jp/?sc=1&se=on&lp=0&gr=kj&sv=KJ&qt=&qty=&qtb=%s&qtk=0"
-    euc-jp nil "$B4A;z<-=q(B $B;0>JF2(B")
-   ("kanji-kakusuu-infoseek"
-    "http://dictionary.infoseek.co.jp/?sc=1&se=on&lp=0&gr=kj&sv=KJ&qt=&qty=&qtb=&qtk=%s"
-    euc-jp nil "$B4A;z<-=q(B $B;0>JF2(B")
+    "http://dictionary.infoseek.ne.jp/search/result?q=%s&t=0&r=lang"
+    utf-8 nil "$B%G%8%?%kBg<-@t(B")
+   ("jj-etc-infoseek"
+    "http://dictionary.infoseek.ne.jp/search/result?q=%s&t=0&r=etc"
+    utf-8 nil "$B$=$NB>$N;vE5(B")
 
    ;; kotobank
    ("jj-kotobank" "http://kotobank.jp/search/result?q=%s"
@@ -1537,39 +1525,30 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
 	"<img [^>]+/images/\\([a-z0-9_]+\\)\\.gif[^>]*>")
 
        ;; inforseek dic
-       ("\\`http://dictionary\\.infoseek\\.co\\.jp/.*gr=ml"
-	w3m-filter-delete-regions "<body[^>]*>" "<!-- /$BF~NO%U%)!<%`(B -->"
-	t nil t)
-       ("\\`http://dictionary\\.infoseek\\.co\\.jp/.*sv=\\(EJ\\|2T\\)"
-       	(dic-lookup-w3m-filter-related-links "ej-infoseek" ej)
+       ("\\`http://dictionary\\.infoseek\\.ne\\.jp/"
+       	w3m-filter-delete-regions
+       	"<body[^>]*>"
+       	"\\(<ul class=\"search_list\">\\|<div class=\"word_block\">\\)"
+       	t t t t)
+       ("\\`http://dictionary\\.infoseek\\.ne\\.jp/"
 	(dic-lookup-w3m-filter-show-candidates "ej-infoseek")
 	(dic-lookup-w3m-filter-eword-anchor "ej-infoseek")
 	)
-       ("\\`http://dictionary\\.infoseek\\.co\\.jp/.*sv=KO"
-	dic-lookup-w3m-filter-related-links "jj-infoseek" jj)
-       ("\\`http://dictionary\\.infoseek\\.co\\.jp/.*gr=kj"
-	w3m-filter-delete-regions "<body[^>]*>" "<div id=\"ms\">" t nil t)
-       ("\\`http://dictionary\\.infoseek\\.co\\.jp/.*sv=KJ.*qt=[^&]+"
-	dic-lookup-w3m-filter-related-links "kanji-infoseek" kanji)
-       ("\\`http://dictionary\\.infoseek\\.co\\.jp/.*sv=KJ.*qty=[^&]+"
-	dic-lookup-w3m-filter-related-links "kanji-yomi-infoseek" kanji)
-       ("\\`http://dictionary\\.infoseek\\.co\\.jp/.*sv=KJ.*qtb=[^&]+"
-	dic-lookup-w3m-filter-related-links "kanji-busyu-infoseek" kanji)
-       ("\\`http://dictionary\\.infoseek\\.co\\.jp/"
-	(w3m-filter-delete-regions "<!-- RightNavi -->" "<!-- /RightNavi -->")
-	(w3m-filter-delete-regions "<!-- END Copyright -->" "</body>" nil t)
-	(w3m-filter-replace-regexp
-	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource\\.aspx\\?set=unicode&name=\\([^\"]+\\)\"[^>]*></img>" "&#x\\1\;")
+       ("\\`http://dictionary\\.infoseek\\.ne\\.jp/ejword"
+       	dic-lookup-w3m-filter-related-links
+	"ej-infoseek" ej "http://dictionary.infoseek.ne.jp/ejword/%s")
+       ("http://dictionary\\.infoseek\\.ne\\.jp/jeword"
+       	dic-lookup-w3m-filter-related-links
+	"je-infoseek" ej "http://dictionary.infoseek.ne.jp/jeword/%s")
+       ("\\`http://dictionary\\.infoseek\\.ne\\.jp/word"
+       	dic-lookup-w3m-filter-related-links
+	"jj-infoseek" jj "http://dictionary.infoseek.ne.jp/word/%s")
+
+       ("\\`http://dictionary\\.infoseek\\.ne\\.jp/"
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
-	 dic-lookup-w3m-filter-infoseek-ej-symbol-alist
-	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource\\.aspx\\?set=grex-gi&name=\\([^\"]+\\)\"[^>]*></img>")
-	(dic-lookup-w3m-filter-convert-phonetic-symbol
-	 dic-lookup-w3m-filter-infoseek-ej-symbol-alist
-	 "<img src=\"/img/\\([a-z_0-9]+\\)\\.gif\"?[^>]*>")
-	(dic-lookup-w3m-filter-convert-phonetic-symbol
-	 dic-lookup-w3m-filter-infoseek-ej-symbol-alist
-	 "<img src=\"http://image\\.infoseek\\.rakuten\\.co\\.jp/content/dictionary/image/\\([a-z_0-9]+\\)\\.gif\"?[^>]*>")
-	)
+	 dic-lookup-w3m-filter-yahoo-ej1-symbol-alist
+	 "<img name=\"[^\"]+\" src=\"/lang/g/pej4/\\([A-Z0-9_]+\\).png\"/>")
+       	)
 
        ;; gigadict
        ("\\`http://cgi\\.geocities\\.jp/abelinternational/cgi/kanjidic\\.cgi"
@@ -1906,8 +1885,8 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
    ("\\`http://bitex-cn\\.com/search_result\\.php" . turnoff)
    ("\\`http://cgi\\.geocities\\.jp/abelinternational/cgi/diccj\\.cgi" . turnoff)
    ("\\`http://dict\\.hjenglish\\.com/jp/w/" . turnoff)
-   ("\\`http://dictionary\\.infoseek\\.co\\.jp/.*sv=\\(2T\\|EJ\\)" . t)
-   ("\\`http://dictionary\\.infoseek\\.co\\.jp/.*sv=\\(KO\\|KN\\|KJ\\)" . turnoff)
+   ("\\`http://dictionary\\.infoseek\\.ne\\.jp/word" . t)
+   ("\\`http://dictionary\\.infoseek\\.ne\\.jp/.+word" . turnoff)
    ("\\`http://www\\.onlinedic\\.com/search\\.php" . turnoff)
    ("\\`http://www\\.frelax\\.com/cgi-local/pinyin/hz2py\\.cgi" . turnoff)
    ("\\`http://www\\.babylon\\.com/definition/" . turnoff)
@@ -2945,7 +2924,7 @@ web$B%Z!<%8$KK]Lu%\%?%s$r$D$1$F!"3F(Btranslator$B$K%j%s%/$9$k!#(B
 ;; http://www.excite.co.jp/dictionary/ $B?71QOBCf<-E5(B $BBh#6HG(B $B!J8&5f<R!K(B
 ;; http://dictionary.goo.ne.jp/  EXCEED $B1QOB<-E5(B
 ;; http://ocndictionary.goo.ne.jp/ EXCEED $B1QOB<-E5(B
-;; http://dictionary.infoseek.co.jp/
+;; http://dictionary.infoseek.ne.jp/
 ;; http://www.alc.co.jp/ $B1Q<-O/(B
 ;; http://dic.livedoor.com/ EXCEED$B1QOB<-E5(B
 ;; http://www.merriam-webster.com/dictionary/ webster
