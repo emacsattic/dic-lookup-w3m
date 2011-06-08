@@ -240,6 +240,10 @@
    ;; kotobank
    ("jj-kotobank" "http://kotobank.jp/search/result?q=%s"
     utf-8 nil "$BJ#?t<-=q8!:w(B $B%G%8%?%kBg<-@t(B, $B%^%$%Z%G%#%"(B, $BCN7CB"(B, etc.")
+   ("ej-kotobank" "http://kotobank.jp/ejsearch/result?q=%s"
+    utf-8 nil "$B%W%m%0%l%C%7%V1QOBCf<-E5(B($BBh#4HG(B)")
+   ("je-kotobank" "http://kotobank.jp/ejsearch/result?q=%s"
+    utf-8 nil "$B%W%m%0%l%C%7%VOB1QCf<-E5(B($BBh#3HG(B)")
 
    ;; $B4A;z$N=q$-=g(B
    ;; $B=q$-=g$G(BGO
@@ -247,17 +251,17 @@
     shift_jis "key=%s&hor=1&max=1" "$B4A;z$N=q$-=g(B")
 
    ;; goo
-   ("ej-goo" "http://ext.dictionary.goo.ne.jp/srch/ej/%s/m0u/"
+   ("ej-goo" "http://dictionary.goo.ne.jp/srch/ej/%s/m0u/"
     utf-8 nil "$B;0>JF2(B EXCEED$B1QOB<-E5!"1Q<-O:(B")
-   ("je-goo" "http://ext.dictionary.goo.ne.jp/srch/je/%s/m0u/"
+   ("je-goo" "http://dictionary.goo.ne.jp/srch/je/%s/m0u/"
     utf-8 nil "$B;0>JF2(B EXCEED$BOB1Q<-E5!"1Q<-O:(B")
-   ("jj-goo" "http://ext.dictionary.goo.ne.jp/srch/jn/%s/m0u/"
+   ("jj-goo" "http://dictionary.goo.ne.jp/srch/jn/%s/m0u/"
     utf-8 nil "$B;0>JF2(B $BBg<-NSBhFsHG!"%G%$%j!<?78l<-E5(B+$B&A(B")
-   ("jj-yojijukugo-goo" "http://ext.dictionary.goo.ne.jp/srch/idiom/%s/m0u/"
+   ("jj-yojijukugo-goo" "http://dictionary.goo.ne.jp/srch/idiom/%s/m0u/"
     utf-8 nil "$B;0>JF2(B $B?7L@2r;M;z=O8l<-E5(B")
-   ("it-goo" "http://ext.dictionary.goo.ne.jp/srch/it/%s/m0u/"
+   ("it-goo" "http://dictionary.goo.ne.jp/srch/it/%s/m0u/"
     utf-8 nil "IT$BMQ8l(B")
-   ("all-goo" "http://ext.dictionary.goo.ne.jp/srch/all/%s/m0u/"
+   ("all-goo" "http://dictionary.goo.ne.jp/srch/all/%s/m0u/"
     utf-8 nil "$B$9$Y$F$N<-=q(B")
 
    ;; ocn goo
@@ -382,9 +386,9 @@
     utf-8 nil "$BF|K\8l650i4A;z=O8l;zE5(B")
 
    ;; $BKL<-O:(B $BCfF|(B
-   ("cj-kitajiro" "http://www.ctrans.org/cjdic/search.php?word=%s&opts=fw"
+   ("cj-kitajiro" "http://www.ctrans.org/search.php?word=%s&opts=fw"
     utf-8 nil "$BKL<-O:(B $BCfF|<-=q(B")
-   ("jc-kitajiro" "http://www.ctrans.org/cjdic/search.php?word=%s&opts=jp"
+   ("jc-kitajiro" "http://www.ctrans.org/search.php?word=%s&opts=jp"
     utf-8 nil "$BKL<-O:(B $BF|Cf<-=q(B")
    ("pinyin-ctrans" "http://www.ctrans.org/pinconv.cgi"
     utf-8 "content=%s&submit=Pinconv&mode=pcv&chk=$BF|K\8l(B" "$BKL<-O:(B $B%T%s%$%s(B")
@@ -414,6 +418,9 @@
     utf-8 nil "$B3ZLuCf9q8l<-=q(B $BF|Cf(B")
    ("cj-jcdic" "http://www.jcdic.com/search.php?searchtext=%s&lang=1"
     utf-8 nil "$B3ZLuCf9q8l<-=q(B $BCfF|(B")
+   ("pinyin-jcdic" "http://www.jcdic.com/chinese_convert/index.php"
+    utf-8
+    "codetxt=%s&remLen=800&cnbox=checked&twbox=checked&jpbox=checked&pybox=checked" "$B%T%s%$%s(B")
 
    ;; hjenglish $BCfF|(B
    ("cj-hjenglish" "http://dict.hjenglish.com/jp/w/%s&type=cj" utf-8 nil
@@ -1513,6 +1520,9 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
 	 "<img [^>]+images/\\([a-z0-9_]+\\)\\.gif[^>]*>")
 	(dic-lookup-w3m-filter-conv-pinyin "(\\(.*\\))")
 	)
+       ("\\`http://www\\.jcdic\\.com/chinese_convert/index\\.php"
+	w3m-filter-delete-regions
+	"<body[^>]*>" "<td class=\"redword\">&nbsp;</td>" t nil t)
 
        ;; hjenglish $BCfF|(B
        ("\\`http://dict\\.hjenglish\\.com/.*type=cj"
@@ -1543,12 +1553,39 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
        ("\\`http://dictionary\\.infoseek\\.ne\\.jp/word"
        	dic-lookup-w3m-filter-related-links
 	"jj-infoseek" jj "http://dictionary.infoseek.ne.jp/word/%s")
-
        ("\\`http://dictionary\\.infoseek\\.ne\\.jp/"
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
 	 dic-lookup-w3m-filter-yahoo-ej1-symbol-alist
 	 "<img name=\"[^\"]+\" src=\"/lang/g/pej4/\\([A-Z0-9_]+\\).png\"/>")
        	)
+
+       ;; kotobank
+       ("\\`http://kotobank\\.jp/"
+       	(w3m-filter-delete-regions
+	 "<body[^>]*>"
+	 "\\(<div class=\"full\">\\|<ol id=\"wordAgree\">\\|<ul class=\"word_dic\">\\)" t t t t)
+	(w3m-filter-replace-regexp "<img [^>]*src=\"/i/word.png\"[^>]*>" "")
+	(w3m-filter-delete-regions
+	 "\\(<div id=\"banner_app\">\\|<h2 id=\"word_connect\">\\)"
+	 "</body>" nil t t nil)
+	)
+       ("\\`http://kotobank\\.jp/ejword/"
+	(dic-lookup-w3m-filter-convert-phonetic-symbol
+	 dic-lookup-w3m-filter-yahoo-ej1-symbol-alist
+	 "<img name=\"[^\"]+\" src=\"/lang/g/pej4/\\([A-Z0-9_]+\\).png\"/>")
+	(dic-lookup-w3m-filter-eword-anchor "ej-kotobank")
+	(dic-lookup-w3m-filter-related-links
+	 "ej-kotobank" ej "http://kotobank.jp/ejword/%s")
+	(dic-lookup-w3m-filter-show-candidates "ej-kotobank")
+       	)
+       ("\\`http://kotobank\\.jp/jeword/"
+	(dic-lookup-w3m-filter-eword-anchor "ej-kotobank")
+	(dic-lookup-w3m-filter-related-links
+	 "ej-kotobank" ej "http://kotobank.jp/jeword/%s")
+	)
+       ("\\`http://kotobank\\.jp/word/"
+	dic-lookup-w3m-filter-related-links
+	"jj-kotobank" jj "http://kotobank.jp/word/%s")
 
        ;; gigadict
        ("\\`http://cgi\\.geocities\\.jp/abelinternational/cgi/kanjidic\\.cgi"
@@ -1561,11 +1598,11 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
 	dic-lookup-w3m-filter-related-links "kanji-foks" kanji)
 
        ;; kitajiro
-       ("\\`http://www\\.ctrans\\.org/cjdic/search\\.php.*&opts=fw"
+       ("\\`http://www\\.ctrans\\.org/search\\.php.*&opts=fw"
 	dic-lookup-w3m-filter-related-links "cj-kitajiro" cj)
-       ("\\`http://www\\.ctrans\\.org/cjdic/search\\.php.*&opts=jp"
+       ("\\`http://www\\.ctrans\\.org/search\\.php.*&opts=jp"
 	dic-lookup-w3m-filter-related-links "jc-kitajiro" cj)
-       ("\\`http://www\\.ctrans\\.org/cjdic/"
+       ("\\`http://www\\.ctrans\\.org/"
 	(w3m-filter-delete-regions "<p class=\"edit\">" "</p>")
 	(w3m-filter-replace-regexp
 	 "<span class=\"cn\" xml:lang=\"zh\" lang=\"zh\">\\(.*\\)</span>"
@@ -1609,9 +1646,11 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
 
        ;; dokochina pinyin
        ("\\`http://dokochina\\.com/simplified\\.php"
-	w3m-filter-delete-regions
-	"<body[^>]*>"
-	"<DIV STYLE='overflow-x:scroll; width:600px'><table border=0 cellspacing=0 cellpadding=0 bgcolor=#FFFFFF>" t t t)
+	(w3m-filter-delete-regions
+	 "<body[^>]*>"
+	 "<DIV STYLE='overflow-x:scroll; width:600px'><table border=0 cellspacing=0 cellpadding=0 bgcolor=#FFFFFF>" t t t)
+	(w3m-filter-delete-regions "<!--**********-->" "</body>" nil t)
+	)
 
        ;; pinyin chinese1
        ("\\`http://www\\.chinese1\\.jp/pinyin/gb2312/jp\\.asp"
@@ -1628,8 +1667,8 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
 	nil nil "</head>")
 
        ;; goo
-       ("\\`http://ext\\.dictionary\\.goo\\.ne\\.jp/"
-	(w3m-filter-delete-regions "<body[^>]*>" "<!--CONTENTS-->" t t t)
+       ("\\`http://dictionary\\.goo\\.ne\\.jp/"
+	(w3m-filter-delete-regions "<body[^>]*>" "<dl class=\"allList\">" t t t)
 	(w3m-filter-delete-regions "<!--c34-->" "</body>" nil t)
 	(w3m-filter-delete-regions "<!--/result-->" "</body>" nil t)
 	(dic-lookup-w3m-filter-eword-anchor "ej-goo")
@@ -1637,26 +1676,26 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
 	 dic-lookup-w3m-filter-ocn-ej-symbol-alist
 	 "<img src=\"[^>]*/img[^>]*/\\([a-z_0-9]+\\)\\.gif\"[^>]*>")
 	)
-       ("\\`http://ext\\.dictionary\\.goo\\.ne\\.jp/srch/ej/"
+       ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/ej/"
 	dic-lookup-w3m-filter-related-links "ej-goo" ej)
-       ("\\`http://ext\\.dictionary\\.goo\\.ne\\.jp/leaf/ej/"
+       ("\\`http://dictionary\\.goo\\.ne\\.jp/leaf/ej/"
 	dic-lookup-w3m-filter-related-links "ej-goo" ej
-	"http://ext.dictionary.goo.ne.jp/leaf/ej/%s/m0u/"
+	"http://dictionary.goo.ne.jp/leaf/ej/%s/m0u/"
 	)
-       ("\\`http://ext\\.dictionary\\.goo\\.ne\\.jp/srch/je/"
+       ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/je/"
 	dic-lookup-w3m-filter-related-links "je-goo" ej)
-       ("\\`http://ext\\.dictionary\\.goo\\.ne\\.jp/leaf/je/"
+       ("\\`http://dictionary\\.goo\\.ne\\.jp/leaf/je/"
 	dic-lookup-w3m-filter-related-links "je-goo" ej	"/m0u/%s/")
-       ("\\`http://ext\\.dictionary\\.goo\\.ne\\.jp/srch/jn/"
+       ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/jn/"
 	dic-lookup-w3m-filter-related-links "jj-goo" jj)
-       ("\\`http://ext\\.dictionary\\.goo\\.ne\\.jp/leaf/jn/"
+       ("\\`http://dictionary\\.goo\\.ne\\.jp/leaf/jn/"
 	dic-lookup-w3m-filter-related-links "jj-goo" jj	"/m0u/%s/")
-       ("\\`http://ext\\.dictionary\\.goo\\.ne\\.jp/"
+       ("\\`http://dictionary\\.goo\\.ne\\.jp/"
 	dic-lookup-w3m-filter-show-candidates "ej-goo")
 
        ;; ocn goo
        ("\\`http://ocndictionary\\.goo\\.ne\\.jp/search\\.php"
-	(w3m-filter-delete-regions "<body[^>]*>" "<!--/tab_navi-->" t t t)
+	(w3m-filter-delete-regions "<body[^>]*>" "<dl class=\"allList\">" t nil t t)
 	(w3m-filter-delete-regions "<!--l14_4-->\r" "<!--/result-->")
 	(w3m-filter-delete-regions "<!--/rbox-->" "</body>" nil t)
 	(w3m-filter-delete-regions "<div id=\"rside\">" "</body>" nil t)
@@ -1887,6 +1926,7 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
    ("\\`http://dict\\.hjenglish\\.com/jp/w/" . turnoff)
    ("\\`http://dictionary\\.infoseek\\.ne\\.jp/word" . t)
    ("\\`http://dictionary\\.infoseek\\.ne\\.jp/.+word" . turnoff)
+   ("\\`http://kotobank\\.jp/word" . t)
    ("\\`http://www\\.onlinedic\\.com/search\\.php" . turnoff)
    ("\\`http://www\\.frelax\\.com/cgi-local/pinyin/hz2py\\.cgi" . turnoff)
    ("\\`http://www\\.babylon\\.com/definition/" . turnoff)
@@ -1928,8 +1968,9 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
     ("jj-goo" . "$B9q(Bgoo")
     ("jj-all-weblio" . "$B9q(Bweblio")
     ("jj-chuuta" . "$B9q%A%e%&(B")
-    ("kanji-infoseek" . "$B4A(B")
-    ("jj-katakana-infoseek" . "$B%+%?%+%J(B")
+    ("jj-kotobank" . "kotobank")
+    ;;("kanji-infoseek" . "$B4A(B")
+    ;;("jj-katakana-infoseek" . "$B%+%?%+%J(B")
     ("jj-yojijukugo-goo" . "$B;M=O(B")
     ("thesaurus-j-yahoo" . "$BN`8l(BY!")
     ("thesaurus-j-weblio" . "$BN`8l(Bweblio")
@@ -1946,7 +1987,7 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
 (add-to-list
  'dic-lookup-w3m-related-site-list
  '(kanji
-   (("kanji-infoseek" . "$B4A(Binfoseek")
+   (;;("kanji-infoseek" . "$B4A(Binfoseek")
     ("Kanji-gigadict" . "$B4A(Bgigadict")
     ("KKanji-gigadict" . "$B650i4A;z(Bgigadict")
     ("kanji-foks" . "$B4A(Bfoks")
