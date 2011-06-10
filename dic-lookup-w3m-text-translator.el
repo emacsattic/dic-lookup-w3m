@@ -28,7 +28,7 @@
 (require 'text-translator)
 
 (defvar dic-lookup-w3m-search-engine-alist '())
-(mapcar
+(mapc
  '(lambda (elem)
     (add-to-list
      'dic-lookup-w3m-search-engine-alist

@@ -698,7 +698,7 @@ C-uで名前でソート、C-u C-uで説明でソート。"
       (delete-region (point-min) (point-max))
       (insert
        "<html><head><title>search engine list</title></head><body><table>\n")
-      (mapcar
+      (mapc
        '(lambda (e)
 	  (insert
 	   (format "<tr><td><a href=\"%s\">%s</a></td><td>%s</td></tr>\n"
