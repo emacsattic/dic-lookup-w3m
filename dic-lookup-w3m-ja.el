@@ -40,6 +40,13 @@
 	    (append '(nil) (nthcdr 4 elem)))))
     list)))
 
+(eval-when-compile
+  (require 'w3m-search)
+  (if (< max-specpdl-size 2000)
+      (setq max-specpdl-size 2000))
+  (if (< max-lisp-eval-depth 1000)
+      (setq max-lisp-eval-depth 1000)))
+
 (mapc
  '(lambda (elem) (add-to-list 'dic-lookup-w3m-search-engine-alist elem))
  `(
