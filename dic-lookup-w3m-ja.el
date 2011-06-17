@@ -50,88 +50,88 @@
 (mapc
  '(lambda (elem) (add-to-list 'dic-lookup-w3m-search-engine-alist elem))
  `(
-   ;; yahoo dtype; 0:$B9q8l(B, 1:$B1QOB(B, 2:$B$9$Y$F$N<-=q(B, 3:$BOB1Q(B, 5:$BN`8l(B
+   ;; yahoo dtype; 0:国語, 1:英和, 2:すべての辞書, 3:和英, 5:類語
    ("ej-yahoo" "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p=%s&dtype=1"
-    utf-8 nil "$B%W%m%0%l%C%7%V1QOBCf<-E5(B"
+    utf-8 nil "プログレッシブ英和中辞典"
     dic-lookup-w3m-suitable-engine-pattern)
    ("ej-yahoo2" "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p=%s&dtype=1&dname=1ss"
-    utf-8 nil "$B?7%0%m!<%P%k1QOB<-E5(B"
+    utf-8 nil "新グローバル英和辞典"
     dic-lookup-w3m-suitable-engine-pattern)
    ("je-yahoo" "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p=%s&dtype=3"
-    utf-8 nil "$B%W%m%0%l%C%7%VOB1QCf<-E5(B")
+    utf-8 nil "プログレッシブ和英中辞典")
    ("je-yahoo2" "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p=%s&dtype=3&dname=2ss"
-    utf-8 nil "$B%K%e!<%;%s%A%e%j!<OB1Q<-E5(B")
+    utf-8 nil "ニューセンチュリー和英辞典")
    ("jj-yahoo" "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p=%s&dtype=0"
-    utf-8 nil "$BBg<-@t(B")
+    utf-8 nil "大辞泉")
    ("jj-yahoo2" "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p=%s&dtype=0&dname=0ss"
-    utf-8 nil "$BBg<-NS(B")
+    utf-8 nil "大辞林")
    ("thesaurus-j-yahoo" "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p=%s&dtype=5"
-    utf-8 nil "$BI,7HN`8l<BMQ<-E5(B")
+    utf-8 nil "必携類語実用辞典")
    ("encyclopedia-yahoo" "http://100.yahoo.co.jp/search?p=%s"
-    utf-8 nil "$BF|K\BgI42JA4=q(B")
+    utf-8 nil "日本大百科全書")
 
    ;; excite
    ("ej-excite" "http://www.excite.co.jp/dictionary/english_japanese/?search=%s"
-    utf-8 nil "$B?71QOBCf<-E5Bh#6HG!"?7OB1QCf<-E5Bh#4HG!J8&5f<R!K(B")
+    utf-8 nil "新英和中辞典第６版、新和英中辞典第４版（研究社）")
    ("jj-excite" "http://www.excite.co.jp/dictionary/japanese/?search=%s"
-    utf-8 nil "$BBg<-NSBhFsHG!J;0>JF2!K(B")
+    utf-8 nil "大辞林第二版（三省堂）")
    ("cj-excite" "http://www.excite.co.jp/dictionary/chinese_japanese/?search=%s"
-    utf-8 nil "$B%G%$%j!<%3%s%5%$%9CfF|<-E5!J;0>JF2!K(B")
+    utf-8 nil "デイリーコンサイス中日辞典（三省堂）")
    ("jc-excite" "http://www.excite.co.jp/dictionary/japanese_chinese/?search=%s"
-    utf-8 nil "$B%G%$%j!<%3%s%5%$%9F|Cf<-E5!J;0>JF2!K(B")
+    utf-8 nil "デイリーコンサイス日中辞典（三省堂）")
    ("ej-computer-excite"
     "http://www.excite.co.jp/dictionary/english_japanese/?dictionary=COMP_EJ&search=%s"
-    utf-8 nil "$B1QOB%3%s%T%e!<%?MQ8l<-E5(B")
+    utf-8 nil "英和コンピュータ用語辞典")
    ("je-computer-excite"
     "http://www.excite.co.jp/dictionary/english_japanese/?dictionary=COMP_EJ&search=%s"
-    utf-8 nil "$B1QOB%3%s%T%e!<%?MQ8l<-E5(B")
+    utf-8 nil "英和コンピュータ用語辞典")
 
 
    ;; ALC
-   ("ej-alc" "http://eow.alc.co.jp/%s/UTF-8/" utf-8 nil "$B1Q<-O:(B")
+   ("ej-alc" "http://eow.alc.co.jp/%s/UTF-8/" utf-8 nil "英辞郎")
    ("ej-alc-business-put" "http://home.alc.co.jp/db/owa/bdicn_sch" utf-8
-    "w=%s" "$B%S%8%M%91Q8l<-=q(B")
+    "w=%s" "ビジネス英語辞書")
    ("ej-alc-gogen-put" "http://home.alc.co.jp/db/owa/etm_sch" shift_jis
-    "instr=%s&stg=1" "$B8l8;<-E5(B")
+    "instr=%s&stg=1" "語源辞典")
    ("ej-alc-business"
     "http://home.alc.co.jp/db/owa/bdicn_sch?w=%s"
-    utf-8 nil "$B%S%8%M%91Q8l<-=q(B")
+    utf-8 nil "ビジネス英語辞書")
    ("ej-alc-gogen" "http://home.alc.co.jp/db/owa/etm_sch?instr=%s&stg=1"
-    shift_jis nil "$B8l8;<-E5(B")
+    shift_jis nil "語源辞典")
 
-   ;; webster $B1Q1Q(B
+   ;; webster 英英
    ("ee-webster" "http://www.merriam-webster.com/dictionary/%s"
     utf-8 nil "Merriam-Webster Collegiate Dictionary")
    ("thesaurus-webster" "http://www.merriam-webster.com/thesaurus/%s"
     utf-8 nil "Merriam-Webster Collegiate Thesaurus")
 
-   ;; cambridge $B1Q1Q(B
+   ;; cambridge 英英
    ("ee-cambridge" "http://dictionary.cambridge.org/results.asp?searchword=%s"
     nil nil "Cambridge Advanced Learner's Dictionary")
 
-   ;; longman $B1Q1Q(B
+   ;; longman 英英
    ("ee-longman" "http://www.ldoceonline.com/search/?q=%s" utf-8 nil
     "Longman Dictionary of Contemporary English & Longman Advanced American Dictionary")
 
-   ;; oxford $B1Q1Q(B
+   ;; oxford 英英
    ("ee-oxford"
     "http://www.oup.com/oald-bin/web_getald7index1a.pl?search_word=%s"
     utf-8 nil "Oxford Advanced Learner's Dictionary")
 
-   ;; onelook $B1Q1Q(B
+   ;; onelook 英英
    ("ee-onelook" "http://www.onelook.com/?w=grammar&ls=a"
-    nil nil "$BLs(B1000$B$N<-=q$r0l3g8!:w(B")
+    nil nil "約1000の辞書を一括検索")
 
    ;; yahoo.com
    ("ee-yahoo.com"
     "http://education.yahoo.com/reference/dictionary/?s=%s" nil nil
-    "The American Heritage$(D"n(B Dictionary of the English Language, Fourth Edition.")
+    "The American Heritage® Dictionary of the English Language, Fourth Edition.")
    ("enes-yahoo.com"
     "http://education.yahoo.com/reference/dict_en_es/?s=%s" nil nil
-    "The American Heritage$(D"n(B Spanish Dictionary: Spanish/English, Ingl$(D+1(Bs/Espa$(D+P(Bol")
+    "The American Heritage® Spanish Dictionary: Spanish/English, Inglés/Español")
    ("esen-yahoo.com"
     "http://education.yahoo.com/reference/dict_en_es/?s=%s" nil nil
-    "The American Heritage$(D"n(B Spanish Dictionary: Spanish/English, Ingl$(D+1(Bs/Espa$(D+P(Bol")
+    "The American Heritage® Spanish Dictionary: Spanish/English, Inglés/Español")
 
    ;; BNC corpus
    ;; http://www.natcorp.ox.ac.uk/tools/chapter4.xml.ID=FIMNU#CQL
@@ -152,9 +152,9 @@
     "http://www.collins.co.uk/Corpus/CorpusPopUp.aspx?query=%s&corpus=ukephem+ukmags+bbc+ukbooks+times+today+usbooks+npr+usephem+ukspok&width=100"
     nil nil "Collins Cobuild Corpus")
 
-   ;; EReK corpus $B1Q8l$N%&%'%V%Z!<%8$r%3!<%Q%9$H$_$J$7$F8!:w$9$k(B
+   ;; EReK corpus 英語のウェブページをコーパスとみなして検索する
    ("corpus-erek" "http://erek.ta2o.net/news/%s.html" utf-8 nil
-    "$B1Q8l$G=q$+$l$?%&%'%V%Z!<%8$N%F%-%9%H$r5pBg$JNcJ8=8!J%3!<%Q%9!K$H$_$J$7$F8!:w$9$k(B")
+    "英語で書かれたウェブページのテキストを巨大な例文集（コーパス）とみなして検索する")
 
    ;; Dictionary.com
    ("thesaurus-rogets" "http://thesaurus.reference.com/browse/%s?jss=0"
@@ -167,34 +167,34 @@
     "http://www.visualthesaurus.com/browse/en/%s" nil nil
     "The Visual Thesaurus is an online thesaurus and dictionary of over 145,000 words")
 
-   ;; kotonoha $BF|K\8l%3!<%Q%9(B
-   ;; (setq w3m-use-cookies t)$B$,I,MW!#$5$i$K8!:wA0$K0lEY(B
-   ;; http://www.kotonoha.gr.jp/cgi-bin/search_form.cgi?viaTopPage=1 $B$r3+$/(B
+   ;; kotonoha 日本語コーパス
+   ;; (setq w3m-use-cookies t)が必要。さらに検索前に一度
+   ;; http://www.kotonoha.gr.jp/cgi-bin/search_form.cgi?viaTopPage=1 を開く
    ("corpus-j-kotonoha"
-    "http://www.kotonoha.gr.jp/demo/search_result?query_string=%s&genre=$BGr=q(B&genre=Yahoo!$BCN7CB^(B&genre=$B=q@R(B&genre=$B9q2q2q5DO?(B&entire_period=1"
-    utf-8 nil "KOTONOHA $B8=Be=q$-8@MU6Q9U%3!<%Q%9(B")
+    "http://www.kotonoha.gr.jp/demo/search_result?query_string=%s&genre=白書&genre=Yahoo!知恵袋&genre=書籍&genre=国会会議録&entire_period=1"
+    utf-8 nil "KOTONOHA 現代書き言葉均衡コーパス")
 
-   ;; $B@D6uJ88K(B $BF|K\8lMQNc8!:w(B
+   ;; 青空文庫 日本語用例検索
    ("corpus-j-aozora" "http://www.tokuteicorpus.jp/team/jpling/kwic/search.cgi"
-    shift_jis "cgi=1&sample=0&mode=1&kw=%s" nil "$B@D6uJ88K(B $BF|K\8lMQNc8!:w(B")
+    shift_jis "cgi=1&sample=0&mode=1&kw=%s" nil "青空文庫 日本語用例検索")
 
-   ;; $B3J%U%l!<%`8!:w(B http://nlp.kuee.kyoto-u.ac.jp/nl-resource/caseframe.html
+   ;; 格フレーム検索 http://nlp.kuee.kyoto-u.ac.jp/nl-resource/caseframe.html
    ("corpus-j-caseframe" "http://reed.kuee.kyoto-u.ac.jp/cf-search/"
     euc-jp "text=%s"
-    "$B3J%U%l!<%`8!:w(B; $BMQ8@$H$=$l$K4X78$9$kL>;l$rMQ8@$N3FMQK!$4$H$K@0M}$7$?$b$N(B")
+    "格フレーム検索; 用言とそれに関係する名詞を用言の各用法ごとに整理したもの")
    ("corpus-j-caseframe-get"
     "http://reed.kuee.kyoto-u.ac.jp/cf-search/?text=%s" euc-jp nil
-    "$B3J%U%l!<%`8!:w(B; $BMQ8@$H$=$l$K4X78$9$kL>;l$rMQ8@$N3FMQK!$4$H$K@0M}$7$?$b$N(B")
+    "格フレーム検索; 用言とそれに関係する名詞を用言の各用法ごとに整理したもの")
 
-   ;; Weblio $BN`8l<-E5(B
+   ;; Weblio 類語辞典
    ("thesaurus-j-weblio" "http://thesaurus.weblio.jp/content/%s" utf-8 nil
-    "Weblio $BLs(B650000$B8l$NN`8l$dF15A8l!&4XO"8l$H%7%=!<%i%9$r<}O?(B")
+    "Weblio 約650000語の類語や同義語・関連語とシソーラスを収録")
    ("ej-weblio" "http://ejje.weblio.jp/content/%s" utf-8 nil
-    "$B8&5f<R?71QOBCf<-E5(B")
+    "研究社新英和中辞典")
    ("je-weblio" "http://ejje.weblio.jp/content/%s" utf-8 nil
-    "$B8&5f<R?7OB1QCf<-E5(B")
+    "研究社新和英中辞典")
    ("jj-all-weblio" "http://www.weblio.jp/content/%s" utf-8 nil
-    "$B;0>JF2%G%$%j!<%3%s%5%$%99q8l<-E5B>(B")
+    "三省堂デイリーコンサイス国語辞典他")
 
    ;; LSD Life Science Dictionary project
    ("ej-lsd" "http://lsd-project.jp/weblsd/begin/%s" utf-8 nil
@@ -203,288 +203,288 @@
     "Life Science Dictionary project corpus")
    ("thesaurus-lsd"
     "http://lsd-project.jp/cgi-bin/lsdproj/draw_tree.pl?opt=c&query=%s"
-    utf-8 nil "Life Science Dictionary project $B%7%=!<%i%9(B")
+    utf-8 nil "Life Science Dictionary project シソーラス")
    ("tr-ej-lsd" "http://lsd.pharm.kyoto-u.ac.jp/cgi-bin/lsdproj/etoj-cgi04.pl"
     shift_jis "query=%s&lang=japanese&DIC=LSD"
-    "Life Science Dictionary project $BK]Lu(B")
+    "Life Science Dictionary project 翻訳")
 
-   ;; RNN $B;~;v1Q8l<-E5(B
+   ;; RNN 時事英語辞典
    ("ej-jijieigo" "http://rnnnews.jp/search/result/?q=%s" euc-jp nil
-    "RAPID NEWS NETWORK $B;~;v1Q8l<-E5(B")
+    "RAPID NEWS NETWORK 時事英語辞典")
    ("je-jijieigo" "http://rnnnews.jp/search/result/?q=%s" euc-jp nil
-    "RAPID NEWS NETWORK $B;~;v1Q8l<-E5(B")
+    "RAPID NEWS NETWORK 時事英語辞典")
 
    ;; FOKS Forgiving Online Kanji Search
-   ;; $BFI$_J}$N$o$+$i$J$$=O8l$NFI$_$r!JIT@53N$G$b!K$$$l$F!"@5$7$$FI$_$r(B
-   ;; $BD4$Y$i$l$^$9!#(B
+   ;; 読み方のわからない熟語の読みを（不正確でも）いれて、正しい読みを
+   ;; 調べられます。
    ("kanji-foks" "http://foks.info/search/?query=%s&action=Search" utf-8 nil
-    "FOKS Forgiving Online Kanji Search $B4A;z(B")
+    "FOKS Forgiving Online Kanji Search 漢字")
 
    ;; babylon
    ("ej-babylon" "http://www.babylon.com/definition/%s/Japanese" utf-8 nil
-    "$B%P%S%m%s(B")
+    "バビロン")
    ("je-babylon" "http://www.babylon.com/definition/%s/Japanese" utf-8 nil
-    "$B%P%S%m%s(B")
+    "バビロン")
    ("jj-babylon" "http://www.babylon.com/definition/%s/Japanese" utf-8 nil
-    "$B%P%S%m%s(B(Wikipedia)")
+    "バビロン(Wikipedia)")
    ("ee-babylon" "http://www.babylon.com/definition/%s/English" utf-8 nil
-    "$B%P%S%m%s(B")
+    "バビロン")
 
    ;; infoseek
    ("ej-infoseek"
     "http://dictionary.infoseek.ne.jp/search/result?q=%s&t=0&r=ejje"
-    utf-8 nil "$B%W%m%0%l%C%7%V1QOBCf<-E5(B($BBh#4HG(B)")
+    utf-8 nil "プログレッシブ英和中辞典(第４版)")
    ("je-infoseek"
     "http://dictionary.infoseek.ne.jp/search/result?q=%s&t=0&r=ejje"
-    utf-8 nil "$B%W%m%0%l%C%7%VOB1QCf<-E5(B($BBh#3HG(B)")
+    utf-8 nil "プログレッシブ和英中辞典(第３版)")
    ("jj-infoseek"
     "http://dictionary.infoseek.ne.jp/search/result?q=%s&t=0&r=lang"
-    utf-8 nil "$B%G%8%?%kBg<-@t(B")
+    utf-8 nil "デジタル大辞泉")
    ("jj-etc-infoseek"
     "http://dictionary.infoseek.ne.jp/search/result?q=%s&t=0&r=etc"
-    utf-8 nil "$B$=$NB>$N;vE5(B")
+    utf-8 nil "その他の事典")
 
    ;; kotobank
    ("jj-kotobank" "http://kotobank.jp/search/result?q=%s"
-    utf-8 nil "$BJ#?t<-=q8!:w(B $B%G%8%?%kBg<-@t(B, $B%^%$%Z%G%#%"(B, $BCN7CB"(B, etc.")
+    utf-8 nil "複数辞書検索 デジタル大辞泉, マイペディア, 知恵蔵, etc.")
    ("ej-kotobank" "http://kotobank.jp/ejsearch/result?q=%s"
-    utf-8 nil "$B%W%m%0%l%C%7%V1QOBCf<-E5(B($BBh#4HG(B)")
+    utf-8 nil "プログレッシブ英和中辞典(第４版)")
    ("je-kotobank" "http://kotobank.jp/ejsearch/result?q=%s"
-    utf-8 nil "$B%W%m%0%l%C%7%VOB1QCf<-E5(B($BBh#3HG(B)")
+    utf-8 nil "プログレッシブ和英中辞典(第３版)")
 
-   ;; $B4A;z$N=q$-=g(B
-   ;; $B=q$-=g$G(BGO
+   ;; 漢字の書き順
+   ;; 書き順でGO
    ("kanji-kakijun" "http://www.winttk.com/kakijun/dbf/profile.cgi"
-    shift_jis "key=%s&hor=1&max=1" "$B4A;z$N=q$-=g(B")
+    shift_jis "key=%s&hor=1&max=1" "漢字の書き順")
 
    ;; goo
    ("ej-goo" "http://dictionary.goo.ne.jp/srch/ej/%s/m0u/"
-    utf-8 nil "$B;0>JF2(B EXCEED$B1QOB<-E5!"1Q<-O:(B")
+    utf-8 nil "三省堂 EXCEED英和辞典、英辞郎")
    ("je-goo" "http://dictionary.goo.ne.jp/srch/je/%s/m0u/"
-    utf-8 nil "$B;0>JF2(B EXCEED$BOB1Q<-E5!"1Q<-O:(B")
+    utf-8 nil "三省堂 EXCEED和英辞典、英辞郎")
    ("jj-goo" "http://dictionary.goo.ne.jp/srch/jn/%s/m0u/"
-    utf-8 nil "$B;0>JF2(B $BBg<-NSBhFsHG!"%G%$%j!<?78l<-E5(B+$B&A(B")
+    utf-8 nil "三省堂 大辞林第二版、デイリー新語辞典+α")
    ("jj-yojijukugo-goo" "http://dictionary.goo.ne.jp/srch/idiom/%s/m0u/"
-    utf-8 nil "$B;0>JF2(B $B?7L@2r;M;z=O8l<-E5(B")
+    utf-8 nil "三省堂 新明解四字熟語辞典")
    ("it-goo" "http://dictionary.goo.ne.jp/srch/it/%s/m0u/"
-    utf-8 nil "IT$BMQ8l(B")
+    utf-8 nil "IT用語")
    ("all-goo" "http://dictionary.goo.ne.jp/srch/all/%s/m0u/"
-    utf-8 nil "$B$9$Y$F$N<-=q(B")
+    utf-8 nil "すべての辞書")
 
    ;; ocn goo
    ("ej-ocn"
     "http://ocndictionary.goo.ne.jp/search.php?MT=%s&kind=ej&mode=0&kwassist=0"
-    euc-jp nil "$B;0>JF2(B EXCEED$B1QOB<-E5(B")
+    euc-jp nil "三省堂 EXCEED英和辞典")
    ("je-ocn"
     "http://ocndictionary.goo.ne.jp/search.php?MT=%s&kind=je&mode=0&kwassist=0"
-    euc-jp nil "$B;0>JF2(B EXCEED$BOB1Q<-E5(B")
+    euc-jp nil "三省堂 EXCEED和英辞典")
    ("jj-ocn"
     "http://ocndictionary.goo.ne.jp/search.php?MT=%s&kind=jn&mode=0&kwassist=0"
-    euc-jp nil "$B;0>JF2(B $BBg<-NSBhFsHG!"%G%$%j!<?78l<-E5(B+$B&A(B")
+    euc-jp nil "三省堂 大辞林第二版、デイリー新語辞典+α")
    ("all-ocn"
     "http://ocndictionary.goo.ne.jp/search.php?MT=%s&kind=all&mode=0&kwassist=0"
-    euc-jp nil "$B$9$Y$F$N<-=q(B")
+    euc-jp nil "すべての辞書")
 
    ;; gigadict
    ("JG-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicjg.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BF|FH<-E5!J%I%$%D8l!K(B")
+    utf-8 nil "日独辞典（ドイツ語）")
    ("GJ-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicgj.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BFHOB<-E5!J%I%$%D8l!K(B")
+    utf-8 nil "独和辞典（ドイツ語）")
    ("JF-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicjf.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BF|J)<-E5!J%U%i%s%98l!K(B")
+    utf-8 nil "日仏辞典（フランス語）")
    ("FJ-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicfj.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BJ)OB<-E5!J%U%i%s%98l!K(B")
+    utf-8 nil "仏和辞典（フランス語）")
    ("PJ-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicpj.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BIrOB<-E5!J%]%k%H%,%k8l!K(B")
+    utf-8 nil "葡和辞典（ポルトガル語）")
    ("JI-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicji.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BF|0K<-E5!J%$%?%j%"8l!K(B")
+    utf-8 nil "日伊辞典（イタリア語）")
    ("IJ-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicij.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$B0KOB<-E5!J%$%?%j%"8l!K(B")
+    utf-8 nil "伊和辞典（イタリア語）")
    ("JS-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicjs.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BOB@><-E5!J%9%Z%$%s8l!K(B")
+    utf-8 nil "和西辞典（スペイン語）")
    ("SJ-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicsj.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$B@>OB<-E5!J%9%Z%$%s8l!K(B")
+    utf-8 nil "西和辞典（スペイン語）")
    ("JK-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicjko.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BF|4Z<-E5!J4Z9q8l!K(B")
+    utf-8 nil "日韓辞典（韓国語）")
    ("KJ-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dickoj.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$B4ZF|<-E5!J4Z9q8l!K(B")
+    utf-8 nil "韓日辞典（韓国語）")
    ("JT-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicjt.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BOBEZ<-E5!J%H%k%38l!K(B")
+    utf-8 nil "和土辞典（トルコ語）")
    ("TJ-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dictj.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BEZOB<-E5!J%H%k%38l!K(B")
+    utf-8 nil "土和辞典（トルコ語）")
    ("JR-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicjr.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BOBO*<-E5!J%m%7%"8l!K(B")
+    utf-8 nil "和露辞典（ロシア語）")
    ("RJ-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicrj.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BO*OB<-E5!J%m%7%"8l!K(B")
+    utf-8 nil "露和辞典（ロシア語）")
    ("JC-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicjc.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BF|Cf<-E5!JCf9q8l4JBN!K(B")
+    utf-8 nil "日中辞典（中国語簡体）")
    ("CJ-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/diccj.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BCfF|<-E5!JCf9q8l4JBN!K(B")
+    utf-8 nil "中日辞典（中国語簡体）")
    ("JN-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicjn.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BOBMv<-E5!J%*%i%s%@8l!K(B")
+    utf-8 nil "和蘭辞典（オランダ語）")
    ("NJ-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicnj.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BMvOB<-E5!J%*%i%s%@8l!K(B")
+    utf-8 nil "蘭和辞典（オランダ語）")
    ("JH-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicjh.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BF|K\8l(B-$B%X%V%i%$8l<-E5(B")
+    utf-8 nil "日本語-ヘブライ語辞典")
    ("HJ-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dichj.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$B%X%V%i%$8l(B-$BF|K\8l<-E5(B")
+    utf-8 nil "ヘブライ語-日本語辞典")
    ("JAr-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicjar.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BF|K\8l(B-$B%"%i%S%"8l<-E5(B")
+    utf-8 nil "日本語-アラビア語辞典")
    ("ArJ-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicarj.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$B%"%i%S%"8l(B-$BF|K\8l<-E5(B")
+    utf-8 nil "アラビア語-日本語辞典")
    ("JE-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicje2.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BOB1Q<-E5!J1Q8l!K(B")
+    utf-8 nil "和英辞典（英語）")
    ("EJ-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicej.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BOB1Q<-E5!J1Q8l!K(B")
+    utf-8 nil "和英辞典（英語）")
    ("JFa-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicjfa.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BF|K\8l(B-$B%Z%k%7%c8l<-E5(B")
+    utf-8 nil "日本語-ペルシャ語辞典")
    ("FaJ-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicfaj.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$B%Z%k%7%c8l(B-$BF|K\8l<-E5(B")
+    utf-8 nil "ペルシャ語-日本語辞典")
    ("JPol-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicjpol.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BOBGH<-E5!J%](B-$B%i%s%I8l!K(B")
+    utf-8 nil "和波辞典（ポ-ランド語）")
    ("PolJ-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicpolj.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BGHOB<-E5!J%](B-$B%i%s%I8l!K(B")
+    utf-8 nil "波和辞典（ポ-ランド語）")
    ("JU-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicju.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BF|K\8l(B-$B%&%/%i%$%J8l<-E5(B")
+    utf-8 nil "日本語-ウクライナ語辞典")
    ("UJ-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicuj.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$B%&%/%i%$%J8l(B-$BF|K\8l<-E5(B")
+    utf-8 nil "ウクライナ語-日本語辞典")
    ("JIdn-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicJIdn.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BF|K\8l(B-$B%$%s%I%M%7%"8l<-E5(B")
+    utf-8 nil "日本語-インドネシア語辞典")
    ("IndJ-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/dicIdnJ.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$B%$%s%I%M%7%"8l(B-$BF|K\8l<-E5(B")
+    utf-8 nil "インドネシア語-日本語辞典")
    ("Kanji-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/kanjidic.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$B@$3&4A;z;zE5!JF|K\!&Cf9q!&4Z9q$NA44A;z4^$`!K(B")
+    utf-8 nil "世界漢字字典（日本・中国・韓国の全漢字含む）")
    ("KKanji-gigadict"
     "http://cgi.geocities.jp/abelinternational/cgi/jkdic.cgi?mode=search&word=%s&page_max=50"
-    utf-8 nil "$BF|K\8l650i4A;z=O8l;zE5(B")
+    utf-8 nil "日本語教育漢字熟語字典")
 
-   ;; $BKL<-O:(B $BCfF|(B
+   ;; 北辞郎 中日
    ("cj-kitajiro" "http://www.ctrans.org/search.php?word=%s&opts=fw"
-    utf-8 nil "$BKL<-O:(B $BCfF|<-=q(B")
+    utf-8 nil "北辞郎 中日辞書")
    ("jc-kitajiro" "http://www.ctrans.org/search.php?word=%s&opts=jp"
-    utf-8 nil "$BKL<-O:(B $BF|Cf<-=q(B")
+    utf-8 nil "北辞郎 日中辞書")
    ("pinyin-ctrans" "http://www.ctrans.org/pinconv.cgi"
-    utf-8 "content=%s&submit=Pinconv&mode=pcv&chk=$BF|K\8l(B" "$BKL<-O:(B $B%T%s%$%s(B")
+    utf-8 "content=%s&submit=Pinconv&mode=pcv&chk=日本語" "北辞郎 ピンイン")
 
-   ;; BitEx $BCfF|(B
+   ;; BitEx 中日
    ("cj-bitex"
     "http://bitex-cn.com/search_result.php?match=contains&keyword=%s&imageField.x=0&imageField.y=0&deal_type=cn2jp"
-    utf-8 nil "BitEx $BCfF|<-=q(B")
+    utf-8 nil "BitEx 中日辞書")
    ("jc-bitex"
     "http://bitex-cn.com/search_result.php?match=contains&keyword=%s&imageField.x=0&imageField.y=0&deal_type=jp2cn"
-    utf-8 nil "BitEx $BF|Cf<-=q(B")
+    utf-8 nil "BitEx 日中辞書")
 
-   ;; $BFX_j<-3$(B $BCfF|(B
+   ;; 敦煌辞海 中日
    ("cj-tonko-jikai"
     "http://www.onlinedic.com/search.php?searchtext=%s&lang=1" utf-8 nil
-    "$BFX_j<-3$(B $BCfF|<-=q(B")
+    "敦煌辞海 中日辞書")
    ("jc-tonko-jikai"
     "http://www.onlinedic.com/search.php?searchtext=%s&lang=0" utf-8 nil
-    "$BFX_j<-3$(B $BF|Cf<-=q(B")
+    "敦煌辞海 日中辞書")
    ("cj-tonko-jikai-post" "http://www.onlinedic.com/search.php"
-    utf-8 "searchtext=%s&lang=1" "$BFX_j<-3$(B $BCfF|<-=q(B")
+    utf-8 "searchtext=%s&lang=1" "敦煌辞海 中日辞書")
    ("jc-tonko-jikai-post" "http://www.onlinedic.com/search.php"
-    utf-8 "searchtext=%s&lang=0" "$BFX_j<-3$(B $BF|Cf<-=q(B")
+    utf-8 "searchtext=%s&lang=0" "敦煌辞海 日中辞書")
 
-   ;; $B3ZLuCf9q8l<-=q(B
+   ;; 楽訳中国語辞書
    ("jc-jcdic" "http://www.jcdic.com/search.php?searchtext=%s&lang=0"
-    utf-8 nil "$B3ZLuCf9q8l<-=q(B $BF|Cf(B")
+    utf-8 nil "楽訳中国語辞書 日中")
    ("cj-jcdic" "http://www.jcdic.com/search.php?searchtext=%s&lang=1"
-    utf-8 nil "$B3ZLuCf9q8l<-=q(B $BCfF|(B")
+    utf-8 nil "楽訳中国語辞書 中日")
    ("pinyin-jcdic" "http://www.jcdic.com/chinese_convert/index.php"
     utf-8
-    "codetxt=%s&remLen=800&cnbox=checked&twbox=checked&jpbox=checked&pybox=checked" "$B%T%s%$%s(B")
+    "codetxt=%s&remLen=800&cnbox=checked&twbox=checked&jpbox=checked&pybox=checked" "ピンイン")
 
-   ;; hjenglish $BCfF|(B
+   ;; hjenglish 中日
    ("cj-hjenglish" "http://dict.hjenglish.com/jp/w/%s&type=cj" utf-8 nil
-    "$A;q$BF@>.(BD$B1QF|AP3K3$NL$(DC[$BLL$A4J$BE5(B $BCfF|(B")
+    "获得小D英日双核海量桌面词典 中日")
    ("jc-hjenglish" "http://dict.hjenglish.com/jp/w/%s&type=jc" utf-8 nil
-    "$A;q$BF@>.(BD$B1QF|AP3K3$NL$(DC[$BLL$A4J$BE5(B $BF|Cf(B")
+    "获得小D英日双核海量桌面词典 日中")
 
    ;; wiktionary
    ("jj-wiktionary" "http://ja.wiktionary.org/wiki/%s" utf-8 nil
-    "$B%&%#%/%7%g%J%j!<F|K\8lHG(B(Wiktionary)")
+    "ウィクショナリー日本語版(Wiktionary)")
 
-   ;; $B=qCn(B pinyin
+   ;; 書虫 pinyin
    ("pinyin-frelax" "http://www.frelax.com/cgi-local/pinyin/hz2py.cgi"
-    utf-8 "hanzi=%s&mark=3&jthz=3" "$B=qCn(B $B%T%s%$%s(B")
+    utf-8 "hanzi=%s&mark=3&jthz=3" "書虫 ピンイン")
 
-   ;; $B@.l~Bg3X(B $BCf9q8l2;@<650i%G!<%?%Y!<%9%7%9%F%`(B $BMW%f!<%6EPO?(B
+   ;; 成蹊大学 中国語音声教育データベースシステム 要ユーザ登録
    ;; http://chinese.jim.seikei.ac.jp/chinese/LoginInit.do?ap=&zh=
    ("pinyin-seikei"
     "http://chinese.jim.seikei.ac.jp/chinese/SearchList_chiInit.do" utf-8
-    "Act=1&txtSearch=%s&searchButton=$B8!:w(B&action_cl=1" "$B@.l~Bg3X(B $B%T%s%$%s(B")
+    "Act=1&txtSearch=%s&searchButton=検索&action_cl=1" "成蹊大学 ピンイン")
 
    ;; pinyin chinese1
    ("pinyin-chinese1"
     "http://www.chinese1.jp/pinyin/gb2312/jp.asp?wenzi=%s" gb2312 nil
-    "$BCfJ89->l(B $B%T%s%$%s(B")
+    "中文広場 ピンイン")
 
    ;; pinyin cazoo
    ("pinyin-cazoo" "http://www.cazoo.jp/cgi-bin/pinyin/index.html?hanzi=%s"
-    utf-8 nil "Cazoo $B%T%s%$%s(B")
+    utf-8 nil "Cazoo ピンイン")
 
    ;; dokochina pinyin
    ("pinyin-dokochina" "http://dokochina.com/simplified.php"
-    utf-8 "text1=%s&kbn1=1&chk1=0" "$B$I$s$HMh$$!"Cf9q8l(B $B%T%s%$%s(B")
+    utf-8 "text1=%s&kbn1=1&chk1=0" "どんと来い、中国語 ピンイン")
 
-   ;; $B;0=$<R(B $BFHOB<-E5(B
+   ;; 三修社 独和辞典
    ("gj-sanshusha" "http://www5.mediagalaxy.co.jp/CGI/sanshushadj/search.cgi"
-    shift_jis "key_word=%s&cmd=list" "$B;0=$<R(B $BFHOB<-E5(B")
+    shift_jis "key_word=%s&cmd=list" "三修社 独和辞典")
    ("gj-sanshusha-get"
     "http://www5.mediagalaxy.co.jp/CGI/sanshushadj/search.cgikey_word=%s&cmd=list"
-    shift_jis nil "$B;0=$<R(B $BFHOB<-E5(B")
+    shift_jis nil "三修社 独和辞典")
 
    ;; spellcheck.net spell checker
    ("spell-spellcheck" "http://www.spellcheck.net/cgi-bin/spell.exe" nil
-    "action=CHECKPG&string=%s" "$B1Q8l%9%Z%k%A%'%C%+!<(B")
+    "action=CHECKPG&string=%s" "英語スペルチェッカー")
    ("spell-spellcheck-get"
     "http://www.spellcheck.net/cgi-bin/spell.exe?action=CHECKPG&string=%s"
-    nil nil "$B1Q8l%9%Z%k%A%'%C%+!<(B")
+    nil nil "英語スペルチェッカー")
 
-   ;; $BDL?.MQ8l$N4pACCN<1(B
+   ;; 通信用語の基礎知識
    ("tsuushinyougo-wdic.org" "http://www.wdic.org/search?word=%s"
-    utf-8 nil "$BDL?.MQ8l$N4pACCN<1(B")
+    utf-8 nil "通信用語の基礎知識")
 
-   ;; $B%A%e%&B@$N(Bweb$B<-=q(B
+   ;; チュウ太のweb辞書
    ("jj-chuuta" "http://marmot.chuta.jp/edit1/Dic.aspx?Search=%s&lang=ja"
-    utf-8 nil "ED$BEE;R2=<-=q(B")
+    utf-8 nil "ED電子化辞書")
    ("je-chuuta" "http://marmot.chuta.jp/edit1/Dic.aspx?Search=%s&lang=en"
-    utf-8 nil "EDR$BF|1QBPLu<-=q(B")
+    utf-8 nil "EDR日英対訳辞書")
    ("jc-chuuta" "http://marmot.chuta.jp/edit1/Dic.aspx?Search=%s&lang=zh"
     utf-8 nil "EDR")
    ("jaaa-chuuta" "http://marmot.chuta.jp/edit1/Dic.aspx?Search=%s&lang=aa"
@@ -539,7 +539,7 @@
     utf-8 nil "Reading Tutor Vietnamese")
    ("jj-chuuta2" "http://marmot.chuta.jp/jtool/jtool.cgi"
     utf-8 "SENTENCE=%s&DIC=Dictionary&lang=en&lang=ja&lang=zh"
-    "ED$BEE;R2=<-=q(B")
+    "ED電子化辞書")
 
    ;; WordReference.com
    ("enes-wordreference" "http://www.wordreference.com/enes/%s"
@@ -660,7 +660,7 @@
 	))
 
    ;; yahoo.com translator
-   ;; Accept-Charset$B$K(Butf-8$B$,I,MW(B
+   ;; Accept-Charsetにutf-8が必要
    ;; (setq w3m-command-arguments
    ;;       '("-header" "Accept-Charset: ISO-2022-JP, EUC-JP, Shift-JIS, UTF-8;q=0.8, *;q=0.1"))
    ,@(dic-lookup-w3m-search-engine-postget
@@ -1124,121 +1124,121 @@
    ;; infoseek translator
    ,@(dic-lookup-w3m-search-engine-postget
       '(("tr-ej-infoseek" "http://translation.infoseek.co.jp/" utf-8
-	 "ac=Text&lng=en&original=%s&selector=0&submit=$B!!K]Lu!!(B"
+	 "ac=Text&lng=en&original=%s&selector=0&submit=　翻訳　"
 	 "Cross Language")
 	("tr-je-infoseek" "http://translation.infoseek.co.jp/" utf-8
-	 "ac=Text&lng=en&original=%s&selector=1&submit=$B!!K]Lu!!(B"
+	 "ac=Text&lng=en&original=%s&selector=1&submit=　翻訳　"
 	 "Cross Language")
 	("tr-kj-infoseek" "http://translation.infoseek.co.jp/" utf-8
-	 "ac=Text&lng=ko&original=%s&selector=0&submit=$B!!K]Lu!!(B"
+	 "ac=Text&lng=ko&original=%s&selector=0&submit=　翻訳　"
 	 "Changshin Soft (CSLI)")
 	("tr-jk-infoseek" "http://translation.infoseek.co.jp/" utf-8
-	 "ac=Text&lng=ko&original=%s&selector=1&submit=$B!!K]Lu!!(B"
+	 "ac=Text&lng=ko&original=%s&selector=1&submit=　翻訳　"
 	 "Changshin Soft (CSLI)")
 	("tr-cj-infoseek" "http://translation.infoseek.co.jp/" utf-8
-	 "ac=Text&lng=zh&original=%s&selector=0&submit=$B!!K]Lu!!(B"
+	 "ac=Text&lng=zh&original=%s&selector=0&submit=　翻訳　"
 	 "Cross Language")
 	("tr-jc-infoseek" "http://translation.infoseek.co.jp/" utf-8
-	 "ac=Text&lng=zh&original=%s&selector=1&submit=$B!!K]Lu!!(B"
+	 "ac=Text&lng=zh&original=%s&selector=1&submit=　翻訳　"
 	 "Cross Language")
 	("tr-frjp-infoseek" "http://translation.infoseek.co.jp/" utf-8
-	 "ac=Text&lng=fr&original=%s&selector=0&submit=$B!!K]Lu!!(B")
+	 "ac=Text&lng=fr&original=%s&selector=0&submit=　翻訳　")
 	("tr-jpfr-infoseek" "http://translation.infoseek.co.jp/" utf-8
-	 "ac=Text&lng=fr&original=%s&selector=1&submit=$B!!K]Lu!!(B")
+	 "ac=Text&lng=fr&original=%s&selector=1&submit=　翻訳　")
 	("tr-dejp-infoseek" "http://translation.infoseek.co.jp/" utf-8
-	 "ac=Text&lng=de&original=%s&selector=0&submit=$B!!K]Lu!!(B")
+	 "ac=Text&lng=de&original=%s&selector=0&submit=　翻訳　")
 	("tr-jpde-infoseek" "http://translation.infoseek.co.jp/" utf-8
-	 "ac=Text&lng=de&original=%s&selector=1&submit=$B!!K]Lu!!(B")
+	 "ac=Text&lng=de&original=%s&selector=1&submit=　翻訳　")
 	("tr-itjp-infoseek" "http://translation.infoseek.co.jp/" utf-8
-	 "ac=Text&lng=it&original=%s&selector=0&submit=$B!!K]Lu!!(B")
+	 "ac=Text&lng=it&original=%s&selector=0&submit=　翻訳　")
 	("tr-jpit-infoseek" "http://translation.infoseek.co.jp/" utf-8
-	 "ac=Text&lng=it&original=%s&selector=1&submit=$B!!K]Lu!!(B")
+	 "ac=Text&lng=it&original=%s&selector=1&submit=　翻訳　")
 	("tr-esjp-infoseek" "http://translation.infoseek.co.jp/" utf-8
-	 "ac=Text&lng=es&original=%s&selector=0&submit=$B!!K]Lu!!(B")
+	 "ac=Text&lng=es&original=%s&selector=0&submit=　翻訳　")
 	("tr-jpes-infoseek" "http://translation.infoseek.co.jp/" utf-8
-	 "ac=Text&lng=es&original=%s&selector=1&submit=$B!!K]Lu!!(B")
+	 "ac=Text&lng=es&original=%s&selector=1&submit=　翻訳　")
 	("tr-ptjp-infoseek" "http://translation.infoseek.co.jp/" utf-8
-	 "ac=Text&lng=pt&original=%s&selector=0&submit=$B!!K]Lu!!(B")
+	 "ac=Text&lng=pt&original=%s&selector=0&submit=　翻訳　")
 	("tr-jppt-infoseek" "http://translation.infoseek.co.jp/" utf-8
-	 "ac=Text&lng=pt&original=%s&selector=1&submit=$B!!K]Lu!!(B")
+	 "ac=Text&lng=pt&original=%s&selector=1&submit=　翻訳　")
 	))
 
-   ;; $BLu$7$F$M$C$H(B web page translator
+   ;; 訳してねっと web page translator
    ("tr-ej-url-yakushite.net"
-    "http://www.yakushite.net/cgi-bin/WebObjects/YakushiteNet.woa/wa/TranslateDirectAction/defaultTrans?direction=LR&_COMMUNITY_ID=900002&textArea=%s&isRecommend=5.0.3.3.1.0.5.0.0.1.15&5.0.3.3.1.0.5.0.0.1.19.1=$BK]Lu(B" utf-8)
+    "http://www.yakushite.net/cgi-bin/WebObjects/YakushiteNet.woa/wa/TranslateDirectAction/defaultTrans?direction=LR&_COMMUNITY_ID=900002&textArea=%s&isRecommend=5.0.3.3.1.0.5.0.0.1.15&5.0.3.3.1.0.5.0.0.1.19.1=翻訳" utf-8)
    ("tr-je-url-yakushite.net"
-    "http://www.yakushite.net/cgi-bin/WebObjects/YakushiteNet.woa/wa/TranslateDirectAction/defaultTrans?direction=RL&_COMMUNITY_ID=900002&textArea=%s&isRecommend=5.0.3.3.1.0.5.0.0.1.15&5.0.3.3.1.0.5.0.0.1.19.1=$BK]Lu(B" utf-8)
+    "http://www.yakushite.net/cgi-bin/WebObjects/YakushiteNet.woa/wa/TranslateDirectAction/defaultTrans?direction=RL&_COMMUNITY_ID=900002&textArea=%s&isRecommend=5.0.3.3.1.0.5.0.0.1.15&5.0.3.3.1.0.5.0.0.1.19.1=翻訳" utf-8)
    ("tr-cj-url-yakushite.net"
-    "http://www.yakushite.net/cgi-bin/WebObjects/ChinaYakushiteNet.woa/wa/TranslateDirectAction/defaultTrans?direction=LR&_COMMUNITY_ID=900002&textArea=%s&isRecommend=5.0.3.3.1.0.5.0.0.1.15&5.0.3.3.1.0.5.0.0.1.19.1=$BK]Lu(B" utf-8)
+    "http://www.yakushite.net/cgi-bin/WebObjects/ChinaYakushiteNet.woa/wa/TranslateDirectAction/defaultTrans?direction=LR&_COMMUNITY_ID=900002&textArea=%s&isRecommend=5.0.3.3.1.0.5.0.0.1.15&5.0.3.3.1.0.5.0.0.1.19.1=翻訳" utf-8)
    ("tr-jc-url-yakushite.net"
-    "http://www.yakushite.net/cgi-bin/WebObjects/ChinaYakushiteNet.woa/wa/TranslateDirectAction/defaultTrans?direction=RL&_COMMUNITY_ID=900002&textArea=%s&isRecommend=5.0.3.3.1.0.5.0.0.1.15&5.0.3.3.1.0.5.0.0.1.19.1=$BK]Lu(B" utf-8)
+    "http://www.yakushite.net/cgi-bin/WebObjects/ChinaYakushiteNet.woa/wa/TranslateDirectAction/defaultTrans?direction=RL&_COMMUNITY_ID=900002&textArea=%s&isRecommend=5.0.3.3.1.0.5.0.0.1.15&5.0.3.3.1.0.5.0.0.1.19.1=翻訳" utf-8)
    ("tr-ej-url-yakushite.net-put"
     "http://www.yakushite.net/cgi-bin/WebObjects/YakushiteNet.woa/wa/TranslateDirectAction/defaultTrans"
-    utf-8 "direction=LR&_COMMUNITY_ID=900002&textArea=%s&isRecommend=5.0.3.3.1.0.5.0.0.1.15&5.0.3.3.1.0.5.0.0.1.19.1=$BK]Lu(B")
+    utf-8 "direction=LR&_COMMUNITY_ID=900002&textArea=%s&isRecommend=5.0.3.3.1.0.5.0.0.1.15&5.0.3.3.1.0.5.0.0.1.19.1=翻訳")
    ("tr-je-url-yakushite.net-put"
     "http://www.yakushite.net/cgi-bin/WebObjects/YakushiteNet.woa/wa/TranslateDirectAction/defaultTrans"
-    utf-8 "direction=RL&_COMMUNITY_ID=900002&textArea=%s&isRecommend=5.0.3.3.1.0.5.0.0.1.15&5.0.3.3.1.0.5.0.0.1.19.1=$BK]Lu(B")
+    utf-8 "direction=RL&_COMMUNITY_ID=900002&textArea=%s&isRecommend=5.0.3.3.1.0.5.0.0.1.15&5.0.3.3.1.0.5.0.0.1.19.1=翻訳")
    ("tr-cj-url-yakushite.net-put"
     "http://www.yakushite.net/cgi-bin/WebObjects/ChinaYakushiteNet.woa/wa/TranslateDirectAction/defaultTrans"
-    utf-8 "direction=LR&_COMMUNITY_ID=900002&textArea=%s&isRecommend=5.0.3.3.1.0.5.0.0.1.15&5.0.3.3.1.0.5.0.0.1.19.1=$BK]Lu(B")
+    utf-8 "direction=LR&_COMMUNITY_ID=900002&textArea=%s&isRecommend=5.0.3.3.1.0.5.0.0.1.15&5.0.3.3.1.0.5.0.0.1.19.1=翻訳")
    ("tr-jc-url-yakushite.net-put"
     "http://www.yakushite.net/cgi-bin/WebObjects/ChinaYakushiteNet.woa/wa/TranslateDirectAction/defaultTrans"
-    utf-8 "direction=RL&_COMMUNITY_ID=900002&textArea=%s&isRecommend=5.0.3.3.1.0.5.0.0.1.15&5.0.3.3.1.0.5.0.0.1.19.1=$BK]Lu(B")
+    utf-8 "direction=RL&_COMMUNITY_ID=900002&textArea=%s&isRecommend=5.0.3.3.1.0.5.0.0.1.15&5.0.3.3.1.0.5.0.0.1.19.1=翻訳")
    ))
 
 ;; google translator
 (defvar dic-lookup-w3m-google-translator-langs
   '(("ja") nil)
   ;;'(("ja" "en") ("en" "ko" "zh-CN" "es"))
-  "*google$BK]Lu$GM-8z$K$9$k8@8l$N%j%9%H!#(B
+  "*google翻訳で有効にする言語のリスト。
 \((LANGS1) (LANGS2))
-LANGS1$B!"(BLANGS2$B$O8@8lL>$N%j%9%H!#(BLANGS1 X LANGS2$B$NAH$_9g$o$;$GK]Lu(B
-$B$,$G$-$k$h$&$K$9$k!#(B
-nil$B$N>l9g$O$9$Y$F$N8@8l$rBP>]$K$9$k!#(Bnil X nil$B$O5/F0$,CY$/$J$k!#(B")
+LANGS1、LANGS2は言語名のリスト。LANGS1 X LANGS2の組み合わせで翻訳
+ができるようにする。
+nilの場合はすべての言語を対象にする。nil X nilは起動が遅くなる。")
 
 (let* ((langs
-	'(("ar" . "$B%"%i%S%"8l(B")
-	  ("sq" . "$B%"%k%P%K%"8l(B")
-	  ("it" . "$B%$%?%j%"8l(B")
-	  ("id" . "$B%$%s%I%M%7%"8l(B")
-	  ("uk" . "$B%&%/%i%$%J8l(B")
-	  ("et" . "$B%(%9%H%K%"8l(B")
-	  ("nl" . "$B%*%i%s%@8l(B")
-	  ("ca" . "$B%+%?%m%K%"8l(B")
-	  ("gl" . "$B%,%j%7%"8l(B")
-	  ("el" . "$B%.%j%7%c8l(B")
-	  ("hr" . "$B%/%m%"%A%"8l(B")
-	  ("sv" . "$B%9%&%'!<%G%s8l(B")
-	  ("es" . "$B%9%Z%$%s8l(B")
-	  ("sk" . "$B%9%m%P%-%"8l(B")
-	  ("sl" . "$B%9%m%Y%K%"8l(B")
-	  ("sr" . "$B%;%k%S%"8l(B")
-	  ("th" . "$B%?%$8l(B")
-	  ("tl" . "$B%?%,%m%08l(B")
-	  ("cs" . "$B%A%'%38l(B")
-	  ("da" . "$B%G%s%^!<%/8l(B")
-	  ("de" . "$B%I%$%D8l(B")
-	  ("tr" . "$B%H%k%38l(B")
-	  ("no" . "$B%N%k%&%'!<8l(B")
-	  ("hu" . "$B%O%s%,%j!<8l(B")
-	  ("hi" . "$B%R%s%G%#!<8l(B")
-	  ("fi" . "$B%U%#%s%i%s%I8l(B")
-	  ("fr" . "$B%U%i%s%98l(B")
-	  ("bg" . "$B%V%k%,%j%"8l(B")
-	  ("vi" . "$B%Y%H%J%`8l(B")
-	  ("iw" . "$B%X%V%i%$8l(B")
-	  ("pl" . "$B%]!<%i%s%I8l(B")
-	  ("pt" . "$B%]%k%H%,%k8l(B")
-	  ("mt" . "$B%^%k%?8l(B")
-	  ("lv" . "$B%i%H%S%"8l(B")
-	  ("lt" . "$B%j%H%"%K%"8l(B")
-	  ("ro" . "$B%k!<%^%K%"8l(B")
-	  ("ru" . "$B%m%7%"8l(B")
-	  ("en" . "$B1Q8l(B")
-	  ("ko" . "$B4Z9q8l(B")
-	  ("zh-CN" . "$BCf9q8l(B($B4JBN(B)")
-	  ("zh-TW" . "$BCf9q8l(B($BHKBN(B)")
-	  ("ja" . "$BF|K\8l(B")
+	'(("ar" . "アラビア語")
+	  ("sq" . "アルバニア語")
+	  ("it" . "イタリア語")
+	  ("id" . "インドネシア語")
+	  ("uk" . "ウクライナ語")
+	  ("et" . "エストニア語")
+	  ("nl" . "オランダ語")
+	  ("ca" . "カタロニア語")
+	  ("gl" . "ガリシア語")
+	  ("el" . "ギリシャ語")
+	  ("hr" . "クロアチア語")
+	  ("sv" . "スウェーデン語")
+	  ("es" . "スペイン語")
+	  ("sk" . "スロバキア語")
+	  ("sl" . "スロベニア語")
+	  ("sr" . "セルビア語")
+	  ("th" . "タイ語")
+	  ("tl" . "タガログ語")
+	  ("cs" . "チェコ語")
+	  ("da" . "デンマーク語")
+	  ("de" . "ドイツ語")
+	  ("tr" . "トルコ語")
+	  ("no" . "ノルウェー語")
+	  ("hu" . "ハンガリー語")
+	  ("hi" . "ヒンディー語")
+	  ("fi" . "フィンランド語")
+	  ("fr" . "フランス語")
+	  ("bg" . "ブルガリア語")
+	  ("vi" . "ベトナム語")
+	  ("iw" . "ヘブライ語")
+	  ("pl" . "ポーランド語")
+	  ("pt" . "ポルトガル語")
+	  ("mt" . "マルタ語")
+	  ("lv" . "ラトビア語")
+	  ("lt" . "リトアニア語")
+	  ("ro" . "ルーマニア語")
+	  ("ru" . "ロシア語")
+	  ("en" . "英語")
+	  ("ko" . "韓国語")
+	  ("zh-CN" . "中国語(簡体)")
+	  ("zh-TW" . "中国語(繁体)")
+	  ("ja" . "日本語")
 	  ))
        (langs1 (or (nth 0 dic-lookup-w3m-google-translator-langs)
 		   (mapcar 'car langs)))
@@ -1282,19 +1282,19 @@ nil$B$N>l9g$O$9$Y$F$N8@8l$rBP>]$K$9$k!#(Bnil X nil$B$O5/F0$,CY$/$J$k!#(B")
    ("tr-kj-google" "tr-koja-google")
    ("tr-jk-google" "tr-jako-google")))
 
-(defvar dic-lookup-w3m-filter-do-show-candidates-heading " $B8uJd(B: "
-  "*$BC18l$N8uJd%j%9%H$NA0$KI=<($9$k8+=P$7!#(B")
+(defvar dic-lookup-w3m-filter-do-show-candidates-heading " 候補: "
+  "*単語の候補リストの前に表示する見出し。")
 
-(defvar dic-lookup-w3m-filter-related-links-heading " $B4XO"(B: "
-  "*$B4XO"%5%$%H$N%j%9%H$NA0$KI=<($9$k8+=P$7!#(B")
+(defvar dic-lookup-w3m-filter-related-links-heading " 関連: "
+  "*関連サイトのリストの前に表示する見出し。")
 
 (defvar dic-lookup-w3m-favorite-ej-engine "ej-excite")
 
 (defvar dic-lookup-w3m-filter-disable-translation-anchor nil
-  "*web$B%Z!<%8$KK]Lu%\%?%s$r$D$1$k$+$I$&$+$N%U%i%0!#(B
-non-nil$B$J$i%Z!<%8K]Lu%\%?%s$rIU$1$J$$!#(B
-nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%Z!<%8(B
-$B$KK]Lu%\%?%s$r$D$1$k!#(B")
+  "*webページに翻訳ボタンをつけるかどうかのフラグ。
+non-nilならページ翻訳ボタンを付けない。
+nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebページ
+に翻訳ボタンをつける。")
 
 (eval-after-load "w3m-filter"
   '(mapc
@@ -1303,7 +1303,7 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
     (reverse
      `(
        ,(unless dic-lookup-w3m-filter-disable-translation-anchor
-	  '("" dic-lookup-w3m-filter-translation-anchor)) ; $B%Z!<%8K]Lu%\%?%s(B
+	  '("" dic-lookup-w3m-filter-translation-anchor)) ; ページ翻訳ボタン
 
        ;; yahoo dic
        ("\\`http://dic\\.yahoo\\.co\\.jp/dsearch"
@@ -1340,7 +1340,7 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
 	 "http://www.excite.co.jp%s"
 	 "<a href=\"\\(/dictionary/.*/\\?search=[^>]*\\(block\\|itemid\\|&id\\)=[^>]*\\)\">" 1)
 	(w3m-filter-delete-regions "<body>" "<blockquote>" t)
-	(w3m-filter-delete-regions "<body>" "</b> $B$N8!:w7k2L(B</p>" t)
+	(w3m-filter-delete-regions "<body>" "</b> の検索結果</p>" t)
 	(w3m-filter-delete-regions "<table .*class=\"newsExtraBox\">" "</body>" nil t t)
 	(w3m-filter-replace-regexp
 	 "<img src=\"?http://image\.excite\.co\.jp/jp/1pt\.gif\"?[^>]*>" "")
@@ -1351,7 +1351,7 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
 	 "</body>"
 	 "<form action=\"/dictionary/english_japanese/\" method=\"get\" name=\"dictionary_form\">
 <input name=\"search\" size=\"30\">
-<input type=\"submit\" value=\"$B8!:w(B\" name=\"submit\">
+<input type=\"submit\" value=\"検索\" name=\"submit\">
 </body>")
 	(dic-lookup-w3m-filter-related-links "ej-excite" ej)
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
@@ -1401,7 +1401,7 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
        ;; alc business term dic
        ("\\`http://home\\.alc\\.co\\.jp/db/owa/bdicn_sch"
 	w3m-filter-delete-regions
-	"<body bgcolor=\"#FFFFFF\">" "<!--$B"%(Binput_form-->" t)
+	"<body bgcolor=\"#FFFFFF\">" "<!--▲input_form-->" t)
 
        ;; webster
        ("\\`http://www\\.merriam-webster\\.com/\\(dictionary\\|thesaurus\\)/.+"
@@ -1433,9 +1433,9 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
 	(w3m-filter-delete-regions
 	 "<div id=\"wrapper\">" "<!-- END of header -->")
 	(w3m-filter-delete-regions
-	 "<div id=\"headerB\">" "<p>$B8!:wJ8;zNs!'(B" t t)
+	 "<div id=\"headerB\">" "<p>検索文字列：" t t)
 	(w3m-filter-delete-regions
-	 "<div id=\"headerB\">" "<h2>$B8!:w7k2L(B</h2>" t t)
+	 "<div id=\"headerB\">" "<h2>検索結果</h2>" t t)
 	)
        ("\\`http://www\\.kotonoha\\.gr\\.jp/demo/search_result"
 	(w3m-filter-replace-regexp "class=\"cell01\"" "align=\"right\"")
@@ -1448,7 +1448,7 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
 	dic-lookup-w3m-filter-refresh-url
 	"http://www.kotonoha.gr.jp/demo/search_form?viaTopPage=1")
 
-       ;; $B@D6uJ88K(B $BF|K\8lMQNc8!:w(B
+       ;; 青空文庫 日本語用例検索
        ("http://www.tokuteicorpus.jp/team/jpling/kwic/search.cgi"
 	(w3m-filter-replace-regexp "<font color=\"crimson\">" "<strong>")
 	(w3m-filter-replace-regexp "</font>" "</strong>")
@@ -1479,12 +1479,12 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
        ("\\`http://lsd\\.pharm\\.kyoto-u\\.ac\\.jp/cgi-bin/lsdproj/etoj-cgi04\\.pl"
 	dic-lookup-w3m-filter-eword-anchor "ej-lsd")
 
-       ;; RNN$B;~;v1Q8l<-E5(B
+       ;; RNN時事英語辞典
        ("\\`http://rnnnews\\.jp/"
 	(w3m-filter-delete-regions
 	 "<body>" "<div id=\"body\">" t t)
 	(w3m-filter-replace-regexp
-	 "<img src=\"../../img/related.gif\"[^>]*>" "$B4XO"(B:")
+	 "<img src=\"../../img/related.gif\"[^>]*>" "関連:")
 	(dic-lookup-w3m-filter-eword-anchor dic-lookup-w3m-favorite-ej-engine)
 	)
 
@@ -1495,7 +1495,7 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
 	(dic-lookup-w3m-filter-related-links "cj-bitex" cj)
 	)
 
-       ;; $BFX_j<-3$(B
+       ;; 敦煌辞海
        ("\\`http://www\\.onlinedic\\.com/search\\.php"
 	(w3m-filter-delete-regions
 	 "<body[^>]*>" "<!-- Main -->" t t t)
@@ -1511,16 +1511,16 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
 	 "\\1\\4")
 	(w3m-filter-replace-regexp "</?font[^>]*>" "")
 	(w3m-filter-replace-regexp
-	 "\\(<td class=\"line1\">$BCf9q8l!'(B</td><td class=\"line2\">\\)\\([^<]+\\)</td>"
-	 "\\1\\2 $B"M(B<a href=\"http://www.cazoo.jp/cgi-bin/pinyin/index.html?hanzi=\\2\">pinyin</a></td>")
+	 "\\(<td class=\"line1\">中国語：</td><td class=\"line2\">\\)\\([^<]+\\)</td>"
+	 "\\1\\2 ⇒<a href=\"http://www.cazoo.jp/cgi-bin/pinyin/index.html?hanzi=\\2\">pinyin</a></td>")
 	)
 
-       ;; $B3ZLuCf9q8l<-=q(B
+       ;; 楽訳中国語辞書
        ("\\`http://www\\.jcdic\\.com/search\\.php"
 	(w3m-filter-delete-regions
 	 "<body[^>]*>" "<div class='result'>" t t t)
 	(w3m-filter-delete-regions
-	 "<!--Adsense$B3+;O(B-->" "<!-- Footer -->")
+	 "<!--Adsense開始-->" "<!-- Footer -->")
 	(dic-lookup-w3m-filter-related-links "cj-tonko-jikai" cj)
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
 	 dic-lookup-w3m-filter-onlinedic-symbol-alist
@@ -1531,7 +1531,7 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
 	w3m-filter-delete-regions
 	"<body[^>]*>" "<td class=\"redword\">&nbsp;</td>" t nil t)
 
-       ;; hjenglish $BCfF|(B
+       ;; hjenglish 中日
        ("\\`http://dict\\.hjenglish\\.com/.*type=cj"
 	dic-lookup-w3m-filter-related-links "cj-hjenglish" cj)
        ("\\`http://dict\\.hjenglish\\.com/.*type=jc"
@@ -1613,7 +1613,7 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
 	(w3m-filter-delete-regions "<p class=\"edit\">" "</p>")
 	(w3m-filter-replace-regexp
 	 "<span class=\"cn\" xml:lang=\"zh\" lang=\"zh\">\\(.*\\)</span>"
-	 "$B!&(B \\1 $B"M(B<a href=\"http://www.cazoo.jp/cgi-bin/pinyin/index.html?hanzi=\\1\">pinyin</a>")
+	 "・ \\1 ⇒<a href=\"http://www.cazoo.jp/cgi-bin/pinyin/index.html?hanzi=\\1\">pinyin</a>")
 	(dic-lookup-w3m-filter-conv-pinyin
 	 "<span class=\"pyn\">\\(.*\\)</span>")
 	)
@@ -1634,8 +1634,8 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
 	 "<!-- START Espritline Affiliate CODE -->"
 	 "<!-- END Espritline Affiliate CODE -->")
 	(w3m-filter-delete-regions "<div class=adBoxHE>" "</body>" nil t)
-	(w3m-filter-replace-regexp "<span>$BMQNc(B</span>" "[$BMQNc(B]")
-	(w3m-filter-replace-regexp "<div class=KejjeYrTtl>$BMQNc(B</div>" "[$BMQNc(B]")
+	(w3m-filter-replace-regexp "<span>用例</span>" "[用例]")
+	(w3m-filter-replace-regexp "<div class=KejjeYrTtl>用例</div>" "[用例]")
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
 	 dic-lookup-w3m-filter-weblio-ej-symbol-alist
 	 "<img [^>]*src=\"http://www\\.weblio\\.jp/[^>]*/\\([^/\" ]+\\)\\.\\(gif\\|png\\)\"[^>]*>")
@@ -1824,7 +1824,7 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
 	(w3m-filter-delete-regions "</textarea>" "</body>" nil t)
 	(w3m-filter-delete-regions "<!--/MdAd01-->" "</html>")
 	(w3m-filter-delete-regions "<!--/MdAd02-->" "</html>")
-	(w3m-filter-replace-regexp "\\(\\. \\|$B!#(B\\)" "\\1<br>")
+	(w3m-filter-replace-regexp "\\(\\. \\|。\\)" "\\1<br>")
 	)
        ("\\`http://livedoor-translate\\.naver\\.jp/"
 	dic-lookup-w3m-filter-eword-anchor dic-lookup-w3m-favorite-ej-engine)
@@ -1956,69 +1956,69 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
     ("ej-ocn" . "ocn")
     ("ej-weblio" . "weblio")
     ("ee-webster" . "webster")
-    ("corpus-erek" . "$B%3%Q(Berek")
-    ("corpus-bnc" . "$B%3%Q(Bbnc")
-    ("thesaurus-webster" . "$B%7%=(Bwebster")
-    ("thesaurus-rogets" . "$B%7%=(Brogets")
-    ("ej-jijieigo" . "$B;~;v(B")
-    ("thesaurus-j-yahoo" . "J$BN`8l(B")
-    ("thesaurus-j-weblio" . "J$B%7%=(B")
-    ("corpus-j-kotonoha" . "J$B%3%Q(B")
-    ("jj-yahoo" . "$B9q8l(B"))))
+    ("corpus-erek" . "コパerek")
+    ("corpus-bnc" . "コパbnc")
+    ("thesaurus-webster" . "シソwebster")
+    ("thesaurus-rogets" . "シソrogets")
+    ("ej-jijieigo" . "時事")
+    ("thesaurus-j-yahoo" . "J類語")
+    ("thesaurus-j-weblio" . "Jシソ")
+    ("corpus-j-kotonoha" . "Jコパ")
+    ("jj-yahoo" . "国語"))))
 
 
 (add-to-list
  'dic-lookup-w3m-related-site-list
  '(jj
-   (("jj-excite" . "$B9q(Bexcite")
-    ("jj-yahoo" . "$B9q(BY!")
-    ("jj-goo" . "$B9q(Bgoo")
-    ("jj-all-weblio" . "$B9q(Bweblio")
-    ("jj-chuuta" . "$B9q%A%e%&(B")
+   (("jj-excite" . "国excite")
+    ("jj-yahoo" . "国Y!")
+    ("jj-goo" . "国goo")
+    ("jj-all-weblio" . "国weblio")
+    ("jj-chuuta" . "国チュウ")
     ("jj-kotobank" . "kotobank")
-    ;;("kanji-infoseek" . "$B4A(B")
-    ;;("jj-katakana-infoseek" . "$B%+%?%+%J(B")
-    ("jj-yojijukugo-goo" . "$B;M=O(B")
-    ("thesaurus-j-yahoo" . "$BN`8l(BY!")
-    ("thesaurus-j-weblio" . "$BN`8l(Bweblio")
-    ("corpus-j-kotonoha" . "J$B%3%Q(B")
-    ("corpus-j-caseframe-get" . "$B3J(B")
-    ("encyclopedia-yahoo" . "$BI42J(B")
+    ;;("kanji-infoseek" . "漢")
+    ;;("jj-katakana-infoseek" . "カタカナ")
+    ("jj-yojijukugo-goo" . "四熟")
+    ("thesaurus-j-yahoo" . "類語Y!")
+    ("thesaurus-j-weblio" . "類語weblio")
+    ("corpus-j-kotonoha" . "Jコパ")
+    ("corpus-j-caseframe-get" . "格")
+    ("encyclopedia-yahoo" . "百科")
     ("ja.wikipedia" . "Wikipedia")
     ("jj-wiktionary" . "Wiktionary")
     ("ej-excite" . "JE-excite")
     ("je-yahoo" . "JE-Y!")
-    ("jc-excite" . "$BCf(B")
-    ("JK-gigadict" . "$B4Z(B"))))
+    ("jc-excite" . "中")
+    ("JK-gigadict" . "韓"))))
 
 (add-to-list
  'dic-lookup-w3m-related-site-list
  '(kanji
-   (;;("kanji-infoseek" . "$B4A(Binfoseek")
-    ("Kanji-gigadict" . "$B4A(Bgigadict")
-    ("KKanji-gigadict" . "$B650i4A;z(Bgigadict")
-    ("kanji-foks" . "$B4A(Bfoks")
-    ("jj-excite" . "$B9q(Bexcite")
-    ("cj-excite" . "$BCfF|(B")
-    ("jc-excite" . "$BF|Cf(B"))))
+   (;;("kanji-infoseek" . "漢infoseek")
+    ("Kanji-gigadict" . "漢gigadict")
+    ("KKanji-gigadict" . "教育漢字gigadict")
+    ("kanji-foks" . "漢foks")
+    ("jj-excite" . "国excite")
+    ("cj-excite" . "中日")
+    ("jc-excite" . "日中"))))
 
 (add-to-list
  'dic-lookup-w3m-related-site-list
  '(cj
    (("cj-excite" . "CJ-excite")
-    ("cj-kitajiro" . "CJ$BKL(B")
+    ("cj-kitajiro" . "CJ北")
     ("cj-bitex" . "CJ-bitex")
-    ("cj-tonko-jikai" . "CJ$BFX_j(B")
+    ("cj-tonko-jikai" . "CJ敦煌")
     ("cj-jcdic" . "CJ-jcdic")
     ("cj-hjenglish" . "CJ-hjenglish")
     ("jc-excite" . "JC-excite")
-    ("jc-kitajiro" . "JC$BKL(B")
+    ("jc-kitajiro" . "JC北")
     ("jc-bitex" . "JC-bitex")
-    ("jc-tonko-jikai" . "JC$BFX_j(B")
+    ("jc-tonko-jikai" . "JC敦煌")
     ("jc-jcdic" . "JC-jcdic")
     ("jc-hjenglish" . "JC-hjenglish")
     ("pinyin-cazoo" . "pinyin-cazoo")
-    ("jj-yahoo" . "$B9q8l(B"))))
+    ("jj-yahoo" . "国語"))))
 
 (add-to-list
  'dic-lookup-w3m-related-site-list
@@ -2029,40 +2029,40 @@ nil$B$J$i(B`dic-lookup-w3m-filter-translation-anchor'$B$r8F$S=P$7$F(Bweb$B%
     ("pinyin-ctrans" . "py-ctrans")
     ("pinyin-dokochina" . "py-dokochina")
     ("pinyin-seikei" . "py-seikei")
-    ("cj-excite" . "$BCfF|(B")
-    ("jc-excite" . "$BF|Cf(B"))))
+    ("cj-excite" . "中日")
+    ("jc-excite" . "日中"))))
 
 (defvar dic-lookup-w3m-suitable-engine-pattern
   '("[^\000-\177]" "\\(^\\|-\\)\\(ej-\\)" "\\1je-")
-  "*$B8!:wJ8;zNs$K$h$C$F<-=q$r<+F0E*$K@Z$jBX$($k$?$a$N5,B'!#(B
-$BNc$($P1QOB<-E5$GF|K\8lJ8;zNs$r8!:w$7$h$&$H$7$?>l9g$KOB1Q<-E5$K@Z$jBX$($F(B
-$B8!:w$9$k!#(B`dic-lookup-w3m-suitable-engine'$B$G;HMQ!#(B")
+  "*検索文字列によって辞書を自動的に切り替えるための規則。
+例えば英和辞典で日本語文字列を検索しようとした場合に和英辞典に切り替えて
+検索する。`dic-lookup-w3m-suitable-engine'で使用。")
 
 (defvar dic-lookup-w3m-filter-excite-always-show-first-entry t
-  "*excite$B<-=q$G:G=i$N8+=P$78l$NFbMF$rI=<($9$k!#(B
-excite$B$N<-=q8!:w$GJ#?t$N8+=P$78l$,8+$D$+$C$?>l9g$G$b!":G=i$N8+=P$78l$N(B
-$BFbMF$rI=<($9$k!#(B")
+  "*excite辞書で最初の見出し語の内容を表示する。
+exciteの辞書検索で複数の見出し語が見つかった場合でも、最初の見出し語の
+内容を表示する。")
 
 (defun dic-lookup-w3m-filter-excite-jump-to-content
   (url new-url &optional regexp subexp)
-  "$B8!:w7k2L$N:G=i$N8+=P$78l$N@bL@$N%Z!<%8$K0\F0$9$k!#(B"
+  "検索結果の最初の見出し語の説明のページに移動する。"
   (goto-char (point-min))
   (if (or (and dic-lookup-w3m-filter-excite-always-show-first-entry
-	       (re-search-forward "$B$N8!:w7k2L(B \\[1 $B!A(B .*$B7oCf(B\\]" nil t))
-	  (re-search-forward "$B$N8!:w7k2L(B \\[1 $B!A(B 1 / 1$B7oCf(B\\]" nil t))
+	       (re-search-forward "の検索結果 \\[1 〜 .*件中\\]" nil t))
+	  (re-search-forward "の検索結果 \\[1 〜 1 / 1件中\\]" nil t))
       (dic-lookup-w3m-filter-refresh-url url new-url regexp subexp)))
 
 (defvar dic-lookup-w3m-filter-excite-ej-symbol-alist
   '(
-    ("a121" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078134&offset=0522&frommenu=true\">&#x2020;</a> ") ; $B%@%,!<(B
-    ("a122" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078134&offset=0522&frommenu=true\">&#x2021;</a> ") ; $B%@%V%k%@%,!<(B
-    ("a123" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078134&offset=0522&frommenu=true\">&#x2021;&#x2021;</a> ") ; $B%@%V%k%@%,!<(B x2
-    ("a124" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078134&offset=0522&frommenu=true\">&#x2DA;</a>")	; $B>e4](B
-    ("a125" . "&#x306;")		; $B%V%j!<%t(B($BC;2;Id(B)
-    ("a126" . "$B"c(B")
-    ("a127" . "$B"d(B")
-    ("a128" . "<strong>$B!L(B</strong>")
-    ("a129" . "<strong>$B!M(B</strong>")
+    ("a121" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078134&offset=0522&frommenu=true\">&#x2020;</a> ") ; ダガー
+    ("a122" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078134&offset=0522&frommenu=true\">&#x2021;</a> ") ; ダブルダガー
+    ("a123" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078134&offset=0522&frommenu=true\">&#x2021;&#x2021;</a> ") ; ダブルダガー x2
+    ("a124" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078134&offset=0522&frommenu=true\">&#x2DA;</a>")	; 上丸
+    ("a125" . "&#x306;")		; ブリーヴ(短音符)
+    ("a126" . "≪")
+    ("a127" . "≫")
+    ("a128" . "<strong>〔</strong>")
+    ("a129" . "<strong>〕</strong>")
     ("a12a" . "~")
     ("a12b" . "&#x2013; ")		; -
     ("a12c" . "&#x2013;&#x301; ")	; -'
@@ -2070,38 +2070,38 @@ excite$B$N<-=q8!:w$GJ#?t$N8+=P$78l$,8+$D$+$C$?>l9g$G$b!":G=i$N8+=P$78l$N(B
     ("a12e" . "&#x101;&#x301;")		; a-'
     ("a12f" . "&#x113;&#x301;")		; e-'
     ("a130" . "&#x12B;&#x301;")		; i-'
-    ("a131" . "&#x361;")		; $B>eItO"7k@~(B
-    ("a132" . "&#x306;")		; $B%V%j!<%t(B($BC;2;Id(B)
-    ("a133" . "&#x0B8;")		; $B%;%G%#!<%f(B
-    ("a134" . "&#x0E7;")		; $B%;%G%#!<%fIU$-$N(BC
-    ("a135" . "&#x259;&#x301;")		; $B%7%e%o!<(B'
-    ("a136" . "&#x25A;&#x301;")		; $B1&nlIU$-$N%7%e%o!<(B'
+    ("a131" . "&#x361;")		; 上部連結線
+    ("a132" . "&#x306;")		; ブリーヴ(短音符)
+    ("a133" . "&#x0B8;")		; セディーユ
+    ("a134" . "&#x0E7;")		; セディーユ付きのC
+    ("a135" . "&#x259;&#x301;")		; シュワー'
+    ("a136" . "&#x25A;&#x301;")		; 右鉤付きのシュワー'
     ("a137" . "&#x0CD;")  		; I'
-    ("a138" . "&#x254;&#x301;")		; $B3+$$$?(BO'
-    ("a139" . "&#x28A;&#x301;")		; $B%f%W%7%m%s(B'
-    ("a13a" . "&#x251;&#x301;")		; $BI.5-BN$N(BA'
-    ("a13b" . "&#x301;")		; $B%"%]%9%H%m%U%#!<(B'
+    ("a138" . "&#x254;&#x301;")		; 開いたO'
+    ("a139" . "&#x28A;&#x301;")		; ユプシロン'
+    ("a13a" . "&#x251;&#x301;")		; 筆記体のA'
+    ("a13b" . "&#x301;")		; アポストロフィー'
     ("a13c" . "&#x0C9;")		; E'
     ("a13d" . "&#x0E1;")		; a'
     ("a13e" . "&#x0E9;")  		; e'
     ("a13f" . "&#x0ED;")  		; i'
     ("a140" . "&#x0F3;")  		; o'
     ("a141" . "&#x0FA;")  		; u'
-    ("a142" . "&#x28C;&#x301;")		; $B5U$5$N(BV'
-    ("a143" . "&#x259;&#x300;")		; $B%7%e%o!<(B`
-    ("a144" . "&#x25A;&#x300;")		; $B1&nlIU$-$N%7%e%o!<(B`
+    ("a142" . "&#x28C;&#x301;")		; 逆さのV'
+    ("a143" . "&#x259;&#x300;")		; シュワー`
+    ("a144" . "&#x25A;&#x300;")		; 右鉤付きのシュワー`
     ("a145" . "&#x0CC;")  		; I`
-    ("a146" . "&#x254;&#x300;")		; $B3+$$$?(BO`
-    ("a147" . "&#x28A;&#x300;")		; $B%f%W%7%m%s(B`
-    ("a148" . "&#x251;&#x300;")		; $BI.5-BN$N(BA`
-    ("a149" . "&#x300;")		; $B5U8~$-$N%"%]%9%H%m%U%#!<(B`
+    ("a146" . "&#x254;&#x300;")		; 開いたO`
+    ("a147" . "&#x28A;&#x300;")		; ユプシロン`
+    ("a148" . "&#x251;&#x300;")		; 筆記体のA`
+    ("a149" . "&#x300;")		; 逆向きのアポストロフィー`
     ("a14a" . "&#x0E0;")  		; a`
     ("a14b" . "&#x0E8;")  		; e`
     ("a14c" . "&#x0EC;")  		; i`
     ("a14d" . "&#x0F2;")		; o`
     ("a14e" . "&#x0F9;")  		; u`
-    ("a14f" . "&#x28C;&#x300;")		; $B5U$5$N(BV`
-    ("a150" . "&#x28C;")		; $B5U$5$N(BV
+    ("a14f" . "&#x28C;&#x300;")		; 逆さのV`
+    ("a150" . "&#x28C;")		; 逆さのV
     ("a151" . "&#x0C1;")		; A'
     ("a152" . "B&#x301;")		; B'
     ("a153" . "C&#x301;")		; C'
@@ -2134,22 +2134,22 @@ excite$B$N<-=q8!:w$GJ#?t$N8+=P$78l$,8+$D$+$C$?>l9g$G$b!":G=i$N8+=P$78l$N(B
     ("a16e" . "&#x0C8;")		; E`
     ("a16f" . "&#x0CC;")		; I`
     ("a170" . "&#x0D2;")		; O`
-    ;;("a171" . "&#x259;&#x301;")	; $B%7%e%o!<(B'  a171,a172 ae'
-    ;;("a171a172" . "&#x0E6;&#x301;")	; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B'
-    ;;("a171a172" . "&#x1FD;")		; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B'
+    ;;("a171" . "&#x259;&#x301;")	; シュワー'  a171,a172 ae'
+    ;;("a171a172" . "&#x0E6;&#x301;")	; アッシュ; 小文字AとEの合字'
+    ;;("a171a172" . "&#x1FD;")		; アッシュ; 小文字AとEの合字'
     ("a171" . "")			; a171,a172 ae'
-    ("a172" . "&#x1FD;")		; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B'
+    ("a172" . "&#x1FD;")		; アッシュ; 小文字AとEの合字'
     ("a172" . "&#x0E9;")		; e'
-    ;;("a173" . "&#x259;&#x300;")	; $B%7%e%o!<(B`
+    ;;("a173" . "&#x259;&#x300;")	; シュワー`
     ;;("a174" . "&#x0E8;")		; e`
-    ;;("a173a174" . "&#x0E6;&#x300;")	; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B`
+    ;;("a173a174" . "&#x0E6;&#x300;")	; アッシュ; 小文字AとEの合字`
     ("a173" . "")			; a173,a174 ae`
-    ("a174" . "&#x0E6;&#x300;")		; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B`
-    ;;("a175" . "&#x259;")		; $B%7%e%o!<(B a175,a176 ae
-    ;;("a176" . "&#x065;")  		; $B>.J8;z$N(BE
-    ;;("a175a176" . "&#x0E6;")		; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B
+    ("a174" . "&#x0E6;&#x300;")		; アッシュ; 小文字AとEの合字`
+    ;;("a175" . "&#x259;")		; シュワー a175,a176 ae
+    ;;("a176" . "&#x065;")  		; 小文字のE
+    ;;("a175a176" . "&#x0E6;")		; アッシュ; 小文字AとEの合字
     ("a175" . "")			; a175,a176 ae
-    ("a176" . "&#x0E6;")		; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B
+    ("a176" . "&#x0E6;")		; アッシュ; 小文字AとEの合字
     ("a177" . "S&#x300;")		; S`
     ("a178" . "T&#x300;")		; T`
     ("a179" . "&#x0D9;")		; U`
@@ -2158,83 +2158,83 @@ excite$B$N<-=q8!:w$GJ#?t$N8+=P$78l$,8+$D$+$C$?>l9g$G$b!":G=i$N8+=P$78l$N(B
     ("a17c" . "&#x0E8;")  		; e`
     ("a17d" . "&#x0EC;")  		; i`
     ("a17e" . "&#x0F2;")  		; o`
-    ;; a17f-a220$B$J$7(B
+    ;; a17f-a220なし
     ("a221" . "&#x0F9;")  		; u`
     ("a222" . "y&#x300;")		; y`
-    ("a223" . "$B!y(B")
-    ("a224" . "$B!y(B")
-    ("a225" . "$B!y(B")
-    ("a226" . "&#x259;")  		; $B%7%e%o!<(B
-    ("a227" . "&#x25A;")  		; $B1&nlIU$-$N%7%e%o!<(B
-    ("a228" . "&#x26A;")		; $B>.7?BgJ8;z$N(BI
-    ("a229" . "&#x254;")		; $B3+$$$?(BO
-    ("a22a" . "&#x28A;")  		; $B%f%W%7%m%s(B
-    ("a22b" . "&#x3B8;")  		; $B%F!<%?(B($B%7!<%?(B)
-    ("a22c" . "&#x0F0;")  		; $B%(%:(B
-    ("a22d" . "&#x283;")  		; $B%(%C%7%e(B
-    ("a22e" . "&#x292;")  		; $B%(%C%8%e(B; $BHxIU$-$N(BZ
-    ("a22f" . "&#x14B;")  		; $B%(%s%0(B
-    ("a230" . "$B!y(B")
-    ("a231" . "$B!y(B")
+    ("a223" . "☆")
+    ("a224" . "☆")
+    ("a225" . "☆")
+    ("a226" . "&#x259;")  		; シュワー
+    ("a227" . "&#x25A;")  		; 右鉤付きのシュワー
+    ("a228" . "&#x26A;")		; 小型大文字のI
+    ("a229" . "&#x254;")		; 開いたO
+    ("a22a" . "&#x28A;")  		; ユプシロン
+    ("a22b" . "&#x3B8;")  		; テータ(シータ)
+    ("a22c" . "&#x0F0;")  		; エズ
+    ("a22d" . "&#x283;")  		; エッシュ
+    ("a22e" . "&#x292;")  		; エッジュ; 尾付きのZ
+    ("a22f" . "&#x14B;")  		; エング
+    ("a230" . "☆")
+    ("a231" . "☆")
     ("a232" . "&#x294;")		; ?
-    ("a233" . "&#x2D0;")  		; $BD92;Id(B
-    ("a234" . "&#x251;")		; $BI.5-BN$N(BA
-    ("a235" . "$B!y(B")
-    ("a236" . "$B!y(B")
+    ("a233" . "&#x2D0;")  		; 長音符
+    ("a234" . "&#x251;")		; 筆記体のA
+    ("a235" . "☆")
+    ("a236" . "☆")
     ("a237" . "&#x0E3;")		; a~
     ("a238" . "&#x0F1;")		; n~
-    ("a239" . "$B!y(B")
-    ("a23a" . "$B!y(B")
-    ("a23b" . "&#x1AB;")  		; $B:88~$-nlIU$-$N(BT
-    ("a23c" . "$B!y(B")
-    ("a23d" . "$B!y(B")
-    ("a23e" . "$B!y(B")
-    ("a23f" . "$B!y(B")
-    ("a240" . "$B!y(B")
-    ("a241" . "$B!y(B")
-    ("a242" . "$B!y(B")
-    ("a243" . "$B!y(B")
-    ("a244" . "$B!y(B")
-    ("a245" . "$B!y(B")
-    ("a246" . "$B!y(B")
-    ("a247" . "$B!y(B")
-    ("a248" . "$B!y(B")
-    ("a249" . "$B!y(B")
-    ;;("a24a" . "&#x251;&#x304;")		; $BI.5-BN$N(BA-
+    ("a239" . "☆")
+    ("a23a" . "☆")
+    ("a23b" . "&#x1AB;")  		; 左向き鉤付きのT
+    ("a23c" . "☆")
+    ("a23d" . "☆")
+    ("a23e" . "☆")
+    ("a23f" . "☆")
+    ("a240" . "☆")
+    ("a241" . "☆")
+    ("a242" . "☆")
+    ("a243" . "☆")
+    ("a244" . "☆")
+    ("a245" . "☆")
+    ("a246" . "☆")
+    ("a247" . "☆")
+    ("a248" . "☆")
+    ("a249" . "☆")
+    ;;("a24a" . "&#x251;&#x304;")		; 筆記体のA-
     ("a24a" . "&#x101;")		; a-
     ("a24b" . "&#x113;")		; e-
     ("a24c" . "&#x12B;")		; i-
     ("a24d" . "&#x14D;")		; o-
     ("a24e" . "&#x16B;")		; u-
-    ("a24f" . "$B!y(B")
-    ("a250" . "$B!y(B")
-    ("a251" . "$B!y(B")
-    ("a252" . "$B!y(B")
-    ("a253" . "$B!y(B")
-    ("a254" . "$B!y(B")
-    ("a255" . "$B!y(B")
-    ("a256" . "$B!y(B")
-    ("a257" . "$B!y(B")
-    ("a258" . "$B!y(B")
-    ("a259" . "$B!y(B")
-    ("a25a" . "$B!y(B")
-    ("a25b" . "$B!y(B")
-    ("a25c" . "$B!y(B")
-    ("a25d" . "$B!y(B")
-    ("a25e" . "$B!y(B")
-    ("a25f" . "$B!y(B")
-    ("a260" . "$B!y(B")
-    ("a261" . "$B!y(B")
-    ("a262" . "$B!y(B")
-    ("a263" . "$B!y(B")
-    ("a264" . "$B!y(B")
-    ("a265" . "$B!y(B")
-    ("a266" . "$B!y(B")
-    ("a267" . "$B!y(B")
-    ("a268" . "$B!y(B")
-    ("a269" . "$B!y(B")
-    ("a26a" . "$B!y(B")
-    ("a26b" . "$B!&(B")
+    ("a24f" . "☆")
+    ("a250" . "☆")
+    ("a251" . "☆")
+    ("a252" . "☆")
+    ("a253" . "☆")
+    ("a254" . "☆")
+    ("a255" . "☆")
+    ("a256" . "☆")
+    ("a257" . "☆")
+    ("a258" . "☆")
+    ("a259" . "☆")
+    ("a25a" . "☆")
+    ("a25b" . "☆")
+    ("a25c" . "☆")
+    ("a25d" . "☆")
+    ("a25e" . "☆")
+    ("a25f" . "☆")
+    ("a260" . "☆")
+    ("a261" . "☆")
+    ("a262" . "☆")
+    ("a263" . "☆")
+    ("a264" . "☆")
+    ("a265" . "☆")
+    ("a266" . "☆")
+    ("a267" . "☆")
+    ("a268" . "☆")
+    ("a269" . "☆")
+    ("a26a" . "☆")
+    ("a26b" . "・")
     ("a26c" . "&#x0D1;")		; N~
     ("a26d" . "E&#x300;")		; E`
     ("a26e" . "C&#x300;")		; C`
@@ -2243,91 +2243,91 @@ excite$B$N<-=q8!:w$GJ#?t$N8+=P$78l$,8+$D$+$C$?>l9g$G$b!":G=i$N8+=P$78l$N(B
     ("a271" . "N&#x300;")		; N`
     ("a272" . "P&#x300;")		; P`
     ("a273" . "Q&#x300;")		; Q`
-    ("a274" . "$B!y(B")
-    ("a275" . "$B!y(B")
-    ("a276" . "$B!y(B")
-    ("a277" . "$B!y(B")
-    ("a278" . "$B!y(B")
-    ("a279" . "$B!y(B")
-    ("a27a" . "<sup>&#x259;</sup>")	; $B%7%e%o!<(B
-    ("a321" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[$BL>(B]</strong></a>")
-    ("a322" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[$BBe(B]</strong></a>")
-    ("a323" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[$B7A(B]</strong></a>")
-    ("a324" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[$BF0(B]</strong></a>")
-    ("a325" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[$BI{(B]</strong></a>")
-    ("a326" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[$B@\(B]</strong></a>")
-    ("a327" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[$BA0(B]</strong></a>")
-    ("a328" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[$B4'(B]</strong></a>")
-    ("a329" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[$B4V(B]</strong></a>")
-    ("a32a" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[$B=u(B</strong></a>")
-    ("a32b" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>$BF0(B]</strong></a>")
-    ("a32c" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[$B@\(B</strong></a>")
-    ("a32d" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>$BF,(B]</strong></a>")
-    ("a32e" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>$BHx(B]</strong></a>")
+    ("a274" . "☆")
+    ("a275" . "☆")
+    ("a276" . "☆")
+    ("a277" . "☆")
+    ("a278" . "☆")
+    ("a279" . "☆")
+    ("a27a" . "<sup>&#x259;</sup>")	; シュワー
+    ("a321" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[名]</strong></a>")
+    ("a322" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[代]</strong></a>")
+    ("a323" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[形]</strong></a>")
+    ("a324" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[動]</strong></a>")
+    ("a325" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[副]</strong></a>")
+    ("a326" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[接]</strong></a>")
+    ("a327" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[前]</strong></a>")
+    ("a328" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[冠]</strong></a>")
+    ("a329" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[間]</strong></a>")
+    ("a32a" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[助</strong></a>")
+    ("a32b" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>動]</strong></a>")
+    ("a32c" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[接</strong></a>")
+    ("a32d" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>頭]</strong></a>")
+    ("a32e" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>尾]</strong></a>")
     ("a32f" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078142&offset=1398&frommenu=true\"><strong>[U]</strong></a>")
     ("a330" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078142&offset=1398&frommenu=true\"><strong>[C]</strong></a>")
-    ("a331" . "<a href=\"?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1464&frommenu=true\">($BC1(B)</a>")
-    ("a332" . "<a href=\"?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1464&frommenu=true\">($BJ#(B)</a>")
+    ("a331" . "<a href=\"?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1464&frommenu=true\">(単)</a>")
+    ("a332" . "<a href=\"?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1464&frommenu=true\">(複)</a>")
     ("a333" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078142&offset=0478&frommenu=true\"><strong>[A]</strong></a>")
     ("a334" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078142&offset=0478&frommenu=true\"><strong>[P]</strong></a>")
-    ("a335" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>($B<+(B)</strong></a>")
-    ("a336" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>($BB>(B)</strong></a>")
-    ("a337" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078148&offset=1848&frommenu=true\"><strong>[$B@.(B</strong></a>")
-    ("a338" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078148&offset=1848&frommenu=true\"><strong>$B6g(B]</strong></a>")
-    ("a339" . "$B"v(B")
-    ("a33a" . "$BMQNc(B")
-    ("a33b" . "$B!y(B")
-    ("a33c" . "$BIJ;l0lMw(B")
+    ("a335" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>(自)</strong></a>")
+    ("a336" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>(他)</strong></a>")
+    ("a337" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078148&offset=1848&frommenu=true\"><strong>[成</strong></a>")
+    ("a338" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078148&offset=1848&frommenu=true\"><strong>句]</strong></a>")
+    ("a339" . "♪")
+    ("a33a" . "用例")
+    ("a33b" . "☆")
+    ("a33c" . "品詞一覧")
     ("a33d" . "||")
     ("a33e" . "|| ")
-    ("a33f" . "$B"M(B")
+    ("a33f" . "⇒")
     ("a340" . "&#x334;&#x301;")		; ~'
     ("a341" . "&#x334;&#x300;")		; ~`
-    ("a342" . "$B!y(B")
-    ("a343" . "&#x2935;")		; $B<P$a2<8~$-Lp0u(B
-    ("a344" . "&#x2934;")		; $B<P$a>e8~$-Lp0u(B
-    ("a345" . "$B!y(B")
-    ("a346" . "$B!y(B")
-    ("a347" . "$B!y(B")
-    ("a348" . "$B!y(B")
-    ("a349" . "$B!y(B")
-    ("a34a" . "$B!y(B")
-    ("a34b" . "$B!y(B")
-    ("a34c" . "$B!y(B")
-    ("a34d" . "&#x2026;&#x301;")	; $B!D(B'
-    ("a34e" . "$B!=(B")
-    ("a34f" . "$B"N(B")
+    ("a342" . "☆")
+    ("a343" . "&#x2935;")		; 斜め下向き矢印
+    ("a344" . "&#x2934;")		; 斜め上向き矢印
+    ("a345" . "☆")
+    ("a346" . "☆")
+    ("a347" . "☆")
+    ("a348" . "☆")
+    ("a349" . "☆")
+    ("a34a" . "☆")
+    ("a34b" . "☆")
+    ("a34c" . "☆")
+    ("a34d" . "&#x2026;&#x301;")	; …'
+    ("a34e" . "—")
+    ("a34f" . "⇔")
 
     ;; computer
-    ("b125" . "$B!=(B")
-    ("b128" . "[$BL>(B]")
-    ("b12b" . "[$BF0(B]")
+    ("b125" . "—")
+    ("b128" . "[名]")
+    ("b12b" . "[動]")
     )
-  "excite$B1QOB<-E5$NH/2;5-9f$H%U%)%s%H$NJQ49%F!<%V%k!#(B
+  "excite英和辞典の発音記号とフォントの変換テーブル。
 Fix me!"
   ;; http://yue.sakura.ne.jp/melody/ware/iso88591.html
   ;; http://yue.sakura.ne.jp/melody/ware/all-code-list.html
   ;; http://www.geocities.jp/mura_yosi/js/
   ;; http://www.fiberbit.net/user/hobbit-t/html/uniipad.html
-  ;; http://ja.wikipedia.org/wiki/$B9q:]2;@<5-9f$NJ8;z0lMw(B
+  ;; http://ja.wikipedia.org/wiki/国際音声記号の文字一覧
   ;; http://ja.wikipedia.org/wiki/Unicode#.E4.B8.80.E8.A6.A7
   )
 
 (defvar dic-lookup-w3m-filter-excite-jj-symbol-alist
   '(
-    ("GE040" . "&#x3280;")		; $B4]0l(B
-    ("GE041" . "&#x3281;")		; $B4]Fs(B
-    ("G6971" . "&#x2776;")		; $B4](B1
-    ("G6972" . "&#x2777;")		; $B4](B2
-    ("G6973" . "&#x2778;")		; $B4](B3
-    ("G6974" . "&#x2779;")		; $B4](B4
-    ("G6975" . "&#x277A;")		; $B4](B5
-    ("G6976" . "&#x277B;")		; $B4](B6
-    ("G6977" . "&#x277C;")		; $B4](B7
-    ("G6978" . "&#x277D;")		; $B4](B8
-    ("G6979" . "&#x277E;")		; $B4](B9
+    ("GE040" . "&#x3280;")		; 丸一
+    ("GE041" . "&#x3281;")		; 丸二
+    ("G6971" . "&#x2776;")		; 丸1
+    ("G6972" . "&#x2777;")		; 丸2
+    ("G6973" . "&#x2778;")		; 丸3
+    ("G6974" . "&#x2779;")		; 丸4
+    ("G6975" . "&#x277A;")		; 丸5
+    ("G6976" . "&#x277B;")		; 丸6
+    ("G6977" . "&#x277C;")		; 丸7
+    ("G6978" . "&#x277D;")		; 丸8
+    ("G6979" . "&#x277E;")		; 丸9
     )
-  "excite$B9q8l<-E5$NH/2;5-9f$H%U%)%s%H$NJQ49%F!<%V%k!#(B")
+  "excite国語辞典の発音記号とフォントの変換テーブル。")
 
 (defvar dic-lookup-w3m-filter-excite-cj-symbol-alist
   '(
@@ -2337,11 +2337,11 @@ Fix me!"
     ("shisei_4" . "&#x300;")		; \
     ("tanyou_fuka" . "&#x2297;")	; otimes
     ("bunri" . "&#x2666;")		; diams
-    ("yakugo" . "&#x25BA;")		; $B1&8~$-9u;03Q(B
-    ("youyaku" . "&#x2666;")		; $B9u$R$77A(B
-    ("yourei" . "($BMQNc(B) ")
+    ("yakugo" . "&#x25BA;")		; 右向き黒三角
+    ("youyaku" . "&#x2666;")		; 黒ひし形
+    ("yourei" . "(用例) ")
     )
-  "excite$BCfF|$NH/2;5-9f$H%U%)%s%H$NJQ49%F!<%V%k!#(B")
+  "excite中日の発音記号とフォントの変換テーブル。")
 
 (defvar dic-lookup-w3m-filter-yahoo-ej1-symbol-alist
   '(
@@ -2365,85 +2365,85 @@ Fix me!"
     ("AE9" . "&#x0E9;")		      ; e'
     ("AEC" . "&#x0EC;")		      ; i`
     ("AED" . "&#x0ED;")		      ; i'
-    ("AF0" . "&#x0F0;")		      ; $B%(%:(B
+    ("AF0" . "&#x0F0;")		      ; エズ
     ("AF2" . "&#x0F2;")		      ; o`
     ("AF3" . "&#x0F3;")		      ; o'
     ("AF9" . "&#x0F9;")		      ; u`
     ("AFA" . "&#x0FA;")		      ; u'
     ;;("AFD" . "y&#x301;")      ; y'
     ("AFD" . "&#x0FD;")			; y'
-    ("C98" . "&#x283;")			; $B%(%C%7%e(B
+    ("C98" . "&#x283;")			; エッシュ
     ("D24" . "&#x1CE;")			; av
     ("D26" . "&#x101;")			; a-
     ("D2A" . "&#x103;")			; au
     ("D2D" . "&#x105;")			; a,
-    ("D30" . "&#x251;")			; $BI.5-BN$N(BA
-    ("D31" . "&#x251;&#x300;")		; $BI.5-BN$N(BA`
-    ("D32" . "&#x251;&#x301;")		; $BI.5-BN$N(BA'
-    ("D40" . "&#x0E6;")			; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B
-    ("D41" . "&#x0E6;&#x300;")		; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B`
-    ;;("D42" . "&#x0E6;&#x301;")	; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B'
-    ("D42" . "&#x1FD;")			; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B'
-    ("D5D" . "&#x254;&#x301;")		; $B3+$$$?(BO'
-    ("D5E" . "&#x254;&#x300;")		; $B3+$$$?(BO`
-    ("D6D" . "&#x254;")			; $B3+$$$?(BO
+    ("D30" . "&#x251;")			; 筆記体のA
+    ("D31" . "&#x251;&#x300;")		; 筆記体のA`
+    ("D32" . "&#x251;&#x301;")		; 筆記体のA'
+    ("D40" . "&#x0E6;")			; アッシュ; 小文字AとEの合字
+    ("D41" . "&#x0E6;&#x300;")		; アッシュ; 小文字AとEの合字`
+    ;;("D42" . "&#x0E6;&#x301;")	; アッシュ; 小文字AとEの合字'
+    ("D42" . "&#x1FD;")			; アッシュ; 小文字AとEの合字'
+    ("D5D" . "&#x254;&#x301;")		; 開いたO'
+    ("D5E" . "&#x254;&#x300;")		; 開いたO`
+    ("D6D" . "&#x254;")			; 開いたO
     ("D84" . "&#x11B;")			; ev
     ("D86" . "&#x113;")			; e-
     ("D87" . "&#x0E8;")			; e`
-    ("D90" . "&#x259;")			; $B%7%e%o!<(B
-    ("D91" . "&#x259;&#x300;")		; $B%7%e%o!<(B`
-    ("D92" . "&#x259;&#x301;")		; $B%7%e%o!<(B'
-    ("E5B" . "&#x14B;")  		; $B%(%s%0(B
-    ("F2A" . "&#x28C;&#x301;")		; $B5U$5$N(BV'
-    ("F2B" . "&#x28C;&#x300;")		; $B5U$5$N(BV`
-    ("F2C" . "&#x28C;")			; $B5U$5$N(BV
+    ("D90" . "&#x259;")			; シュワー
+    ("D91" . "&#x259;&#x300;")		; シュワー`
+    ("D92" . "&#x259;&#x301;")		; シュワー'
+    ("E5B" . "&#x14B;")  		; エング
+    ("F2A" . "&#x28C;&#x301;")		; 逆さのV'
+    ("F2B" . "&#x28C;&#x300;")		; 逆さのV`
+    ("F2C" . "&#x28C;")			; 逆さのV
     ("F51" . "y&#x300;")		; y`
-    ("FB1" . "&#x25B;&#x300;")		; $B%(%W%7%m%s(B`
-    ("FB2" . "&#x25B;&#x301;")		; $B%(%W%7%m%s(B'
+    ("FB1" . "&#x25B;&#x300;")		; エプシロン`
+    ("FB2" . "&#x25B;&#x301;")		; エプシロン'
     ("FBE" . " &#x2013;&#x301; ")	; -'
     ("FBF" . " &#x2013;&#x300; ")	; -`
-    ("FC3" . "&#x292;")  		; $B%(%C%8%e(B; $BHxIU$-$N(BZ
-    ("G41" . "&#x261;")			; $B3+$$$?Hx$N(BG
-    ("_817C" . "&#x2D0;")		; $BD92;Id(B
-    ("Z8616" . "$B!Z(B1$B![(B")
-    ("Z6AFA" . "$B!Z(B2$B![(B")
-    ("Z6B50" . "$B!Z(B1$B![(B")
-    ("Z6B59" . "$B!Z(B2$B![(B")
-    ("ar_next" . "&#x25BA;")		; $B1&8~$-9u;03Q(B
-    ("T2460" . "&#x2460;")		; $B4](B1
-    ("T2461" . "&#x2461;")		; $B4](B2
-    ("T2462" . "&#x2462;")		; $B4](B3
-    ("T2463" . "&#x2463;")		; $B4](B4
-    ("T2464" . "&#x2464;")		; $B4](B5
-    ("T2465" . "&#x2465;")		; $B4](B6
-    ("T2466" . "&#x2466;")		; $B4](B7
-    ("Z6B83" . "&#x2467;")		; $B4](B8
-    ("Z6B8D" . "&#x2468;")		; $B4](B9
-    ("Z6B98" . "&#x2469;")		; $B4](B10
+    ("FC3" . "&#x292;")  		; エッジュ; 尾付きのZ
+    ("G41" . "&#x261;")			; 開いた尾のG
+    ("_817C" . "&#x2D0;")		; 長音符
+    ("Z8616" . "【1】")
+    ("Z6AFA" . "【2】")
+    ("Z6B50" . "【1】")
+    ("Z6B59" . "【2】")
+    ("ar_next" . "&#x25BA;")		; 右向き黒三角
+    ("T2460" . "&#x2460;")		; 丸1
+    ("T2461" . "&#x2461;")		; 丸2
+    ("T2462" . "&#x2462;")		; 丸3
+    ("T2463" . "&#x2463;")		; 丸4
+    ("T2464" . "&#x2464;")		; 丸5
+    ("T2465" . "&#x2465;")		; 丸6
+    ("T2466" . "&#x2466;")		; 丸7
+    ("Z6B83" . "&#x2467;")		; 丸8
+    ("Z6B8D" . "&#x2468;")		; 丸9
+    ("Z6B98" . "&#x2469;")		; 丸10
     )
-  "yahoo$B%W%m%0%l%C%7%V1QOBCf<-E5$NH/2;5-9f$H%U%)%s%H$NJQ49%F!<%V%k!#(B
+  "yahooプログレッシブ英和中辞典の発音記号とフォントの変換テーブル。
 Fix me!"
   ;; http://yue.sakura.ne.jp/melody/ware/iso88591.html
   ;; http://yue.sakura.ne.jp/melody/ware/all-code-list.html
   ;; http://www.geocities.jp/mura_yosi/js/
   ;; http://www.fiberbit.net/user/hobbit-t/html/uniipad.html
-  ;; http://ja.wikipedia.org/wiki/$B9q:]2;@<5-9f$NJ8;z0lMw(B
+  ;; http://ja.wikipedia.org/wiki/国際音声記号の文字一覧
   ;; http://ja.wikipedia.org/wiki/Unicode#.E4.B8.80.E8.A6.A7
   )
 
 (defvar dic-lookup-w3m-filter-yahoo-ej2-symbol-alist
   '(
-    ("g10d4" . "&#x2020;")		; $B%@%,!<(B
-    ("g111a" . "$B"c(B")
-    ("g111b" . "$B"d(B")
-    ("g111c" . "&#x2021;")		; $B%@%V%k%@%,!<(B
+    ("g10d4" . "&#x2020;")		; ダガー
+    ("g111a" . "≪")
+    ("g111b" . "≫")
+    ("g111c" . "&#x2021;")		; ダブルダガー
     ("g111d" . "*")
-    ("g111e" . "($BF1(B)")
-    ("g1128" . "($B0\(B)")
-    ("g1129" . "($B<+(B)")
-    ("g112a" . "($BB>(B)")
-    ("g112b" . "($BC1(B)")
-    ("g112d" . "($BJ#(B)")
+    ("g111e" . "(同)")
+    ("g1128" . "(移)")
+    ("g1129" . "(自)")
+    ("g112a" . "(他)")
+    ("g112b" . "(単)")
+    ("g112d" . "(複)")
     ("g112e" . "[C/]")
     ("g112f" . "[C]")
     ("g1130" . "[U]")
@@ -2451,51 +2451,51 @@ Fix me!"
     ("g1132" . "[aU]")
     ("g1133" . "[e]")
     ("g1134" . "[m]")
-    ("g1135" . "[$B2a(B]")
-    ("g1136" . "[$B2aJ,(B]")
-    ("g1137" . "[$B4V(B]")
-    ("g1138" . "[$B7A(B]")
-    ("g1139" . "[$B=u(B]")
-    ("g113b" . "[$B@\(B]")
-    ("g113e" . "[$BA0(B]")
-    ("g113f" . "[$BBe(B]")
-    ("g1142" . "[$BF0(B]")
-    ("g1144" . "[$BI{(B]")
-    ("g1145" . "[$BL>(B]")
-    ("g1147" . "&#x2194;")		; $B"N(B
-    ("g1198" . "&#x2021;&#x2021;")	; $B%@%V%k%@%,!<(B x2
-    ("g119a" . "&#x25B9;")		; $B1&8~$-GrH4$-;03Q(B
-    ("g11b9" . "$B!L(B")
-    ("g11ba" . "$B!M(B")
+    ("g1135" . "[過]")
+    ("g1136" . "[過分]")
+    ("g1137" . "[間]")
+    ("g1138" . "[形]")
+    ("g1139" . "[助]")
+    ("g113b" . "[接]")
+    ("g113e" . "[前]")
+    ("g113f" . "[代]")
+    ("g1142" . "[動]")
+    ("g1144" . "[副]")
+    ("g1145" . "[名]")
+    ("g1147" . "&#x2194;")		; ⇔
+    ("g1198" . "&#x2021;&#x2021;")	; ダブルダガー x2
+    ("g119a" . "&#x25B9;")		; 右向き白抜き三角
+    ("g11b9" . "〔")
+    ("g11ba" . "〕")
     ("g11da" . "&#x2013; ")		; -
     ("g11db" . "&#x2013;&#x301; ")	; -'
     ("g11dc" . "&#x2013;&#x300; ")	; -`
-    ("g11f1" . "$B!=(B")
-    ("g11f5" . "&#x251;")		; $BI.5-BN$N(BA
-    ("g11fd" . "&#x251;&#x301;")	; $BI.5-BN$N(BA'
-    ("g11fe" . "&#x251;&#x300;")	; $BI.5-BN$N(BA`
-    ("g120f" . "&#x261;")		; $B3+$$$?Hx$N(BG
-    ("g122b" . "&#x27e;")		; $BD`?K$N(BR
-    ("g1294" . "&#x254;")		; $B3+$$$?(BO
-    ("g1295" . "&#x28C;")		; $B5U$5$N(BV
-    ("g1296" . "&#x0F0;")  		; $B%(%:(B
-    ("g1298" . "&#x3B8;")  		; $B%F!<%?(B($B%7!<%?(B)
-    ("g1297" . "&#x14B;")  		; $B%(%s%0(B
-    ("g129a" . "&#x292;")  		; $B%(%C%8%e(B; $BHxIU$-$N(BZ
-    ("g129b" . "&#x259;")  		; $B%7%e%o!<(B
-    ("g129c" . "&#x283;")  		; $B%(%C%7%e(B
-    ("g129e" . "&#x1FD;")		; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B'
-    ("g129f" . "&#x0E6;&#x300;")	; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B`
-    ("g12a0" . "&#x254;&#x301;")	; $B3+$$$?(BO'
-    ("g12a1" . "&#x254;&#x300;")	; $B3+$$$?(BO`
-    ("g12a2" . "&#x28C;&#x301;")	; $B5U$5$N(BV'
-    ("g12a3" . "&#x28C;&#x300;")	; $B5U$5$N(BV`
-    ("g12a4" . "&#x259;&#x301;")	; $B%7%e%o!<(B'
-    ("g12a5" . "&#x259;&#x300;")	; $B%7%e%o!<(B`
-    ("g12a6" . "&#x25B;")		; $B%(%W%7%m%s(B
-    ("g12a7" . "&#x0E6;")		; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B
-    ("g12c9" . "&#x2020;")		; $B%@%,!<(B
-    ("g12cf" . "&#x2D0;")		; $BD92;Id(B
+    ("g11f1" . "—")
+    ("g11f5" . "&#x251;")		; 筆記体のA
+    ("g11fd" . "&#x251;&#x301;")	; 筆記体のA'
+    ("g11fe" . "&#x251;&#x300;")	; 筆記体のA`
+    ("g120f" . "&#x261;")		; 開いた尾のG
+    ("g122b" . "&#x27e;")		; 釣針のR
+    ("g1294" . "&#x254;")		; 開いたO
+    ("g1295" . "&#x28C;")		; 逆さのV
+    ("g1296" . "&#x0F0;")  		; エズ
+    ("g1298" . "&#x3B8;")  		; テータ(シータ)
+    ("g1297" . "&#x14B;")  		; エング
+    ("g129a" . "&#x292;")  		; エッジュ; 尾付きのZ
+    ("g129b" . "&#x259;")  		; シュワー
+    ("g129c" . "&#x283;")  		; エッシュ
+    ("g129e" . "&#x1FD;")		; アッシュ; 小文字AとEの合字'
+    ("g129f" . "&#x0E6;&#x300;")	; アッシュ; 小文字AとEの合字`
+    ("g12a0" . "&#x254;&#x301;")	; 開いたO'
+    ("g12a1" . "&#x254;&#x300;")	; 開いたO`
+    ("g12a2" . "&#x28C;&#x301;")	; 逆さのV'
+    ("g12a3" . "&#x28C;&#x300;")	; 逆さのV`
+    ("g12a4" . "&#x259;&#x301;")	; シュワー'
+    ("g12a5" . "&#x259;&#x300;")	; シュワー`
+    ("g12a6" . "&#x25B;")		; エプシロン
+    ("g12a7" . "&#x0E6;")		; アッシュ; 小文字AとEの合字
+    ("g12c9" . "&#x2020;")		; ダガー
+    ("g12cf" . "&#x2D0;")		; 長音符
     ("agrave" . "&#x0E0;")		; a`
     ("aacute" . "&#x0E1;")		; a'
     ("egrave" . "&#x0E8;")		; e`
@@ -2516,38 +2516,38 @@ Fix me!"
     ("Oacute" . "&#x0D3;")		; O'
     ("Ugrave" . "&#x0D9;")		; U`
     ("Uacute" . "&#x0DA;")		; U'
-    ("audio" . "$B"v(B")
+    ("audio" . "♪")
     )
-  "yahoo$B?7%0%m!<%P%k1QOB<-E5$NH/2;5-9f$H%U%)%s%H$NJQ49%F!<%V%k!#(B
+  "yahoo新グローバル英和辞典の発音記号とフォントの変換テーブル。
 Fix me!")
 
 (defvar dic-lookup-w3m-filter-ocn-ej-symbol-alist
   '(
-    ;;("fukugou" . "$B"M(B")
-    ("fukugou" . "&#x25BA;")		; $B1&8~$-9u;03Q(B
-    ;;("seiku" . "$B"*(B")
-    ("seiku" . "&#x25B9;")		; $B1&8~$-GrH4$-;03Q(B
-    ;;("hasei" . "[$BGI(B]")
+    ;;("fukugou" . "⇒")
+    ("fukugou" . "&#x25BA;")		; 右向き黒三角
+    ;;("seiku" . "→")
+    ("seiku" . "&#x25B9;")		; 右向き白抜き三角
+    ;;("hasei" . "[派]")
     ("hasei" . "&#x2666;")
     ("mp3" . "[MP3]")
     ("wav" . "[WAV]")
-    ("voice" . "$B"c"v(B")
-    ("ej_btn" . "[$B1QOB(B]")
-    ("je_btn" . "[$BOB1Q(B]")
-    ("jn_btn" . "[$B9q8l(B]")
-    ("nw" . "<strong>[$B?78l(B]</strong>")
-    ("i_01s" . "$B!&(B")
-    ("clear" . "$B!=(B")
-    ("e1000" . "&#x0E6;")		; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B
+    ("voice" . "≪♪")
+    ("ej_btn" . "[英和]")
+    ("je_btn" . "[和英]")
+    ("jn_btn" . "[国語]")
+    ("nw" . "<strong>[新語]</strong>")
+    ("i_01s" . "・")
+    ("clear" . "—")
+    ("e1000" . "&#x0E6;")		; アッシュ; 小文字AとEの合字
     ("e1001" . "b")
     ("e1002" . "s")
     ("e1003" . "t")
-    ("e1004" . "&#x259;&#x301;")	; $B%7%e%o!<(B'
-    ("e1005" . "&#x2D0;")		; $BD92;Id(B
+    ("e1004" . "&#x259;&#x301;")	; シュワー'
+    ("e1005" . "&#x2D0;")		; 長音符
     ("e1006" . "<em>r</em>")
     ("e1007" . "d")
-    ("e1008" . "&#x292;")  		; $B%(%C%8%e(B; $BHxIU$-$N(BZ
-    ("e1009" . "&#x259;")  		; $B%7%e%o!<(B
+    ("e1008" . "&#x292;")  		; エッジュ; 尾付きのZ
+    ("e1009" . "&#x259;")  		; シュワー
     ("e100a" . "n")
     ("e100b" . "/")
     ("e100c" . "-")
@@ -2572,80 +2572,80 @@ Fix me!")
     ("e101f" . "x")
     ("e1020" . "y")
     ("e1021" . "z")
-    ("e1022" . "&#x1FD;")		; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B'
-    ("e1023" . "&#x0E6;&#x300;")	; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B`
-    ("e1024" . "&#x0E6;&#x303;")	; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B~
-    ("e1025" . "&#x0E6;&#x303;&#x301;") ; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B~'
-    ;;("e1026" . "&#x25A;")		; $B1&nlIU$-$N%7%e%o!<(B
-    ;;("e1026" . "&#x259;")		; $B%7%e%o!<(B
-    ("e1026" . "<em>&#x259;</em>")	; $B%7%e%o!<(B
-    ("e1027" . "&#x259;&#x300;")	; $B%7%e%o!<(B`
-    ("e1028" . "&#x251;")		; $BI.5-BN$N(BA
-    ("e1029" . "&#x251;&#x301;")	; $BI.5-BN$N(BA'
-    ("e102a" . "&#x251;&#x300;")	; $BI.5-BN$N(BA`
-    ("e102b" . "&#x251;&#x303;")	; $BI.5-BN$N(BA~
-    ("e102c" . "&#x251;&#x303;&#x301;")	; $BI.5-BN$N(BA~'
-    ("e102d" . "&#x251;&#x303;&#x300;")	; $BI.5-BN$N(BA~`
-    ("e102e" . "&#x25B;")		; $B%(%W%7%m%s(B
-    ("e102f" . "&#x25B;&#x301;")	; $B%(%W%7%m%s(B'
-    ("e1030" . "&#x25B;&#x300;")	; $B%(%W%7%m%s(B`
-    ("e1031" . "&#x25B;&#x303;")	; $B%(%W%7%m%s(B~
-    ("e1032" . "&#x25B;&#x303;&#x301;")	; $B%(%W%7%m%s(B~'
-    ("e1033" . "&#x25B;&#x303;&#x300;")	; $B%(%W%7%m%s(B`
+    ("e1022" . "&#x1FD;")		; アッシュ; 小文字AとEの合字'
+    ("e1023" . "&#x0E6;&#x300;")	; アッシュ; 小文字AとEの合字`
+    ("e1024" . "&#x0E6;&#x303;")	; アッシュ; 小文字AとEの合字~
+    ("e1025" . "&#x0E6;&#x303;&#x301;") ; アッシュ; 小文字AとEの合字~'
+    ;;("e1026" . "&#x25A;")		; 右鉤付きのシュワー
+    ;;("e1026" . "&#x259;")		; シュワー
+    ("e1026" . "<em>&#x259;</em>")	; シュワー
+    ("e1027" . "&#x259;&#x300;")	; シュワー`
+    ("e1028" . "&#x251;")		; 筆記体のA
+    ("e1029" . "&#x251;&#x301;")	; 筆記体のA'
+    ("e102a" . "&#x251;&#x300;")	; 筆記体のA`
+    ("e102b" . "&#x251;&#x303;")	; 筆記体のA~
+    ("e102c" . "&#x251;&#x303;&#x301;")	; 筆記体のA~'
+    ("e102d" . "&#x251;&#x303;&#x300;")	; 筆記体のA~`
+    ("e102e" . "&#x25B;")		; エプシロン
+    ("e102f" . "&#x25B;&#x301;")	; エプシロン'
+    ("e1030" . "&#x25B;&#x300;")	; エプシロン`
+    ("e1031" . "&#x25B;&#x303;")	; エプシロン~
+    ("e1032" . "&#x25B;&#x303;&#x301;")	; エプシロン~'
+    ("e1033" . "&#x25B;&#x303;&#x300;")	; エプシロン`
     ("e1034" . "&#x1E3E;")		; M'
     ;;("e1034" . "M&#x301;")		; M'
     ("e1035" . "&#x0ED;")		; I'
-    ("e1036" . "&#x14B;")  		; $B%(%s%0(B
-    ("e1037" . "&#x254;")		; $B3+$$$?(BO
-    ("e1038" . "&#x254;&#x301;")	; $B3+$$$?(BO'
-    ("e1039" . "&#x254;&#x300;")	; $B3+$$$?(BO`
-    ("e103a" . "&#x254;&#x303;")	; $B3+$$$?(BO~
-    ("e103b" . "&#x254;&#x303;&#x301;")	; $B3+$$$?(BO~'
-    ("e103c" . "&#x254;&#x303;&#x300;")	; $B3+$$$?(BO~`
-    ("e103d" . "&#x0F0;")  		; $B%(%:(B
+    ("e1036" . "&#x14B;")  		; エング
+    ("e1037" . "&#x254;")		; 開いたO
+    ("e1038" . "&#x254;&#x301;")	; 開いたO'
+    ("e1039" . "&#x254;&#x300;")	; 開いたO`
+    ("e103a" . "&#x254;&#x303;")	; 開いたO~
+    ("e103b" . "&#x254;&#x303;&#x301;")	; 開いたO~'
+    ("e103c" . "&#x254;&#x303;&#x300;")	; 開いたO~`
+    ("e103d" . "&#x0F0;")  		; エズ
     ("e103e" . "T&#x301;")		; T'
     ("e103f" . "&#x0DA;")		; U'
     ("e1040" . "V&#x301;")		; V'
     ("e1041" . "&#x0DD;")		; Y'
     ("e1042" . "&#x0294;")		; ?
-    ("e1043" . "&#x28C;")		; $B5U$5$N(BV
-    ("e1044" . "&#x28C;&#x301;")	; $B5U$5$N(BV'
-    ("e1045" . "&#x28C;&#x303;")	; $B5U$5$N(BV`
-    ("e1046" . "&#x28C;&#x303;")	; $B5U$5$N(BV~
+    ("e1043" . "&#x28C;")		; 逆さのV
+    ("e1044" . "&#x28C;&#x301;")	; 逆さのV'
+    ("e1045" . "&#x28C;&#x303;")	; 逆さのV`
+    ("e1046" . "&#x28C;&#x303;")	; 逆さのV~
     ("e1047" . "&#x0E1;")		; a'
     ("e1048" . "&#x0E0;")  		; a`
     ("e1049" . "&#x0E2;")		; a^
     ("e104a" . "&#x0E3;")		; a~
     ("e104b" . "&#x0E3;&#x301;")	; a~'
     ("e104c" . "&#x0E3;&#x300;")	; a~`
-    ("e104d" . "&#x0E5;")		; a$B!#(B
+    ("e104d" . "&#x0E5;")		; a。
     ("e104e" . "&#x0E4;")		; a..
     ("e104f" . "&#x101;")		; a-
-    ("e1050" . "&#x0E7;")		; $B%;%G%#!<%fIU$-$N(BC
-    ;;("e1051" . "&#x297;&#x0B8;")	; $B=DD9$N(BC $B%;%G%#!<%f(B
-    ("e1051" . "<em>&#x0E7;</em>")	; $B=DD9$N(BC $B%;%G%#!<%f(B
-    ("e1052" . "&#x0F0;")  		; $B%(%:(B
+    ("e1050" . "&#x0E7;")		; セディーユ付きのC
+    ;;("e1051" . "&#x297;&#x0B8;")	; 縦長のC セディーユ
+    ("e1051" . "<em>&#x0E7;</em>")	; 縦長のC セディーユ
+    ("e1052" . "&#x0F0;")  		; エズ
     ("e1053" . "&#x0E9;")		; e'
     ("e1054" . "&#x0E8;")		; e`
     ("e1055" . "&#x0EA;")		; e^
     ("e1056" . "&#x0EB;")		; e..
     ("e1057" . "&#x113;")		; e-
     ("e1058" . "<em>&#x261;</em>")	; g
-    ;;e1059$B$J$7(B
+    ;;e1059なし
     ("e105a" . "&#x0CD;")		; I'
     ("e105b" . "&#x0CC;")		; I`
     ("e105c" . "&#x0CE;")		; I^
     ("e105d" . "&#x0CF;")		; I..
     ("e105e" . "<em>j</em>")
-    ("e105f" . "m&#x325;")		; m$B2<4](B
-    ("e1060" . "m&#x325;&#x301;")	; m$B2<4](B'
+    ("e105f" . "m&#x325;")		; m下丸
+    ("e1060" . "m&#x325;&#x301;")	; m下丸'
     ("e1061" . "&#x0F1;")		; n~
     ("e1062" . "&#x0F3;")  		; o'
     ("e1063" . "&#x0F2;")  		; o`
     ("e1064" . "&#x0F4;")		; o^
     ("e1065" . "&#x0F6;")		; o..
     ("e1066" . "r&#x302;")		; r^
-    ("e1067" . "&#x3B8;")  		; $B%F!<%?(B($B%7!<%?(B)
+    ("e1067" . "&#x3B8;")  		; テータ(シータ)
     ("e1068" . "&#x0FA;")		; u'
     ("e1069" . "&#x0F9;")		; u`
     ("e106a" . "&#x0FB;")		; u^
@@ -2657,28 +2657,28 @@ Fix me!")
     ("e1070" . "&#x2013;")		; -
     ("e1071" . "&#x2013;&#x301;")	; -'
     ("e1072" . "&#x2013;&#x300;")	; -`
-    ("e1073" . "$B!L(B")
-    ("e1074" . "$B!M(B")
-    ("e1075" . "$B6/(B")
+    ("e1073" . "〔")
+    ("e1074" . "〕")
+    ("e1075" . "強")
     ("e1076" . "<em>Sp.</em>")
     ("e1077" . "<em>Flem.</em>")
     ("e1078" . "<em>Port.</em>")
     ("e1079" . "<em>It.</em>")
     ("e107a" . "<em>F.</em>")
     ("e107b" . "<em>G.</em>")
-    ("e107c" . "&#x265;")		; $B5U$5$N(BH
-    ("e107d" . "&#x272;")		; ($B:8B&$K(B)$B:88~$-HxIU$-$N(BN
-    ("e107e" . "&#x153;")		; $B>.J8;z$N(BO$B$H(BE$B$N9g;z(B
+    ("e107c" . "&#x265;")		; 逆さのH
+    ("e107d" . "&#x272;")		; (左側に)左向き尾付きのN
+    ("e107e" . "&#x153;")		; 小文字のOとEの合字
     ("e107f" . "&#x0F8;")		; o/
-    ("e1080" . "&#x153;&#x303;")	; $B>.J8;z$N(BO$B$H(BE$B$N9g;z(B~
+    ("e1080" . "&#x153;&#x303;")	; 小文字のOとEの合字~
     ("e1081" . "&#x0F8;&#x301;")	; o/'
     ("e1082" . "&#x1D2;")		; ov
     ("e1083" . "&#x1D0;")		; iv
     ("e1084" . "&#x1CE;")		; av
     ("e1085" . "n&#x304;")		; n-
-    ("e1086" . "&#x0C5;")		; A$B!#(B
-    ;;("e1087" . "&#x276;")		; $B>.7?BgJ8;z(BO$B$H(BE$B$N9g;z(B
-    ("e1087" . "&#x152;")		; $B>.7?BgJ8;z(BO$B$H(BE$B$N9g;z(B
+    ("e1086" . "&#x0C5;")		; A。
+    ;;("e1087" . "&#x276;")		; 小型大文字OとEの合字
+    ("e1087" . "&#x152;")		; 小型大文字OとEの合字
     ("e1088" . "&#x163;")		; t,
     ("e1089" . "<em>b</em>")
     ("e108a" . "<em>d</em>")
@@ -2690,57 +2690,57 @@ Fix me!")
     ("e1090" . "<em>t</em>")
     ("e1091" . "<em>u</em>")
     )
-  "OCN EXCEED$B1QOB<-E5$NH/2;5-9f$H%U%)%s%H$NJQ49%F!<%V%k!#(B
+  "OCN EXCEED英和辞典の発音記号とフォントの変換テーブル。
 Fix me!")
 
 (defvar dic-lookup-w3m-filter-infoseek-ej-symbol-alist
   '(
-    ("GRA0001" . "&#x0E6;")		; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B
-    ("GRA0002" . "&#x1FD;")		; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B'
-    ("GRA0003" . "&#x0E6;&#x300;")	; $B%"%C%7%e(B; $B>.J8;z(BA$B$H(BE$B$N9g;z(B`
-    ("GRA0004" . "&#x259;")  		; $B%7%e%o!<(B
-    ("GRA0005" . "&#x259;&#x301;")	; $B%7%e%o!<(B'
-    ("GRA0006" . "&#x259;&#x300;")	; $B%7%e%o!<(B`
-    ("GRA0007" . "&#x153;")		; $B>.J8;z$N(BO$B$H(BE$B$N9g;z(B
-    ("GRA0008" . "&#x153;&#x301;")	; $B>.J8;z$N(BO$B$H(BE$B$N9g;z(B'
-    ("GRA0009" . "&#x153;&#x300;")	; $B>.J8;z$N(BO$B$H(BE$B$N9g;z(B`
-    ("GRA0010" . "&#x153;&#x303;")	; $B>.J8;z$N(BO$B$H(BE$B$N9g;z(B~
-    ("GRA0011" . "&#x3B2;")		; $B%Y!<%?(B
-    ("GRA0012" . "&#x251;")		; $BI.5-BN$N(BA
-    ("GRA0013" . "&#x251;&#x301;")	; $BI.5-BN$N(BA'
-    ("GRA0014" . "&#x251;&#x300;")	; $BI.5-BN$N(BA`
-    ("GRA0015" . "&#x251;&#x303;")	; $BI.5-BN$N(BA~
-    ("GRA0016" . "&#x25B;")		; $B%(%W%7%m%s(B
-    ("GRA0017" . "&#x25B;&#x303;")	; $B%(%W%7%m%s(B~
-    ("GRA0018" . "&#x265;")		; $B5U$5$N(BH
-    ("GRA0019" . "&#x14B;")  		; $B%(%s%0(B
-    ("GRA0021" . "&#x254;")		; $B3+$$$?(BO
-    ("GRA0022" . "&#x254;&#x301;")	; $B3+$$$?(BO'
-    ("GRA0023" . "&#x254;&#x300;")	; $B3+$$$?(BO`
-    ("GRA0024" . "&#x254;&#x303;")	; $B3+$$$?(BO~
-    ("GRA0025" . "&#x283;")  		; $B%(%C%7%e(B
-    ("GRA0026" . "&#x28C;")		; $B5U$5$N(BV
-    ("GRA0027" . "&#x28C;&#x301;")	; $B5U$5$N(BV'
-    ("GRA0028" . "&#x28C;&#x300;")	; $B5U$5$N(BV`
+    ("GRA0001" . "&#x0E6;")		; アッシュ; 小文字AとEの合字
+    ("GRA0002" . "&#x1FD;")		; アッシュ; 小文字AとEの合字'
+    ("GRA0003" . "&#x0E6;&#x300;")	; アッシュ; 小文字AとEの合字`
+    ("GRA0004" . "&#x259;")  		; シュワー
+    ("GRA0005" . "&#x259;&#x301;")	; シュワー'
+    ("GRA0006" . "&#x259;&#x300;")	; シュワー`
+    ("GRA0007" . "&#x153;")		; 小文字のOとEの合字
+    ("GRA0008" . "&#x153;&#x301;")	; 小文字のOとEの合字'
+    ("GRA0009" . "&#x153;&#x300;")	; 小文字のOとEの合字`
+    ("GRA0010" . "&#x153;&#x303;")	; 小文字のOとEの合字~
+    ("GRA0011" . "&#x3B2;")		; ベータ
+    ("GRA0012" . "&#x251;")		; 筆記体のA
+    ("GRA0013" . "&#x251;&#x301;")	; 筆記体のA'
+    ("GRA0014" . "&#x251;&#x300;")	; 筆記体のA`
+    ("GRA0015" . "&#x251;&#x303;")	; 筆記体のA~
+    ("GRA0016" . "&#x25B;")		; エプシロン
+    ("GRA0017" . "&#x25B;&#x303;")	; エプシロン~
+    ("GRA0018" . "&#x265;")		; 逆さのH
+    ("GRA0019" . "&#x14B;")  		; エング
+    ("GRA0021" . "&#x254;")		; 開いたO
+    ("GRA0022" . "&#x254;&#x301;")	; 開いたO'
+    ("GRA0023" . "&#x254;&#x300;")	; 開いたO`
+    ("GRA0024" . "&#x254;&#x303;")	; 開いたO~
+    ("GRA0025" . "&#x283;")  		; エッシュ
+    ("GRA0026" . "&#x28C;")		; 逆さのV
+    ("GRA0027" . "&#x28C;&#x301;")	; 逆さのV'
+    ("GRA0028" . "&#x28C;&#x300;")	; 逆さのV`
     ("GRA0029" . "&#x0E1;")		; a'
     ("GRA0030" . "&#x0E0;")		; a`
     ("GRA0031" . "&#x0E3;")		; a~
-    ("GRA0032" . "&#x0E7;")		; $B%;%G%#!<%fIU$-$N(BC
-    ("GRA0033" . "&#x0F0;")  		; $B%(%:(B
+    ("GRA0032" . "&#x0E7;")		; セディーユ付きのC
+    ("GRA0033" . "&#x0F0;")  		; エズ
     ("GRA0034" . "&#x0E9;")		; e'
     ("GRA0035" . "&#x0E8;")		; e`
     ("GRA0036" . "e&#x303;")		; e~
-    ("GRA0037" . "&#x261;")		; $B3+$$$?Hx$N(BG
-    ("GRA0038" . "&#x292;")  		; $B%(%C%8%e(B; $BHxIU$-$N(BZ
+    ("GRA0037" . "&#x261;")		; 開いた尾のG
+    ("GRA0038" . "&#x292;")  		; エッジュ; 尾付きのZ
     ("GRA0039" . "&#x0ED;")  		; i'
     ("GRA0040" . "&#x0EC;")  		; i`
     ("GRA0041" . "&#x142;")		; l/
     ("GRA0042" . "&#x0F3;")  		; o'
     ("GRA0043" . "&#x0F2;")		; o`
     ("GRA0044" . "&#x0F5;")		; o~
-    ("GRA0045" . "&#x0F8;")		; $B<P@~IU$-$N(BO
-    ("GRA0046" . "&#x01FF;")		; $B<P@~IU$-$N(BO'
-    ("GRA0047" . "&#x3B8;")  		; $B%F!<%?(B($B%7!<%?(B)
+    ("GRA0045" . "&#x0F8;")		; 斜線付きのO
+    ("GRA0046" . "&#x01FF;")		; 斜線付きのO'
+    ("GRA0047" . "&#x3B8;")  		; テータ(シータ)
     ("GRA0048" . "&#x0FA;")		; u'
     ("GRA0049" . "&#x0F9;")		; u`
     ("GRA0050" . "&#x0FD;")		; y'
@@ -2750,17 +2750,17 @@ Fix me!")
     ("GRA0054" . "&#x0294;")		; ?
     ("ic_eiwa" . "<strong>[E]</strong>")
     ("ic_waei" . "<strong>[J]</strong>")
-    ("ic_kokugo" . "<strong>[$BBg(B]</strong>")
+    ("ic_kokugo" . "<strong>[大]</strong>")
     ("icon02" ."[*]")
-    ("icon_honyaku" . "[$BLu(B]")
-    ("icon_kanji" . "[$B4A(B]")
-    ("icon_all" . "[$BA4(B]")
+    ("icon_honyaku" . "[訳]")
+    ("icon_kanji" . "[漢]")
+    ("icon_all" . "[全]")
     ("icon_eiwa" . "[EJ]")
     ("icon_waei" . "[JE]")
-    ("icon_kokugo" . "[$BBg(B]")
-    ("icon_kana" . "[$B%+(B]")
+    ("icon_kokugo" . "[大]")
+    ("icon_kana" . "[カ]")
     )
-  "infoseek $B1QOB<-E5$NH/2;5-9f$H%U%)%s%H$NJQ49%F!<%V%k!#(B
+  "infoseek 英和辞典の発音記号とフォントの変換テーブル。
 Fix me!")
 
 (defvar dic-lookup-w3m-filter-weblio-ej-symbol-alist
@@ -2771,32 +2771,32 @@ Fix me!")
 		(cdr elem)))
        dic-lookup-w3m-filter-excite-ej-symbol-alist)
 
-    ("W16-A343_F-000000_B-FFFFFF" . "&#x2198;") ; $B<P$a2<8~$-Lp0u(B
-    ("W16-A344_F-000000_B-FFFFFF" . "&#x2197;") ; $B<P$a>e8~$-Lp0u(B
-    ("W16-A34D_F-000000_B-FFFFFF" . " &#x2026;&#x301; ") ; $B!D(B'
-    ("W16-A328_F-000000_B-FFFFFF" . "[$B4'(B]")
+    ("W16-A343_F-000000_B-FFFFFF" . "&#x2198;") ; 斜め下向き矢印
+    ("W16-A344_F-000000_B-FFFFFF" . "&#x2197;") ; 斜め上向き矢印
+    ("W16-A34D_F-000000_B-FFFFFF" . " &#x2026;&#x301; ") ; …'
+    ("W16-A328_F-000000_B-FFFFFF" . "[冠]")
 
-    ("iconEjjeWav" . "$B"v(B")
+    ("iconEjjeWav" . "♪")
     ("lg_liscj" . "")
     ("lg_kejje" . "")
     ("lg_kejcy" . "")
     ("hand" . "&#x261E;")
-    ("link_out" . "$B"N(B")
-    ("icon_bulb" . "$B!&(B")
+    ("link_out" . "⇔")
+    ("icon_bulb" . "・")
     ("bulb5" . "[*****]")
     ("bulb4" . "[****&nbsp;]")
     ("bulb3" . "[***&nbsp;&nbsp;]")
     ("bulb2" . "[**&nbsp;&nbsp;&nbsp;]")
     ("bulb1" . "[*&nbsp;&nbsp;&nbsp;&nbsp;]")
     ("bulb0" . "[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]")
-    ("IconCircleGr" . "$B!}(B")
-    ("IconArrGry" . "$B!&(B")
-    ("iconArrGryR" . "$B"d(B")
+    ("IconCircleGr" . "◎")
+    ("IconArrGry" . "・")
+    ("iconArrGryR" . "≫")
     ("spacer" . "")
     ("subCategoryPlus" . "")
     ("iconCclBl" . "- ")
     )
-  "weblio $B1QOB<-E5$NH/2;5-9f$H%U%)%s%H$NJQ49%F!<%V%k!#(B
+  "weblio 英和辞典の発音記号とフォントの変換テーブル。
 Fix me!")
 
 (defvar dic-lookup-w3m-filter-onlinedic-symbol-alist
@@ -2805,11 +2805,11 @@ Fix me!")
     ("title_r1" . "")
     ("bg_1" . "")
     ("end_1" . "<hr>")
-    ("arrow3" . "$B"*(B")
+    ("arrow3" . "→")
     ("spacer" . " ")
     ("lucky" . "")
     )
-  "$BFX_j<-3$$N5-9f$H%U%)%s%H$NJQ49%F!<%V%k!#(B")
+  "敦煌辞海の記号とフォントの変換テーブル。")
 
 (defvar dic-lookup-w3m-filter-hjenglish-symbol-alist
   '(("icon_star" . "* ")
@@ -2818,7 +2818,7 @@ Fix me!")
     ("btn_newword" . "<strong>[new]</strong>")
     ("btn_noresult" . "<strong>[??]</strong>")
     )
-  "hjenglish$B$N5-9f$H%U%)%s%H$NJQ49%F!<%V%k!#(B")
+  "hjenglishの記号とフォントの変換テーブル。")
 
 (defvar dic-lookup-w3m-filter-kitajiro-pinyin-alist
   '(("ang1" . "&#257;ng") ("ang2" . "&#225;ng")
@@ -2857,7 +2857,7 @@ Fix me!")
     ("o1" . "&#333;") ("o2" . "&#243;") ("o3" . "&#466;") ("o4" . "&#242;")
     ("u1" . "&#363;") ("u2" . "&#250;") ("u3" . "&#468;") ("u4" . "&#249;")
     ("v1" . "&#470;") ("v2" . "&#472;") ("v3" . "&#474;") ("v4" . "&#476;"))
-  "pinyin$BJQ49%F!<%V%k(B")
+  "pinyin変換テーブル")
 
 (defun dic-lookup-w3m-filter-conv-pinyin (url regexp)
   (goto-char (point-min))
@@ -2884,15 +2884,15 @@ Fix me!")
       ("tr-ej-url-yakushite.net" . "yakushite.net")
       ("tr-enja-url-google" . "google")))
     (jx
-     (("tr-je-url-nifty" . "$B1Q(Bnifty")
-      ("tr-je-url-ocn" . "$B1Q(Bocn")
-      ("tr-je-url-livedoor" . "$B1Q(Blivedoor")
-      ("tr-je-url-sonet" . "$B1Q(Bsonet")
-      ("tr-je-url-yakushite.net" . "$B1Q(B-yakushite.net")
+     (("tr-je-url-nifty" . "英nifty")
+      ("tr-je-url-ocn" . "英ocn")
+      ("tr-je-url-livedoor" . "英livedoor")
+      ("tr-je-url-sonet" . "英sonet")
+      ("tr-je-url-yakushite.net" . "英-yakushite.net")
       ("tr-jaen-url-google" . "google")
-      ("tr-jc-url-ocn" . "$BCf(Bocn")
-      ("tr-jc-url-nifty" . "$BCf(Bnifty")
-      ("tr-jk-url-ocn" . "$B4Z(Bocn")))
+      ("tr-jc-url-ocn" . "中ocn")
+      ("tr-jc-url-nifty" . "中nifty")
+      ("tr-jk-url-ocn" . "韓ocn")))
     (cj
      (("tr-cj-url-nifty" . "nifty")
       ("tr-cj-url-ocn" . "ocn")
@@ -2904,14 +2904,14 @@ Fix me!")
       ("tr-kj-url-ocn" . "ocn")
       ("tr-kj-url-sonet" . "sonet")
       ("tr-koja-url-google" . "google"))))
-    "*web$B%Z!<%8$rK]Lu$9$k(Btranslator$B$N%j%9%H!#(B
-web$B%Z!<%8$KK]Lu%\%?%s$r$D$1$F!"3F(Btranslator$B$K%j%s%/$9$k!#(B
-`dic-lookup-w3m-filter-translation-anchor'$B$G;HMQ!#(B")
+    "*webページを翻訳するtranslatorのリスト。
+webページに翻訳ボタンをつけて、各translatorにリンクする。
+`dic-lookup-w3m-filter-translation-anchor'で使用。")
 
 (defun dic-lookup-w3m-filter-translation-anchor (url &optional regexp before)
-  "web$B%Z!<%8$KK]Lu%\%?%s$r$D$1$k!#(B"
+  "webページに翻訳ボタンをつける。"
   (goto-char (point-min))
-  ;; $B$$$$2C8:$J8@8l$NH=Dj!#(B Fix me!
+  ;; いい加減な言語の判定。 Fix me!
   (cond
    ((or
      (not
@@ -2921,23 +2921,23 @@ web$B%Z!<%8$KK]Lu%\%?%s$r$D$1$F!"3F(Btranslator$B$K%j%s%/$9$k!#(B
        (re-search-forward
 	"<html [^>]*lang=\"en\"\\|<meta [^>]*http-equiv=\"content-language\"[^>]*content=\"en\"\\|<meta [^>]*http-equiv=\"content-type\"[^>]*content=\"text/html; +charset=\\(iso-8859-1\\|us-ascii\\)\"" nil t)))
     (dic-lookup-w3m-filter-translation-anchor2
-     url 'ej "$B1QF|K]Lu(B: " regexp before))
+     url 'ej "英日翻訳: " regexp before))
    ((save-excursion
-      (re-search-forward "\\ch" nil t))
+      (re-search-forward "[ᄀ-ᇹㄱ-ㆎ가-힣]\\{10,\\}" nil t))
     (dic-lookup-w3m-filter-translation-anchor2
-     url 'kj "$B4ZF|K]Lu(B: " regexp before))
+     url 'kj "韓日翻訳: " regexp before))
    ((or
      (save-excursion
        (re-search-forward
 	"<html [^>]*lang=\"zh-cn\"\\|<meta [^>]*http-equiv=\"content-language\"[^>]*content=\"zh-cn\"\\|<meta [^>]*http-equiv=\"content-type\"[^>]*content=\"text/html; +charset=gb2312\"" nil t))
      (save-excursion
-       (re-search-forward "\\cc" nil t)))
+       (re-search-forward "[啊-齄]\{10,\}" nil t)))
     (dic-lookup-w3m-filter-translation-anchor2
-     url 'cj "$BCfF|K]Lu(B: " regexp before))
+     url 'cj "中日翻訳: " regexp before))
    ((save-excursion
-      (re-search-forward "[$B$"(B-$B$s(B]" nil t))
+      (re-search-forward "[あ-ん]" nil t))
     (dic-lookup-w3m-filter-translation-anchor2
-     url 'jx "$BF|(B*$BK]Lu(B: " regexp before))
+     url 'jx "日*翻訳: " regexp before))
    ))
 
 (defun dic-lookup-w3m-filter-translation-anchor2
@@ -2967,42 +2967,42 @@ web$B%Z!<%8$KK]Lu%\%?%s$r$D$1$F!"3F(Btranslator$B$K%j%s%/$9$k!#(B
     (if before "\\1")
     )))
 
-;; http://dic.yahoo.co.jp/ $B%W%m%0%l%C%7%V1QOBCf<-E5(B |  $B?7%0%m!<%P%k1QOB<-E5(B
-;; http://www.sanseido.net/ $B%G%$%j!<%3%s%5%$%9%7%j!<%:(B
-;; http://www.excite.co.jp/dictionary/ $B?71QOBCf<-E5(B $BBh#6HG(B $B!J8&5f<R!K(B
-;; http://dictionary.goo.ne.jp/  EXCEED $B1QOB<-E5(B
-;; http://ocndictionary.goo.ne.jp/ EXCEED $B1QOB<-E5(B
+;; http://dic.yahoo.co.jp/ プログレッシブ英和中辞典 |  新グローバル英和辞典
+;; http://www.sanseido.net/ デイリーコンサイスシリーズ
+;; http://www.excite.co.jp/dictionary/ 新英和中辞典 第６版 （研究社）
+;; http://dictionary.goo.ne.jp/  EXCEED 英和辞典
+;; http://ocndictionary.goo.ne.jp/ EXCEED 英和辞典
 ;; http://dictionary.infoseek.ne.jp/
-;; http://www.alc.co.jp/ $B1Q<-O/(B
-;; http://dic.livedoor.com/ EXCEED$B1QOB<-E5(B
+;; http://www.alc.co.jp/ 英辞朗
+;; http://dic.livedoor.com/ EXCEED英和辞典
 ;; http://www.merriam-webster.com/dictionary/ webster
 ;; http://sara.natcorp.ox.ac.uk/cgi-bin/saraWeb corpus
 ;; http://www.collins.co.uk/Corpus/CorpusSearch.aspx corpus
 ;; http://erek.ta2o.net/news/%s.html" corpus
-;; http://www.kotonoha.gr.jp/demo/ $BF|K\8l%3!<%Q%9(B
-;; http://www.ctrans.org/cjdic/index.php $BCfF|(B ($BF|Cf(B)
-;; http://www.gengokk.co.jp/thesaurus/ $BF|K\8l%7%=!<%i%9(B
-;; http://ruigo.jp/ $BF|K\8l%7%=!<%i%9(B
-;; http://www.dictjuggler.net/tamatebako/ $BF|K\8l%7%=!<%i%9(B
-;; http://thesaurus.weblio.jp/ $BF|K\8l%7%=!<%i%9(B
+;; http://www.kotonoha.gr.jp/demo/ 日本語コーパス
+;; http://www.ctrans.org/cjdic/index.php 中日 (日中)
+;; http://www.gengokk.co.jp/thesaurus/ 日本語シソーラス
+;; http://ruigo.jp/ 日本語シソーラス
+;; http://www.dictjuggler.net/tamatebako/ 日本語シソーラス
+;; http://thesaurus.weblio.jp/ 日本語シソーラス
 ;; http://thesaurus.reference.com/ english thesaurus
 ;; http://dmoz.atpedia.jp/Reference/Thesauri links to thesaurus sites
-;; http://lsd.pharm.kyoto-u.ac.jp/ja/service/weblsd/ $B%i%$%U%5%$%(%s%9<-=q(B
+;; http://lsd.pharm.kyoto-u.ac.jp/ja/service/weblsd/ ライフサイエンス辞書
 ;; http://www.tfd.com/
 ;; http://www.onlinedic.com/search.php
 ;; http://www.bitex-cn.com/
 ;; http://www.yakushite.net/
 ;; http://www.sanseido.net/User/Dic/Index.aspx
 ;; http://www.stars21.asia/dictionary/Japanese-Chinese_dictionary.html
-;; http://www.frelax.com/sc/service/pinyin/ $B4A;z(Bpinyin$BJQ49(B
-;; http://rnnnews.jp/ $B;~;v1Q8l<-E5(B
+;; http://www.frelax.com/sc/service/pinyin/ 漢字pinyin変換
+;; http://rnnnews.jp/ 時事英語辞典
 ;; http://www.tranexp.com:2000/Translate/result.shtml
-;; http://www.kotoba.ne.jp/ $BK]Lu$N$?$a$N%$%s%?!<%M%C%H%j%=!<%9(B
-;; http://www.hir-net.com/link/dic/ $B%*%s%i%$%s<-=q!&<-E5%j%s%/=8(B
-;; http://www.linksyu.com/p32.htm $B<-=q!&J8Nc=8(B
+;; http://www.kotoba.ne.jp/ 翻訳のためのインターネットリソース
+;; http://www.hir-net.com/link/dic/ オンライン辞書・辞典リンク集
+;; http://www.linksyu.com/p32.htm 辞書・文例集
 ;; http://so-net.web.transer.com/
 ;; http://homepage2.nifty.com/m_kamada/l_translation.htm
-;; http://www.diigo.com/tag/$BK]Lu(B
+;; http://www.diigo.com/tag/翻訳
 ;; http://7go.biz/translation/
 ;; http://lhsp.s206.xrea.com/misc/translation.html
 ;; http://www.langtolang.com/
