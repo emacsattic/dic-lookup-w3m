@@ -622,6 +622,55 @@
    ("tr-jk-yahoo" "http://honyaku.yahoo.co.jp/transtext" utf-8
     "both=TH&text=%s&clearFlg=1&eid=CR-JK" "Changshin Soft (CSLI)")
 
+   ("tr-enja-url-yahoo"
+    "http://honyaku.yahoofs.jp/url_result?ieid=en&oeid=ja&both=T&setting=for\%%3D0&url=%s"
+    utf-8 nil "")
+   ("tr-zhja-url-yahoo"
+    "http://honyaku.yahoofs.jp/url_result?ieid=zh&oeid=ja&both=T&setting=for\%%3D0&url=%s"
+    utf-8 nil "")
+   ("tr-koja-url-yahoo"
+    "http://honyaku.yahoofs.jp/url_result?ieid=ko&oeid=ja&both=T&setting=for\%%3D0&url=%s"
+    utf-8 nil "")
+   ("tr-frja-url-yahoo"
+    "http://honyaku.yahoofs.jp/url_result?ieid=fr&oeid=ja&both=T&setting=for\%%3D0&url=%s"
+    utf-8 nil "")
+   ("tr-deja-url-yahoo"
+    "http://honyaku.yahoofs.jp/url_result?ieid=de&oeid=ja&both=T&setting=for\%%3D0&url=%s"
+    utf-8 nil "")
+   ("tr-esja-url-yahoo"
+    "http://honyaku.yahoofs.jp/url_result?ieid=es&oeid=ja&both=T&setting=for\%%3D0&url=%s"
+    utf-8 nil "")
+   ("tr-ptja-url-yahoo"
+    "http://honyaku.yahoofs.jp/url_result?ieid=pt&oeid=ja&both=T&setting=for\%%3D0&url=%s"
+    utf-8 nil "")
+   ("tr-itja-url-yahoo"
+    "http://honyaku.yahoofs.jp/url_result?ieid=it&oeid=ja&both=T&setting=for\%%3D0&url=%s"
+    utf-8 nil "")
+   ("tr-jaen-url-yahoo"
+    "http://honyaku.yahoofs.jp/url_result?ieid=ja&oeid=en&both=T&setting=for\%%3D0&url=%s"
+    utf-8 nil "")
+   ("tr-jazh-url-yahoo"
+    "http://honyaku.yahoofs.jp/url_result?ieid=ja&oeid=zh&both=T&setting=for\%%3D0&url=%s"
+    utf-8 nil "")
+   ("tr-jako-url-yahoo"
+    "http://honyaku.yahoofs.jp/url_result?ieid=ja&oeid=ko&both=T&setting=for\%%3D0&url=%s"
+    utf-8 nil "")
+   ("tr-jafr-url-yahoo"
+    "http://honyaku.yahoofs.jp/url_result?ieid=ja&oeid=fr&both=T&setting=for\%%3D0&url=%s"
+    utf-8 nil "")
+   ("tr-jade-url-yahoo"
+    "http://honyaku.yahoofs.jp/url_result?ieid=ja&oeid=de&both=T&setting=for\%%3D0&url=%s"
+    utf-8 nil "")
+   ("tr-jaes-url-yahoo"
+    "http://honyaku.yahoofs.jp/url_result?ieid=ja&oeid=es&both=T&setting=for\%%3D0&url=%s"
+    utf-8 nil "")
+   ("tr-japi-url-yahoo"
+    "http://honyaku.yahoofs.jp/url_result?ieid=ja&oeid=pt&both=T&setting=for\%%3D0&url=%s"
+    utf-8 nil "")
+   ("tr-jait-url-yahoo"
+    "http://honyaku.yahoofs.jp/url_result?ieid=ja&oeid=it&both=T&setting=for\%%3D0&url=%s"
+    utf-8 nil "")
+
    ;; excite translator
    ,@(dic-lookup-w3m-search-engine-postget
       '(("tr-ej-excite" "http://www.excite.co.jp/world/english/"
@@ -2882,14 +2931,16 @@ Fix me!")
       ("tr-ej-url-nifty" . "nifty")
       ("tr-ej-url-sonet" . "sonet")
       ("tr-ej-url-yakushite.net" . "yakushite.net")
-      ("tr-enja-url-google" . "google")))
+      ("tr-enja-url-google" . "google")
+      ("tr-enja-url-yahoo" . "yahoo")))
     (jx
      (("tr-je-url-nifty" . "英nifty")
       ("tr-je-url-ocn" . "英ocn")
       ("tr-je-url-livedoor" . "英livedoor")
       ("tr-je-url-sonet" . "英sonet")
       ("tr-je-url-yakushite.net" . "英-yakushite.net")
-      ("tr-jaen-url-google" . "google")
+      ("tr-jaen-url-google" . "英google")
+      ("tr-jaen-url-yahoo" . "英yahoo")
       ("tr-jc-url-ocn" . "中ocn")
       ("tr-jc-url-nifty" . "中nifty")
       ("tr-jk-url-ocn" . "韓ocn")))
