@@ -603,6 +603,85 @@
    ("ptes-wordreference" "http://www.wordreference.com/ptes/%s"
     utf-8 nil "Portuguese-Spanish")
 
+   ;; JMdict (Jim Breen's WWWJDIC)
+   ("je-jmdict" "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=1" "Jpn-Eng General (EDICT) Jim Breen's WWWJDIC")
+   ("je-jmdict-JapaneseNames"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=2" "Japanese Names (ENAMDICT) Jim Breen's WWWJDIC")
+   ("je-jmdict-Computing/Telecomms"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=3" "Computing/Telecomms Jim Breen's WWWJDIC")
+   ("je-jmdict-LifeSciences/Bio-Med"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=4" "Life Sciences/Bio-Med Jim Breen's WWWJDIC")
+   ("je-jmdict-LegalTerms"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=5" "Legal Terms Jim Breen's WWWJDIC")
+   ("je-jmdict-Finance/Marketing"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=6" "Finance/Marketing Jim Breen's WWWJDIC")
+   ("je-jmdict-Buddhism"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=7" "Buddhism Jim Breen's WWWJDIC")
+   ("je-jmdict-Miscellaneous"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=8" "Miscellaneous Jim Breen's WWWJDIC")
+   ("je-jmdict-SpecialText-glossing"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=9" "Special Text-glossing Jim Breen's WWWJDIC")
+   ("je-jmdict-Engineering/Science"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=A" "Engineering/Science Jim Breen's WWWJDIC")
+   ("je-jmdict-Linguistics"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=B" "Linguistics Jim Breen's WWWJDIC")
+   ("je-jmdict-River&WaterSystems"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=C" "River & Water Systems Jim Breen's WWWJDIC")
+   ("je-jmdict-Automobile Industry"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=D" "Automobile Industry Jim Breen's WWWJDIC")
+   ("je-jmdict-Japanese Wordnet"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=E" "Japanese Wordnet Jim Breen's WWWJDIC")
+   ("je-jmdict-Work-in-progressFile"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=F" "Work-in-progress File Jim Breen's WWWJDIC")
+   ("je-jmdict-Japanese-German"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=G" "Japanese-German (WaDoku) Jim Breen's WWWJDIC")
+   ("je-jmdict-Japanese-French"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=H" "Japanese-French Jim Breen's WWWJDIC")
+   ("je-jmdict-Japanese-Russian"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=I" "Japanese-Russian Jim Breen's WWWJDIC")
+   ("je-jmdict-Japanese-Swedish"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=J" "Japanese-Swedish Jim Breen's WWWJDIC")
+   ("je-jmdict-Japanese-Hungarian"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=K" "Japanese-Hungarian Jim Breen's WWWJDIC")
+   ("je-jmdict-Japanese-Spanish"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=L" "Japanese-Spanish Jim Breen's WWWJDIC")
+   ("je-jmdict-Japanese-Dutch"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=M" "Japanese-Dutch Jim Breen's WWWJDIC")
+   ("je-jmdict-Japanese-Slovenian"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=N" "Japanese-Slovenian Jim Breen's WWWJDIC")
+   ("je-jmdict-Untranslated"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=O" "Untranslated Jim Breen's WWWJDIC")
+   ("je-jmdict-Combined Jpn-Eng"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=P" "Combined Jpn-Eng Jim Breen's WWWJDIC")
+   ("je-jmdict-Expanded Text-glossing"
+    "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
+    euc-jp "dsrchkey=%s&dicsel=Q" "Expanded Text-glossing Jim Breen's WWWJDIC")
+
    ;;
    ;; translators
    ;;
