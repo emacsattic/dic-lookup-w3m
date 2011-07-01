@@ -1,6 +1,6 @@
 ;;; dic-lookup-w3m-zh.el --- look up dictionaries on the Internet
 
-;; Copyright (C) 2009, 2010  mcprvmec
+;; Copyright (C) 2009, 2010, 2011  mcprvmec
 
 ;; Author: mcprvmec
 
@@ -29,21 +29,39 @@
 
 (mapc
  '(lambda (elem) (add-to-list 'dic-lookup-w3m-search-engine-alist elem))
- '(("cc-baidu"
+ '(
+   ;; 百度
+   ("cc-baidu"
     "http://baike.baidu.com/w?ct=17&lm=0&tn=baiduWikiSearch&pn=0&rn=10&word=%s&submit=search" gb2312)
+
+   ;; 5156edu.com
    ("cc-5156edu-post" "http://xh.5156edu.com/index.php" gb2312
     "f_key=%s&f_type=zi")
    ("cc-5156edu" "http://xh.5156edu.com/index.php?f_key=%s&f_type=zi" gb2312)
+
+   ;; the free dictionary
    ("cc-thefreedictionary"
-    "http://www.thefreedictionary.com/e/%s" utf-8)
+    "http://zh.thefreedictionary.com/e/%s" utf-8)
    ;;("cc-thefreedictionary"
    ;; "http://www.thefreedictionary.com/_/search.aspx?tab=-11&charset=utf-8&SearchBy=0&TFDBy=2&Word=%s" utf-8)
+
+   ;; iciba.com
    ("ce-ichiba" "http://www.iciba.com/%s" utf-8)
    ("ec-ichiba" "http://www.iciba.com/%s" utf-8)
+
+   ;; ZDIC.NET【汉典】
    ("cc-hanzi-zdic-post" "http://www.zdic.net/zd/search/default.asp" utf-8
     "lb=1&q=%s")
    ("cc-hanzi-zdic"
     "http://www.zdic.net/zd/search/default.asp?lb=1&q=%s" utf-8)
+
+   ;; dict.cn 海词
+   ("ce-haici" "http://dict.cn/%s" chinese-gbk)
+   ("ec-haici" "http://dict.cn/%s" chinese-gbk)
+
+   ;; StarDict.cn
+   ("ce-stardict" "http://www.stardict.cn/query.php?q=%s" utf-8)
+   ("ec-stardict" "http://www.stardict.cn/query.php?q=%s" utf-8)
    ))
 
 
@@ -74,6 +92,10 @@
 	 dic-lookup-w3m-filter-ichiba-symbol-alist
 	 "<img src=\"/images/\\([a-z0-9_]+\\)\\.gif\"[^>]*>")
 	)
+
+       ("\\`http://www\\.zdic\\.net/"
+	(w3m-filter-replace-regexp "<img src=\"/images/logo.gif\">" "")
+	)
        ))))
 
 (add-to-list
@@ -92,6 +114,12 @@
     ("display" . "")
     ("display1" . "")
     ("dot" . "*")))
+
+(defvar dic-lookup-w3m-inline-image-rules '())
+
+(mapc
+ '(lambda (elem) (add-to-list 'dic-lookup-w3m-inline-image-rules elem))
+ '(("\\`http://www\\.zdic\\.net/" . t)))
 
 ;; http://baike.baidu.com/ 现代汉语词典 第五版。中国社会科学院言語研究所編，商務印書館出版
 ;; http://xh.5156edu.com/
