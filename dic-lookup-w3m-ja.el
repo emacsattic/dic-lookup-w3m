@@ -682,6 +682,11 @@
     "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
     euc-jp "dsrchkey=%s&dicsel=Q" "Expanded Text-glossing Jim Breen's WWWJDIC")
 
+   ;; Wiktionary
+   ("jj-wiktionary" "http://ja.wiktionary.org/wiki/%s" utf-8 nil)
+   ("kanji-wiktionary" "http://ja.wiktionary.org/wiki/%s" utf-8 nil)
+   ("ee-wiktionary" "http://en.wiktionary.org/wiki/%s" utf-8 nil)
+
    ;;
    ;; translators
    ;;
@@ -752,39 +757,122 @@
 
    ;; excite translator
    ,@(dic-lookup-w3m-search-engine-postget
-      '(("tr-ej-excite" "http://www.excite.co.jp/world/english/"
-	 shift_jis "wb_lp=ENJA&before=%s" "BizLingo (Accela Technology)"
+      '(("tr-enja-excite" "http://www.excite.co.jp/world/english/"
+	 shift_jis "wb_lp=ENJA&before=%s" "英日 BizLingo (Accela Technology)"
 	 dic-lookup-w3m-suitable-engine-pattern)
-	("tr-je-excite" "http://www.excite.co.jp/world/english/"
-	 shift_jis "wb_lp=JAEN&before=%s" "BizLingo (Accela Technology)")
-	("tr-cj-excite" "http://www.excite.co.jp/world/chinese/"
-	 utf-8 "wb_lp=CHJA&before=%s" "Kodensha")
-	("tr-jc-excite" "http://www.excite.co.jp/world/chinese/"
-	 utf-8 "wb_lp=JACH&before=%s" "Kodensha")
-	("tr-kj-excite" "http://www.excite.co.jp/world/korean/"
-	 utf-8 "wb_lp=KOJA&before=%s" "Amikai")
-	("tr-jk-excite" "http://www.excite.co.jp/world/korean/"
-	 utf-8 "wb_lp=JAKO&before=%s" "Amikai")
-	("tr-fj-excite" "http://www.excite.co.jp/world/french/"
-	 utf-8 "wb_lp=FRJA&before=%s")
-	("tr-jf-excite" "http://www.excite.co.jp/world/french/"
-	 utf-8 "wb_lp=JAFR&before=%s")
-	("tr-gj-excite" "http://www.excite.co.jp/world/german/"
-	 utf-8 "wb_lp=DEJA&before=%s")
-	("tr-jg-excite" "http://www.excite.co.jp/world/german/"
-	 utf-8 "wb_lp=JADE&before=%s")
-	("tr-ij-excite" "http://www.excite.co.jp/world/italian/"
-	 utf-8 "wb_lp=ITJA&before=%s")
-	("tr-ji-excite" "http://www.excite.co.jp/world/italian/"
-	 utf-8 "wb_lp=JAIT&before=%s")
-	("tr-sj-excite" "http://www.excite.co.jp/world/spanish/"
-	 utf-8 "wb_lp=ESJA&before=%s")
-	("tr-js-excite" "http://www.excite.co.jp/world/spanish/"
-	 utf-8 "wb_lp=JAES&before=%s")
-	("tr-pj-excite" "http://www.excite.co.jp/world/portuguese/"
-	 utf-8 "wb_lp=PTJA&before=%s")
-	("tr-jp-excite" "http://www.excite.co.jp/world/portuguese/"
-	 utf-8 "wb_lp=JAPT&before=%s")
+	("tr-jaen-excite" "http://www.excite.co.jp/world/english/"
+	 shift_jis "wb_lp=JAEN&before=%s" "日英 BizLingo (Accela Technology)")
+	("tr-chja-excite" "http://www.excite.co.jp/world/chinese/"
+	 utf-8 "wb_lp=CHJA&big5=no&before=%s" "中日 Kodensha")
+	("tr-jach-excite" "http://www.excite.co.jp/world/chinese/"
+	 utf-8 "wb_lp=JACH&big5=no&before=%s" "日中 Kodensha")
+	("tr-twja-excite" "http://www.excite.co.jp/world/chinese/"
+	 utf-8 "wb_lp=CHJA&big5=yes&before=%s" "台中 Kodensha")
+	("tr-jatw-excite" "http://www.excite.co.jp/world/chinese/"
+	 utf-8 "wb_lp=JACH&big5=yes&before=%s" "中台 Kodensha")
+	("tr-koja-excite" "http://www.excite.co.jp/world/korean/"
+	 utf-8 "wb_lp=KOJA&before=%s" "韓日 Amikai")
+	("tr-jako-excite" "http://www.excite.co.jp/world/korean/"
+	 utf-8 "wb_lp=JAKO&before=%s" "日韓 Amikai")
+	("tr-frja-excite" "http://www.excite.co.jp/world/french/"
+	 utf-8 "wb_lp=FRJA&before=%s" "仏日")
+	("tr-jafr-excite" "http://www.excite.co.jp/world/french/"
+	 utf-8 "wb_lp=JAFR&before=%s" "日仏")
+	("tr-fren-excite" "http://www.excite.co.jp/world/french/"
+	 utf-8 "wb_lp=FREN&before=%s" "仏英")
+	("tr-enfr-excite" "http://www.excite.co.jp/world/french/"
+	 utf-8 "wb_lp=ENFR&before=%s" "英仏")
+	("tr-deja-excite" "http://www.excite.co.jp/world/german/"
+	 utf-8 "wb_lp=DEJA&before=%s" "独日")
+	("tr-jade-excite" "http://www.excite.co.jp/world/german/"
+	 utf-8 "wb_lp=JADE&before=%s" "日独")
+	("tr-deen-excite" "http://www.excite.co.jp/world/german/"
+	 utf-8 "wb_lp=DEEN&before=%s" "独英")
+	("tr-ende-excite" "http://www.excite.co.jp/world/german/"
+	 utf-8 "wb_lp=ENDE&before=%s" "英独")
+	("tr-itja-excite" "http://www.excite.co.jp/world/italian/"
+	 utf-8 "wb_lp=ITJA&before=%s" "伊日")
+	("tr-jait-excite" "http://www.excite.co.jp/world/italian/"
+	 utf-8 "wb_lp=JAIT&before=%s" "日伊")
+	("tr-iten-excite" "http://www.excite.co.jp/world/italian/"
+	 utf-8 "wb_lp=ITEN&before=%s" "伊英")
+	("tr-enit-excite" "http://www.excite.co.jp/world/italian/"
+	 utf-8 "wb_lp=ENIT&before=%s" "英伊")
+	("tr-esja-excite" "http://www.excite.co.jp/world/spanish/"
+	 utf-8 "wb_lp=ESJA&before=%s" "西日")
+	("tr-jaes-excite" "http://www.excite.co.jp/world/spanish/"
+	 utf-8 "wb_lp=JAES&before=%s" "日西")
+	("tr-esen-excite" "http://www.excite.co.jp/world/spanish/"
+	 utf-8 "wb_lp=ESEN&before=%s" "西英")
+	("tr-enes-excite" "http://www.excite.co.jp/world/spanish/"
+	 utf-8 "wb_lp=ENES&before=%s" "英西")
+	("tr-ptja-excite" "http://www.excite.co.jp/world/portuguese/"
+	 utf-8 "wb_lp=PTJA&before=%s" "葡日")
+	("tr-japt-excite" "http://www.excite.co.jp/world/portuguese/"
+	 utf-8 "wb_lp=JAPT&before=%s" "日葡")
+	("tr-pten-excite" "http://www.excite.co.jp/world/portuguese/"
+	 utf-8 "wb_lp=PTEN&before=%s" "葡英")
+	("tr-enpt-excite" "http://www.excite.co.jp/world/portuguese/"
+	 utf-8 "wb_lp=ENPT&before=%s" "英葡")
+	))
+
+   ,@(dic-lookup-w3m-search-engine-postget
+      '(("tr-enja-url-excite" "http://www.excite.co.jp/world/english/web/"
+	 utf-8 "wb_lp=ENJA&wb_url=%s" "英日")
+	("tr-jaen-url-excite" "http://www.excite.co.jp/world/english/web/"
+	 utf-8 "wb_lp=JAEN&wb_url=%s" "日英")
+	("tr-chja-url-excite" "http://www.excite.co.jp/world/chinese/web/"
+	 utf-8 "wb_lp=CHJA&big5=no&wb_url=%s" "中日")
+	("tr-jach-url-excite" "http://www.excite.co.jp/world/chinese/web/"
+	 utf-8 "wb_lp=JACH&big5=no&wb_url=%s" "日中")
+	("tr-twja-url-excite" "http://www.excite.co.jp/world/chinese/web/"
+	 utf-8 "wb_lp=CHJA&big5=yes&wb_url=%s" "台日")
+	("tr-jatw-url-excite" "http://www.excite.co.jp/world/chinese/web/"
+	 utf-8 "wb_lp=JACH&big5=yes&wb_url=%s" "日台")
+	("tr-koja-url-excite" "http://www.excite.co.jp/world/korean/web/"
+	 utf-8 "wb_lp=KOJA&wb_url=%s" "韓日")
+	("tr-jako-url-excite" "http://www.excite.co.jp/world/korean/web/"
+	 utf-8 "wb_lp=JAKO&wb_url=%s" "日韓")
+	("tr-frja-url-excite" "http://www.excite.co.jp/world/french/web/"
+	 utf-8 "wb_lp=FRJA&wb_url=%s" "仏日")
+	("tr-jafr-url-excite" "http://www.excite.co.jp/world/french/web/"
+	 utf-8 "wb_lp=JAFR&wb_url=%s" "日仏")
+	("tr-fren-url-excite" "http://www.excite.co.jp/world/french/web/"
+	 utf-8 "wb_lp=FREN&wb_url=%s" "仏英")
+	("tr-enfr-url-excite" "http://www.excite.co.jp/world/french/web/"
+	 utf-8 "wb_lp=ENFR&wb_url=%s" "英仏")
+	("tr-deja-url-excite" "http://www.excite.co.jp/world/german/web/"
+	 utf-8 "wb_lp=DEJA&wb_url=%s" "独日")
+	("tr-jade-url-excite" "http://www.excite.co.jp/world/german/web/"
+	 utf-8 "wb_lp=JADE&wb_url=%s" "日独")
+	("tr-deen-url-excite" "http://www.excite.co.jp/world/german/web/"
+	 utf-8 "wb_lp=DEEN&wb_url=%s" "独英")
+	("tr-ende-url-excite" "http://www.excite.co.jp/world/german/web/"
+	 utf-8 "wb_lp=ENDE&wb_url=%s" "英独")
+	("tr-itja-url-excite" "http://www.excite.co.jp/world/italian/web/"
+	 utf-8 "wb_lp=ITJA&wb_url=%s" "伊日")
+	("tr-jait-url-excite" "http://www.excite.co.jp/world/italian/web/"
+	 utf-8 "wb_lp=JAIT&wb_url=%s" "日伊")
+	("tr-iten-url-excite" "http://www.excite.co.jp/world/italian/web/"
+	 utf-8 "wb_lp=ITEN&wb_url=%s" "伊英")
+	("tr-enit-url-excite" "http://www.excite.co.jp/world/italian/web/"
+	 utf-8 "wb_lp=ENIT&wb_url=%s" "英伊")
+	("tr-esja-url-excite" "http://www.excite.co.jp/world/spanish/web/"
+	 utf-8 "wb_lp=ESJA&wb_url=%s" "西日")
+	("tr-jaes-url-excite" "http://www.excite.co.jp/world/spanish/web/"
+	 utf-8 "wb_lp=JAES&wb_url=%s" "日西")
+	("tr-esen-url-excite" "http://www.excite.co.jp/world/spanish/web/"
+	 utf-8 "wb_lp=ESEN&wb_url=%s" "西英")
+	("tr-enes-url-excite" "http://www.excite.co.jp/world/spanish/web/"
+	 utf-8 "wb_lp=ENES&wb_url=%s" "英西")
+	("tr-ptja-url-excite" "http://www.excite.co.jp/world/portuguese/web/"
+	 utf-8 "wb_lp=PTJA&wb_url=%s" "葡日")
+	("tr-japt-url-excite" "http://www.excite.co.jp/world/portuguese/web/"
+	 utf-8 "wb_lp=JAPT&wb_url=%s" "日葡")
+	("tr-pten-url-excite" "http://www.excite.co.jp/world/portuguese/web/"
+	 utf-8 "wb_lp=PTEN&wb_url=%s" "葡英")
+	("tr-enpt-url-excite" "http://www.excite.co.jp/world/portuguese/web/"
+	 utf-8 "wb_lp=ENPT&wb_url=%s" "英葡")
 	))
 
    ;; yahoo.com translator
