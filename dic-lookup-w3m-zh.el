@@ -62,6 +62,20 @@
    ;; StarDict.cn
    ("ce-stardict" "http://www.stardict.cn/query.php?q=%s" utf-8)
    ("ec-stardict" "http://www.stardict.cn/query.php?q=%s" utf-8)
+
+   ;; 北京大学中国语言学研究中心
+   ("corpus-zh-ccl"
+    "http://ccl.pku.edu.cn:8080/ccl_corpus/search?q=%s&start=0&num=50&index=FullIndex&outputFormat=HTML&encoding=UTF-8&maxLeftLength=30&maxRightLength=30&orderStyle=score&LastQuery=&dir=xiandai"
+    utf-8 nil "北京大学中国语言学研究中心 Chinese corpus")
+
+   ;; 関西大学現代中国語コーパス（现代汉语语料库）
+   ;; http://we.fl.kansai-u.ac.jp/corpus.html
+   ;; user: guest, password: guest
+   ("corpus-zh-kansaiuniv"
+    "http://china.fl.kansai-u.ac.jp/dblist2.aspx?ftr_check_db=1,2&ftr_srhagain=false&ftr_style=1&ftr_exp=%s&submit=检++++索"
+    gb2312 nil "关西大学现代汉语语料库 Chinese corpus")
+
+   ;; http://words.sinica.edu.tw/sou/sou.html
    ))
 
 
@@ -96,6 +110,10 @@
        ("\\`http://www\\.zdic\\.net/"
 	(w3m-filter-replace-regexp "<img src=\"/images/logo.gif\">" "")
 	)
+
+       ("\\`http://china\\.fl\\.kansai-u\\.ac\\.jp/t/text/datalist\\.aspx"
+	w3m-filter-replace-regexp
+	"<font color=red>\\([^<]*\\)</font>" "<strong>\\1</strong>")
        ))))
 
 (add-to-list
