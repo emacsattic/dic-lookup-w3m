@@ -155,6 +155,8 @@
    ;; EReK corpus 英語のウェブページをコーパスとみなして検索する
    ("corpus-erek" "http://erek.ta2o.net/news/%s.html" utf-8 nil
     "英語で書かれたウェブページのテキストを巨大な例文集（コーパス）とみなして検索する")
+   ("corpus-j-jrek" "http://jrek.ta2o.net/s/%s.html" utf-8 nil
+    "日本語のウェブページのテキストを巨大な例文集（コーパス）とみなして検索する")
 
    ;; Dictionary.com
    ("thesaurus-rogets" "http://thesaurus.reference.com/browse/%s?jss=0"
@@ -169,14 +171,14 @@
 
    ;; kotonoha 日本語コーパス
    ;; (setq w3m-use-cookies t)が必要。さらに検索前に一度
-   ;; http://www.kotonoha.gr.jp/cgi-bin/search_form.cgi?viaTopPage=1 を開く
+   ;; http://www.kotonoha.gr.jp/shonagon/search_form を開く
    ("corpus-j-kotonoha"
-    "http://www.kotonoha.gr.jp/demo/search_result?query_string=%s&genre=白書&genre=Yahoo!知恵袋&genre=書籍&genre=国会会議録&entire_period=1"
+    "http://www.kotonoha.gr.jp/shonagon/search_result?query_string=%s&&media=書籍&media=雑誌&media=新聞&media=白書&media=教科書&media=広報紙&media=Yahoo!知恵袋&media=Yahoo!ブログ&media=韻文&media=法律&media=国会会議録&entire_period=1"
     utf-8 nil "KOTONOHA 現代書き言葉均衡コーパス")
 
    ;; 青空文庫 日本語用例検索
    ("corpus-j-aozora" "http://www.tokuteicorpus.jp/team/jpling/kwic/search.cgi"
-    shift_jis "cgi=1&sample=0&mode=1&kw=%s" nil "青空文庫 日本語用例検索")
+    shift_jis "cgi=1&sample=0&mode=1&kw=%s" "青空文庫 日本語用例検索")
 
    ;; 格フレーム検索 http://nlp.kuee.kyoto-u.ac.jp/nl-resource/caseframe.html
    ("corpus-j-caseframe" "http://reed.kuee.kyoto-u.ac.jp/cf-search/"
@@ -1645,7 +1647,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	)
 
        ;; kotonoha
-       ("\\`http://www\\.kotonoha\\.gr\\.jp/demo/search_"
+       ("\\`http://www\\.kotonoha\\.gr\\.jp/shonagon"
 	(w3m-filter-delete-regions
 	 "<div id=\"wrapper\">" "<!-- END of header -->")
 	(w3m-filter-delete-regions
@@ -1653,19 +1655,19 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-delete-regions
 	 "<div id=\"headerB\">" "<h2>検索結果</h2>" t t)
 	)
-       ("\\`http://www\\.kotonoha\\.gr\\.jp/demo/search_result"
+       ("\\`http://www\\.kotonoha\\.gr\\.jp/shonagon"
 	(w3m-filter-replace-regexp "class=\"cell01\"" "align=\"right\"")
 	(w3m-filter-replace-regexp
 	 "<td class=\"cell02\">\\([^<]*\\)</td>"
 	 "<td class=\"cell02\"><strong>\\1</strong></td>")
 	(w3m-filter-replace-regexp "<td\\([ >]\\)" "<td nowrap\\1")
 	)
-       ("http://www\\.kotonoha\\.gr\\.jp/demo"
+       ("\\`http://www\\.kotonoha\\.gr\\.jp/shonagon"
 	dic-lookup-w3m-filter-refresh-url
-	"http://www.kotonoha.gr.jp/demo/search_form?viaTopPage=1")
+	"http://www.kotonoha.gr.jp/shonagon/search_form")
 
        ;; 青空文庫 日本語用例検索
-       ("http://www.tokuteicorpus.jp/team/jpling/kwic/search.cgi"
+       ("\\`http://www.tokuteicorpus.jp/team/jpling/kwic/search.cgi"
 	(w3m-filter-replace-regexp "<font color=\"crimson\">" "<strong>")
 	(w3m-filter-replace-regexp "</font>" "</strong>")
 	)
@@ -1678,6 +1680,17 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<div class=\"kwiccenter\"\\(.*\n.*\\)</div>" "<span\\1</span>")
 	(w3m-filter-replace-regexp
 	 "<div class=\"kwicleft\">\\([^<]*\\)</div>" "<span>\\1</span>")
+	)
+       ;; jrek corpus
+       ("\\`http://jrek\\.ta2o\\.net/"
+	(w3m-filter-replace-regexp
+	 "<td class=\"kwicright\"\\([^>]*\\)>" "<td align=\"left\"\\1 nowrap>")
+	(w3m-filter-replace-regexp
+	 "<td class=\"kwiccenter\"\\([^>]*\\)>" "<td align=\"center\"\\1 nowrap>")
+	(w3m-filter-replace-regexp
+	 "<td class=\"kwicleft\"\\([^>]*\\)>" "<td align=\"right\"\\1 nowrap>")
+	(w3m-filter-replace-regexp
+	 "<span class=\"sortid\">[0-9]*</span>" "")
 	)
 
        ;; bnc corpus
