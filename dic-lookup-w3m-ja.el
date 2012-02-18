@@ -1557,9 +1557,17 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(dic-lookup-w3m-filter-excite-jump-to-content
 	 "http://www.excite.co.jp%s"
 	 "<a href=\"\\(/dictionary/.*/\\?search=[^>]*\\(block\\|itemid\\|&id\\)=[^>]*\\)\">" 1)
-	(w3m-filter-delete-regions "<body>" "<blockquote>" t)
-	(w3m-filter-delete-regions "<body>" "</b> の検索結果</p>" t)
-	(w3m-filter-delete-regions "<table .*class=\"newsExtraBox\">" "</body>" nil t t)
+	(w3m-filter-delete-regions
+	 "<body>" "<div class=\"dictionary_history\">" t t)
+	(w3m-filter-delete-regions
+	 "<div class=\"content\">" "<div class=\"wordDetails\">" nil t)
+	(w3m-filter-delete-regions
+	 "<div class=\"content cnja\">" "<div class=\"wordDetails\">" nil t)
+	(w3m-filter-replace-regexp
+	 "\\(<div class=\"dictionary_history\">\\)" "\\1<br>")
+	(w3m-filter-delete-regions "<body>" "<div class=\"section\">" t t)
+	(w3m-filter-delete-regions
+	 "<div class=\"sectionAside\">" "</body>" nil t t)
 	(w3m-filter-replace-regexp
 	 "<img src=\"?http://image\.excite\.co\.jp/jp/1pt\.gif\"?[^>]*>" "")
 	(dic-lookup-w3m-filter-eword-anchor "ej-excite")
