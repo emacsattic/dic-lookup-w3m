@@ -1,6 +1,6 @@
 ;;; dic-lookup-w3m-ja.el --- look up dictionaries on the Internet
 
-;; Copyright (C) 2008, 2009, 2010, 2011  mcprvmec
+;; Copyright (C) 2008, 2009, 2010, 2011, 2012  mcprvmec
 
 ;; Author: mcprvmec
 
@@ -256,22 +256,29 @@
 
    ;; 漢字の書き順
    ;; 書き順でGO
-   ("kanji-kakijun" "http://www.winttk.com/kakijun/dbf/profile.cgi"
-    shift_jis "key=%s&hor=1&max=1" "漢字の書き順")
+   ("kanji-kakijun"
+    "http://www.google.co.jp/search?q=site:www.winttk.com/kakijun %s"
+    utf-8 nil "漢字の書き順")
 
    ;; goo
    ("ej-goo" "http://dictionary.goo.ne.jp/srch/ej/%s/m0u/"
-    utf-8 nil "三省堂 EXCEED英和辞典、英辞郎")
+    utf-8 nil "小学館 プログレッシブ英和中辞典 第4版")
    ("je-goo" "http://dictionary.goo.ne.jp/srch/je/%s/m0u/"
-    utf-8 nil "三省堂 EXCEED和英辞典、英辞郎")
+    utf-8 nil "小学館 プログレッシブ和英中辞典 第3版")
    ("jj-goo" "http://dictionary.goo.ne.jp/srch/jn/%s/m0u/"
-    utf-8 nil "三省堂 大辞林第二版、デイリー新語辞典+α")
+    utf-8 nil "小学館 デジタル大辞泉")
    ("jj-yojijukugo-goo" "http://dictionary.goo.ne.jp/srch/idiom/%s/m0u/"
     utf-8 nil "三省堂 新明解四字熟語辞典")
    ("it-goo" "http://dictionary.goo.ne.jp/srch/it/%s/m0u/"
-    utf-8 nil "IT用語")
+    utf-8 nil "IT用語辞典")
    ("all-goo" "http://dictionary.goo.ne.jp/srch/all/%s/m0u/"
     utf-8 nil "すべての辞書")
+   ("thesaurus-j-goo" "http://dictionary.goo.ne.jp/srch/thsrs/%s/m0u/"
+    utf-8 nil "小学館 使い方の分かる　類語例解辞典 新装版")
+   ("cj-goo" "http://dictionary.goo.ne.jp/srch/cj/%s/m0u/"
+    utf-8 nil "三省堂 デイリーコンサイス中日辞典（第2版）")
+   ("jc-goo" "http://dictionary.goo.ne.jp/srch/jc/%s/m0u/"
+    utf-8 nil "三省堂 デイリーコンサイス日中辞典")
 
    ;; ocn goo
    ("ej-ocn"
@@ -688,6 +695,14 @@
    ("jj-wiktionary" "http://ja.wiktionary.org/wiki/%s" utf-8 nil)
    ("kanji-wiktionary" "http://ja.wiktionary.org/wiki/%s" utf-8 nil)
    ("ee-wiktionary" "http://en.wiktionary.org/wiki/%s" utf-8 nil)
+
+   ;; JapaneseClass.jp
+   ("je-japaneseclass"
+    "http://japaneseclass.jp/tools/dictionary/%s" utf-8 nil
+    "Japanese-English in English")
+   ("ej-japaneseclass"
+    "http://japaneseclass.jp/tools/dictionary/%s" utf-8 nil
+    "English-Japanese in English")
 
    ;;
    ;; translators
@@ -1670,7 +1685,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<td class=\"cell02\"><strong>\\1</strong></td>")
 	(w3m-filter-replace-regexp "<td\\([ >]\\)" "<td nowrap\\1")
 	)
-       ("\\`http://www\\.kotonoha\\.gr\\.jp/shonagon"
+       ("\\`http://www\\.kotonoha\\.gr\\.jp/shonagon/?$"
 	dic-lookup-w3m-filter-refresh-url
 	"http://www.kotonoha.gr.jp/shonagon/search_form")
 
@@ -1831,6 +1846,12 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	dic-lookup-w3m-filter-related-links
 	"jj-kotobank" jj "http://kotobank.jp/word/%s")
 
+       ;; 書き順でGO
+       ("\\`http://www\\.winttk\\.com/kakijun/"
+	(w3m-filter-delete-regions	
+	 "<body[^>]*>" "<div id=\"cont\" class=\"adc\">" t t t)
+	)
+
        ;; gigadict
        ("\\`http://cgi\\.geocities\\.jp/abelinternational/cgi/kanjidic\\.cgi"
 	dic-lookup-w3m-filter-related-links "Kanji-gigadict" kanji)
@@ -1913,6 +1934,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
        ;; goo
        ("\\`http://dictionary\\.goo\\.ne\\.jp/"
 	(w3m-filter-delete-regions "<body[^>]*>" "<dl class=\"allList\">" t t t)
+	(w3m-filter-delete-regions "<body[^>]*>" "^<!-- inner tab -->" t nil t t)
 	(w3m-filter-delete-regions "<!--c34-->" "</body>" nil t)
 	(w3m-filter-delete-regions "<!--/result-->" "</body>" nil t)
 	(dic-lookup-w3m-filter-eword-anchor "ej-goo")
@@ -2179,7 +2201,8 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
    ("\\`http://ocndictionary\\.goo\\.ne\\.jp/search\\.php" . t)
    ("\\`http://www5\\.mediagalaxy\\.co\\.jp/CGI/sanshushadj/search\\.cgi" . t)
    ("\\`http://ejje\\.weblio\\.jp/content/" . t)
-   ("\\`http://www\\.winttk\\.com/kakijun/dbf/profile\\.cgi" t)
+   ("\\`http://www\\.winttk\\.com/kakijun/" t)
+   ("\\`http://www\\.human\\.gr\\.jp/hitsujun/" t)
    ))
 
 (add-to-list
@@ -2218,6 +2241,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
     ("jj-yojijukugo-goo" . "四熟")
     ("thesaurus-j-yahoo" . "類語Y!")
     ("thesaurus-j-weblio" . "類語weblio")
+    ("thesaurus-j-goo" . "類語goo")
     ("corpus-j-kotonoha" . "Jコパ")
     ("corpus-j-caseframe-get" . "格")
     ("encyclopedia-yahoo" . "百科")
@@ -2285,8 +2309,10 @@ exciteの辞書検索で複数の見出し語が見つかった場合でも、�
   "検索結果の最初の見出し語の説明のページに移動する。"
   (goto-char (point-min))
   (if (or (and dic-lookup-w3m-filter-excite-always-show-first-entry
-	       (re-search-forward "の検索結果 \\[1 〜 .*件中\\]" nil t))
-	  (re-search-forward "の検索結果 \\[1 〜 1 / 1件中\\]" nil t))
+	       (re-search-forward 
+		"<span class=\"hSide\"> \\[1 〜 .*件中\\]</span>" nil t))
+	  (re-search-forward
+	   "<span class=\"hSide\"> \\[1 〜 1 / 1件中\\]</span>" nil t))
       (dic-lookup-w3m-filter-refresh-url url new-url regexp subexp)))
 
 (defvar dic-lookup-w3m-filter-excite-ej-symbol-alist
