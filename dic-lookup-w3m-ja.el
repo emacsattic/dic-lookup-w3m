@@ -1571,7 +1571,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
        ("\\`http://www\\.excite\\.co\\.jp/dictionary/.*search="
 	(dic-lookup-w3m-filter-excite-jump-to-content
 	 "http://www.excite.co.jp%s"
-	 "<a href=\"\\(/dictionary/.*/\\?search=[^>]*\\(block\\|itemid\\|&id\\)=[^>]*\\)\">" 1)
+	 "<a href=\"\\(/dictionary/.*/\\?search=[^>]*\\(block\\|itemid\\|;id\\)=[^>]*\\)\">" 1)
 	(w3m-filter-delete-regions
 	 "<body>" "<div class=\"dictionary_history\">" t t)
 	(w3m-filter-delete-regions
@@ -2310,9 +2310,9 @@ exciteの辞書検索で複数の見出し語が見つかった場合でも、�
   (goto-char (point-min))
   (if (or (and dic-lookup-w3m-filter-excite-always-show-first-entry
 	       (re-search-forward 
-		"<span class=\"hSide\"> \\[1 〜 .*件中\\]</span>" nil t))
+		"<span class=\"hSide\"> *\\[1 〜 .*件中\\]</span>" nil t))
 	  (re-search-forward
-	   "<span class=\"hSide\"> \\[1 〜 1 / 1件中\\]</span>" nil t))
+	   "<span class=\"hSide\"> *\\[1 〜 1 / 1件中\\]</span>" nil t))
       (dic-lookup-w3m-filter-refresh-url url new-url regexp subexp)))
 
 (defvar dic-lookup-w3m-filter-excite-ej-symbol-alist
