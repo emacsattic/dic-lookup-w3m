@@ -256,9 +256,15 @@
 
    ;; 漢字の書き順
    ;; 書き順でGO
+   ;;("kanji-kakijun" "http://www.winttk.com/kakijun/dbf/profile.cgi"
+   ;; shift_jis "key=%s&hor=1&max=1" "漢字の書き順")
    ("kanji-kakijun"
     "http://www.google.co.jp/search?q=site:www.winttk.com/kakijun %s"
     utf-8 nil "漢字の書き順")
+
+   ;; 正しい漢字の書き順
+   ("kanji-kakijun-main.jp" "http://kakijun.main.jp/main/u_kensaku.cgi?KANJI=%s"
+    utf-8 nil  "正しい漢字の書き順")
 
    ;; goo
    ("ej-goo" "http://dictionary.goo.ne.jp/srch/ej/%s/m0u/"
@@ -1852,6 +1858,26 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<body[^>]*>" "<div id=\"cont\" class=\"adc\">" t t t)
 	)
 
+       ;; 漢字ひつじゅん君
+       ("http://www\\.human\\.gr\\.jp/hitsujun/"
+	(dic-lookup-w3m-filter-refresh-url
+	 "%s"
+	 "<td width=\"100%\"><IMG [^>]*src=\"\\([^\"]*\\)[^>]*>"
+	 1))
+
+       ;;  "正しい漢字の書き順"
+       ("http://kakijun\\.main\\.jp/page/"
+	(w3m-filter-delete-regions	
+	 "<body[^>]*>"
+	 "<img src=.* id=\"HJ_0gif\">" t t t t)
+	(w3m-filter-replace-regexp
+	 "\\(<img src=\\(\"[^\"]*\"\\).* id=\"HJ_0gif\">\\)"
+	 "\\1\n<p><a href=\\2>GIF動画</a> M-x image-toggle-animation</p>")
+	(dic-lookup-w3m-filter-refresh-url
+	 "%s"
+	 "<img src=\"\\([^\"]*\\)\".* id=\"HJ_0gif\">" 1)
+	)
+
        ;; gigadict
        ("\\`http://cgi\\.geocities\\.jp/abelinternational/cgi/kanjidic\\.cgi"
 	dic-lookup-w3m-filter-related-links "Kanji-gigadict" kanji)
@@ -2203,6 +2229,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
    ("\\`http://ejje\\.weblio\\.jp/content/" . t)
    ("\\`http://www\\.winttk\\.com/kakijun/" t)
    ("\\`http://www\\.human\\.gr\\.jp/hitsujun/" t)
+   ("\\`http://kakijun\\.main\\.jp/page/" t)
    ))
 
 (add-to-list

@@ -397,6 +397,14 @@ nilなら`w3m-default-display-inline-images'の値に従う。")
 ;;(add-hook 'w3m-display-hook 'dic-lookup-w3m-decide-inline-image)
 (add-hook 'w3m-fontify-after-hook 'dic-lookup-w3m-decide-inline-image)
 
+;; image animate emacs 24.1
+;; 漢字の書き順サイト用
+(when (fboundp 'image-animate)
+  (add-hook 'w3m-display-hook
+	    '(lambda (s)
+	       (image-animate (image-get-display-property) 1 60)
+	       )))
+
 (defun dic-lookup-w3m-toggle-filter ()
   "w3mのfilterのon/offを切り替える。"
   (interactive)
