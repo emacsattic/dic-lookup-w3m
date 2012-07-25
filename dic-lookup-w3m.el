@@ -36,27 +36,27 @@
 ;; http://www.namazu.org/~tsuchiya/sdic/
 ;;
 ;; ~/.emacs:
-;; ;;; w3m$B$G<-=q$r0z$/(B
-;; (autoload 'dic-lookup-w3m "dic-lookup-w3m" "w3m$B$G<-=q$r0z$/(B" t)
+;; ;;; w3mで辞書を引く
+;; (autoload 'dic-lookup-w3m "dic-lookup-w3m" "w3mで辞書を引く" t)
 ;; or
 ;; (require 'dic-lookup-w3m)
 ;;
 ;; Key binding examples:
 ;; (global-set-key "\C-cd" 'dic-lookup-w3m)
-;; (global-set-key "\C-cc" '(lambda () "excite $B1QOB(B,$BOB1Q(B" (interactive)
+;; (global-set-key "\C-cc" '(lambda () "excite 英和,和英" (interactive)
 ;; 			   (dic-lookup-w3m "ej-excite")))
-;; (global-set-key "\C-ct" '(lambda () "nifty $B1QOBK]Lu(B" (interactive)
+;; (global-set-key "\C-ct" '(lambda () "nifty 英和翻訳" (interactive)
 ;; 			   (dic-lookup-w3m "tr-ej-nifty" 'sentence)))
 ;; (global-set-key "\C-cT" 'dic-lookup-w3m--tr-ej-yahoo-paragraph)
 ;;
 ;; Key translations:
-;; w3m$B$N%P%C%U%!Fb$G(B
-;; z     w3m$B%P%C%U%!$r1#$7$F!"(Bw3m$B$r5/F0$9$kA0$N%&%$%s%I%&$N%l%$%"%&%H$KLa$9!#(B
-;; x     w3m$B$r8F$S=P$9A0$KI=<($7$F$$$?%&%$%s%I%&$rA*Br$9$k!#(B
-;; f     w3m$B$N(Bfilter$B$NM-8z!"L58z$r@Z$jBX$($k!#(B
-;; F     $BH/2;5-9f$N(Binline image$B$r%U%)%s%H$KJQ49$7$FI=<($9$k$+$I$&$+$r@Z(B
-;;       $B$jBX$($k!#(B
-;; C-c l $B1QC18l$i$7$$J8;zNs$K<-=q8!:wMQ$N%"%s%+!<$rIU$1$k%U%#%k%?$r%H%0%k$9$k!#(B
+;; w3mのバッファ内で
+;; z     w3mバッファを隠して、w3mを起動する前のウインドウのレイアウトに戻す。
+;; x     w3mを呼び出す前に表示していたウインドウを選択する。
+;; f     w3mのfilterの有効、無効を切り替える。
+;; F     発音記号のinline imageをフォントに変換して表示するかどうかを切
+;;       り替える。
+;; C-c l 英単語らしい文字列に辞書検索用のアンカーを付けるフィルタをトグルする。
 
 ;;; Code:
 
@@ -73,48 +73,48 @@
     dic-lookup-w3m-zh
     ;;dic-lookup-w3m-text-translator
     )
-  "*$B<-=q%5%$%H$NDj5A$r5-=R$7$?%U%!%$%k$N%j%9%H!#(B
-dic-lookup-w3m.el$B$,%m!<%I$5$l$?$H$-!"$3$N%j%9%H$K$"$k%7%s%\%k$,(Brequire$B$5$l$k!#(B
-$B%7%s%\%k$O<-=q%5%$%H$NDj5A%U%!%$%k$G(Bprovide$B$7$F$*$/I,MW$,$"$k!#(B
-$B$?$H$($PJl8l$4$H$K<-=q%5%$%H$N%;%C%H$rDj5A$9$k$3$H$rA[Dj!#(B
-$B%j%9%H$r5-=R$9$k=gHV$KCm0U!#%U%!%$%k$r%m!<%I$9$k=gHV$K$h$C$F(B
-`w3m-filter-rules'$B$GDj5A$5$l$k%U%#%k%?$N<B9T=g=x$,JQ$o$k!#F10l%5%$%H$K(B
-$BBP$9$k%k!<%k$,J#?t$N%U%!%$%k$K=q$+$l$F$$$k>l9g!"%m!<%I$9$k=gHV$G7k2L$,(B
-$BJQ$o$k2DG=@-$,$"$k!#(B")
+  "*辞書サイトの定義を記述したファイルのリスト。
+dic-lookup-w3m.elがロードされたとき、このリストにあるシンボルがrequireされる。
+シンボルは辞書サイトの定義ファイルでprovideしておく必要がある。
+たとえば母語ごとに辞書サイトのセットを定義することを想定。
+リストを記述する順番に注意。ファイルをロードする順番によって
+`w3m-filter-rules'で定義されるフィルタの実行順序が変わる。同一サイトに
+対するルールが複数のファイルに書かれている場合、ロードする順番で結果が
+変わる可能性がある。")
 
 
 (defvar dic-lookup-w3m-search-engine-alist '()
-  "*$B8!:w%(%s%8%s$N%j%9%H!#(B
-$B:G=i$N(B4$B8D$N%a%s%P!<$O(B`w3m-search-engine-alist'$B;2>H!#(B
+  "*検索エンジンのリスト。
+最初の4個のメンバーは`w3m-search-engine-alist'参照。
 
-5$BHVL\$O$=$N8!:w%(%s%8%s$N@bL@!#(B
-6$BHVL\$O(B`dic-lookup-w3m-suitable-engine'$B$KEO$9>pJs!#(B
-$BCM$O(Blist$B$^$?$O(Bsymbol$B!#(Blist$B$N$H$-$O(B(query-pattern engine-regexp replacement)$B!#(B
-query$B$,(BQUERY-REGEXP$B$K0lCW$7$?$i<-=q(Bengine$B$NL>A0$N(BENGINE-REGEXP$B$K%^%C%A(B
-$B$7$?ItJ,$r(BREPLACEMENT$B$KCV$-49$($?$b$N$r?7$7$$<-=q%(%s%8%s$K$9$k!#(B
-symbol$B$N$H$-$O4X?tL>$H$_$J$7$F(B`dic-lookup-w3m-suitable-engine'$B$,<u$1<h$C$?(B
-$B0z?t(Bsearch-engine query search-engine-alist$B$G8F$S=P$9!#(B
-$B4X?t$O8!:w$K;H$&<-=q%(%s%8%sL>$rJV$5$J$1$l$P$J$i$J$$!#(B")
+5番目はその検索エンジンの説明。
+6番目は`dic-lookup-w3m-suitable-engine'に渡す情報。
+値はlistまたはsymbol。listのときは(query-pattern engine-regexp replacement)。
+queryがQUERY-REGEXPに一致したら辞書engineの名前のENGINE-REGEXPにマッチ
+した部分をREPLACEMENTに置き換えたものを新しい辞書エンジンにする。
+symbolのときは関数名とみなして`dic-lookup-w3m-suitable-engine'が受け取った
+引数search-engine query search-engine-alistで呼び出す。
+関数は検索に使う辞書エンジン名を返さなければならない。")
 
 (defvar dic-lookup-w3m-enable-search-engine-list nil
-  "*$B;HMQ$9$k8!:w%(%s%8%s$N%j%9%H!#(B
-`w3m-search-engine-alist' $B$K$"$k8!:w%(%s%8%s$N$&$A!";HMQ$7$?(B
-$B$$%(%s%8%s$NL>A0$r@55,I=8=$G5-=R$9$k!#40A4$K0lCW$5$;$k$K$O%Q%?!<%s(B
-$B$NA08e$K(B`^', `$'$B$,I,MW!#%Q%?!<%s$N$I$l$+$K%^%C%A$7$?8!:w%(%s%8%s$@(B
-$B$1$,(B`w3m-search-engine-alist'$B$KDI2C$5$l!"<-=qA*Br$NJd408uJd$K8=$l$k!#(B
-nil$B$J$i(B`w3m-search-engine-alist'$B$K$"$k$9$Y$F$N%(%s%8%s$r;H$&!#(B")
+  "*使用する検索エンジンのリスト。
+`w3m-search-engine-alist' にある検索エンジンのうち、使用した
+いエンジンの名前を正規表現で記述する。完全に一致させるにはパターン
+の前後に`^', `$'が必要。パターンのどれかにマッチした検索エンジンだ
+けが`w3m-search-engine-alist'に追加され、辞書選択の補完候補に現れる。
+nilなら`w3m-search-engine-alist'にあるすべてのエンジンを使う。")
 
 (defvar dic-lookup-w3m-search-engine-aliases '()
-  "*search engine$B$NJLL>$N%j%9%H!#(B
-search engine$B$rJL$N3P$($d$9$$L>A0$GEPO?$9$k!#(B
+  "*search engineの別名のリスト。
+search engineを別の覚えやすい名前で登録する。
 `((ALIAS ENGINE-NAME)..)")
 
 (defvar dic-lookup-w3m-related-site-list '()
-  "*query$B$K4XO"$7$?8!:w$r$7$d$9$/$9$k$?$a$KI=<($9$k%5%$%H$N%j%9%H!#(B
+  "*queryに関連した検索をしやすくするために表示するサイトのリスト。
 `(category
   ((search-engine . display-name)..))
  ..
-`dic-lookup-w3m-filter-related-links'$B;2>H!#(B")
+`dic-lookup-w3m-filter-related-links'参照。")
 
 (mapc 'require dic-lookup-w3m-config-files)
 
@@ -131,10 +131,10 @@ search engine$B$rJL$N3P$($d$9$$L>A0$GEPO?$9$k!#(B
       (add-to-list 'w3m-search-engine-alist elem)))
 
 (defvar dic-lookup-w3m-autodef-func t
-  "$B3F(Bsearch engine$B$r8F$S=P$9$?$a$N4X?t$r@8@.$9$k!#(B
-non-nil$B$J$i3F(Bsearch engin$B$4$H$K(Bdic-lookup-w3m--ENGINNAME,
+  "各search engineを呼び出すための関数を生成する。
+non-nilなら各search enginごとにdic-lookup-w3m--ENGINNAME,
 dic-lookup-w3m--ENGINENAME-region, dic-lookup-w3m--ENGINENAME-sentense
-$B$N$h$&$J4X?t$r<+F0@8@.$9$k!#%-!<%P%$%s%I$7$F;HMQ$9$k$3$H$rA[Dj!#(B")
+のような関数を自動生成する。キーバインドして使用することを想定。")
 
 (if dic-lookup-w3m-autodef-func
     (dolist (elem dic-lookup-w3m-search-engine-alist)
@@ -157,7 +157,7 @@ dic-lookup-w3m--ENGINENAME-region, dic-lookup-w3m--ENGINENAME-sentense
 		   (funcall 'dic-lookup-w3m ,(car elem) ',thing)))
 	  ))))
 
-;; $B$I$N%-!<$K$b%P%$%s%I$5$l$F$$$J$$>l9g$N$_%P%$%s%I$9$k(B
+;; どのキーにもバインドされていない場合のみバインドする
 (dolist (elem
 	 '(("z" dic-lookup-w3m-bury-buffer) ; or rebind `q'
 	   ("f" dic-lookup-w3m-toggle-filter)
@@ -168,15 +168,15 @@ dic-lookup-w3m--ENGINENAME-region, dic-lookup-w3m--ENGINENAME-sentense
     (apply 'define-key w3m-mode-map elem)))
 
 (defun dic-lookup-w3m-select-last-window ()
-  "w3m$B$r8F$S=P$9A0$KI=<($7$F$$$?%&%$%s%I%&$rA*Br$9$k!#(B"
+  "w3mを呼び出す前に表示していたウインドウを選択する。"
   (interactive)
   (other-window -1))
 
 (defvar dic-lookup-w3m-window-configuration nil
-  "w3m$B$+$iLa$C$?$H$-$K85$N%&%$%s%I%&$rI=<($9$k$?$a$K3P$($F$*$/!#(B")
+  "w3mから戻ったときに元のウインドウを表示するために覚えておく。")
 
 (defun dic-lookup-w3m-bury-buffer ()
-  "w3m$B%P%C%U%!$r1#$7$F!"(B`w3m'$B$r5/F0$9$kA0$N%&%$%s%I%&$N%l%$%"%&%H$KLa$9!#(B"
+  "w3mバッファを隠して、`w3m'を起動する前のウインドウのレイアウトに戻す。"
   (interactive)
   (unless w3m-display-inline-images
     (w3m-toggle-inline-images 'turnoff))
@@ -186,7 +186,7 @@ dic-lookup-w3m--ENGINENAME-region, dic-lookup-w3m--ENGINENAME-sentense
 	(setq dic-lookup-w3m-window-configuration nil))
     (switch-to-buffer (other-buffer))))
 
-;; w3m-search.el$B$N(Bw3m-search-read-variables$B$rJQ99(B
+;; w3m-search.elのw3m-search-read-variablesを変更
 (defun dic-lookup-w3m-read-search-engine (&optional search-engine arg)
   (if (or (null search-engine)
 	  (eq arg '-)
@@ -213,9 +213,9 @@ dic-lookup-w3m--ENGINENAME-region, dic-lookup-w3m--ENGINENAME-sentense
     (6 . buffer)			; C-u 6
     (256 . buffer)			; C-u C-u C-u C-u
     )
-  "*`dic-lookup-w3m'$B$NA0CV0z?t$H%F%-%9%H$NA*BrHO0O$NBP1~!#(B")
+  "*`dic-lookup-w3m'の前置引数とテキストの選択範囲の対応。")
 
-;; w3m-search.el$B$N(Bw3m-search-read-variables$B$rJQ99(B
+;; w3m-search.elのw3m-search-read-variablesを変更
 (defun dic-lookup-w3m-read-query (search-engine query &optional arg)
   (cond ((numberp arg)
 	 (setq arg (abs arg)))
@@ -260,55 +260,55 @@ dic-lookup-w3m--ENGINENAME-region, dic-lookup-w3m--ENGINENAME-sentense
 	   (format "%s search (default %%s): " search-engine))))
    (t query))
 
-  (if (and query (string-match "\n" query)) ; $BK]Lu%5%$%HMQ(B
+  (if (and query (string-match "\n" query)) ; 翻訳サイト用
       (while (string-match "^[ \t]+\\|[ \t]+$" query)
 	(setq query (replace-match "" t nil query))))
   query)
 
-;; w3m-search.el$B$N(Bw3m-search-escape-query-string$B$r=$@5(B
+;; w3m-search.elのw3m-search-escape-query-stringを修正
 (defadvice w3m-search-escape-query-string
   (around do-not-modify-query-string-just-encode-it (str &optional coding))
-  "query string$B$r6uGrJ8;z$GJ,3d$7$J$$!#(B"
+  "query stringを空白文字で分割しない。"
   (setq ad-return-value
 	(w3m-url-encode-string str (or coding w3m-default-coding-system))))
 
 (defvar dic-lookup-w3m-buffer-name ""
-  "*$B<-=q$N8!:w7k2L$rI=<($9$k$?$a$N(Bw3m$B%P%C%U%!$NL>A0!#(B
-non-nil$B$J$i!"(Bw3m$B%;%C%7%g%s$N%P%C%U%!L>!#J#?t$N(Bw3m$B%;%C%7%g%s$,$"$k(B
-$B$H$-!">o$K$3$N%P%C%U%!$G8!:w$r9T$&!#$b$7%P%C%U%!L>$N%;%C%7%g%s$,B8(B
-$B:_$7$J$$$H$-$O?7$7$$(Bw3m$B%;%C%7%g%s$r3+;O$7$F!"$=$N%P%C%U%!L>$r$3$N(B
-$BJQ?t$KJ];}$9$k!#(B
-nil$B$J$i(B`w3m-goto-url'$B$,A*Br$9$k%;%C%7%g%s$G8!:w$r9T$&!#(B(w3m$B$N%G%U%)(B
-$B%k%H$NF0:n!#(B)
-$BFs$D$N(Bw3m$B%;%C%7%g%s$NJRJ}$KFI$_$?$$(Bweb$B%5%$%H$rI=<($7$F!"$b$&0lJ}$K(B
-$B<-=q$rI=<($9$k$H$$$&;H$$J}$rA[Dj!#(B")
+  "*辞書の検索結果を表示するためのw3mバッファの名前。
+non-nilなら、w3mセッションのバッファ名。複数のw3mセッションがある
+とき、常にこのバッファで検索を行う。もしバッファ名のセッションが存
+在しないときは新しいw3mセッションを開始して、そのバッファ名をこの
+変数に保持する。
+nilなら`w3m-goto-url'が選択するセッションで検索を行う。(w3mのデフォ
+ルトの動作。)
+二つのw3mセッションの片方に読みたいwebサイトを表示して、もう一方に
+辞書を表示するという使い方を想定。")
 
-(defvar dic-lookup-w3m-query "" "query string. $B:n6HMQ0l;~%G!<%?(B")
+(defvar dic-lookup-w3m-query "" "query string. 作業用一時データ")
 
 (defun dic-lookup-w3m (&optional search-engine query)
-  "w3m$B$r;H$C$F%$%s%?!<%M%C%H>e$N<-=q$r0z$/!#$^$?$OK]Lu$9$k!#(B
+  "w3mを使ってインターネット上の辞書を引く。または翻訳する。
 
-search-engine$B$,(Bnon-nil$B$J$i$=$N(Bsearch-engine$B$r;H$&!#(Bnil$B$J$i%_%K%P%C(B
-$B%U%!$+$iFI$_<h$k!#(Bsearch-engine$B$O(B
-`dic-lookup-w3m-search-engine-alist'$B$KB8:_$9$k$b$N!#(B
+search-engineがnon-nilならそのsearch-engineを使う。nilならミニバッ
+ファから読み取る。search-engineは
+`dic-lookup-w3m-search-engine-alist'に存在するもの。
 
-query$B$,J8;zNs$J$i$=$NJ8;zNs$r(Bsearch-engine$B$KAw$k!#%7%s%\%k$J$i%+%l(B
-$B%s%H%P%C%U%!$+$iJ8;zNs$rA*Br$7$F(Bsearch-engine$B$KAw$k!#%7%s%\%k$NCM(B
-$B$K$h$C$FA*BrHO0O$r;XDj$9$k!#;XDj$G$-$k%7%s%\%k$O(Bline, sentence,
-region, paragraph, buffer$B!#(Bregion$B0J30$O(B`thing-at-point'$B$r;HMQ$7$F(B
-$BJ8;zNs$rA*Br$9$k!#(Bquery$B$,(Bnil$B$J$i%_%K%P%C%U%!$+$iFI$_<h$k!#(B
+queryが文字列ならその文字列をsearch-engineに送る。シンボルならカレ
+ントバッファから文字列を選択してsearch-engineに送る。シンボルの値
+によって選択範囲を指定する。指定できるシンボルはline, sentence,
+region, paragraph, buffer。region以外は`thing-at-point'を使用して
+文字列を選択する。queryがnilならミニバッファから読み取る。
 
-$BA0CV0z?t$rM?$($k$H!"$=$NCM$K$h$C$FJ8;zNs$NA*BrHO0O$r;XDj$9$k!#HO0O(B
-$B;XDj$N<oN`$O(Bquery$B$KM?$($k%7%s%\%k$HF1$8!#A0CV0z?t$NCM$HHO0O;XDj$N(B
-$BAH$_9g$o$;$O(B`dic-lookup-w3m-read-query-prefix-arg-alist'$B$G;XDj$9$k!#(B
-$B$?$H$($P(BC-u$B$G(Bsentense$B!"(BC-u C-u$B$G(Bregion$B$J$I!#(B
+前置引数を与えると、その値によって文字列の選択範囲を指定する。範囲
+指定の種類はqueryに与えるシンボルと同じ。前置引数の値と範囲指定の
+組み合わせは`dic-lookup-w3m-read-query-prefix-arg-alist'で指定する。
+たとえばC-uでsentense、C-u C-uでregionなど。
 
-$BA0CV0z?t$O(Bquery$B$NCM$KM%@h$9$k!#$?$H$($P(Bsentence$B$r;XDj$7$?(B
-dic-lookup-w3m$B$N8F$S=P$7$r%-!<%P%$%s%I$7$F$*$-!">l9g$K$h$C$FA0CV0z(B
-$B?t$G(Bregion$B$d(Bparagraph$B$r;XDj$9$k$h$&$K$9$k$H!"%-!<%P%$%s%I$N?t$H%-!<(B
-$B%9%H%m!<%/$r@aLs$G$-$k!#(B
-query$B$X$N%7%s%\%k$N;XDj$HA0CV0z?t$N;XDj$OK]Lu%5%$%H$G$N;HMQ$rA[Dj(B
-$B$7$F$$$k!#(B"
+前置引数はqueryの値に優先する。たとえばsentenceを指定した
+dic-lookup-w3mの呼び出しをキーバインドしておき、場合によって前置引
+数でregionやparagraphを指定するようにすると、キーバインドの数とキー
+ストロークを節約できる。
+queryへのシンボルの指定と前置引数の指定は翻訳サイトでの使用を想定
+している。"
   (interactive)
   (setq search-engine
 	(dic-lookup-w3m-read-search-engine search-engine current-prefix-arg))
@@ -333,21 +333,21 @@ query$B$X$N%7%s%\%k$N;XDj$HA0CV0z?t$N;XDj$OK]Lu%5%$%H$G$N;HMQ$rA[Dj(B
     (ad-deactivate 'w3m-search-escape-query-string)))
 
 (defun dic-lookup-w3m-last-engine (&optional query)
-  "$B:G8e$K%_%K%P%C%U%!$+$iFI$_9~$s$G;HMQ$7$?%5%$%H$r;HMQ$7$F8!:w$9$k!#(B
-$B%-!<%P%$%s%I$+$i5/F0$7$?%5%$%H$O!":G8e$K%_%K%P%C%U%!$+$iFI$_9~$s$G(B
-$B;HMQ$7$?%5%$%H$K$J$i$J$$!#(B"
+  "最後にミニバッファから読み込んで使用したサイトを使用して検索する。
+キーバインドから起動したサイトは、最後にミニバッファから読み込んで
+使用したサイトにならない。"
   (interactive)
   (dic-lookup-w3m (car w3m-search-engine-history) query))
 
 (defun dic-lookup-w3m-suitable-engine (search-engine query)
-  "$BE,@Z$J<-=q$K@Z$jBX$($k!#(B
-$B$?$H$($P1QOB<-E5$GF|K\8l$r8!:w$7$h$&$H$7$?>l9g$KOB1Q<-E5$K@Z$jBX$((B
-$B$F8!:w$9$k!#@Z$jBX$($k5,B'$O(B`dic-lookup-w3m-search-engine-alist'$B$N(B
-6$BHVL\$NCM$r;HMQ!#CM$O%j%9%H!"%7%s%\%k$^$?$O4X?t!#%j%9%H$J(B
-$B$i(B(REGEXP FROM TO)$B!#(Bquery$B$,(BREGEXP$B$K%^%C%A$7$?$i!"(Bsearch-engine$B$N@5(B
-$B5,I=8=(BFROM$B$K%^%C%A$7$?ItJ,$r(BTO$B$KCV49$7$?%(%s%8%sL>$rJV$9!#%7%s%\%k(B
-$B$J$i$=$NCM$r%j%9%H$H$7$F;HMQ$7$FF1MM$KCV49$9$k!#4X?t$J$i(B
-search-engine, query$B$r0z?t$H$7$F8F$S=P$9!#(B
+  "適切な辞書に切り替える。
+たとえば英和辞典で日本語を検索しようとした場合に和英辞典に切り替え
+て検索する。切り替える規則は`dic-lookup-w3m-search-engine-alist'の
+6番目の値を使用。値はリスト、シンボルまたは関数。リストな
+ら(REGEXP FROM TO)。queryがREGEXPにマッチしたら、search-engineの正
+規表現FROMにマッチした部分をTOに置換したエンジン名を返す。シンボル
+ならその値をリストとして使用して同様に置換する。関数なら
+search-engine, queryを引数として呼び出す。
 "
   (let ((rule
 	 (nth 5 (assoc search-engine dic-lookup-w3m-search-engine-alist))))
@@ -366,24 +366,24 @@ search-engine, query$B$r0z?t$H$7$F8F$S=P$9!#(B
 	search-engine))))
 
 (defvar dic-lookup-w3m-inline-image-rules '()
-  "*w3m$B$G(Binline image$B$rI=<($9$k$+$I$&$+$r%5%$%H$4$H$K;XDj$9$k%j%9%H!#(B
+  "*w3mでinline imageを表示するかどうかをサイトごとに指定するリスト。
  ((REGEXP . FLAG) ...)
-FLAG$B$,(B'turnoff$B$J$i@55,I=8=$K%^%C%A$7$?%5%$%H$G$O(Binline image$B$rI=<($7$J$$!#(B
-turnoff, nil$B0J30$J$iI=<($9$k!#(B
-FLAG$B$,(Bnil$B$G$"$k$+!"$^$?$O%5%$%H$,$I$N@55,I=8=$K$b%^%C%A$7$J$+$C$?>l9g$O(B
-`dic-lookup-w3m-inline-image-inherit'$B$N;XDj$K=>$&!#(B
-`w3m-toggle-inline-images'$B;2>H!#(B")
+FLAGが'turnoffなら正規表現にマッチしたサイトではinline imageを表示しない。
+turnoff, nil以外なら表示する。
+FLAGがnilであるか、またはサイトがどの正規表現にもマッチしなかった場合は
+`dic-lookup-w3m-inline-image-inherit'の指定に従う。
+`w3m-toggle-inline-images'参照。")
 
 (defvar dic-lookup-w3m-inline-image-inherit nil
-  "*inline image$B$NI=<((B/$BHsI=<(@Z$jBX$(5,B'!#(B
-inline image$B$NI=<(%k!<%k$,(B`dic-lookup-w3m-inline-image-rules'$B$KDj(B
-$B5A$5$l$F$$$J$$%5%$%H$N%G%U%)%k%H$NF0:n$N;XDj!#(B
-non-nil$B$J$i(Binline image$B$NI=<(!?HsI=<($N>uBV$r@Z$jBX$($J$$!#(B($B$=$NA0(B
-$B$KI=<($7$?%Z!<%8$HF1$8!#(B)
-nil$B$J$i(B`w3m-default-display-inline-images'$B$NCM$K=>$&!#(B")
+  "*inline imageの表示/非表示切り替え規則。
+inline imageの表示ルールが`dic-lookup-w3m-inline-image-rules'に定
+義されていないサイトのデフォルトの動作の指定。
+non-nilならinline imageの表示／非表示の状態を切り替えない。(その前
+に表示したページと同じ。)
+nilなら`w3m-default-display-inline-images'の値に従う。")
 
 (defun dic-lookup-w3m-decide-inline-image ()
-  "$B%5%$%H$4$H$K(Binline image$B$rI=<($9$k$+$I$&$+$r@Z$jBX$($k!#(B"
+  "サイトごとにinline imageを表示するかどうかを切り替える。"
   (when (w3m-display-graphic-p)
     (let ((flag
 	   (assoc-default w3m-current-url dic-lookup-w3m-inline-image-rules
@@ -398,7 +398,7 @@ nil$B$J$i(B`w3m-default-display-inline-images'$B$NCM$K=>$&!#(B")
 (add-hook 'w3m-fontify-after-hook 'dic-lookup-w3m-decide-inline-image)
 
 (defun dic-lookup-w3m-toggle-filter ()
-  "w3m$B$N(Bfilter$B$N(Bon/off$B$r@Z$jBX$($k!#(B"
+  "w3mのfilterのon/offを切り替える。"
   (interactive)
   (setq w3m-use-filter (null w3m-use-filter))
   (w3m-redisplay-this-page)
@@ -406,7 +406,7 @@ nil$B$J$i(B`w3m-default-display-inline-images'$B$NCM$K=>$&!#(B")
       (w3m-message "w3m-filter is on.")
     (w3m-message "w3m-filter is off.")))
 
-;; w3m-filter.el$B$N(Bw3m-filter$B$r=$@5(B
+;; w3m-filter.elのw3m-filterを修正
 (defadvice w3m-filter
   (around multi-filters (url))
   "Apply filtering rule of URL against a content in this buffer."
@@ -420,7 +420,7 @@ nil$B$J$i(B`w3m-default-display-inline-images'$B$NCM$K=>$&!#(B")
 
 (ad-activate 'w3m-filter)
 
-;; w3m-filter.el$B$N(Bw3m-filter-delete-regions$B$r=$@5(B
+;; w3m-filter.elのw3m-filter-delete-regionsを修正
 (defadvice w3m-filter-delete-regions
   (around exclude-matched-strings (url start end &optional exclude-s exclude-e
 				       regexp-s regexp-e))
@@ -438,7 +438,7 @@ nil$B$J$i(B`w3m-default-display-inline-images'$B$NCM$K=>$&!#(B")
 
 (ad-activate 'w3m-filter-delete-regions)
 
-;; w3m-filter.el$B$N(Bw3m-filter-replace-regexp$B$r=$@5(B
+;; w3m-filter.elのw3m-filter-replace-regexpを修正
 (defadvice w3m-filter-replace-regexp
   (around replace-match-without-case-conversion (url regexp to-string))
   "Replace all occurrences of REGEXP with TO-STRING."
@@ -450,8 +450,8 @@ nil$B$J$i(B`w3m-default-display-inline-images'$B$NCM$K=>$&!#(B")
 
 (defun dic-lookup-w3m-filter-eword-anchor (url search-engine &optional
 					       min-length coding)
-  "web$B%Z!<%8Cf$N1QC18l$i$7$$J8;zNs$KBP$7$F!"<-=q8!:wMQ$N%"%s%+!<$r:n@.$9$k!#(B
-min-length$B$h$jC;$$J8;zNs$K$O%"%s%+!<$r:n@.$7$J$$!#(B"
+  "webページ中の英単語らしい文字列に対して、辞書検索用のアンカーを作成する。
+min-lengthより短い文字列にはアンカーを作成しない。"
   (let ((search-engine (if (symbolp search-engine)
 			   (symbol-value search-engine)
 			 search-engine))
@@ -485,16 +485,16 @@ min-length$B$h$jC;$$J8;zNs$K$O%"%s%+!<$r:n@.$7$J$$!#(B"
 	      )))))))
 
 (defvar dic-lookup-w3m-favorite-ej-engine "ej-excite"
-  "*$B1QC18l$+$i%j%s%/$rD%$k%G%U%)%k%H$N(Bsearch engine.
-`dic-lookup-w3m-filter-toggle-eword-anchor'$B;2>H!#(B")
+  "*英単語からリンクを張るデフォルトのsearch engine.
+`dic-lookup-w3m-filter-toggle-eword-anchor'参照。")
 
 (defun dic-lookup-w3m-filter-toggle-eword-anchor (&optional flag)
-  "$B1QC18l$i$7$$J8;zNs$K<-=q8!:wMQ$N%"%s%+!<$rIU$1$k%U%#%k%?$r%H%0%k$9$k!#(B
-$B0z?t$J$7$G8F$S=P$9$H%U%#%k%?$r%H%0%k$9$k!#(Bflag$B$NCM$,(Bturnoff$B$J$i%U%#(B
-$B%k%?$rL58z$K$9$k!#(Bturnoff$B$G$b(Bnil$B$G$b$J$1$l$P%U%#%k%?$rM-8z$K$9$k!#(B
-$B%U%#%k%?$rM-8z$K$9$k$H!"%Z!<%8Cf$K$"$k$9$Y$F$N1QC18l$i$7$$J8;zNs$K(B
-$B8!:w%(%s%8%s(B``dic-lookup-w3m-favorite-ej-engine''$B$r8!:w$9$k%j%s%/(B
-$B$r$D$1$k!#(B"
+  "英単語らしい文字列に辞書検索用のアンカーを付けるフィルタをトグルする。
+引数なしで呼び出すとフィルタをトグルする。flagの値がturnoffならフィ
+ルタを無効にする。turnoffでもnilでもなければフィルタを有効にする。
+フィルタを有効にすると、ページ中にあるすべての英単語らしい文字列に
+検索エンジン``dic-lookup-w3m-favorite-ej-engine''を検索するリンク
+をつける。"
   (interactive)
   (let ((rule '("\\`\\(https?\\|file\\)://" dic-lookup-w3m-filter-eword-anchor
 		dic-lookup-w3m-favorite-ej-engine)))
@@ -512,7 +512,7 @@ min-length$B$h$jC;$$J8;zNs$K$O%"%s%+!<$r:n@.$7$J$$!#(B"
 (require 'url-parse)
 (require 'url-util)
 (defun dic-lookup-w3m-get-query-from-url (url baseurl &optional coding)
-  "url$B$+$i(Bquery$BJ8;zNs$r<h$j=P$9!#(B"
+  "urlからquery文字列を取り出す。"
   (let (str)
     (if (string-match ".*\\?.*%s" baseurl)
 	(let ((base-query
@@ -538,15 +538,15 @@ min-length$B$h$jC;$$J8;zNs$K$O%"%s%+!<$r:n@.$7$J$$!#(B"
       "")))
 
 (defvar dic-lookup-w3m-filter-do-show-candidates-heading " Possibly: "
-  "*$BC18l$N8uJd%j%9%H$NA0$KI=<($9$k8+=P$7!#(B
-`dic-lookup-w3m-filter-show-candidates'$B;2>H!#(B")
+  "*単語の候補リストの前に表示する見出し。
+`dic-lookup-w3m-filter-show-candidates'参照。")
 
 (defun dic-lookup-w3m-filter-show-candidates (url search-engine
 						  &optional regexp before)
-  "query$B$+$i1Q8l$N3hMQ8lHx$r<h$j=|$$$F8+=P$78l$N8uJd$rI=<($9$k!#(B
-$B$3$N5!G=$r;H$&$K$O(Bstem.el$B$,I,MW!#(B
-stem.el$B$O(Bsdic$B$K4^$^$l$F$$$^$9!#$^$?(Blookup$B$K(Bstem-english.el$B$H$$$&L>A0$G(B
-$B4^$^$l$F$$$^$9!#(B"
+  "queryから英語の活用語尾を取り除いて見出し語の候補を表示する。
+この機能を使うにはstem.elが必要。
+stem.elはsdicに含まれています。またlookupにstem-english.elという名前で
+含まれています。"
   (let* ((baseurl (nth 1 (assoc search-engine w3m-search-engine-alist)))
 	 (coding (nth 2 (assoc search-engine w3m-search-engine-alist)))
 	 (candidates (stem:stripping-suffix
@@ -588,13 +588,13 @@ stem.el$B$O(Bsdic$B$K4^$^$l$F$$$^$9!#$^$?(Blookup$B$K(Bstem-english.el$B$
 	    "dummy. do nothing."))))
 
 (defvar dic-lookup-w3m-filter-related-links-heading " Relevant: "
-  "*$B4XO"%5%$%H$N%j%9%H$NA0$KI=<($9$k8+=P$7!#(B")
+  "*関連サイトのリストの前に表示する見出し。")
 
 (defun dic-lookup-w3m-filter-related-links
   (url search-engine category &optional baseurl coding regexp before)
-  "query$B$K4XO"$9$k%j%s%/$rI=<($9$k!#(B
-$B$"$k<-=q$G8!:w$7$?C18l$rB>$N<-=q$G$b4JC1$K8!:w$G$-$k$h$&$K!"B>$N<-(B
-$B=q$X%j%s%/$rD%$k!#(B"
+  "queryに関連するリンクを表示する。
+ある辞書で検索した単語を他の辞書でも簡単に検索できるように、他の辞
+書へリンクを張る。"
   (let ((query (dic-lookup-w3m-get-query-from-url
 		url
 		(or baseurl
@@ -628,9 +628,9 @@ stem.el$B$O(Bsdic$B$K4^$^$l$F$$$^$9!#$^$?(Blookup$B$K(Bstem-english.el$B$
 	)))))
 
 (defun dic-lookup-w3m-filter-refresh-url (url new-url &optional regexp subexp)
-  "html$B$N(B<meta http-equiv=\"refresh\" ...>$B$r;H$C$F?7$7$$%Z!<%8$K0\F0$9$k!#(B
-$B<-=q$N8+=P$78l$N0lMw$N%Z!<%8$+$i!":G=i$N8+=P$78l$N@bL@$N%Z!<%8$K<+(B
-$BF0E*$K0\F0$9$k$N$K;H$&!#(B"
+  "htmlの<meta http-equiv=\"refresh\" ...>を使って新しいページに移動する。
+辞書の見出し語の一覧のページから、最初の見出し語の説明のページに自
+動的に移動するのに使う。"
   (goto-char (point-min))
   (w3m-filter-replace-regexp
    url
@@ -643,18 +643,18 @@ stem.el$B$O(Bsdic$B$K4^$^$l$F$$$^$9!#$^$?(Blookup$B$K(Bstem-english.el$B$
 		"")))))
 
 (defvar dic-lookup-w3m-filter-convert-phonetic-symbol t
-  "*$BH/2;5-9f$N(Binline image$B$r%U%)%s%H$KJQ49$7$FI=<($9$k$+$I$&$+$N%U%i%0!#(B
-non-nil$B$J$i!"2DG=$J>l9g$O%U%)%s%H$KJQ49$9$k!#(B
-nil$B$J$i(Binline image$B$N$^$^!#(B
-`dic-lookup-w3m-toggle-phonetic-image'$B$G;HMQ!#(B")
+  "*発音記号のinline imageをフォントに変換して表示するかどうかのフラグ。
+non-nilなら、可能な場合はフォントに変換する。
+nilならinline imageのまま。
+`dic-lookup-w3m-toggle-phonetic-image'で使用。")
 
 (defun dic-lookup-w3m-toggle-phonetic-image ()
-  "$BH/2;5-9f$N(Binline image$B$r%U%)%s%H$KJQ49$7$FI=<($9$k$+$I$&$+$r@Z$jBX$($k!#(B
-inline image$B$rI=<($9$k$H;~4V$,$+$+$k$?$a%U%)%s%H$KCV$-49$($k!#(B
-``w3m-filter''$B$K%U%)%s%H$KJQ49$9$k$?$a$N%U%#%k%?!<$,Dj5A$5$l$F$$$k%5%$(B
-$B%H$N$_M-8z!#(B
-$B%U%#%k%?!<$O4X?t(B`dic-lookup-w3m-filter-convert-phonetic-symbol'$B$r8F$S(B
-$B=P$9$h$&$K$J$C$F$$$J$1$l$P$J$i$J$$!#(B"
+  "発音記号のinline imageをフォントに変換して表示するかどうかを切り替える。
+inline imageを表示すると時間がかかるためフォントに置き換える。
+``w3m-filter''にフォントに変換するためのフィルターが定義されているサイ
+トのみ有効。
+フィルターは関数`dic-lookup-w3m-filter-convert-phonetic-symbol'を呼び
+出すようになっていなければならない。"
   (interactive)
   (setq dic-lookup-w3m-filter-convert-phonetic-symbol
 	(null dic-lookup-w3m-filter-convert-phonetic-symbol))
@@ -665,9 +665,9 @@ inline image$B$rI=<($9$k$H;~4V$,$+$+$k$?$a%U%)%s%H$KCV$-49$($k!#(B
 
 (defun dic-lookup-w3m-filter-convert-phonetic-symbol
   (url phonetic-symbol-table image-regexp &optional subexp)
-  "$BH/2;5-9f$J$I$N(Binline image$B$r%U%)%s%H$KCV$-49$($k!#(B
-$BJQ?t(B`dic-lookup-w3m-filter-convert-phonetic-symbol'$B$,(Bnil$B$N>l9g$OJQ(B
-$B49$7$J$$!#(B"
+  "発音記号などのinline imageをフォントに置き換える。
+変数`dic-lookup-w3m-filter-convert-phonetic-symbol'がnilの場合は変
+換しない。"
   (when dic-lookup-w3m-filter-convert-phonetic-symbol
     (goto-char (point-min))
     (while (re-search-forward image-regexp nil t)
@@ -688,9 +688,9 @@ See the command \\[dic-lookup-w3m]."
   :group 'dic-lookup-w3m)
 
 (defun dic-lookup-w3m-search-engine-menu (arg)
-  "search engine$B$N0lMw$rI=<($9$k!#(B
-$BI=<($O(B``dic-lookup-w3m-search-engine-alist''$B$K=P8=$9$k=g!#(B
-C-u$B$GL>A0$G%=!<%H!"(BC-u C-u$B$G@bL@$G%=!<%H!#(B"
+  "search engineの一覧を表示する。
+表示は``dic-lookup-w3m-search-engine-alist''に出現する順。
+C-uで名前でソート、C-u C-uで説明でソート。"
   (interactive "p")
   (let ((buffer (get-buffer-create " *dic-lookup-w3m-work*")))
     (save-current-buffer
@@ -721,10 +721,10 @@ C-u$B$GL>A0$G%=!<%H!"(BC-u C-u$B$G@bL@$G%=!<%H!#(B"
     (w3m-redisplay-this-page)))
 
 (defun dic-lookup-w3m-txt2html (&optional search-engine min-length)
-  "$B%+%l%s%H%P%C%U%!$N%F%-%9%H$r4J0W$J(Bhtml$B$KJQ49$9$k!#(B
-$B%P%C%U%!Fb$N3F1QC18l$i$7$$J8;zNs$+$i<-=q$X$N%j%s%/$rD%$k!#(B
-$BJQ497k2L$O(Bemacs$B$N?75,%P%C%U%!$K=PNO$9$k!#%U%!%$%k$KJ]B8$7$FJL$N(Bweb$B%V%i(B
-$B%&%6$GI=<(=PMh$k!#(B"
+  "カレントバッファのテキストを簡易なhtmlに変換する。
+バッファ内の各英単語らしい文字列から辞書へのリンクを張る。
+変換結果はemacsの新規バッファに出力する。ファイルに保存して別のwebブラ
+ウザで表示出来る。"
   (interactive)
   (let ((org-buffer (current-buffer))
 	(search-engine (dic-lookup-w3m-read-search-engine search-engine)))
@@ -738,8 +738,8 @@ C-u$B$GL>A0$G%=!<%H!"(BC-u C-u$B$G@bL@$G%=!<%H!#(B"
 (defvar dic-lookup-w3m-temp-buffer " *dic-lookup-w3m-work*" "temp buffer")
 
 (defun dic-lookup-w3m-txt2w3m (&optional search-engine min-length)
-  "$B%+%l%s%H%P%C%U%!$N%F%-%9%H$r4J0W$J(Bhtml$B$KJQ49$7$F(Bw3m$B$G3+$/!#(B
-$B%P%C%U%!Fb$N3F1QC18l$+$i<-=q$X$N%j%s%/$rD%$k!#(B"
+  "カレントバッファのテキストを簡易なhtmlに変換してw3mで開く。
+バッファ内の各英単語から辞書へのリンクを張る。"
   (interactive)
   (let ((oldbuf (current-buffer)))
     (save-current-buffer
@@ -755,7 +755,7 @@ C-u$B$GL>A0$G%=!<%H!"(BC-u C-u$B$G@bL@$G%=!<%H!#(B"
     ;;(ad-deactivate 'w3m-about)
     ))
 
-;; w3m.el$B$N(Bw3m-about$B$r=$@5(B
+;; w3m.elのw3m-aboutを修正
 (defadvice w3m-about
   (around override (url &rest args))
   (insert-buffer-substring dic-lookup-w3m-temp-buffer)
@@ -780,40 +780,40 @@ C-u$B$GL>A0$G%=!<%H!"(BC-u C-u$B$G@bL@$G%=!<%H!#(B"
   (dic-lookup-w3m-filter-eword-anchor "" baseurl min-length))
 
 (defvar dic-lookup-w3m-morpheme-cmd "c:/Program Files/MeCab/bin/mecab"
-  "*$B7ABVAG2r@O%(%s%8%s$N%3%^%s%I!#(B")
+  "*形態素解析エンジンのコマンド。")
 (defvar dic-lookup-w3m-morpheme-args
   '("-b81920" "--eos-format="
     "--node-format=%m\t%f[7]\t%f[6]\t%F-[0,1,2,3]\t%f[4]\t%f[5]\n"
     "--unk-format=%m\t%m\t%m\t%F-[0,1,2,3]\t\t\n"
     "--eos-format=EOS\n")
-  "*$B7ABVAG2r@O%(%s%8%s$N0z?t!#(B")
+  "*形態素解析エンジンの引数。")
 (defvar dic-lookup-w3m-morpheme-coding-system 'shift_jis-dos ;'euc-jp-unix
-  "*$B7ABVAG2r@O%(%s%8%s$NJ8;z%3!<%I!#(B")
+  "*形態素解析エンジンの文字コード。")
 (defvar dic-lookup-w3m-morpheme-eos "EOS"
-  "*$B7ABVAG2r@O%(%s%8%s$N=PNO$NJ8KvI=<(J8;zNs!#(B")
+  "*形態素解析エンジンの出力の文末表示文字列。")
 
 ;; (defvar dic-lookup-w3m-morpheme-cmd "c:/Program Files/ChaSen/chasen.exe"
-;;   "*$B7ABVAG2r@O%(%s%8%s$N%3%^%s%I!#(B")
+;;   "*形態素解析エンジンのコマンド。")
 ;; (defvar dic-lookup-w3m-morpheme-args '()
-;;   "*$B7ABVAG2r@O%(%s%8%s$N0z?t!#(B")
+;;   "*形態素解析エンジンの引数。")
 ;; (defvar dic-lookup-w3m-morpheme-coding-system 'shift_jis
-;;   "*$B7ABVAG2r@O%(%s%8%s$NJ8;z%3!<%I!#(B")
+;;   "*形態素解析エンジンの文字コード。")
 ;; (defvar dic-lookup-w3m-morpheme-eos "EOS"
-;;   "*$B7ABVAG2r@O%(%s%8%s$N=PNO$NJ8KvI=<(J8;zNs!#(B")
+;;   "*形態素解析エンジンの出力の文末表示文字列。")
 
 (defun dic-lookup-w3m-jtxt2w3m (&optional search-engine query)
-  "$BF|K\8l$N%F%-%9%H$r!"3FC18l$K<-=q$X$N%j%s%/$rIU$1$?(Bhtml$B$KJQ49$7$F(Bw3m$B$G3+$/!#(B
-$B%_%K%P%C%U%!$KF~NO$7$?%F%-%9%H$^$?$O%+%l%s%H%P%C%U%!$N%F%-%9%H$r4J(B
-$B0W$J(Bhtml$B$KJQ49$7$F(Bw3m$B$G3+$/!#F|K\8l$N3FC18l$+$i<-=q$X%j%s%/$rD%$k!#(B
-$B<-=q$O9q8l<-E5$N$[$+OB1Q$dF|Cf<-E5$J$IF|K\8l$,8+=P$78l$K$J$C$F$$$l$P;H$($k!#(B
-`dic-lookup-w3m'$B$HF1$8$h$&$K!"A0CV0z?t$GJQ49$9$k%F%-%9%H$NHO0O$r;X(B
-$BDj$G$-$k!#A0CV0z?t$J$7$G!"(Bquery$B$,6u$N>l9g$O%+%l%s%H%P%C%U%!A4BN$r(B
-$BJQ49$9$k!#(B
-$B7ABVAG2r@O%(%s%8%s(B(MeCab, ChaSen)$B$N@_Dj$r(B
-`dic-lookup-w3m-morpheme-cmd'$B!"(B`dic-lookup-w3m-morpheme-args'$B!"(B
-`dic-lookup-w3m-morpheme-coding-system'$B!"(B
-`dic-lookup-w3m-morpheme-eos'$B$G$*$3$J$&!#(B
-$BE,@Z$J7ABVAG2r@O4o$,$"$l$PF|K\8l0J30$N8@8l$K$b;H$($k!#(B"
+  "日本語のテキストを、各単語に辞書へのリンクを付けたhtmlに変換してw3mで開く。
+ミニバッファに入力したテキストまたはカレントバッファのテキストを簡
+易なhtmlに変換してw3mで開く。日本語の各単語から辞書へリンクを張る。
+辞書は国語辞典のほか和英や日中辞典など日本語が見出し語になっていれば使える。
+`dic-lookup-w3m'と同じように、前置引数で変換するテキストの範囲を指
+定できる。前置引数なしで、queryが空の場合はカレントバッファ全体を
+変換する。
+形態素解析エンジン(MeCab, ChaSen)の設定を
+`dic-lookup-w3m-morpheme-cmd'、`dic-lookup-w3m-morpheme-args'、
+`dic-lookup-w3m-morpheme-coding-system'、
+`dic-lookup-w3m-morpheme-eos'でおこなう。
+適切な形態素解析器があれば日本語以外の言語にも使える。"
   (interactive)
   (let* ((search-engine
 	  (dic-lookup-w3m-read-search-engine search-engine current-prefix-arg))
@@ -834,7 +834,7 @@ C-u$B$GL>A0$G%=!<%H!"(BC-u C-u$B$G@bL@$G%=!<%H!#(B"
 	  (insert-buffer-substring org-buffer)
 	(insert query))
       (goto-char (point-min))
-      (while (re-search-forward "^[ $B!!(B\t]+\\|[ $B!!(B\t]+$" nil t)
+      (while (re-search-forward "^[ 　\t]+\\|[ 　\t]+$" nil t)
 	(replace-match ""))
       (goto-char (point-min))
       (while (re-search-forward "\n\\(.\\)" nil t)
@@ -843,8 +843,8 @@ C-u$B$GL>A0$G%=!<%H!"(BC-u C-u$B$G@bL@$G%=!<%H!#(B"
       (while (re-search-forward "\\(\\cj\\) +\\(\\cj\\)" nil t)
 	(replace-match "\\1\\2"))
       (goto-char (point-min))
-      (while (re-search-forward "$B!#(B" nil t)
-	(replace-match "$B!#(B\n"))
+      (while (re-search-forward "。" nil t)
+	(replace-match "。\n"))
       (let ((coding-system-for-write dic-lookup-w3m-morpheme-coding-system)
 	    (coding-system-for-read dic-lookup-w3m-morpheme-coding-system))
 	(apply
@@ -869,7 +869,7 @@ C-u$B$GL>A0$G%=!<%H!"(BC-u C-u$B$G@bL@$G%=!<%H!#(B"
 		  (mapconcat
 		   '(lambda (c)
 		      (regexp-quote (string c)))
-		   (car morpheme) "\\([ $B!!(B\t\n]\\)*")
+		   (car morpheme) "\\([ 　\t\n]\\)*")
 		  nil t)
 		 (not (equal (nth 2 morpheme) "")))
 		(replace-match
@@ -901,17 +901,17 @@ C-u$B$GL>A0$G%=!<%H!"(BC-u C-u$B$G@bL@$G%=!<%H!#(B"
     (w3m-redisplay-this-page)))
 
 (defun dic-lookup-w3m-next-anchor-line ()
-  "$B%]%$%s%H$N$"$k9T$h$j8e$N9T$N:G=i$N%"%s%+!<$K%]%$%s%H$r0\F0$9$k!#(B
-$B0l9T$KJ#?t$N%"%s%+!<$,$"$C$F$b:G=i$N$R$H$D$K$7$+0\F0$7$J$$$N$G!"1s$/$K(B
-$B$"$k%"%s%+!<$KAa$/$?$I$jCe$1$k!#(B`dic-lookup-w3m-previous-anchor-line'$B$b;2>H!#(B"
+  "ポイントのある行より後の行の最初のアンカーにポイントを移動する。
+一行に複数のアンカーがあっても最初のひとつにしか移動しないので、遠くに
+あるアンカーに早くたどり着ける。`dic-lookup-w3m-previous-anchor-line'も参照。"
   (interactive)
   (end-of-line)
   (w3m-next-anchor))
 
 (defun dic-lookup-w3m-previous-anchor-line ()
-  "$B%]%$%s%H$N$"$k9T$h$jA0$N9T$N:G8e$N%"%s%+!<$K%]%$%s%H$r0\F0$9$k!#(B
-$B0l9T$KJ#?t$N%"%s%+!<$,$"$C$F$b:G=i$N$R$H$D$K$7$+0\F0$7$J$$$N$G!"1s$/$K(B
-$B$"$k%"%s%+!<$KAa$/$?$I$jCe$1$k!#(B`dic-lookup-w3m-next-anchor-line'$B$b;2>H!#(B"
+  "ポイントのある行より前の行の最後のアンカーにポイントを移動する。
+一行に複数のアンカーがあっても最初のひとつにしか移動しないので、遠くに
+あるアンカーに早くたどり着ける。`dic-lookup-w3m-next-anchor-line'も参照。"
   (interactive)
   (beginning-of-line)
   (w3m-previous-anchor))
