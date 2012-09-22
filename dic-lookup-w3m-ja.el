@@ -1521,7 +1521,7 @@ nilの場合はすべての言語を対象にする。nil X nilは起動が遅�
    ("tr-kj-google" "tr-koja-google")
    ("tr-jk-google" "tr-jako-google")))
 
-(defvar dic-lookup-w3m-filter-do-show-candidates-heading " 候補: "
+(defvar dic-lookup-w3m-filter-do-show-candidates-heading " &nbsp;候補: "
   "*単語の候補リストの前に表示する見出し。")
 
 (defvar dic-lookup-w3m-filter-related-links-heading " 関連: "
@@ -1977,11 +1977,22 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
        ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/je/"
 	dic-lookup-w3m-filter-related-links "je-goo" ej)
        ("\\`http://dictionary\\.goo\\.ne\\.jp/leaf/je/"
-	dic-lookup-w3m-filter-related-links "je-goo" ej	"/m0u/%s/")
+	dic-lookup-w3m-filter-related-links "je-goo" ej "/m0u/%s/")
        ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/jn/"
 	dic-lookup-w3m-filter-related-links "jj-goo" jj)
        ("\\`http://dictionary\\.goo\\.ne\\.jp/leaf/jn/"
-	dic-lookup-w3m-filter-related-links "jj-goo" jj	"/m0u/%s/")
+	dic-lookup-w3m-filter-related-links "jj-goo" jj "/m0u/%s/")
+       ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/cj/"
+	dic-lookup-w3m-filter-related-links "cj-goo" cj)
+       ("http://dictionary\\.goo\\.ne\\.jp/leaf/cj/"
+	(dic-lookup-w3m-filter-related-links "cj-goo" cj "/m0u/%s/")
+	(w3m-filter-replace-regexp
+	 "\\(<span class=\"ex\">[^<]*</span>\\)" "\\1 - ")
+	)
+       ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/jc/"
+	dic-lookup-w3m-filter-related-links "jc-goo" cj)
+       ("http://dictionary\\.goo\\.ne\\.jp/leaf/jc/"
+	dic-lookup-w3m-filter-related-links "jc-goo" cj "/m0u/%s/")
        ("\\`http://dictionary\\.goo\\.ne\\.jp/"
 	dic-lookup-w3m-filter-show-candidates "ej-goo")
 
@@ -2298,12 +2309,14 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
     ("cj-bitex" . "CJ-bitex")
     ("cj-tonko-jikai" . "CJ敦煌")
     ("cj-jcdic" . "CJ-jcdic")
+    ("cj-goo" . "CJ-goo")
     ("cj-hjenglish" . "CJ-hjenglish")
     ("jc-excite" . "JC-excite")
     ("jc-kitajiro" . "JC北")
     ("jc-bitex" . "JC-bitex")
     ("jc-tonko-jikai" . "JC敦煌")
     ("jc-jcdic" . "JC-jcdic")
+    ("jc-goo" . "JC-goo")
     ("jc-hjenglish" . "JC-hjenglish")
     ("pinyin-cazoo" . "pinyin-cazoo")
     ("jj-yahoo" . "国語"))))
