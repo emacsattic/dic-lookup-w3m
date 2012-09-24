@@ -1575,7 +1575,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
        ;; excite dic
        ("\\`http://www\\.excite\\.co\\.jp/dictionary/.*search="
-	(dic-lookup-w3m-filter-excite-jump-to-content
+	(dic-lookup-w3m-filter-excite-jump-to-1stcontent
 	 "http://www.excite.co.jp%s"
 	 "<a href=\"\\(/dictionary/.*/\\?search=[^>]*\\(block\\|itemid\\|;id\\)=[^>]*\\)\">" 1)
 	(w3m-filter-delete-regions
@@ -1946,8 +1946,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
        ;; pinyin chinese1
        ("\\`http://www\\.chinese1\\.jp/pinyin/gb2312/jp\\.asp"
 	(w3m-filter-delete-regions
-	 "<body[^>]*>"
-	 "<table border=\"0\" cellpadding=\"0\" cellspacing=\"10\">" t t t)
+	 "<body[^>]*>" "<table border=\"0\" cellpadding=\"0\" cellspacing=\"10\">" t t t)
 	(w3m-filter-delete-regions
 	 "^<div align=\"right\">" "</body>" nil t t)
 	(dic-lookup-w3m-filter-related-links "pinyin-chinese1" pinyin)
@@ -1961,6 +1960,10 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	nil nil "</head>")
 
        ;; goo
+       ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/"
+	dic-lookup-w3m-filter-goo-jump-to-1stcontent
+	"http://dictionary.goo.ne.jp%s"
+	"<a href=\"\\(/leaf/.*/m0u/[^/]*/\\)" 1)
        ("\\`http://dictionary\\.goo\\.ne\\.jp/"
 	(w3m-filter-delete-regions "<body[^>]*>" "<dl class=\"allList\">" t t t)
 	(w3m-filter-delete-regions "<body[^>]*>" "^<!-- inner tab -->" t nil t t)
@@ -2360,15 +2363,27 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 exciteの辞書検索で複数の見出し語が見つかった場合でも、最初の見出し語の
 内容を表示する。")
 
-(defun dic-lookup-w3m-filter-excite-jump-to-content
+(defun dic-lookup-w3m-filter-excite-jump-to-1stcontent
   (url new-url &optional regexp subexp)
   "検索結果の最初の見出し語の説明のページに移動する。"
   (goto-char (point-min))
   (if (or (and dic-lookup-w3m-filter-excite-always-show-first-entry
-	       (re-search-forward 
+	       (re-search-forward
 		"<span class=\"hSide\"> *\\[1 〜 .*件中\\]</span>" nil t))
 	  (re-search-forward
 	   "<span class=\"hSide\"> *\\[1 〜 1 / 1件中\\]</span>" nil t))
+      (dic-lookup-w3m-filter-refresh-url url new-url regexp subexp)))
+
+(defvar dic-lookup-w3m-filter-goo-always-show-first-entry t
+  "*goo辞書で最初の見出し語の内容を表示する。
+gooの辞書検索で複数の見出し語が見つかった場合でも、最初の見出し語の
+内容を表示する。")
+
+(defun dic-lookup-w3m-filter-goo-jump-to-1stcontent
+  (url new-url &optional regexp subexp)
+  "検索結果の最初の見出し語の説明のページに移動する。"
+  (goto-char (point-min))
+  (if dic-lookup-w3m-filter-goo-always-show-first-entry
       (dic-lookup-w3m-filter-refresh-url url new-url regexp subexp)))
 
 (defvar dic-lookup-w3m-filter-excite-ej-symbol-alist
