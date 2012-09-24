@@ -1946,10 +1946,13 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
        ;; pinyin chinese1
        ("\\`http://www\\.chinese1\\.jp/pinyin/gb2312/jp\\.asp"
 	(w3m-filter-delete-regions
-	 "<body[^>]*>" "<table border=\"0\" cellpadding=\"0\" cellspacing=\"10\">" t nil t)
+	 "<body[^>]*>"
+	 "<table border=\"0\" cellpadding=\"0\" cellspacing=\"10\">" t t t)
 	(w3m-filter-delete-regions
 	 "^<div align=\"right\">" "</body>" nil t t)
 	(dic-lookup-w3m-filter-related-links "pinyin-chinese1" pinyin)
+	(w3m-filter-replace-regexp
+	 "<input type=\"submit\" value=\"S\" name=\"S\" style=\"width: 15; height: 20\">" "")
 	)
 
        ;; pinyin cazoo
