@@ -1967,6 +1967,10 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
 	 dic-lookup-w3m-filter-ocn-ej-symbol-alist
 	 "<img src=\"[^>]*/img[^>]*/\\([a-z_0-9]+\\)\\.gif\"[^>]*>")
+	(w3m-filter-delete-regions "<div class=\"buttons-panel\">"
+				   "</div>" nil t)
+
+	(w3m-filter-replace-regexp "\\(<div id=\"spoLine\">\\)" "<br>\\1")
 	)
        ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/ej/"
 	dic-lookup-w3m-filter-related-links "ej-goo" ej)
@@ -1988,11 +1992,20 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(dic-lookup-w3m-filter-related-links "cj-goo" cj "/m0u/%s/")
 	(w3m-filter-replace-regexp
 	 "\\(<span class=\"ex\">[^<]*</span>\\)" "\\1 - ")
+	(w3m-filter-replace-regexp
+	 "\\(<span class=\"pinyin\">\\)" " \\1")
 	)
        ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/jc/"
 	dic-lookup-w3m-filter-related-links "jc-goo" cj)
-       ("http://dictionary\\.goo\\.ne\\.jp/leaf/jc/"
-	dic-lookup-w3m-filter-related-links "jc-goo" cj "/m0u/%s/")
+       ("\\`http://dictionary\\.goo\\.ne\\.jp/leaf/jc/"
+	(dic-lookup-w3m-filter-related-links "jc-goo" cj "/m0u/%s/")
+	(w3m-filter-replace-regexp
+	 "<span class=\"btn_sound\">\\([^>]*>\\)<img src=\"/img/btn_sound.gif\"></a></span>"
+	 "\\1→中日</a>")
+	(w3m-filter-replace-regexp
+	 "\\(<div class=\"prog_example\">\\|<br />\\)\\([^>]*\\)\\(　<span class=\"pinyin\">\\)"
+	 "\\1<a href=\"/srch/cj/\\2/m0u/\">\\2</a>\\3")
+	)
        ("\\`http://dictionary\\.goo\\.ne\\.jp/"
 	dic-lookup-w3m-filter-show-candidates "ej-goo")
 
