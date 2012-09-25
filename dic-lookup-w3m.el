@@ -456,6 +456,29 @@ nilなら`w3m-default-display-inline-images'の値に従う。")
 
 (ad-activate 'w3m-filter-replace-regexp)
 
+(defun dic-lookup-w3m-filter-word-anchor (url search-engine regexp subexp)
+  "webページ中の文字列に対して、辞書検索用のアンカーを作成する。
+regexpとsubexpで指定したパターンにマッチする文字列を検索語として
+search-engineで指定した辞書に対してリンクを張る。"
+  (let ((search-engine (if (symbolp search-engine)
+			   (symbol-value search-engine)
+			 search-engine)))
+    (goto-char (point-min))
+    (re-search-forward "<body[^>]+>\\|<body>" nil t)
+    (goto-char (match-beginning 0))
+
+    (while (re-search-forward regexp nil t)
+      (replace-match
+       (format
+	"<a href=\"%s\">%s</a>"
+	(format
+	 (nth 1 (assoc search-engine w3m-search-engine-alist))
+	 (w3m-url-encode-string
+	  (match-string subexp)
+	  (nth 2(assoc search-engine w3m-search-engine-alist))))
+	(w3m-encode-specials-string (match-string subexp)))
+      	))))
+
 (defun dic-lookup-w3m-filter-eword-anchor (url search-engine &optional
 					       min-length coding)
   "webページ中の英単語らしい文字列に対して、辞書検索用のアンカーを作成する。

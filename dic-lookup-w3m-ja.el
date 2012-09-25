@@ -442,7 +442,23 @@
     utf-8 nil "楽訳中国語辞書 中日")
    ("pinyin-jcdic" "http://www.jcdic.com/chinese_convert/index.php"
     utf-8
-    "codetxt=%s&remLen=800&cnbox=checked&twbox=checked&jpbox=checked&pybox=checked" "ピンイン")
+    "codetxt=%s&remLen=800&cnbox=checked&twbox=checked&jpbox=checked&pybox=checked"
+    "楽訳 ピンイン")
+
+   ;; くじらはんど
+   ("pinyin-kujirahand" "http://kujirahand.com/web-tools/pinyin.php"
+    utf-8 "text=%s&t=jian&rb=0&pf=1&kana=0" "くじらはんど ピンイン")
+
+   ;; MandarinSpot
+   ("pinyin-mandarinspot"
+    "http://mandarinspot.com/annotate?text=%s&spaces=1&phs=pinyin&show=both"
+    utf-8 nil "MandarinSpot ピンイン")
+   ("pinyin-mandarinspot-post" "http://mandarinspot.com/annotate"
+    utf-8 "text=%s&spaces=1&phs=pinyin&show=both" "MandarinSpot ピンイン")
+
+   ;; PinYin.JP
+   ("pinyin-pinyin.jp" "http://pinyin.jp/hz2py.cgi?hz=%s&tone=f"
+    utf-8 nil "PinYin.JP ピンイン")
 
    ;; hjenglish 中日
    ("cj-hjenglish" "http://dict.hjenglish.com/jp/w/%s&type=cj" utf-8 nil
@@ -1783,12 +1799,40 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
 	 dic-lookup-w3m-filter-onlinedic-symbol-alist
 	 "<img [^>]+images/\\([a-z0-9_]+\\)\\.gif[^>]*>")
-	(dic-lookup-w3m-filter-conv-pinyin "(\\(.*\\))")
 	)
        ("\\`http://www\\.jcdic\\.com/chinese_convert/index\\.php"
-	w3m-filter-delete-regions
-	"<body[^>]*>" "<td class=\"redword\">&nbsp;</td>" t nil t)
+	(w3m-filter-delete-regions
+	 "<body[^>]*>" "<td class=\"redword\">&nbsp;</td>" t nil t)
+	(w3m-filter-delete-regions "</form>" "</body>" t t)
+	(dic-lookup-w3m-filter-conv-pinyin
+	 "<div class=\"convert\">\\(.*\\)</div>")
+	)
 
+       ;; MandarinSpot
+       ("http://mandarinspot\\.com/annotate"
+	(w3m-filter-delete-regions
+	 "<body[^>]*>" "<div id=\"annotated\">" t nil t)
+	(w3m-filter-delete-regions
+	 "<div class=\"mid\" style=\"\">" "</body" nil t)
+	(dic-lookup-w3m-filter-word-anchor
+	 "cj-goo" "<div class=\"zh\">\\([^<]*\\)</div>" 1)
+	(w3m-filter-replace-regexp
+	 "<div class=\"\\(py\\|zh\\)\">\\([^<]*\\)</div>"
+	 "<span class=\"\\1\">\\2 </span>")
+	)
+
+       ;; PinYin.JP
+       ("http://pinyin\\.jp/hz2py\\.cgi"
+	(w3m-filter-delete-regions
+	 "<body[^>]*>" "<textarea name=hz cols=50 rows=5>" t t t)
+	(w3m-filter-delete-regions
+	 "</table>" "</body" nil t)
+	(w3m-filter-delete-regions
+	 "</textarea>"
+	 "変換後のピンイン</td><td><table class=t2><tr><td>" t)
+	(w3m-filter-replace-regexp
+	 "<textarea name=hz cols=50 rows=5>\\([^<]*\\)</textarea>" "\\1<br>")
+	)
        ;; hjenglish 中日
        ("\\`http://dict\\.hjenglish\\.com/.*type=cj"
 	dic-lookup-w3m-filter-related-links "cj-hjenglish" cj)
@@ -1943,6 +1987,19 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-delete-regions "<!--**********-->" "</body>" nil t)
 	)
 
+       ;; 書虫 pinyin
+       ("http://www\\.frelax\\.com/cgi-local/pinyin/hz2py\\.cgi"
+	(w3m-filter-delete-regions
+	 "<body[^>]*>" "</form>" t nil t)
+	(w3m-filter-replace-regexp
+	 "<table border=\"4\" cellpadding=\"2\" cellspacing=\"0\" bordercolor=\"#996633\">"
+	 "<table border=\"0\">")
+	(w3m-filter-replace-regexp
+	 "<td *align=\"center\">" "<td align=\"left\">")
+	(w3m-filter-replace-regexp
+	 "</?center>" "")
+	 )
+
        ;; pinyin chinese1
        ("\\`http://www\\.chinese1\\.jp/pinyin/gb2312/jp\\.asp"
 	(w3m-filter-delete-regions
@@ -2000,6 +2057,8 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "\\(<span class=\"ex\">[^<]*</span>\\)" "\\1 - ")
 	(w3m-filter-replace-regexp
 	 "\\(<span class=\"pinyin\">\\)" " \\1")
+	(dic-lookup-w3m-filter-word-anchor
+	 "pinyin-mandarinspot" "<span class=\"ex\">\\([^<]*\\)</span>" 1)
 	)
        ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/jc/"
 	dic-lookup-w3m-filter-related-links "jc-goo" cj)
@@ -2337,13 +2396,15 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
     ("jc-jcdic" . "JC-jcdic")
     ("jc-goo" . "JC-goo")
     ("jc-hjenglish" . "JC-hjenglish")
-    ("pinyin-cazoo" . "pinyin-cazoo")
+    ("pinyin-mandarinspot" . "py-mandarin")
+    ("pinyin-cazoo" . "py-cazoo")
     ("jj-yahoo" . "国語"))))
 
 (add-to-list
  'dic-lookup-w3m-related-site-list
  '(pinyin
-   (("pinyin-cazoo" . "py-cazoo")
+   (("pinyin-mandarinspot" . "py-mandarin")
+    ("pinyin-cazoo" . "py-cazoo")
     ("pinyin-chinese1" . "py-chinese1")
     ("pinyin-frelax" . "py-frelax")
     ("pinyin-ctrans" . "py-ctrans")
