@@ -726,6 +726,12 @@
     "http://japaneseclass.jp/tools/dictionary/%s" utf-8 nil
     "English-Japanese in English")
 
+   ;; NAVER
+   ("kj-naver" "http://krdic.naver.jp/search/all/%s/"
+    utf-8 nil "NAVER 韓日辞書")
+   ("jk-naver" "http://krdic.naver.jp/search/all/%s/"
+    utf-8 nil "NAVER 日韓辞書")
+
    ;;
    ;; translators
    ;;
@@ -2091,6 +2097,29 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	dic-lookup-w3m-filter-related-links "jj-ocn" jj)
        ("\\`http://ocndictionary\\.goo\\.ne\\.jp/search\\.php"
 	dic-lookup-w3m-filter-show-candidates "ej-ocn")
+
+       ;; NAVER 韓日、日韓
+       ("http://krdic\\.naver\\.jp/\\(search\\|entry\\)/"
+	(w3m-filter-delete-regions
+	 "<body[^>]*>" "<div class=\"[^\"]*section3" t t t t)
+	(w3m-filter-delete-regions
+	 "韓国語 動詞,形容詞活用情報</a>" "</body>" t t)
+	(w3m-filter-replace-regexp
+	 "\\(var g_query = \"\\([^\"]*\\)\";\\(?:\n.*\\)*\\)<a href=[^>]*>例文もっと見る</a>"
+	 "\\1<a href=\"http://krdic.naver.jp/search/ex/1/\\2\">例文もっと見る</a>")
+	(w3m-filter-replace-regexp
+	 "\\(var g_query = \"\\([^\"]*\\)\";\\(?:\n.*\\)*\\)<a href=[^>]*getParams('example', \\([0-9]*\\)[^>]*>前ページ</a>"
+	 "\\1<a href=\"http://krdic.naver.jp/search/ex/\\3/\\2\">前ページ</a>")
+	(w3m-filter-replace-regexp
+	 "\\(var g_query = \"\\([^\"]*\\)\";\\(?:\n.*\\)*\\)<a href=[^>]*getParams('example', \\([0-9]*\\)[^>]*>次ページ</a>"
+	 "\\1<a href=\"http://krdic.naver.jp/search/ex/\\3/\\2\">次ページ</a>")
+	)
+       ("http://krdic\\.naver\\.jp/entry/"
+	(w3m-filter-delete-regions
+	 "<body[^>]*>" "<div class=\"spot_area\">" t t t t)
+	(w3m-filter-delete-regions
+	 "<div class=\"list_select\">" "<div class=\"section\">" nil t)
+	)
 
        ;;
        ;; translators
