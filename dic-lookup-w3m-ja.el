@@ -2051,7 +2051,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<img src=\"[^>]*/img[^>]*/\\([a-z_0-9]+\\)\\.gif\"[^>]*>")
 	(w3m-filter-delete-regions "<div class=\"buttons-panel\">"
 				   "</div>" nil t)
-
+	(w3m-filter-delete-regions "<ul class=\"enditMean\">" "</ul>")
 	(w3m-filter-replace-regexp "\\(<div id=\"spoLine\">\\)" "<br>\\1")
 	)
        ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/ej/"
@@ -2070,7 +2070,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	dic-lookup-w3m-filter-related-links "jj-goo" jj "/m0u/%s/")
        ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/cj/"
 	dic-lookup-w3m-filter-related-links "cj-goo" cj)
-       ("http://dictionary\\.goo\\.ne\\.jp/leaf/cj/"
+       ("\\`http://dictionary\\.goo\\.ne\\.jp/leaf/cj/"
 	(dic-lookup-w3m-filter-related-links "cj-goo" cj "/m0u/%s/")
 	(w3m-filter-replace-regexp
 	 "\\(<span class=\"ex\">[^<]*</span>\\)" "\\1 - ")
@@ -2078,6 +2078,9 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "\\(<span class=\"pinyin\">\\)" " \\1")
 	(dic-lookup-w3m-filter-word-anchor
 	 "pinyin-mandarinspot" "<span class=\"ex\">\\([^<]*\\)</span>" 1)
+	(w3m-filter-replace-regexp
+	 "【同】\\([^<)]+\\)\\([^<]*\\)</span>"
+	 "【同】<a href=\"/srch/cj/\\1/m0u/\">\\1</a>\\2</span>")
 	)
        ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/jc/"
 	dic-lookup-w3m-filter-related-links "jc-goo" cj)
