@@ -1700,8 +1700,9 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-delete-regions
 	 "<body[^>]*>" "<div id=\"yeduarticlenavigationtop\"[^>]*>" t t t t)
 	(w3m-filter-replace-regexp
-	 "<img border=\"0\" src=\"http://l.yimg.com/a/i/edu/ref/ahd/t/pron.jpg\" align=\"absbottom\" alt=\"audio\">"
+	 "<img [^>]*src=\"http://l.yimg.com/a/i/edu/ref/ahd/t/pron.jpg\"[^<]*>"
 	 "♪")
+	(dic-lookup-w3m-filter-eword-anchor "ee-yahoo.com")
 	)
        ("\\`http://education\\.yahoo\\.com/reference/dict_en_es/"
 	(w3m-filter-delete-regions "<body[^>]*>" "Your search: " t t t)
