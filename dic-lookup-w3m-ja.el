@@ -67,7 +67,10 @@
     utf-8 nil "大辞林")
    ("thesaurus-j-yahoo" "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p=%s&dtype=5"
     utf-8 nil "必携類語実用辞典")
-   ("encyclopedia-yahoo" "http://100.yahoo.co.jp/search?p=%s"
+   ;; ("encyclopedia-yahoo" "http://100.yahoo.co.jp/search?p=%s"
+   ;;  utf-8 nil "日本大百科全書")
+   ("encyclopedia-yahoo"
+    "http://dic.search.yahoo.co.jp/dsearch?ei=UTF-8&p=%s&fr=dic&stype=prefix&dic_id=100&b=1"
     utf-8 nil "日本大百科全書")
 
    ;; excite
@@ -1567,8 +1570,9 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	  '("" dic-lookup-w3m-filter-translation-anchor)) ; ページ翻訳ボタン
 
        ;; yahoo dic
-       ("\\`http://dic\\.yahoo\\.co\\.jp/dsearch"
-	(w3m-filter-delete-regions "<body[^>]*>" "<div class=\"result-100\">" t t t)
+       ("\\`http://dic\\.\\(search\\.\\)?yahoo\\.co\\.jp/d?search"
+	(w3m-filter-delete-regions "<body[^>]*>" "<!-- /navi -->" t nil t)
+	(w3m-filter-delete-regions "<body[^>]*>" "<div id=\"mIn\">" t t t)
 	(w3m-filter-delete-regions "<!-- QR -->" "</body>" nil t)
 	(w3m-filter-replace-regexp
 	 "<img src=\"http://img.yahoo.co.jp/images/clear.gif\"[^>]*>" "")
@@ -1684,12 +1688,20 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	w3m-filter-delete-regions "<body>" "<!-- Begin results area -->" t)
 
        ;; yahoo.com
-       ("\\`http://education\\.yahoo\\.com/reference/dictionary/"
+       ("\\`http://education\\.yahoo\\.com/reference/[^/]+/"
+	(w3m-filter-delete-regions
+	 "<body[^>]*>" "<p class='bodytext'>" t t t)
+	(w3m-filter-delete-regions
+	 "<font face=\"arial\" size=\"-2\">Visit our partner's site</font>"
+	 "\\'" nil nil nil t)
 	(w3m-filter-delete-regions
 	 "<body[^>]*>"
 	 "<div id=\"yedusearchresultspaginationtop\"[^>]*>" t t t t)
 	(w3m-filter-delete-regions
 	 "<body[^>]*>" "<div id=\"yeduarticlenavigationtop\"[^>]*>" t t t t)
+	(w3m-filter-replace-regexp
+	 "<img border=\"0\" src=\"http://l.yimg.com/a/i/edu/ref/ahd/t/pron.jpg\" align=\"absbottom\" alt=\"audio\">"
+	 "♪")
 	)
        ("\\`http://education\\.yahoo\\.com/reference/dict_en_es/"
 	(w3m-filter-delete-regions "<body[^>]*>" "Your search: " t t t)
@@ -2348,6 +2360,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
    ("\\`http://www\\.winttk\\.com/kakijun/" t)
    ("\\`http://www\\.human\\.gr\\.jp/hitsujun/" t)
    ("\\`http://kakijun\\.main\\.jp/page/" t)
+   ("\\`http://education\\.yahoo\\.com/reference/[^/]+/" t)
    ))
 
 (add-to-list
