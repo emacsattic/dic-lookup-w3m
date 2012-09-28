@@ -1620,12 +1620,6 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(dic-lookup-w3m-filter-eword-anchor "ej-excite")
 	)
        ("\\`http://www\\.excite\\.co\\.jp/dictionary/.*english.*/.*search="
-	(w3m-filter-replace-regexp
-	 "</body>"
-	 "<form action=\"/dictionary/english_japanese/\" method=\"get\" name=\"dictionary_form\">
-<input name=\"search\" size=\"30\">
-<input type=\"submit\" value=\"検索\" name=\"submit\">
-</body>")
 	(dic-lookup-w3m-filter-related-links "ej-excite" ej)
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
 	 dic-lookup-w3m-filter-excite-ej-symbol-alist
@@ -1958,9 +1952,12 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	dic-lookup-w3m-filter-related-links "jc-kitajiro" cj)
        ("\\`http://www\\.ctrans\\.org/"
 	(w3m-filter-delete-regions "<p class=\"edit\">" "</p>")
-	(w3m-filter-replace-regexp
-	 "<span class=\"cn\" xml:lang=\"zh\" lang=\"zh\">\\(.*\\)</span>"
-	 "・ \\1 ⇒<a href=\"http://www.cazoo.jp/cgi-bin/pinyin/index.html?hanzi=\\1\">pinyin</a>")
+	(dic-lookup-w3m-filter-word-anchor
+	 "pinyin-mandarinspot"
+	 "<span class=\"cn\" xml:lang=\"zh\" lang=\"zh\">\\(.*\\)</span>" 1)
+	;; (w3m-filter-replace-regexp
+	;;  "<span class=\"cn\" xml:lang=\"zh\" lang=\"zh\">\\(.*\\)</span>"
+	;;  "・ \\1 ⇒<a href=\"http://mandarinspot.com/annotate?text=\\1&spaces=1&phs=pinyin&show=both\">pinyin</a>")
 	(dic-lookup-w3m-filter-conv-pinyin
 	 "<span class=\"pyn\">\\(.*\\)</span>")
 	)
