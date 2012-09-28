@@ -734,6 +734,10 @@
     utf-8 nil "NAVER 韓日辞書")
    ("jk-naver" "http://krdic.naver.jp/search/all/%s/"
     utf-8 nil "NAVER 日韓辞書")
+   ("cj-naver" "http://cndic.naver.jp/srch/all/1/%s"
+    utf-8 nil "NAVER 中日辞書")
+   ("jc-naver" "http://cndic.naver.jp/srch/all/1/%s"
+    utf-8 nil "NAVER 日中辞書")
 
    ;;
    ;; translators
@@ -2112,26 +2116,78 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	dic-lookup-w3m-filter-show-candidates "ej-ocn")
 
        ;; NAVER 韓日、日韓
-       ("http://krdic\\.naver\\.jp/\\(search\\|entry\\)/"
+       ("\\`http://krdic\\.naver\\.jp/\\(search\\|entry\\)/"
 	(w3m-filter-delete-regions
 	 "<body[^>]*>" "<div class=\"[^\"]*section3" t t t t)
 	(w3m-filter-delete-regions
 	 "韓国語 動詞,形容詞活用情報</a>" "</body>" t t)
 	(w3m-filter-replace-regexp
 	 "\\(var g_query = \"\\([^\"]*\\)\";\\(?:\n.*\\)*\\)<a href=[^>]*>例文もっと見る</a>"
-	 "\\1<a href=\"http://krdic.naver.jp/search/ex/1/\\2\">例文もっと見る</a>")
+	 "\\1<a href=\"/search/ex/1/\\2\">例文もっと見る</a>")
 	(w3m-filter-replace-regexp
 	 "\\(var g_query = \"\\([^\"]*\\)\";\\(?:\n.*\\)*\\)<a href=[^>]*getParams('example', \\([0-9]*\\)[^>]*>前ページ</a>"
-	 "\\1<a href=\"http://krdic.naver.jp/search/ex/\\3/\\2\">前ページ</a>")
+	 "\\1<a href=\"/search/ex/\\3/\\2\">前ページ</a>")
 	(w3m-filter-replace-regexp
 	 "\\(var g_query = \"\\([^\"]*\\)\";\\(?:\n.*\\)*\\)<a href=[^>]*getParams('example', \\([0-9]*\\)[^>]*>次ページ</a>"
-	 "\\1<a href=\"http://krdic.naver.jp/search/ex/\\3/\\2\">次ページ</a>")
+	 "\\1<a href=\"/search/ex/\\3/\\2\">次ページ</a>")
 	)
-       ("http://krdic\\.naver\\.jp/entry/"
+       ("\\`http://krdic\\.naver\\.jp/entry/"
 	(w3m-filter-delete-regions
 	 "<body[^>]*>" "<div class=\"spot_area\">" t t t t)
 	(w3m-filter-delete-regions
 	 "<div class=\"list_select\">" "<div class=\"section\">" nil t)
+	)
+       ;; NAVER 中日、日中
+       ("http://cndic\\.naver\\.jp/\\(srch\\|cje\\|jce\\)/"
+	(w3m-filter-delete-regions
+	 "<body[^>]*>" "<div class=\"word_view\">" t t t)
+	(w3m-filter-delete-regions
+	 "<div class=\"pron\">" "<div class=\"into\">" nil t)
+	(w3m-filter-replace-regexp
+	 "<a href=[^>]*>中日もっと見る</a>\\(\\(\n\\|[^\n]\\)*var g_query = \"\\([^\"]*\\)\";\\)"
+	 "<a href=\"/srch/cj/1/\\3\">中日もっと見る</a>\\1")
+	(w3m-filter-replace-regexp
+	 "<a title=\"前ページ\"[^>]*getParams('cjentry', \\([0-9]*\\)[^>]*>.*</a>\\(\\(?:\n\\|[^\n]\\)*var g_query = \"\\([^\"]*\\)\";\\)"
+	 "<a href=\"/srch/cj/\\1/\\3\">前ページ</a>\\2")
+	(w3m-filter-replace-regexp
+	 "<a title=\"次ページ\"[^>]*getParams('cjentry', \\([0-9]*\\)[^>]*>.*</a>\\(\\(?:\n\\|[^\n]\\)*var g_query = \"\\([^\"]*\\)\";\\)"
+	 "<a href=\"/srch/cj/\\1/\\3\">次ページ</a>\\2")
+	(w3m-filter-replace-regexp
+	 "<a href=[^>]*>例文もっと見る</a>\\(\\(\n\\|[^\n]\\)*var g_query = \"\\([^\"]*\\)\";\\)"
+	 "<a href=\"/srch/ex/1/\\3\">例文もっと見る</a>\\1")
+	(w3m-filter-replace-regexp
+	 "<a title=\"前ページ\"[^>]*getParams('example', \\([0-9]*\\)[^>]*>.*</a>\\(\\(?:\n\\|[^\n]\\)*var g_query = \"\\([^\"]*\\)\";\\)"
+	 "<a href=\"/srch/ex/\\1/\\3\">前ページ</a>\\2")
+	(w3m-filter-replace-regexp
+	 "<a title=\"次ページ\"[^>]*getParams('example', \\([0-9]*\\)[^>]*>.*</a>\\(\\(?:\n\\|[^\n]\\)*var g_query = \"\\([^\"]*\\)\";\\)"
+	 "<a href=\"/srch/ex/\\1/\\3\">次ページ</a>\\2")
+	(w3m-filter-delete-regions
+	 "<div style=\"top: 413px; left: 90px; display:none\" class=\"ly_play example_play\" id=\"div_exmple_pingyin\">"
+	 "<!-- //CONTENT -->")
+	)
+       ("http://cndic\\.naver\\.jp/srch/"
+	(w3m-filter-delete-regions
+	 "<body[^>]*>" "<div class=\"zoom_lv\" id=\"zoom\">" t t t t)
+	)
+       ("http://cndic.naver.jp/cje/"
+	(w3m-filter-delete-regions
+	 "<div class=\"pron\">" "<div class=\"section\">")
+	(w3m-filter-delete-regions
+	 "<div style=\"visibility: hidden; left: 15px; top: 114px;\" class=\"controller control0\">"
+	 "</body>" nil t)
+	(w3m-filter-replace-regexp
+	 "<a [^>]*purl=\"\\([^|]+\\)|\\([^|]+\\)[^>]*><img [^>]*></a>"
+	 " ♪<a href=\"\\1\" type=\"audio/mpeg\">女性</a>|<a href=\"\\2\" type=\"audio/x-wav\">男性</a>")
+	(w3m-filter-replace-regexp
+	 "<a [^>]*strokeOrdFile=\"\\([^\"]+\\)\"[^>]*>書き順を表示[^<]*</a>"
+	 "<a href=\"http://dicimg.naver.com/cndic/chinese/stroke/\\1\" type=\"application/x-shockwave-flash\">書き順</a>")
+	(w3m-filter-replace-regexp
+	 "<span class=\"eword\">" "<br><span class=\"eword\">")
+	(w3m-filter-replace-regexp
+	 "<a href=\"#\" class=\"play\"[^>]*><img [^>]*clickcr(this,'pos.examlisten'[^>]*></a>"
+	 "&nbsp;")
+	(w3m-filter-delete-regions "<button class=\"repeat\"" "</button>")
+	(w3m-filter-delete-regions "<button class=\"speed\"" "</button>")
 	)
 
        ;;
