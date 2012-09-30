@@ -285,6 +285,7 @@ nilなら`w3m-goto-url'が選択するセッションで検索を行う。(w3m�
 
 (defvar dic-lookup-w3m-query "" "query string. 作業用一時データ")
 
+;;;###autoload
 (defun dic-lookup-w3m (&optional search-engine query)
   "w3mを使ってインターネット上の辞書を引く。または翻訳する。
 
