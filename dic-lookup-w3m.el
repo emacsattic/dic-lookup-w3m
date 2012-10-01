@@ -719,6 +719,7 @@ See the command \\[dic-lookup-w3m]."
   '()
   :group 'dic-lookup-w3m)
 
+;;;###autoload
 (defun dic-lookup-w3m-search-engine-menu (arg)
   "search engineの一覧を表示する。
 表示は``dic-lookup-w3m-search-engine-alist''に出現する順。
@@ -752,6 +753,7 @@ C-uで名前でソート、C-u C-uで説明でソート。"
     (w3m-gohome)
     (w3m-redisplay-this-page)))
 
+;;;###autoload
 (defun dic-lookup-w3m-txt2html (&optional search-engine min-length)
   "カレントバッファのテキストを簡易なhtmlに変換する。
 バッファ内の各英単語らしい文字列から辞書へのリンクを張る。
@@ -769,6 +771,7 @@ C-uで名前でソート、C-u C-uで説明でソート。"
 
 (defvar dic-lookup-w3m-temp-buffer " *dic-lookup-w3m-work*" "temp buffer")
 
+;;;###autoload
 (defun dic-lookup-w3m-txt2w3m (&optional search-engine min-length)
   "カレントバッファのテキストを簡易なhtmlに変換してw3mで開く。
 バッファ内の各英単語から辞書へのリンクを張る。"
@@ -833,6 +836,7 @@ C-uで名前でソート、C-u C-uで説明でソート。"
 ;; (defvar dic-lookup-w3m-morpheme-eos "EOS"
 ;;   "*形態素解析エンジンの出力の文末表示文字列。")
 
+;;;###autoload
 (defun dic-lookup-w3m-jtxt2w3m (&optional search-engine query)
   "日本語のテキストを、各単語に辞書へのリンクを付けたhtmlに変換してw3mで開く。
 ミニバッファに入力したテキストまたはカレントバッファのテキストを簡
