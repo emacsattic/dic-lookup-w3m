@@ -3,8 +3,8 @@
 ;; Copyright (C) 2008, 2009, 2010, 2011  mcprvmec
 
 ;; Author: mcprvmec
-
 ;; Keywords: emacs-w3m, w3m, dictionary
+;; Package-Requires: ((w3m "20120723.324") (stem "20120826"))
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
 ;;; Commentary:
 
 ;; Look up in dictionaries on the Internet using emacs-w3m.
-
+;;
 ;; Requirements:
 ;; emacs-w3m
 ;; http://emacs-w3m.namazu.org/
