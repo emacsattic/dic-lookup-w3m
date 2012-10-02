@@ -738,6 +738,10 @@
     utf-8 nil "NAVER 中日辞書")
    ("jc-naver" "http://cndic.naver.jp/srch/all/1/%s"
     utf-8 nil "NAVER 日中辞書")
+   ("ej-naver" "http://endic.naver.jp/srch/all/N/%s"
+    utf-8 nil "NAVER 英和辞書")
+   ("je-naver" "http://endic.naver.jp/srch/all/N/%s"
+    utf-8 nil "NAVER 和英辞書")
 
    ;;
    ;; translators
@@ -2164,6 +2168,17 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-delete-regions
 	 "<div style=\"top: 413px; left: 90px; display:none\" class=\"ly_play example_play\" id=\"div_exmple_pingyin\">"
 	 "<!-- //CONTENT -->")
+	(w3m-filter-replace-regexp
+	 "<a [^>]*pUrl=\"\\([^|]+\\)|\\([^|]+\\)[^>]*><img [^>]*></a>"
+	 " ♪<a href=\"\\1\" type=\"audio/mpeg\">女性</a>|<a href=\"\\2\" type=\"audio/x-wav\">男性</a>")
+	(w3m-filter-replace-regexp
+	 "<a [^>]*><img [^>]*pUrl=\"\\([^|]+\\)|\\([^|]+\\)[^>]*></a>"
+	 " ♪<a href=\"\\1\" type=\"audio/mpeg\">女性</a>|<a href=\"\\2\" type=\"audio/x-wav\">男性</a>")
+	(w3m-filter-delete-regions
+	 "<a href=\"#\" class=\"x\" title=\"削除\"" "</a>")
+	(w3m-filter-delete-regions
+	 "<a href=\"#\" alt=\"クリア\" title=\"クリア\" class=\"btn_delete"
+	 "</a>")
 	)
        ("http://cndic\\.naver\\.jp/srch/"
 	(w3m-filter-delete-regions
@@ -2175,9 +2190,6 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-delete-regions
 	 "<div style=\"visibility: hidden; left: 15px; top: 114px;\" class=\"controller control0\">"
 	 "</body>" nil t)
-	(w3m-filter-replace-regexp
-	 "<a [^>]*purl=\"\\([^|]+\\)|\\([^|]+\\)[^>]*><img [^>]*></a>"
-	 " ♪<a href=\"\\1\" type=\"audio/mpeg\">女性</a>|<a href=\"\\2\" type=\"audio/x-wav\">男性</a>")
 	(w3m-filter-replace-regexp
 	 "<a [^>]*strokeOrdFile=\"\\([^\"]+\\)\"[^>]*>書き順を表示[^<]*</a>"
 	 "<a href=\"http://dicimg.naver.com/cndic/chinese/stroke/\\1\" type=\"application/x-shockwave-flash\">書き順</a>")
@@ -2483,10 +2495,11 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
  '(cj
    (("cj-excite" . "CJ-excite")
     ("cj-kitajiro" . "CJ北")
+    ("cj-goo" . "CJ-goo")
+    ("cj-naver" . "CJ-naver")
     ("cj-bitex" . "CJ-bitex")
     ("cj-tonko-jikai" . "CJ敦煌")
     ("cj-jcdic" . "CJ-jcdic")
-    ("cj-goo" . "CJ-goo")
     ("cj-hjenglish" . "CJ-hjenglish")
     ("jc-excite" . "JC-excite")
     ("jc-kitajiro" . "JC北")
