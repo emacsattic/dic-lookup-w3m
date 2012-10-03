@@ -1,6 +1,6 @@
 ;;; dic-lookup-w3m.el --- look up dictionaries on the Internet
 
-;; Copyright (C) 2008, 2009, 2010, 2011  mcprvmec
+;; Copyright (C) 2008, 2009, 2010, 2011, 2012  mcprvmec
 
 ;; Author: mcprvmec
 ;; Keywords: emacs-w3m, w3m, dictionary
@@ -22,9 +22,9 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Commentary:
-
 ;; Look up in dictionaries on the Internet using emacs-w3m.
-;;
+
+;;; Usage:
 ;; Requirements:
 ;; emacs-w3m
 ;; http://emacs-w3m.namazu.org/
@@ -584,7 +584,7 @@ stem.elはsdicに含まれています。またlookupにstem-english.elという
 	 (candidates (stem:stripping-suffix
 		      (dic-lookup-w3m-get-query-from-url url baseurl coding)))
 	 (candidates2 (stem:stripping-suffix dic-lookup-w3m-query)))
-    (mapc '(lambda (s) (setq candidates2 (delete s candidates2)))
+    (mapc #'(lambda (s) (setq candidates2 (delete s candidates2)))
 	  candidates)
     (if (or candidates candidates2)
 	(w3m-filter-replace-regexp
@@ -732,7 +732,7 @@ C-uで名前でソート、C-u C-uで説明でソート。"
       (insert
        "<html><head><title>search engine list</title></head><body><table>\n")
       (mapc
-       '(lambda (e)
+       #'(lambda (e)
 	  (insert
 	   (format "<tr><td><a href=\"%s\">%s</a></td><td>%s</td></tr>\n"
 		   (if (string-match "%s" (cadr e))
@@ -743,10 +743,10 @@ C-uで名前でソート、C-u C-uで説明でソート。"
        (cond
 	((eq arg 4)
 	 (sort (copy-sequence dic-lookup-w3m-search-engine-alist)
-	       '(lambda (a b) (string< (car a) (car b)))))
+	       #'(lambda (a b) (string< (car a) (car b)))))
 	((eq arg 16)
 	 (sort (copy-sequence dic-lookup-w3m-search-engine-alist)
-	       '(lambda (a b) (string< (nth 4 a) (nth 4 b)))))
+	       #'(lambda (a b) (string< (nth 4 a) (nth 4 b)))))
 	(t (reverse dic-lookup-w3m-search-engine-alist))))
       (insert "</table></body></html>\n"))
     (ad-activate 'w3m-about)
@@ -903,7 +903,7 @@ C-uで名前でソート、C-u C-uで説明でソート。"
 	    (if (and
 		 (re-search-forward
 		  (mapconcat
-		   '(lambda (c)
+		   #'(lambda (c)
 		      (regexp-quote (string c)))
 		   (car morpheme) "\\([ 　\t\n]\\)*")
 		  nil t)

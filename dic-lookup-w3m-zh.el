@@ -1,6 +1,6 @@
 ;;; dic-lookup-w3m-zh.el --- look up dictionaries on the Internet
 
-;; Copyright (C) 2009, 2010, 2011  mcprvmec
+;; Copyright (C) 2009, 2010, 2011, 2012  mcprvmec
 
 ;; Author: mcprvmec
 
@@ -28,7 +28,7 @@
 ;; 实例
 
 (mapc
- '(lambda (elem) (add-to-list 'dic-lookup-w3m-search-engine-alist elem))
+ #'(lambda (elem) (add-to-list 'dic-lookup-w3m-search-engine-alist elem))
  '(
    ;; 百度
    ("cc-baidu"
@@ -136,7 +136,7 @@
 (defvar dic-lookup-w3m-inline-image-rules '())
 
 (mapc
- '(lambda (elem) (add-to-list 'dic-lookup-w3m-inline-image-rules elem))
+ #'(lambda (elem) (add-to-list 'dic-lookup-w3m-inline-image-rules elem))
  '(("\\`http://www\\.zdic\\.net/" . t)))
 
 ;; http://baike.baidu.com/ 现代汉语词典 第五版。中国社会科学院言語研究所編，商務印書館出版

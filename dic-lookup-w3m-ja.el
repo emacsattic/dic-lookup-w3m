@@ -31,7 +31,7 @@
   (append
    list
    (mapcar
-    '(lambda (elem)
+    #'(lambda (elem)
        (append
 	(list (concat (nth 0 elem) "-get")
 	      (concat (nth 1 elem) "?" (nth 3 elem))
@@ -48,7 +48,7 @@
       (setq max-lisp-eval-depth 1000)))
 
 (mapc
- '(lambda (elem) (add-to-list 'dic-lookup-w3m-search-engine-alist elem))
+ #'(lambda (elem) (add-to-list 'dic-lookup-w3m-search-engine-alist elem))
  `(
    ;; yahoo dtype; 0:国語, 1:英和, 2:すべての辞書, 3:和英, 5:類語
    ("ej-yahoo" "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p=%s&dtype=1"
@@ -1681,7 +1681,7 @@ nilの場合はすべての言語を対象にする。nil X nilは起動が遅�
 	(unless (equal l2 l1)
 	  (dolist (arg (list (list l1 l2) (list l2 l1)))
 	    (apply
-	     '(lambda (l1 l2)
+	     #'(lambda (l1 l2)
 		(add-to-list
 		 'dic-lookup-w3m-search-engine-alist
 		 (list
@@ -1705,7 +1705,7 @@ nilの場合はすべての言語を対象にする。nil X nilは起動が遅�
 
 ;; google translator (aliases)
 (mapc
- '(lambda (e) (add-to-list 'dic-lookup-w3m-search-engine-aliases e))
+ #'(lambda (e) (add-to-list 'dic-lookup-w3m-search-engine-aliases e))
  '(("tr-ej-google" "tr-enja-google")
    ("tr-je-google" "tr-jaen-google")
    ("tr-cj-google" "tr-zh-CNja-google")
@@ -2371,7 +2371,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "")
 	(w3m-filter-replace-regexp
 	 "<a [^>]*class=\"[^\"]*audio[^>]*data-url=\\(\"[^\"]+\"\\)[^>]*><img [^>]*/></a>"
-	 " <a href=\\1 charset=\"euc-jp\">♪</a>")
+	 " <a href=\\1\">♪</a>")
 	(w3m-filter-delete-regions
 	 "<aside><div authorUrl=[^>]*>" "</div></aside>" nil nil t)
 	)
@@ -2561,7 +2561,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 (defvar dic-lookup-w3m-inline-image-rules '())
 
 (mapc
- '(lambda (elem) (add-to-list 'dic-lookup-w3m-inline-image-rules elem))
+ #'(lambda (elem) (add-to-list 'dic-lookup-w3m-inline-image-rules elem))
  '(("\\`http://www\\.excite\\.co\\.jp/dictionary/english_japanese/\\?search=" . t)
    ("\\`http://www\\.excite\\.co\\.jp/dictionary/japanese/\\?search=" . t)
    ("\\`http://www\\.excite\\.co\\.jp/dictionary/chinese_japanese/\\?search=" . t)
@@ -3447,7 +3447,7 @@ Fix me!")
 (defvar dic-lookup-w3m-filter-weblio-ej-symbol-alist
   `(
     ,@(mapcar
-       '(lambda (elem)
+       #'(lambda (elem)
 	  (cons (concat "N16-" (upcase (car elem)) "_F-000000_B-FFFFFF")
 		(cdr elem)))
        dic-lookup-w3m-filter-excite-ej-symbol-alist)

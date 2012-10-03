@@ -1,6 +1,6 @@
 ;;; dic-lookup-w3m-text-translator.el --- look up dictionaries on the Internet
 
-;; Copyright (C) 2008, 2009  mcprvmec
+;; Copyright (C) 2008, 2009, 2012  mcprvmec
 
 ;; Author: mcprvmec
 
@@ -29,7 +29,7 @@
 
 (defvar dic-lookup-w3m-search-engine-alist '())
 (mapc
- '(lambda (elem)
+ #'(lambda (elem)
     (add-to-list
      'dic-lookup-w3m-search-engine-alist
      (list
