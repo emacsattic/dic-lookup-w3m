@@ -1604,7 +1604,7 @@ nilの場合はすべての言語を対象にする。nil X nilは起動が遅�
     (dolist (l2 langs2)
       (dolist (arg (list (list l1 l2) (list l2 l1)))
 	(apply
-	 '(lambda (l1 l2)
+	 #'(lambda (l1 l2)
 	    (add-to-list
 	     'dic-lookup-w3m-search-engine-alist
 	     (list
@@ -1795,8 +1795,8 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	)
        ("\\`http://www\\.excite\\.co\\.jp/dictionary/japanese/\\?search="
 	(w3m-filter-replace-regexp
-	 "<span class=\"NetDicItemLink\" ItemID=\"\\([0-9]+\\)\">\\([^<]+\\)</span>"
-	 "<a href=\"./?search=&itemid=\\1\">\\2</a>")
+	 "<span class=\"NetDicItemLink\" ItemID=\"\\([^\"]+\\)\">\\(\\([^<]+\\).*\</span>\\)"
+	 "<a href=\"./?search=\\3&itemid=\\1\">\\2</a>")
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
 	 dic-lookup-w3m-filter-excite-jj-symbol-alist
 	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource.aspx\\?set=daijirin-gi&amp;name=\\([A-Z0-9]+\\)\"[^>]*>")
@@ -1814,8 +1814,8 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
        ("\\`http://www\\.excite\\.co\\.jp/dictionary/japanese_chinese/\\?search="
 	(dic-lookup-w3m-filter-related-links "jc-excite" cj)
 	(w3m-filter-replace-regexp
-	 "\\(<img src=\"http://image\\.excite\\.co\\.jp/jp/dictionary/japanese_chinese/\\(yakugo\\|youyaku\\)\\.gif\" width=16 height=16 border=0>\\)\\(.*\\)\\(&nbsp;\\)"
-	 "\\1<a href=\"http://www.excite.co.jp/dictionary/chinese_japanese/?search=\\3\">\\3</a>\\4")
+	 "\\(<img src=\"http://image\\.excite\\.co\\.jp/jp/dictionary/japanese_chinese/\\(yakugo\\|youyaku\\)\.gif\"[^>]*/>\\)\\([^<]+\\)\\(&nbsp;\\)"
+	 "\\1<a href=\"/dictionary/chinese_japanese/?search=\\3\">\\3</a>\\4")
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
 	 dic-lookup-w3m-filter-excite-cj-symbol-alist
 	 "<img src=\"?http://image\\.excite\\.co\\.jp/jp/dictionary/\\(pinyin\\|japanese_chinese\\)/\\([a-z_0-9]+\\)\\.gif\"?[^>]*>"
@@ -1966,7 +1966,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-replace-regexp "</?font[^>]*>" "")
 	(w3m-filter-replace-regexp
 	 "\\(<td class=\"line1\">中国語：</td><td class=\"line2\">\\)\\([^<]+\\)</td>"
-	 "\\1\\2 ⇒<a href=\"http://www.cazoo.jp/cgi-bin/pinyin/index.html?hanzi=\\2\">pinyin</a></td>")
+	 "\\1\\2 ⇒<a href=\"http://mandarinspot.com/annotate?text=\\2&spaces=1&phs=pinyin&show=both\">pinyin</a>")
 	)
 
        ;; 楽訳中国語辞書
@@ -2362,7 +2362,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	)
 
        ;; Glosbe 多言語オンライン辞書、翻訳メモリ
-       ("\\`http://ja\.glosbe\.com/[^/]+/[^/]+/"
+       ("\\`http://\\([a-z]+\.\\)?glosbe\.com/[^/]+/[^/]+/"
 	(w3m-filter-delete-regions
 	 "<body[^>]*>" "<div [^>]*id=\"wordListWidget\">" t t t t)
 	(w3m-filter-delete-regions "<div id=\"footer\">" "</body>" nil t)
