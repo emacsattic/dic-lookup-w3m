@@ -1778,6 +1778,8 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-delete-regions
 	 "<div class=\"content cnja\">" "<div class=\"wordDetails\">" nil t)
 	(w3m-filter-replace-regexp
+	 "<div class=\"wordDetails\">" "<br><div class=\"wordDetails\">")
+	(w3m-filter-replace-regexp
 	 "\\(<div class=\"dictionary_history\">\\)" "\\1<br>")
 	(w3m-filter-delete-regions "<body>" "<div class=\"section\">" t t)
 	(w3m-filter-delete-regions
