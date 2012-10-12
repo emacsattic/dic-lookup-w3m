@@ -2147,11 +2147,21 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<!-- START Espritline Affiliate CODE -->"
 	 "<!-- END Espritline Affiliate CODE -->")
 	(w3m-filter-delete-regions "<div class=adBoxHE>" "</body>" nil t)
-	(w3m-filter-replace-regexp "<span>用例</span>" "[用例]")
-	(w3m-filter-replace-regexp "<div class=KejjeYrTtl>用例</div>" "[用例]")
-	(dic-lookup-w3m-filter-convert-phonetic-symbol
-	 dic-lookup-w3m-filter-weblio-ej-symbol-alist
-	 "<img [^>]*src=\"http://www\\.weblio\\.jp/[^>]*/\\([^/\" ]+\\)\\.\\(gif\\|png\\)\"[^>]*>")
+	;; (w3m-filter-replace-regexp "<span>用例</span>" "[用例]")
+	;; (w3m-filter-replace-regexp "<div class=KejjeYrTtl>用例</div>" "[用例]")
+	;; (dic-lookup-w3m-filter-convert-phonetic-symbol
+	;;  dic-lookup-w3m-filter-weblio-ej-symbol-alist
+	;;  "<img [^>]*src=\"http://www\\.weblio\\.jp/[^>]*/\\([^/\" ]+\\)\\.\\(gif\\|png\\)\"[^>]*>")
+	(w3m-filter-replace-regexp
+	 "<img src=\"http://www.westatic.com/img/showMorePlus.png\"[^>]*>" "")
+	(w3m-filter-replace-regexp
+	 "<img src=\"http://www.westatic.com/img/icons/iconWlaAdFL.png\"[^>]*>" "")
+	(w3m-filter-replace-regexp
+	 "<div [^>]*playSwfSound('http://www.westatic.com/wbr/CHUJITEN/', '\\([^']+\\)'[^>]*><img [^>]*></div>"
+	 "<a href=\"http://www.westatic.com/wbr/CHUJITEN/\\1.wav\">♪ダウンロード再生</a>")
+	(w3m-filter-replace-regexp
+	 "<td [^>]*><span [^>]*>用例</span></td>"
+	 "<td valign=\"top\"><span>[例]</span></td>")
        	(dic-lookup-w3m-filter-related-links "ej-weblio" ej)
 	(dic-lookup-w3m-filter-show-candidates "ej-weblio")
 	(w3m-filter-delete-regions
@@ -2601,7 +2611,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
    ("\\`http://ext\\.dictionary\\.goo\\.ne\\.jp/" . t)
    ("\\`http://ocndictionary\\.goo\\.ne\\.jp/search\\.php" . t)
    ("\\`http://www5\\.mediagalaxy\\.co\\.jp/CGI/sanshushadj/search\\.cgi" . t)
-   ("\\`http://ejje\\.weblio\\.jp/content/" . t)
+   ;; ("\\`http://ejje\\.weblio\\.jp/content/" . t)
    ("\\`http://www\\.winttk\\.com/kakijun/" t)
    ("\\`http://www\\.human\\.gr\\.jp/hitsujun/" t)
    ("\\`http://kakijun\\.main\\.jp/page/" t)
@@ -3446,41 +3456,41 @@ Fix me!")
   "infoseek 英和辞典の発音記号とフォントの変換テーブル。
 Fix me!")
 
-(defvar dic-lookup-w3m-filter-weblio-ej-symbol-alist
-  `(
-    ,@(mapcar
-       #'(lambda (elem)
-	  (cons (concat "N16-" (upcase (car elem)) "_F-000000_B-FFFFFF")
-		(cdr elem)))
-       dic-lookup-w3m-filter-excite-ej-symbol-alist)
-
-    ("W16-A343_F-000000_B-FFFFFF" . "&#x2198;") ; 斜め下向き矢印
-    ("W16-A344_F-000000_B-FFFFFF" . "&#x2197;") ; 斜め上向き矢印
-    ("W16-A34D_F-000000_B-FFFFFF" . " &#x2026;&#x301; ") ; …'
-    ("W16-A328_F-000000_B-FFFFFF" . "[冠]")
-
-    ("iconEjjeWav" . "♪")
-    ("lg_liscj" . "")
-    ("lg_kejje" . "")
-    ("lg_kejcy" . "")
-    ("hand" . "&#x261E;")
-    ("link_out" . "⇔")
-    ("icon_bulb" . "・")
-    ("bulb5" . "[*****]")
-    ("bulb4" . "[****&nbsp;]")
-    ("bulb3" . "[***&nbsp;&nbsp;]")
-    ("bulb2" . "[**&nbsp;&nbsp;&nbsp;]")
-    ("bulb1" . "[*&nbsp;&nbsp;&nbsp;&nbsp;]")
-    ("bulb0" . "[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]")
-    ("IconCircleGr" . "◎")
-    ("IconArrGry" . "・")
-    ("iconArrGryR" . "≫")
-    ("spacer" . "")
-    ("subCategoryPlus" . "")
-    ("iconCclBl" . "- ")
-    )
-  "weblio 英和辞典の発音記号とフォントの変換テーブル。
-Fix me!")
+;; (defvar dic-lookup-w3m-filter-weblio-ej-symbol-alist
+;;   `(
+;;     ,@(mapcar
+;;        #'(lambda (elem)
+;; 	  (cons (concat "N16-" (upcase (car elem)) "_F-000000_B-FFFFFF")
+;; 		(cdr elem)))
+;;        dic-lookup-w3m-filter-excite-ej-symbol-alist)
+;;
+;;     ("W16-A343_F-000000_B-FFFFFF" . "&#x2198;") ; 斜め下向き矢印
+;;     ("W16-A344_F-000000_B-FFFFFF" . "&#x2197;") ; 斜め上向き矢印
+;;     ("W16-A34D_F-000000_B-FFFFFF" . " &#x2026;&#x301; ") ; …'
+;;     ("W16-A328_F-000000_B-FFFFFF" . "[冠]")
+;;
+;;     ("iconEjjeWav" . "♪")
+;;     ("lg_liscj" . "")
+;;     ("lg_kejje" . "")
+;;     ("lg_kejcy" . "")
+;;     ("hand" . "&#x261E;")
+;;     ("link_out" . "⇔")
+;;     ("icon_bulb" . "・")
+;;     ("bulb5" . "[*****]")
+;;     ("bulb4" . "[****&nbsp;]")
+;;     ("bulb3" . "[***&nbsp;&nbsp;]")
+;;     ("bulb2" . "[**&nbsp;&nbsp;&nbsp;]")
+;;     ("bulb1" . "[*&nbsp;&nbsp;&nbsp;&nbsp;]")
+;;     ("bulb0" . "[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]")
+;;     ("IconCircleGr" . "◎")
+;;     ("IconArrGry" . "・")
+;;     ("iconArrGryR" . "≫")
+;;     ("spacer" . "")
+;;     ("subCategoryPlus" . "")
+;;     ("iconCclBl" . "- ")
+;;     )
+;;   "weblio 英和辞典の発音記号とフォントの変換テーブル。
+;; Fix me!")
 
 (defvar dic-lookup-w3m-filter-onlinedic-symbol-alist
   '(("title_1" . "")
