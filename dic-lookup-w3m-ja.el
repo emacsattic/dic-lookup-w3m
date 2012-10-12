@@ -198,8 +198,16 @@
     "研究社新英和中辞典")
    ("je-weblio" "http://ejje.weblio.jp/content/%s" utf-8 nil
     "研究社新和英中辞典")
-   ("jj-all-weblio" "http://www.weblio.jp/content/%s" utf-8 nil
+   ("jj-weblio" "http://www.weblio.jp/content/%s" utf-8 nil
     "三省堂デイリーコンサイス国語辞典他")
+   ("cj-weblio" "http://cjjc.weblio.jp/content/%s" utf-8 nil
+    "中日・日中辞典")
+   ("jc-weblio" "http://cjjc.weblio.jp/content/%s" utf-8 nil
+    "中日・日中辞典")
+   ("jj-kobun-weblio" "http://kobun.weblio.jp/content/%s"
+    utf-8 nil "古語辞典")
+   ("shuwa-weblio" "http://shuwa.weblio.jp/content/%s"
+    utf-8 nil "手話辞典")
 
    ;; LSD Life Science Dictionary project
    ("ej-lsd" "http://lsd-project.jp/weblsd/begin/%s" utf-8 nil
@@ -2142,11 +2150,13 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
        ;; weblio
        ("\\`http://ejje\\.weblio\\.jp/content/"
-	(w3m-filter-delete-regions "<body[^>]*>" "<div ID=topic>" t nil t)
+	(w3m-filter-delete-regions
+	 "<body[^>]*>" "<div ID=topic>" t nil t)
 	(w3m-filter-delete-regions
 	 "<!-- START Espritline Affiliate CODE -->"
 	 "<!-- END Espritline Affiliate CODE -->")
-	(w3m-filter-delete-regions "<div class=adBoxHE>" "</body>" nil t)
+	(w3m-filter-delete-regions
+	 "<div class=adBoxHE>" "</body>" nil t)
 	;; (w3m-filter-replace-regexp "<span>用例</span>" "[用例]")
 	;; (w3m-filter-replace-regexp "<div class=KejjeYrTtl>用例</div>" "[用例]")
 	;; (dic-lookup-w3m-filter-convert-phonetic-symbol
@@ -2166,6 +2176,30 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(dic-lookup-w3m-filter-show-candidates "ej-weblio")
 	(w3m-filter-delete-regions
 	 "<!-- begin ad tag-->" "<!-- End ad tag -->")
+	)
+       ("\\`http://www\\.weblio\\.jp/content/"
+	(w3m-filter-delete-regions
+	 "<body[^>]*>" "<div ID=tpc>" t nil t)
+	(w3m-filter-delete-regions
+	 "<!-- google_ad_section_end -->" "</body>" nil t)
+	(w3m-filter-replace-regexp
+	 "<img src=\"http://www.westatic.com/img/icons/wRenew/iconPBDict.png\" alt=\"\">" "")
+	)
+       ("\\`http://cjjc\\.weblio\\.jp/content/"
+	(w3m-filter-delete-regions
+	 "<body[^>]*>" "<div ID=topic>" t nil t)
+	(w3m-filter-delete-regions
+	 "<td ID=trnsBxHTL>" "</body>" nil t)
+       	(dic-lookup-w3m-filter-related-links "cj-weblio" cj)
+	)
+       ("\\`http://shuwa\\.weblio\\.jp/content/"
+	(w3m-filter-delete-regions
+	 "<body[^>]*>" "<div ID=topic>" t nil t)
+	(w3m-filter-delete-regions
+	 "<div id=sideRankBoxS>" "</body>" nil t)
+	(w3m-filter-replace-regexp
+	 "<object data=\"\\([^\"]+\\)\" type=\"application/x-mplayer2\"[^>]*>"
+	 "<a href=\"\\1\">[手話を再生]</a>")
 	)
 
        ;; yahoo encyclopedia
@@ -2686,6 +2720,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
     ("cj-bitex" . "CJ-bitex")
     ("cj-tonko-jikai" . "CJ敦煌")
     ("cj-jcdic" . "CJ-jcdic")
+    ("cj-weblio" . "CJJC-weblio")
     ("cj-hjenglish" . "CJ-hjenglish")
     ("jc-excite" . "JC-excite")
     ("jc-kitajiro" . "JC北")
