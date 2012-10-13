@@ -191,7 +191,7 @@
     "http://reed.kuee.kyoto-u.ac.jp/cf-search/?text=%s" euc-jp nil
     "格フレーム検索; 用言とそれに関係する名詞を用言の各用法ごとに整理したもの")
 
-   ;; Weblio 類語辞典
+   ;; Weblio
    ("thesaurus-j-weblio" "http://thesaurus.weblio.jp/content/%s" utf-8 nil
     "Weblio 約650000語の類語や同義語・関連語とシソーラスを収録")
    ("ej-weblio" "http://ejje.weblio.jp/content/%s" utf-8 nil
@@ -208,6 +208,12 @@
     utf-8 nil "古語辞典")
    ("shuwa-weblio" "http://shuwa.weblio.jp/content/%s"
     utf-8 nil "手話辞典")
+   ("collocation-weblio" "http://ejje.weblio.jp/concordance/content/%s"
+    utf-8 nil "英語共起表現")
+   ("thesaurus-weblio" "http://ejje.weblio.jp/english-thesaurus/content/%s"
+    utf-8 nil "英語シソーラス")
+   ("corpus-weblio" "http://ejje.weblio.jp/sentence/content/%s"
+    utf-8 nil "英語例文")
 
    ;; LSD Life Science Dictionary project
    ("ej-lsd" "http://lsd-project.jp/weblsd/begin/%s" utf-8 nil
@@ -2139,7 +2145,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<span class=\"pyn\">\\(.*\\)</span>")
 	)
 
-       ;; weblio thesaurus
+       ;; weblio
        ("\\`http://thesaurus\\.weblio\\.jp/content/"
 	(w3m-filter-delete-regions "<div ID=base>" "<form[^>]*>" nil t nil t)
 	(w3m-filter-delete-regions "<div ID=formBoxWrp>" "<div ID=formBoxL>")
@@ -2147,16 +2153,12 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-delete-regions "</form>" "<div class=kiji>" t t)
 	(dic-lookup-w3m-filter-related-links "thesaurus-j-weblio" jj)
 	)
-
-       ;; weblio
        ("\\`http://ejje\\.weblio\\.jp/content/"
-	(w3m-filter-delete-regions
-	 "<body[^>]*>" "<div ID=topic>" t nil t)
+	(w3m-filter-delete-regions "<body[^>]*>" "<div ID=topic>" t nil t)
 	(w3m-filter-delete-regions
 	 "<!-- START Espritline Affiliate CODE -->"
 	 "<!-- END Espritline Affiliate CODE -->")
-	(w3m-filter-delete-regions
-	 "<div class=adBoxHE>" "</body>" nil t)
+	(w3m-filter-delete-regions "<div class=adBoxHE>" "</body>" nil t)
 	;; (w3m-filter-replace-regexp "<span>用例</span>" "[用例]")
 	;; (w3m-filter-replace-regexp "<div class=KejjeYrTtl>用例</div>" "[用例]")
 	;; (dic-lookup-w3m-filter-convert-phonetic-symbol
@@ -2165,7 +2167,8 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-replace-regexp
 	 "<img src=\"http://www.westatic.com/img/showMorePlus.png\"[^>]*>" "")
 	(w3m-filter-replace-regexp
-	 "<img src=\"http://www.westatic.com/img/icons/iconWlaAdFL.png\"[^>]*>" "")
+	 "<img src=\"http://www.westatic.com/img/icons/iconWlaAdFL.png\"[^>]*>"
+	 "")
 	(w3m-filter-replace-regexp
 	 "<div [^>]*playSwfSound('http://www.westatic.com/wbr/CHUJITEN/', '\\([^']+\\)'[^>]*><img [^>]*></div>"
 	 "<a href=\"http://www.westatic.com/wbr/CHUJITEN/\\1.wav\">♪ダウンロード再生</a>")
@@ -2680,7 +2683,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
    (("jj-excite" . "国excite")
     ("jj-yahoo" . "国Y!")
     ("jj-goo" . "国goo")
-    ("jj-all-weblio" . "国weblio")
+    ("jj-weblio" . "国weblio")
     ("jj-chuuta" . "国チュウ")
     ("jj-kotobank" . "kotobank")
     ;;("kanji-infoseek" . "漢")
