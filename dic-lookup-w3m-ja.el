@@ -125,6 +125,13 @@
    ("ee-onelook" "http://www.onelook.com/?w=grammar&ls=a"
     nil nil "約1000の辞書を一括検索")
 
+   ;; dict.org
+   ("ee-dict.org"
+    "http://www.dict.org/bin/Dict?Form=Dict1&Query=%s&Strategy=*&Database=*"
+    nil nil "The DICT Development Group")
+   ("ee-dict.org-post" "http://www.dict.org/bin/Dict" nil
+    "Form=Dict1&Query=%s&Strategy=*&Database=*" "The DICT Development Group")
+
    ;; yahoo.com
    ("ee-yahoo.com"
     "http://education.yahoo.com/reference/dictionary/?s=%s" nil nil
