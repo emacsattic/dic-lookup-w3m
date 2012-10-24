@@ -109,7 +109,7 @@
     utf-8 nil "Merriam-Webster Collegiate Thesaurus")
 
    ;; cambridge 英英
-   ("ee-cambridge" "http://dictionary.cambridge.org/results.asp?searchword=%s"
+   ("ee-cambridge" "http://dictionary.cambridge.org/search/british/direct/?q=%s"
     nil nil "Cambridge Advanced Learner's Dictionary")
 
    ;; longman 英英
@@ -122,7 +122,7 @@
     utf-8 nil "Oxford Advanced Learner's Dictionary")
 
    ;; onelook 英英
-   ("ee-onelook" "http://www.onelook.com/?w=grammar&ls=a"
+   ("ee-onelook" "http://www.onelook.com/?w=%s&ls=a"
     nil nil "約1000の辞書を一括検索")
 
    ;; dict.org
@@ -490,9 +490,11 @@
    ("jc-hjenglish" "http://dict.hjenglish.com/jp/w/%s&type=jc" utf-8 nil
     "获得小D英日双核海量桌面词典 日中")
 
-   ;; wiktionary
+   ;; Wiktionary
    ("jj-wiktionary" "http://ja.wiktionary.org/wiki/%s" utf-8 nil
     "ウィクショナリー日本語版(Wiktionary)")
+   ("kanji-wiktionary" "http://ja.wiktionary.org/wiki/%s" utf-8 nil)
+   ("ee-wiktionary" "http://en.wiktionary.org/wiki/%s" utf-8 nil)
 
    ;; 書虫 pinyin
    ("pinyin-frelax" "http://www.frelax.com/cgi-local/pinyin/hz2py.cgi"
@@ -736,11 +738,6 @@
    ("je-jmdict-Expanded Text-glossing"
     "http://www.csse.monash.edu.au/~jwb/cgi-bin/wwwjdic.cgi?1E"
     euc-jp "dsrchkey=%s&dicsel=Q" "Expanded Text-glossing Jim Breen's WWWJDIC")
-
-   ;; Wiktionary
-   ("jj-wiktionary" "http://ja.wiktionary.org/wiki/%s" utf-8 nil)
-   ("kanji-wiktionary" "http://ja.wiktionary.org/wiki/%s" utf-8 nil)
-   ("ee-wiktionary" "http://en.wiktionary.org/wiki/%s" utf-8 nil)
 
    ;; JapaneseClass.jp
    ("je-japaneseclass"
@@ -1864,12 +1861,19 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
        ("\\`http://www\\.merriam-webster\\.com/\\(dictionary\\|thesaurus\\)/.+"
 	(w3m-filter-delete-regions
 	 "<div id=\"page_wrapper\">" "<div class=\"page_content\">")
-	(dic-lookup-w3m-filter-related-links "ee-webster" ej)
+	(dic-lookup-w3m-filter-related-links "ee-webster" ee)
+	(dic-lookup-w3m-filter-eword-anchor "ee-webster")
+	(dic-lookup-w3m-filter-show-candidates "ee-webster")
 	)
 
        ;; cambridge
-       ("\\`http://dictionary\\.cambridge\\.org/results\\.asp\\?searchword="
-	w3m-filter-delete-regions "<body>" "<!-- Begin results area -->" t)
+       ("\\`http://dictionary\\.cambridge\\.org/dictionary/"
+	(w3m-filter-delete-regions
+	 "<body[^>]*>" "<div class=\"cdo-section\">" t t t)
+	(dic-lookup-w3m-filter-related-links "ee-cambridge" ee)
+	(dic-lookup-w3m-filter-eword-anchor "ee-cambridge")
+	(dic-lookup-w3m-filter-show-candidates "ee-cambridge")
+	)
 
        ;; yahoo.com
        ("\\`http://education\\.yahoo\\.com/reference/[^/]+/"
@@ -1886,7 +1890,9 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-replace-regexp
 	 "<img [^>]*src=\"http://l.yimg.com/a/i/edu/ref/ahd/t/pron.jpg\"[^<]*>"
 	 "♪")
+	(dic-lookup-w3m-filter-related-links "ee-yahoo.com" ee)
 	(dic-lookup-w3m-filter-eword-anchor "ee-yahoo.com")
+	(dic-lookup-w3m-filter-show-candidates "ee-yahoo.com")
 	)
        ("\\`http://education\\.yahoo\\.com/reference/dict_en_es/"
 	(w3m-filter-delete-regions "<body[^>]*>" "Your search: " t t t)
@@ -2683,6 +2689,22 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
     ("corpus-j-kotonoha" . "Jコパ")
     ("jj-yahoo" . "国語"))))
 
+(add-to-list
+ 'dic-lookup-w3m-related-site-list
+ '(ee
+   (("ee-webster" . "webster")
+    ("ee-cambridge" . "cambridge")
+    ("ee-longman" . "longman")
+    ("ee-oxford" . "oxford")
+    ("ee-onelook" . "onelook")
+    ("ee-dict.org" . "dict.org")
+    ("ee-yahoo.com" . "yahoo")
+    ("ee-dictionrary.com" . "dictionrary.com")
+    ("ee-babylon" . "babylon")
+    ("ee-wiktionary" . "wiktionary")
+    ("ej-yahoo" . "EJ-Y!")
+    ("ej-excite" . "EJ-excite")
+    )))
 
 (add-to-list
  'dic-lookup-w3m-related-site-list
