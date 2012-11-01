@@ -1860,6 +1860,10 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
        ;; webster
        ("\\`http://www\\.merriam-webster\\.com/\\(dictionary\\|thesaurus\\)/.+"
 	(w3m-filter-delete-regions
+	 "<body[^>]*>" "<div class=\"definition\">" t t t)
+	(w3m-filter-delete-regions
+	 "<div class=\"browse learn_more\">" "</body>")
+	(w3m-filter-delete-regions
 	 "<div id=\"page_wrapper\">" "<div class=\"page_content\">")
 	(dic-lookup-w3m-filter-related-links "ee-webster" ee)
 	(dic-lookup-w3m-filter-eword-anchor "ee-webster")
