@@ -10,8 +10,9 @@ emacsで辞書を引くツールにはeblook, lookup, sdicなどがあります。これら
 大量の文章を読むためにすばやく辞書を引きたい場合は、ローカルの辞書を引
 くツールを使ったほうがよいかもしれません。
 dic-lookup-w3mはemacs-w3mのアドオンなので、ここで説明する機能の多くは
-emacs-w3mで実現されているものです。dic-lookup-w3mはそれを少し加工使っ
-ているに過ぎません。emacs-w3m, w3mに携わっている方々に感謝いたします。
+emacs-w3mで実現されているものです。dic-lookup-w3mはそれを少し加工して
+使っているに過ぎません。emacs-w3m, w3mに携わっている方々に感謝いたしま
+す。
 
 
 インストール:
@@ -65,9 +66,11 @@ dic-lookup-w3m-read-query-prefix-arg-alistで変更できます。
 前置引数をつけて起動した場合はsearch:表示されず、すぐに検索を行うので
 編集は出来ません。
 
-emacsから自動翻訳サイトを使うツールには他にtext-translatorがあります。
+emacsから自動翻訳サイトを使うツールには他にtext-translatorや
+trans-ej.elがあります。
 自動翻訳が目的ならこちらのほうがよいかもしれません。
 http://d.hatena.ne.jp/khiker/20110403/text_translator
+http://www.emacswiki.org/emacs/TransEJ
 
 キーバインド:
 
@@ -127,10 +130,10 @@ F     dic-lookup-w3m-toggle-phonetic-image
       替える。
       サイトによっては発音記号をinline imageで表示するものがあります。
       emacs-w3mで画像を表示すると動作が遅くなるので、dic-lookup-w3mで
-      は一部の辞書対してに発音記号のinline imageを対応するフォントに置
-      き換えるフィルタがあります。このフィルタを無効にして、元のinline
-      imageを表示するときに使います。フィルタが定義されていないサイト
-      では何も起きません。
+      は一部の辞書サイトに対して発音記号のinline imageを対応するフォン
+      トに置き換えるフィルタがあります。このフィルタを無効にして、元の
+      inline　imageを表示するときに使います。フィルタが定義されていな
+      いサイトでは何も起きません。
 C-c l dic-lookup-w3m-filter-toggle-eword-anchor
       英単語らしい文字列に辞書検索用のアンカーを付けるフィルタをトグル
       する。
@@ -500,3 +503,5 @@ w3m/0.5.3で動いています。
 他の環境は試していないのでわかりません。
 2008年末に作ってからあまり変わっていないので、2008年頃の環境なら動くと
 思います。
+
+ｄｌｗ あっと ｕｓｅｒｓ てん ｓｏｕｒｃｅｆｏｒｇｅ どっと ｊｐ
