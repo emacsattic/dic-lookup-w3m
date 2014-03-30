@@ -1819,7 +1819,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<a href=\"./?search=\\3&itemid=\\1\">\\2</a>")
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
 	 dic-lookup-w3m-filter-excite-jj-symbol-alist
-	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource.aspx\\?set=daijirin-gi&amp;name=\\([A-Z0-9]+\\)\"[^>]*>")
+	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource.aspx\\?set=.*&amp;name=\\([A-Za-z_0-9]+\\)[^>]*>")
 	(w3m-filter-replace-regexp
 	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource\\.aspx\\?set=unicode&amp;name=\\([^\"]+\\)\"[^>]*>" "&#x\\1\;")
 	(dic-lookup-w3m-filter-related-links "jj-excite" jj)
@@ -2952,12 +2952,12 @@ gooの辞書検索で複数の見出し語が見つかった場合でも、最�
     ("a23b" . "&#x1AB;")  		; 左向き鉤付きのT
     ("a23c" . "☆")
     ("a23d" . "☆")
-    ("a23e" . "☆")
-    ("a23f" . "☆")
-    ("a240" . "☆")
-    ("a241" . "☆")
-    ("a242" . "☆")
-    ("a243" . "☆")
+    ("a23e" . "&#x0D6;")		; Oウムラウト
+    ("a23f" . "&#x0E4;")		; aウムラウト
+    ("a240" . "&#x0EB;")		; eウムラウト
+    ("a241" . "&#x0EF;")		; iウムラウト
+    ("a242" . "&#x0F6;")		; oウムラウト
+    ("a243" . "&#x0FC;")		; uウムラウト
     ("a244" . "☆")
     ("a245" . "☆")
     ("a246" . "☆")
@@ -3014,6 +3014,7 @@ gooの辞書検索で複数の見出し語が見つかった場合でも、最�
     ("a278" . "☆")
     ("a279" . "☆")
     ("a27a" . "<sup>&#x259;</sup>")	; シュワー
+    ;; a27b-a320なし
     ("a321" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[名]</strong></a>")
     ("a322" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[代]</strong></a>")
     ("a323" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[形]</strong></a>")
@@ -3090,6 +3091,7 @@ Fix me!"
     ("G6977" . "&#x277C;")		; 丸7
     ("G6978" . "&#x277D;")		; 丸8
     ("G6979" . "&#x277E;")		; 丸9
+    ("sign_man" . "&#x25C9;")		; ◉ 二重丸
     )
   "excite国語辞典の発音記号とフォントの変換テーブル。")
 
@@ -3777,6 +3779,7 @@ webページに翻訳ボタンをつけて、各translatorにリンクする。
 ;; http://lucene.jugem.jp/?eid=305
 ;; http://www.takke.jp/pss/additional_questions.php
 ;; http://www.linkage-club.co.jp/ExamInfo&Data/BNC lemma Web.txt
+;; http://jigen.net/ 字源 部品から漢字を調べる
 
 (provide 'dic-lookup-w3m-ja)
 
