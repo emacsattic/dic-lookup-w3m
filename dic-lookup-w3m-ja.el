@@ -1107,38 +1107,38 @@
 	 "sequence=core&mode=html&charset=UTF-8&template=results_en-us.htm&language=English/Norwegian&srctext=%s")
 	))
 
-   ;; ocn translator
-   ("tr-ej-ocn" "http://cgi01.ocn.ne.jp/cgi-bin/translation/index.cgi"
-    utf-8 "langpair=enja&sourceText=%s" "Kodensha")
-   ("tr-je-ocn" "http://cgi01.ocn.ne.jp/cgi-bin/translation/index.cgi"
-    utf-8 "langpair=jaen&sourceText=%s" "Kodensha")
-   ("tr-kj-ocn" "http://cgi01.ocn.ne.jp/cgi-bin/translation/index.cgi"
-    utf-8 "langpair=koja&sourceText=%s" "Kodensha")
-   ("tr-jk-ocn" "http://cgi01.ocn.ne.jp/cgi-bin/translation/index.cgi"
-    utf-8 "langpair=jako&sourceText=%s" "Kodensha")
-   ("tr-cj-ocn" "http://cgi01.ocn.ne.jp/cgi-bin/translation/index.cgi"
-    utf-8 "langpair=zhja&sourceText=%s" "Kodensha")
-   ("tr-jc-ocn" "http://cgi01.ocn.ne.jp/cgi-bin/translation/index.cgi"
-    utf-8 "langpair=jazh&sourceText=%s" "Kodensha")
-   ;; ocn web page translaor
-   ("tr-ej-url-ocn"
-    "http://translate.ocn.ne.jp/LUCOCN/c3/hm_ex.cgi?SURL=%s&XTYPE=1&SEARCH=T&SLANG=en&TLANG=ja"
-    utf-8 nil "Kodensha")
-   ("tr-je-url-ocn"
-    "http://translate.ocn.ne.jp/LUCOCN/c3/hm_ex.cgi?SURL=%s&XTYPE=1&SEARCH=T&SLANG=ja&TLANG=en"
-    utf-8 nil "Kodensha")
-   ("tr-kj-url-ocn"
-    "http://translate.ocn.ne.jp/LUCOCN/c3/hm_ex.cgi?SURL=%s&XTYPE=1&SEARCH=T&SLANG=ko&TLANG=ja"
-    utf-8 nil "Kodensha")
-   ("tr-jk-url-ocn"
-    "http://translate.ocn.ne.jp/LUCOCN/c3/hm_ex.cgi?SURL=%s&XTYPE=1&SEARCH=T&SLANG=ja&TLANG=ko"
-    utf-8 nil "Kodensha")
-   ("tr-cj-url-ocn"
-    "http://translate.ocn.ne.jp/LUCOCN/c3/hm_ex.cgi?SURL=%s&XTYPE=1&SEARCH=T&SLANG=zh&TLANG=ja"
-    utf-8 nil "Kodensha")
-   ("tr-jc-url-ocn"
-    "http://translate.ocn.ne.jp/LUCOCN/c3/hm_ex.cgi?SURL=%s&XTYPE=1&SEARCH=T&SLANG=ja&TLANG=zh"
-    utf-8 nil "Kodensha")
+   ;; ;; ocn translator サービス終了 2012年10月11日
+   ;; ("tr-ej-ocn" "http://cgi01.ocn.ne.jp/cgi-bin/translation/index.cgi"
+   ;;  utf-8 "langpair=enja&sourceText=%s" "Kodensha")
+   ;; ("tr-je-ocn" "http://cgi01.ocn.ne.jp/cgi-bin/translation/index.cgi"
+   ;;  utf-8 "langpair=jaen&sourceText=%s" "Kodensha")
+   ;; ("tr-kj-ocn" "http://cgi01.ocn.ne.jp/cgi-bin/translation/index.cgi"
+   ;;  utf-8 "langpair=koja&sourceText=%s" "Kodensha")
+   ;; ("tr-jk-ocn" "http://cgi01.ocn.ne.jp/cgi-bin/translation/index.cgi"
+   ;;  utf-8 "langpair=jako&sourceText=%s" "Kodensha")
+   ;; ("tr-cj-ocn" "http://cgi01.ocn.ne.jp/cgi-bin/translation/index.cgi"
+   ;;  utf-8 "langpair=zhja&sourceText=%s" "Kodensha")
+   ;; ("tr-jc-ocn" "http://cgi01.ocn.ne.jp/cgi-bin/translation/index.cgi"
+   ;;  utf-8 "langpair=jazh&sourceText=%s" "Kodensha")
+   ;; ;; ocn web page translaor
+   ;; ("tr-ej-url-ocn"
+   ;;  "http://translate.ocn.ne.jp/LUCOCN/c3/hm_ex.cgi?SURL=%s&XTYPE=1&SEARCH=T&SLANG=en&TLANG=ja"
+   ;;  utf-8 nil "Kodensha")
+   ;; ("tr-je-url-ocn"
+   ;;  "http://translate.ocn.ne.jp/LUCOCN/c3/hm_ex.cgi?SURL=%s&XTYPE=1&SEARCH=T&SLANG=ja&TLANG=en"
+   ;;  utf-8 nil "Kodensha")
+   ;; ("tr-kj-url-ocn"
+   ;;  "http://translate.ocn.ne.jp/LUCOCN/c3/hm_ex.cgi?SURL=%s&XTYPE=1&SEARCH=T&SLANG=ko&TLANG=ja"
+   ;;  utf-8 nil "Kodensha")
+   ;; ("tr-jk-url-ocn"
+   ;;  "http://translate.ocn.ne.jp/LUCOCN/c3/hm_ex.cgi?SURL=%s&XTYPE=1&SEARCH=T&SLANG=ja&TLANG=ko"
+   ;;  utf-8 nil "Kodensha")
+   ;; ("tr-cj-url-ocn"
+   ;;  "http://translate.ocn.ne.jp/LUCOCN/c3/hm_ex.cgi?SURL=%s&XTYPE=1&SEARCH=T&SLANG=zh&TLANG=ja"
+   ;;  utf-8 nil "Kodensha")
+   ;; ("tr-jc-url-ocn"
+   ;;  "http://translate.ocn.ne.jp/LUCOCN/c3/hm_ex.cgi?SURL=%s&XTYPE=1&SEARCH=T&SLANG=ja&TLANG=zh"
+   ;;  utf-8 nil "Kodensha")
 
    ;; livedoor translator
    ("tr-zhja-livedoor" "http://livedoor-translate.naver.jp/text/" utf-8
@@ -2523,19 +2523,19 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
        ("\\`http://tets9\\.freetranslation\\.com/"
 	dic-lookup-w3m-filter-eword-anchor dic-lookup-w3m-favorite-ej-engine)
 
-       ;; ocn translator
-       ("\\`http://cgi01\\.ocn\\.ne\\.jp/cgi-bin/translation/index\\.cgi"
-	(w3m-filter-delete-regions
-	 "<body[^>]*>" "<textarea [^>]*name=\"sourceText\"[^>]*>" t nil t t)
-	(w3m-filter-replace-regexp
-	 "\\(<textarea [^>]*name=\"responseText\"[^>]*>\\)" "\\1<hr>")
-	(w3m-filter-delete-regions
-	 "</textarea>" "<textarea [^>]*name=\"responseText\"[^>]*>" nil nil t t)
-	(w3m-filter-delete-regions "</textarea>" "</body>" nil t)
-	(w3m-filter-replace-regexp "\r\\([\n]\r\\)+" "</p><p>")
-	(w3m-filter-replace-regexp "\r" "<br>")
-	(dic-lookup-w3m-filter-eword-anchor "ej-ocn")
-	)
+       ;; ;; ocn translator サービス終了 2012年10月11日
+       ;; ("\\`http://cgi01\\.ocn\\.ne\\.jp/cgi-bin/translation/index\\.cgi"
+       ;; 	(w3m-filter-delete-regions
+       ;; 	 "<body[^>]*>" "<textarea [^>]*name=\"sourceText\"[^>]*>" t nil t t)
+       ;; 	(w3m-filter-replace-regexp
+       ;; 	 "\\(<textarea [^>]*name=\"responseText\"[^>]*>\\)" "\\1<hr>")
+       ;; 	(w3m-filter-delete-regions
+       ;; 	 "</textarea>" "<textarea [^>]*name=\"responseText\"[^>]*>" nil nil t t)
+       ;; 	(w3m-filter-delete-regions "</textarea>" "</body>" nil t)
+       ;; 	(w3m-filter-replace-regexp "\r\\([\n]\r\\)+" "</p><p>")
+       ;; 	(w3m-filter-replace-regexp "\r" "<br>")
+       ;; 	(dic-lookup-w3m-filter-eword-anchor "ej-ocn")
+       ;; 	)
 
        ;; livedoor translator
        ("http://livedoor-translate\\.naver\\.jp/"
@@ -3643,7 +3643,7 @@ Fix me!")
 
 (defvar dic-lookup-w3m-translator-site-list
   '((ej
-     (("tr-ej-url-ocn" . "ocn")
+     (;;("tr-ej-url-ocn" . "ocn")
       ("tr-ej-url-livedoor" . "livedoor")
       ("tr-ej-url-nifty" . "nifty")
       ("tr-ej-url-sonet" . "sonet")
@@ -3652,24 +3652,25 @@ Fix me!")
       ("tr-enja-url-yahoo" . "yahoo")))
     (jx
      (("tr-je-url-nifty" . "英nifty")
-      ("tr-je-url-ocn" . "英ocn")
+      ;;("tr-je-url-ocn" . "英ocn")
       ("tr-je-url-livedoor" . "英livedoor")
       ("tr-je-url-sonet" . "英sonet")
       ("tr-je-url-yakushite.net" . "英-yakushite.net")
       ("tr-jaen-url-google" . "英google")
       ("tr-jaen-url-yahoo" . "英yahoo")
-      ("tr-jc-url-ocn" . "中ocn")
+      ;;("tr-jc-url-ocn" . "中ocn")
       ("tr-jc-url-nifty" . "中nifty")
-      ("tr-jk-url-ocn" . "韓ocn")))
+      ;;("tr-jk-url-ocn" . "韓ocn")
+      ))
     (cj
      (("tr-cj-url-nifty" . "nifty")
-      ("tr-cj-url-ocn" . "ocn")
+      ;;("tr-cj-url-ocn" . "ocn")
       ("tr-cj-url-sonet" . "sonet")
       ("tr-cj-url-yakushite.net" . "yakushite.net")
       ("tr-zh-CNja-url-google" . "google")))
     (kj
      (("tr-kj-url-nifty" . "nifty")
-      ("tr-kj-url-ocn" . "ocn")
+      ;;("tr-kj-url-ocn" . "ocn")
       ("tr-kj-url-sonet" . "sonet")
       ("tr-koja-url-google" . "google"))))
     "*webページを翻訳するtranslatorのリスト。
