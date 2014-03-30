@@ -1700,25 +1700,25 @@ nilの場合はすべての言語を対象にする。nil X nilは起動が遅�
 	  (dolist (arg (list (list l1 l2) (list l2 l1)))
 	    (apply
 	     #'(lambda (l1 l2)
-		(add-to-list
-		 'dic-lookup-w3m-search-engine-alist
-		 (list
-		  (format "tr-%s%s-google" l1 l2)
-		  "http://translate.google.com/translate_t" 'utf-8
-		  (format "langpair=%s|%s&ie=utf-8&oe=utf-8&text=%%s"
-			  l1 l2)
-		  (concat (assoc-default l1 langs)
-			  "-" (assoc-default l2 langs))))
-		(add-to-list
-		 'dic-lookup-w3m-search-engine-alist
-		 (list
-		  (format "tr-%s%s-url-google" l1 l2)
-		  (format
-		   "http://translate.google.com/translate_t?langpair=%s|%s&ie=utf-8&oe=utf-8&text=%%s"
-		   l1 l2)
-		  'utf-8 nil
-		  (concat (assoc-default l1 langs)
-			  "-" (assoc-default l2 langs)))))
+		 (add-to-list
+		  'dic-lookup-w3m-search-engine-alist
+		  (list
+		   (format "tr-%s%s-google" l1 l2)
+		   "http://translate.google.com/" 'utf-8
+		   (format "langpair=%s|%s&ie=utf-8&oe=utf-8&text=%%s"
+			   l1 l2)
+		   (concat (assoc-default l1 langs)
+			   "-" (assoc-default l2 langs))))
+		 (add-to-list
+		  'dic-lookup-w3m-search-engine-alist
+		  (list
+		   (format "tr-%s%s-url-google" l1 l2)
+		   (format
+		    "http://translate.google.com/?langpair=%s|%s&ie=utf-8&oe=utf-8&text=%%s"
+		    l1 l2)
+		   'utf-8 nil
+		   (concat (assoc-default l1 langs)
+			   "-" (assoc-default l2 langs)))))
 	     arg)))))))
 
 ;; google translator (aliases)
@@ -2481,7 +2481,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	dic-lookup-w3m-filter-eword-anchor "ej-excite")
 
        ;; google translator
-       ("\\`http://translate\\.google\\.com/translate_t"
+       ("\\`http://translate\\.google\\.com"
 	(w3m-filter-delete-regions
 	 "<body[^>]*>" "<textarea [^>]*name=text[^>]*>" t nil t t)
 	(w3m-filter-replace-regexp
