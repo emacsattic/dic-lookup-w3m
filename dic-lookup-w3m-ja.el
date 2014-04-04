@@ -51,27 +51,23 @@
  #'(lambda (elem) (add-to-list 'dic-lookup-w3m-search-engine-alist elem))
  `(
    ;; yahoo dtype; 0:国語, 1:英和, 2:すべての辞書, 3:和英, 5:類語
-   ("ej-yahoo" "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p=%s&dtype=1"
-    utf-8 nil "プログレッシブ英和中辞典"
+   ("ej-yahoo"
+    "http://dic.search.yahoo.co.jp/dsearch?p=%s&dic_id=ejje&stype=prefix&b=1"
+    utf-8 nil "プログレッシブ和英中辞典(第３版), プログレッシブ英和中辞典(第４版)"
     dic-lookup-w3m-suitable-engine-pattern)
-   ("ej-yahoo2" "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p=%s&dtype=1&dname=1ss"
-    utf-8 nil "新グローバル英和辞典"
+   ("je-yahoo"
+    "http://dic.search.yahoo.co.jp/dsearch?p=%s&dic_id=ejje&stype=prefix&b=1"
+    utf-8 nil "プログレッシブ和英中辞典(第３版), プログレッシブ英和中辞典(第４版)"
     dic-lookup-w3m-suitable-engine-pattern)
-   ("je-yahoo" "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p=%s&dtype=3"
-    utf-8 nil "プログレッシブ和英中辞典")
-   ("je-yahoo2" "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p=%s&dtype=3&dname=2ss"
-    utf-8 nil "ニューセンチュリー和英辞典")
-   ("jj-yahoo" "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p=%s&dtype=0"
-    utf-8 nil "大辞泉")
-   ("jj-yahoo2" "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p=%s&dtype=0&dname=0ss"
-    utf-8 nil "大辞林")
-   ("thesaurus-j-yahoo" "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p=%s&dtype=5"
-    utf-8 nil "必携類語実用辞典")
-   ;; ("encyclopedia-yahoo" "http://100.yahoo.co.jp/search?p=%s"
-   ;;  utf-8 nil "日本大百科全書")
-   ("encyclopedia-yahoo"
-    "http://dic.search.yahoo.co.jp/dsearch?ei=UTF-8&p=%s&fr=dic&stype=prefix&dic_id=100&b=1"
-    utf-8 nil "日本大百科全書")
+   ("jj-yahoo"
+    "http://dic.search.yahoo.co.jp/dsearch?p=%s&dic_id=jj&stype=prefix&b=1"
+    utf-8 nil "デジタル大辞泉, 大辞林 第三版")
+   ("ect-yahoo"
+    "http://dic.search.yahoo.co.jp/dsearch?p=%s&dic_id=etc&stype=prefix&b=1"
+    utf-8 nil "その他の辞典")
+   ("all-yahoo"
+    "http://dic.search.yahoo.co.jp/search?p=%s&dic_id=all&stype=prefix&b=1"
+    utf-8 nil "すべての辞書")
 
    ;; excite
    ("ej-excite" "http://www.excite.co.jp/dictionary/english_japanese/?search=%s"
@@ -1765,23 +1761,19 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<img src=\"http://i.yimg.jp/images/clear.gif\"[^>]*>" "")
 	(dic-lookup-w3m-filter-eword-anchor "ej-yahoo")
 	)
-       ("\\`http://dic\\.yahoo\\.co\\.jp/dsearch.*dtype=0"
+       ("\\`http://dic\\.search\\.yahoo\\.co\\.jp/dsearch.*dic_id=jj"
 	dic-lookup-w3m-filter-related-links "jj-yahoo" jj)
-       ("\\`http://dic\\.yahoo\\.co\\.jp/dsearch.*dtype=5"
-	dic-lookup-w3m-filter-related-links "thesaurus-j-yahoo"	jj)
-       ("\\`http://dic\\.yahoo\\.co\\.jp/dsearch.*dtype=1"
+       ("\\`http://dic\\.search\\.yahoo\\.co\\.jp/dsearch.*dic_id=ejje"
 	dic-lookup-w3m-filter-related-links "ej-yahoo" ej)
-       ("\\`http://dic\\.yahoo\\.co\\.jp/dsearch.*dtype=[13]"
-	dic-lookup-w3m-filter-convert-phonetic-symbol
-	dic-lookup-w3m-filter-yahoo-ej2-symbol-alist
-	"<img src=\"[^\"]+/\\([a-z0-9]+\\)\\.gif\"[^>]*>")
-       ("\\`http://dic\\.yahoo\\.co\\.jp/dsearch.*dtype=[01]"
-	dic-lookup-w3m-filter-convert-phonetic-symbol
-	dic-lookup-w3m-filter-yahoo-ej1-symbol-alist
-	"<img src=\"[^\"]+/\\([A-Z0-9_]+\\)\\.gif\"[^>]*>")
-       ("\\`http://dic\\.yahoo\\.co\\.jp/dsearch.*dtype=3"
-	dic-lookup-w3m-filter-related-links "je-yahoo" ej)
-       ("\\`http://dic\\.yahoo\\.co\\.jp/dsearch"
+       ;; ("\\`http://dic\\.search\\.yahoo\\.co\\.jp/dsearch.*dic_id=ejje"
+       ;; 	dic-lookup-w3m-filter-convert-phonetic-symbol
+       ;; 	dic-lookup-w3m-filter-yahoo-ej2-symbol-alist
+       ;; 	"<img src=\"[^\"]+/\\([a-z0-9]+\\)\\.gif\"[^>]*>")
+       ;; ("\\`http://dic\\.search\\.yahoo\\.co\\.jp/dsearch.*dtype=\\(jj\\|ejje\\)"
+       ;; 	dic-lookup-w3m-filter-convert-phonetic-symbol
+       ;; 	dic-lookup-w3m-filter-yahoo-ej1-symbol-alist
+       ;; 	"<img src=\"[^\"]+/\\([A-Z0-9_]+\\)\\.gif\"[^>]*>")
+       ("\\`http://dic\\.search\\.yahoo\\.co\\.jp/dsearch"
 	dic-lookup-w3m-filter-show-candidates "ej-yahoo")
 
        ;; excite dic
@@ -2632,7 +2624,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
    ("\\`http://www\\.excite\\.co\\.jp/dictionary/japanese/\\?search=" . t)
    ("\\`http://www\\.excite\\.co\\.jp/dictionary/chinese_japanese/\\?search=" . t)
    ("\\`http://www\\.excite\\.co\\.jp/dictionary/japanese_chinese/\\?search=" . t)
-   ("\\`http://dic\\.yahoo\\.co\\.jp/dsearch\\?" . t)
+   ("\\`http://dic\\.search\\.yahoo\\.co\\.jp/dsearch\\?" . t)
    ("\\`http://eow\\.alc\\.co\\.jp/.*/UTF-8/" . turnoff)
    ("\\`http://home\\.alc\\.co\\.jp/db/owa/bdicn_sch" . turnoff)
    ("\\`http://www\\.merriam-webster\\.com/dictionary/" . turnoff)
@@ -2688,7 +2680,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
     ("thesaurus-webster" . "シソwebster")
     ("thesaurus-rogets" . "シソrogets")
     ("ej-jijieigo" . "時事")
-    ("thesaurus-j-yahoo" . "J類語")
+    ;;("thesaurus-j-yahoo" . "J類語")
     ("thesaurus-j-weblio" . "Jシソ")
     ("corpus-j-kotonoha" . "Jコパ")
     ("jj-yahoo" . "国語"))))
@@ -2722,12 +2714,12 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
     ;;("kanji-infoseek" . "漢")
     ;;("jj-katakana-infoseek" . "カタカナ")
     ("jj-yojijukugo-goo" . "四熟")
-    ("thesaurus-j-yahoo" . "類語Y!")
+    ;;("thesaurus-j-yahoo" . "類語Y!")
     ("thesaurus-j-weblio" . "類語weblio")
     ("thesaurus-j-goo" . "類語goo")
     ("corpus-j-kotonoha" . "Jコパ")
     ("corpus-j-caseframe-get" . "格")
-    ("encyclopedia-yahoo" . "百科")
+    ("etc-yahoo" . "百科")
     ("ja.wikipedia" . "Wikipedia")
     ("jj-wiktionary" . "Wiktionary")
     ("ej-excite" . "JE-excite")
