@@ -420,7 +420,15 @@ nilなら`w3m-default-display-inline-images'の値に従う。")
   (around multi-filters (url))
   "Apply filtering rule of URL against a content in this buffer."
   (save-match-data
-    (dolist (elem w3m-filter-rules)
+    (dolist (elem (append w3m-filter-rules
+			  (delq nil
+				(mapcar
+				 (lambda (config)
+				   (when (car config)
+				     (if (consp (nth 3 config))
+					 (cons (nth 2 config) (nth 3 config))
+				       (list (nth 2 config) (nth 3 config)))))
+				 w3m-filter-configuration))))
       (when (string-match (car elem) url)
 	(if (listp (cadr elem))
 	    (dolist (elem2 (cdr elem))

@@ -1839,9 +1839,10 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
        ;; alc
        ("\\`http://eow\\.alc\\.co\\.jp/[^/]+/UTF-8"
 	(w3m-filter-delete-regions
-	 "<body[^>]*>" "<div id=\"resultArea\">" t nil t t)
+	 "<body[^>]*>" "<div id=\"resultsArea\">" t nil t t)
 	(w3m-filter-delete-regions "<span class=\"kana\">" "</span>")
 	(dic-lookup-w3m-filter-related-links "ej-alc" ej)
+	(dic-lookup-w3m-filter-eword-anchor "ej-alc")
 	)
 
        ;; alc business term dic
