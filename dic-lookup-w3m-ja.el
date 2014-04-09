@@ -3637,6 +3637,7 @@ Fix me!")
 (defvar dic-lookup-w3m-translator-site-list
   '((ej
      (;;("tr-ej-url-ocn" . "ocn")
+      ("tr-enja-url-excite-get" . "excite")
       ("tr-ej-url-livedoor" . "livedoor")
       ("tr-ej-url-nifty" . "nifty")
       ("tr-ej-url-sonet" . "sonet")
@@ -3644,7 +3645,8 @@ Fix me!")
       ("tr-enja-url-google" . "google")
       ("tr-enja-url-yahoo" . "yahoo")))
     (jx
-     (("tr-je-url-nifty" . "英nifty")
+     (("tr-jaen-url-excite-get" . "英excite")
+      ("tr-je-url-nifty" . "英nifty")
       ;;("tr-je-url-ocn" . "英ocn")
       ("tr-je-url-livedoor" . "英livedoor")
       ("tr-je-url-sonet" . "英sonet")
@@ -3652,17 +3654,21 @@ Fix me!")
       ("tr-jaen-url-google" . "英google")
       ("tr-jaen-url-yahoo" . "英yahoo")
       ;;("tr-jc-url-ocn" . "中ocn")
+      ("tr-jach-url-excite-get" . "中excite")
       ("tr-jc-url-nifty" . "中nifty")
+      ("tr-jako-url-excite-get" . "韓excite")
       ;;("tr-jk-url-ocn" . "韓ocn")
       ))
     (cj
-     (("tr-cj-url-nifty" . "nifty")
+     (("tr-chja-url-excite-get" . "excite")
+      ("tr-cj-url-nifty" . "nifty")
       ;;("tr-cj-url-ocn" . "ocn")
       ("tr-cj-url-sonet" . "sonet")
       ("tr-cj-url-yakushite.net" . "yakushite.net")
       ("tr-zh-CNja-url-google" . "google")))
     (kj
-     (("tr-kj-url-nifty" . "nifty")
+     (("tr-koja-url-excite-get" . "excite")
+      ("tr-kj-url-nifty" . "nifty")
       ;;("tr-kj-url-ocn" . "ocn")
       ("tr-kj-url-sonet" . "sonet")
       ("tr-koja-url-google" . "google"))))
@@ -3675,13 +3681,18 @@ webページに翻訳ボタンをつけて、各translatorにリンクする。
   (goto-char (point-min))
   ;; いい加減な言語の判定。 Fix me!
   (cond
+   ((save-excursion
+      (re-search-forward
+       "<html [^>]*lang=\"ja[-\"]\\|<meta [^>]*http-equiv=\"content-language\"[^>]*content=\"ja[-\"]" nil t))
+    (dic-lookup-w3m-filter-translation-anchor2
+     url 'jx "日*翻訳: " regexp before))
    ((or
      (not
       (save-excursion
 	(re-search-forward "[^\000-\177]" nil t)))
      (save-excursion
        (re-search-forward
-	"<html [^>]*lang=\"en\"\\|<meta [^>]*http-equiv=\"content-language\"[^>]*content=\"en\"\\|<meta [^>]*http-equiv=\"content-type\"[^>]*content=\"text/html; +charset=\\(iso-8859-1\\|us-ascii\\)\"" nil t)))
+	"<html [^>]*lang=\"en[-\"]\\|<meta [^>]*http-equiv=\"content-language\"[^>]*content=\"en[-\"]\\|<meta [^>]*http-equiv=\"content-type\"[^>]*content=\"text/html; +charset=\\(iso-8859-1\\|us-ascii\\)\"" nil t)))
     (dic-lookup-w3m-filter-translation-anchor2
      url 'ej "英日翻訳: " regexp before))
    ((save-excursion
@@ -3693,7 +3704,7 @@ webページに翻訳ボタンをつけて、各translatorにリンクする。
        (re-search-forward
 	"<html [^>]*lang=\"zh-cn\"\\|<meta [^>]*http-equiv=\"content-language\"[^>]*content=\"zh-cn\"\\|<meta [^>]*http-equiv=\"content-type\"[^>]*content=\"text/html; +charset=gb2312\"" nil t))
      (save-excursion
-       (re-search-forward "[啊-齄]\{10,\}" nil t)))
+       (re-search-forward "[啊-齄]\\{10,\\}" nil t)))
     (dic-lookup-w3m-filter-translation-anchor2
      url 'cj "中日翻訳: " regexp before))
    ((save-excursion
