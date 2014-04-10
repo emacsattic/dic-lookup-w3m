@@ -1,6 +1,6 @@
 ;;; dic-lookup-w3m-ja.el --- look up dictionaries on the Internet
 
-;; Copyright (C) 2008, 2009, 2010, 2011, 2012  mcprvmec
+;; Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014  mcprvmec
 
 ;; Author: mcprvmec
 
@@ -62,7 +62,7 @@
    ("jj-yahoo"
     "http://dic.search.yahoo.co.jp/dsearch?p=%s&dic_id=jj&stype=prefix&b=1"
     utf-8 nil "デジタル大辞泉, 大辞林 第三版")
-   ("ect-yahoo"
+   ("etc-yahoo"
     "http://dic.search.yahoo.co.jp/dsearch?p=%s&dic_id=etc&stype=prefix&b=1"
     utf-8 nil "その他の辞典")
    ("all-yahoo"

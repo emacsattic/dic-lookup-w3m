@@ -1,215 +1,215 @@
-dic-lookup-w3m��emacs-w3m���g���ăC���^�[�l�b�g��̎����T�C�g�̎�����
-��������A�����|��T�C�g�Ŗ|�󂵂��肷�邽�߂�emacs lisp�ł��B
-emacs-w3m��web�u���E�U�Ȃ̂ŁA�������emacs-w3m������web�T�C�g�ɃA�N�Z
-�X���Ď�������������|�󂷂邱�Ƃ��o���܂��B
-dic-lookup-w3m�͎�����������Ƃ����֗��ɂ��悤�Ǝv���č�����A�h�I��
-�ł��B
-emacs�Ŏ����������c�[���ɂ�eblook, lookup, sdic�Ȃǂ�����܂��B�����
-�̓��[�J���̎����������܂��Bdic-lookup-w3m�̓C���^�[�l�b�g��̎�����
-�����܂��B���̂��ߎ������������������ΓI�ɒx���Ȃ�܂��B
-��ʂ̕��͂�ǂނ��߂ɂ��΂₭���������������ꍇ�́A���[�J���̎�������
-���c�[�����g�����ق����悢��������܂���B
-dic-lookup-w3m��emacs-w3m�̃A�h�I���Ȃ̂ŁA�����Ő�������@�\�̑�����
-emacs-w3m�Ŏ�������Ă�����̂ł��Bdic-lookup-w3m�͂�����������H����
-�g���Ă���ɉ߂��܂���Bemacs-w3m, w3m�Ɍg����Ă�����X�Ɋ��ӂ�������
-���B
+dic-lookup-w3mはemacs-w3mを使ってインターネット上の辞書サイトの辞書を
+引いたり、自動翻訳サイトで翻訳したりするためのemacs lispです。
+emacs-w3mはwebブラウザなので、もちろんemacs-w3mだけでwebサイトにアクセ
+スして辞書を引いたり翻訳することが出来ます。
+dic-lookup-w3mは辞書を引く作業をより便利にしようと思って作ったアドオン
+です。
+emacsで辞書を引くツールにはeblook, lookup, sdicなどがあります。これら
+はローカルの辞書を引きます。dic-lookup-w3mはインターネット上の辞書を
+引きます。このため辞書を引く処理が相対的に遅くなります。
+大量の文章を読むためにすばやく辞書を引きたい場合は、ローカルの辞書を引
+くツールを使ったほうがよいかもしれません。
+dic-lookup-w3mはemacs-w3mのアドオンなので、ここで説明する機能の多くは
+emacs-w3mで実現されているものです。dic-lookup-w3mはそれを少し加工して
+使っているに過ぎません。emacs-w3m, w3mに携わっている方々に感謝いたしま
+す。
 
 
-�C���X�g�[��:
+インストール:
 
-dic-lookup-w3m���g���ɂ�emacs, emacs-w3m, w3m���K�v�ł��B�܂�emacs-w3m
-��web�u���E�Y���o���邱�Ƃ��m�F���Ă��������B
+dic-lookup-w3mを使うにはemacs, emacs-w3m, w3mが必要です。まずemacs-w3m
+でwebブラウズが出来ることを確認してください。
 http://emacs-w3m.namazu.org/index-ja.html
-�ق��ɕK�{�ł͂���܂���stem.el������ƕ֗��ł��B
-stem.el������ꍇ�͌�����傩��p��̊��p�������菜���Č��o����̌�
-���\�����܂��B�ߋ��`�╡���`�Ȃǂ����������Ƃ��A���̌`����͂��Ȃ���
-���Ɍ����N���b�N���邾���ōēx�����������Ȃ����܂��B
-stem.el��sdic�Ɋ܂܂�Ă��܂��B�܂�stem-english.el�Ƃ������O��lookup��
-�܂܂�Ă��܂��B
+ほかに必須ではありませんがstem.elがあると便利です。
+stem.elがある場合は検索語句から英語の活用語尾を取り除いて見出し語の候
+補を表示します。過去形や複数形などを検索したとき、元の形を入力しなおさ
+ずに候補をクリックするだけで再度辞書が引きなおせます。
+stem.elはsdicに含まれています。またstem-english.elという名前でlookupに
+含まれています。
 http://www.namazu.org/~tsuchiya/sdic/index.html
 http://openlab.ring.gr.jp/edict/lookup/
 
-dic-lookup-w3m��elisp�t�@�C��*.el��stem.el��emacs�̃��[�h�p�X���ʂ���
-����Ƃ���ɂ����Ă��������B
+dic-lookup-w3mのelispファイル*.elとstem.elをemacsのロードパスが通って
+いるところにおいてください。
 
-.emacs�Ɏ��̂ǂ��炩��ǉ����Ă��������B
-(autoload 'dic-lookup-w3m "dic-lookup-w3m" "w3m�Ŏ���������" t)
+.emacsに次のどちらかを追加してください。
+(autoload 'dic-lookup-w3m "dic-lookup-w3m" "w3mで辞書を引く" t)
 (require 'dic-lookup-w3m)
 
 
-�g����:
+使い方:
 
-M-x dic-lookup-w3m�ŋN�����܂��B
-Which engine? (default ej-yahoo): �ƕ����Ă���̂ŁA�g�����������T�C�g
-����͂��Ă��������Btab�Ō��̕\���ƕ⊮���o���܂��B
-����search: �ƕ\�������̂ŁA���ׂ����P�����͂��Ă��������B
+M-x dic-lookup-w3mで起動します。
+Which engine? (default ej-yahoo): と聞いてくるので、使いたい辞書サイト
+を入力してください。tabで候補の表示と補完が出来ます。
+次にsearch: と表示されるので、調べたい単語を入力してください。
 
-M-x dic-lookup-w3m-search-engine-menu�Ŏ���/�|��T�C�g�̈ꗗ���\������
-�܂��B�ڍׂ͕ϐ�dic-lookup-w3m-search-engine-alist��\�[�X�����Ă�����
-���B
+M-x dic-lookup-w3m-search-engine-menuで辞書/翻訳サイトの一覧が表示され
+ます。詳細は変数dic-lookup-w3m-search-engine-alistやソースを見てくださ
+い。
 
-�|�󂷂�ɂ�Which engine?�ɖ|��T�C�g���w�肵�Asearch:�̌�ɕ��͂��
-�͂��܂��B
-dic-lookup-w3m�ɑO�u������^���邱�Ƃɂ���ă|�C���g�̈ʒu�̒P��A
-line, sentence, region, paragraph, buffer������������Ɏw�肷�邱�Ƃ�
-�o���܂��B�����|��ł͂��͈͎̔w�肪�𗧂�������܂���B����ɂ�
-thing-at-point�֐����g���Ă���̂ŁA�͈͂̒��o�̐��\��thing-at-point��
-�ˑ����܂��B
-�O�u�����ƃe�L�X�g�̑I��͈͂̑Ή��͕ϐ�
-dic-lookup-w3m-read-query-prefix-arg-alist�ŕύX�ł��܂��B
+翻訳するにはWhich engine?に翻訳サイトを指定し、search:の後に文章を入
+力します。
+dic-lookup-w3mに前置引数を与えることによってポイントの位置の単語、
+line, sentence, region, paragraph, bufferを検索文字列に指定することが
+出来ます。自動翻訳ではこの範囲指定が役立つかもしれません。これには
+thing-at-point関数を使っているので、範囲の抽出の性能はthing-at-pointに
+依存します。
+前置引数とテキストの選択範囲の対応は変数
+dic-lookup-w3m-read-query-prefix-arg-alistで変更できます。
 
-�����|��T�C�g�ɂ���Ă͉��s�𕶂̏I���Ƃ݂Ȃ����̂�����̂ŁA�|��
-�����\�[�X�̈ꕶ�������s�ɂ킽���Ă���ꍇ�͈�s�ɂȂ�悤�ɕҏW���Ă�
-�瑗�M����K�v������܂��B
-���[�W�������w�肵����Ԃ�dic-lookup-w3m���N������ƁA���[�W�����̃e�L
-�X�g��search:�̌�ɃR�s�[�����̂ŁA�~�j�o�b�t�@��ŕҏW�ł��܂��B
-�O�u���������ċN�������ꍇ��search:�\�����ꂸ�A�����Ɍ������s���̂�
-�ҏW�͏o���܂���B
+自動翻訳サイトによっては改行を文の終わりとみなすものがあるので、翻訳し
+たいソースの一文が複数行にわたっている場合は一行になるように編集してか
+ら送信する必要があります。
+リージョンを指定した状態でdic-lookup-w3mを起動すると、リージョンのテキ
+ストがsearch:の後にコピーされるので、ミニバッファ上で編集できます。
+前置引数をつけて起動した場合はsearch:表示されず、すぐに検索を行うので
+編集は出来ません。
 
-emacs���玩���|��T�C�g���g���c�[���ɂ͑���text-translator��
-trans-ej.el������܂��B
-�����|�󂪖ړI�Ȃ炱����̂ق����悢��������܂���B
+emacsから自動翻訳サイトを使うツールには他にtext-translatorや
+trans-ej.elがあります。
+自動翻訳が目的ならこちらのほうがよいかもしれません。
 http://d.hatena.ne.jp/khiker/20110403/text_translator
 http://www.emacswiki.org/emacs/TransEJ
 
-�L�[�o�C���h:
+キーバインド:
 
-�悭�g���������L�[�o�C���h���Ă����ƕ֗��ł��B
-emacs-w3m��web�����Ă���Ƃ���w3m�o�b�t�@�ɕ\������Ă����������Œ�
-�ׂ������Ƃ�����ł��傤���Aemacs�ŕ����t�@�C����ǂ񂾂�ҏW�����肵
-�Ă���Ƃ��Ɏ��������������Ǝv�����Ƃ�����ł��傤����A�L�[�o�C���h��
-w3m�o�b�t�@���[�J���ł͂Ȃ��O���[�o���ɂ����ق����悢�ł��傤�B
-�ȉ��̐����̒��̗��emacs-w3m��Info-like�L�[�o�C���h�ɐݒ肵�Ă���ꍇ
-�̗�ł��BLynx-like�L�[�o�C���h�ł͏Փ˂�����̂����邩������܂���B
-emacs-w3m�̃L�[�o�C���h�̐ݒ�� (setq w3m-key-binding 'info) �ŕύX��
-���܂��B
+よく使う辞書をキーバインドしておくと便利です。
+emacs-w3mでwebを見ているときにw3mバッファに表示されている語を辞書で調
+べたいこともあるでしょうし、emacsで文書ファイルを読んだり編集したりし
+ているときに辞書を引きたいと思うこともあるでしょうから、キーバインドは
+w3mバッファローカルではなくグローバルにしたほうがよいでしょう。
+以下の説明の中の例はemacs-w3mをInfo-likeキーバインドに設定している場合
+の例です。Lynx-likeキーバインドでは衝突するものがあるかもしれません。
+emacs-w3mのキーバインドの設定は (setq w3m-key-binding 'info) で変更で
+きます。
 
-��
+例
 (global-set-key "\C-cd" 'dic-lookup-w3m)
-C-c d��dic-lookup-w3m���N�����܂��B
+C-c dでdic-lookup-w3mを起動します。
 
-(global-set-key "\C-cc" '(lambda () "excite �p�a,�a�p" (interactive)
+(global-set-key "\C-cc" '(lambda () "excite 英和,和英" (interactive)
 			   (dic-lookup-w3m "ej-excite")))
-C-c c��excite�p�a,�a�p���T���w�肵��dic-lookup-w3m���N�����܂��B
+C-c cでexcite英和,和英辞典を指定してdic-lookup-w3mを起動します。
 
-(global-set-key "\C-ct" '(lambda () "nifty �p�a�|��" (interactive)
+(global-set-key "\C-ct" '(lambda () "nifty 英和翻訳" (interactive)
 			   (dic-lookup-w3m "tr-ej-nifty" 'sentence)))
-C-c t��nifty�̉p�a�|��Ń|�C���g������ʒu�̃Z���e���X��|�󂵂܂��B
+C-c tでniftyの英和翻訳でポイントがある位置のセンテンスを翻訳します。
 
-dic-lookup-w3m�̓��[�h���ꂽ�Ƃ��ɁA��`����Ă��鎫���̂��ׂĂɑ΂��āA
-dic-lookup-w3m--je-babylon��dic-lookup-w3m--tr-ej-yahoo-sentence�̂悤
-�Ȕ͈͎w�肨���Ȃ���dic-lookup-w3m���N������悤�ȃR�}���h���쐬���܂��B
-���̒��ɂ͖��Ӗ��ȃR�}���h�����邩������܂���B
-������L�[�o�C���h���邱�Ƃ��o���܂��B
-��
+dic-lookup-w3mはロードされたときに、定義されている辞書のすべてに対して、
+dic-lookup-w3m--je-babylonやdic-lookup-w3m--tr-ej-yahoo-sentenceのよう
+な範囲指定おこなってdic-lookup-w3mを起動するようなコマンドを作成します。
+この中には無意味なコマンドもあるかもしれません。
+これをキーバインドすることも出来ます。
+例
 (global-set-key "\C-cT" 'dic-lookup-w3m--tr-ej-yahoo-paragraph)
-C-c T��yahoo.jp�̉p�a�|��Ń|�C���g������ʒu�̃p���O���t��|�󂵂܂��B
+C-c Tでyahoo.jpの英和翻訳でポイントがある位置のパラグラフを翻訳します。
 
-���̃p�^�[���̃R�}���h���g���ɂ�autoload�ł͂Ȃ�require��
-dic-lookup-w3m.el��ǂݍ���ł������A�ŏ���dic-lookup-w3m���Ăяo����
-dic-lookup-w3m.el�����[�h������K�v������܂��B
-���ׂĂ̎����ɂ��̂悤�ȃR�}���h�𐶐�����ɂ͎��Ԃ�������̂ŁA�s�v��
-��ϐ�dic-lookup-w3m-autodef-func��nil�ɂ���ƂƂł��̏�������߂邱��
-���o���܂��B
+このパターンのコマンドを使うにはautoloadではなくrequireで
+dic-lookup-w3m.elを読み込んでおくか、最初にdic-lookup-w3mを呼び出して
+dic-lookup-w3m.elをロードさせる必要があります。
+すべての辞書にこのようなコマンドを生成するには時間がかかるので、不要な
+ら変数dic-lookup-w3m-autodef-funcをnilにするととでこの処理をやめること
+が出来ます。
 
-w3m�o�b�t�@�ł͎��̃L�[�o�C���h���ǉ�����Ă��܂��B
+w3mバッファでは次のキーバインドが追加されています。
 z     dic-lookup-w3m-bury-buffer
-      w3m�o�b�t�@���B���āAw3m���N������O�̃E�C���h�E�̃��C�A�E�g�ɖ�
-      ���B
+      w3mバッファを隠して、w3mを起動する前のウインドウのレイアウトに戻
+      す。
 x     dic-lookup-w3m-select-last-window
-      w3m���Ăяo���O�ɕ\�����Ă����E�C���h�E��I������B
-      �������\�����ꂽw3m�o�b�t�@���c�����܂܌��̃o�b�t�@�ɃJ�[�\����
-      �ړ����܂��B
+      w3mを呼び出す前に表示していたウインドウを選択する。
+      辞書が表示されたw3mバッファを残したまま元のバッファにカーソルを
+      移動します。
 f     dic-lookup-w3m-toggle-filter
-      w3m��filter�̗L���A������؂�ւ���B
-      dic-lookup-w3m��emacs-w3m�̃t�B���^�@�\���g���Ď����̓��e������
-      �����\�����܂��B���̃t�B���^�𖳌��ɂ��āA�I���W�i����web�y�[�W
-      �ǂ���ɕ\���������Ƃ��Ɏg���܂��B
+      w3mのfilterの有効、無効を切り替える。
+      dic-lookup-w3mはemacs-w3mのフィルタ機能を使って辞書の内容を見や
+      すく表示します。このフィルタを無効にして、オリジナルのwebページ
+      どおりに表示したいときに使います。
 F     dic-lookup-w3m-toggle-phonetic-image
-      �����L����inline image���t�H���g�ɕϊ����ĕ\�����邩�ǂ�����؂�
-      �ւ���B
-      �T�C�g�ɂ���Ă͔����L����inline image�ŕ\��������̂�����܂��B
-      emacs-w3m�ŉ摜��\������Ɠ��삪�x���Ȃ�̂ŁAdic-lookup-w3m��
-      �͈ꕔ�̎����T�C�g�ɑ΂��Ĕ����L����inline image��Ή�����t�H��
-      �g�ɒu��������t�B���^������܂��B���̃t�B���^�𖳌��ɂ��āA����
-      inline�@image��\������Ƃ��Ɏg���܂��B�t�B���^����`����Ă���
-      ���T�C�g�ł͉����N���܂���B
+      発音記号のinline imageをフォントに変換して表示するかどうかを切り
+      替える。
+      サイトによっては発音記号をinline imageで表示するものがあります。
+      emacs-w3mで画像を表示すると動作が遅くなるので、dic-lookup-w3mで
+      は一部の辞書サイトに対して発音記号のinline imageを対応するフォン
+      トに置き換えるフィルタがあります。このフィルタを無効にして、元の
+      inline　imageを表示するときに使います。フィルタが定義されていな
+      いサイトでは何も起きません。
 C-c l dic-lookup-w3m-filter-toggle-eword-anchor
-      �p�P��炵��������Ɏ��������p�̃A���J�[��t����t�B���^���g�O��
-      ����B
-      w3m�o�b�t�@���̉p�P��̂悤�Ɍ����镶����(�A���t�@�x�b�g��������
-      �Ȃ镶����)�̂��ׂĂ��玫���ւ̃����N�𒣂��āA�P����N���b�N��
-      �邾���Ŏ�����������悤�ɂ��܂��B
+      英単語らしい文字列に辞書検索用のアンカーを付けるフィルタをトグル
+      する。
+      w3mバッファ中の英単語のように見える文字列(アルファベットだけから
+      なる文字列)のすべてから辞書へのリンクを張って、単語をクリックす
+      るだけで辞書が引けるようにします。
 
-�f�t�H���g�ł̓o�C���h���Ă��܂��񂪎��̂悤�ɂ���ƖړI�̃����N�ւ̈�
-�������������Ȃ邩������܂���B
+デフォルトではバインドしていませんが次のようにすると目的のリンクへの移
+動が少し速くなるかもしれません。
 (define-key w3m-mode-map "j" 'dic-lookup-w3m-next-anchor-line)
 (define-key w3m-mode-map "k" 'dic-lookup-w3m-previous-anchor-line)))
 
 
-�R�}���h:
+コマンド:
 
-�قڃ\�[�X���甲���o���������̕��͂ł��B
+ほぼソースから抜き出しただけの文章です。
 
 dic-lookup-w3m &optional SEARCH-ENGINE QUERY
 
-w3m���g���ăC���^�[�l�b�g��̎����������B�܂��͖|�󂷂�B
+w3mを使ってインターネット上の辞書を引く。または翻訳する。
 
-search-engine��non-nil�Ȃ炻��search-engine���g���Bnil�Ȃ�~�j�o�b
-�t�@����ǂݎ��Bsearch-engine��
-`dic-lookup-w3m-search-engine-alist'�ɑ��݂�����́B
+search-engineがnon-nilならそのsearch-engineを使う。nilならミニバッ
+ファから読み取る。search-engineは
+`dic-lookup-w3m-search-engine-alist'に存在するもの。
 
-query��������Ȃ炻�̕������search-engine�ɑ���B�V���{���Ȃ�J��
-���g�o�b�t�@���當�����I������search-engine�ɑ���B�V���{���̒l
-�ɂ���đI��͈͂��w�肷��B�w��ł���V���{����line, sentence,
-region, paragraph, buffer�Bregion�ȊO��`thing-at-point'���g�p����
-�������I������Bquery��nil�Ȃ�~�j�o�b�t�@����ǂݎ��B
+queryが文字列ならその文字列をsearch-engineに送る。シンボルならカレ
+ントバッファから文字列を選択してsearch-engineに送る。シンボルの値
+によって選択範囲を指定する。指定できるシンボルはline, sentence,
+region, paragraph, buffer。region以外は`thing-at-point'を使用して
+文字列を選択する。queryがnilならミニバッファから読み取る。
 
-�O�u������^����ƁA���̒l�ɂ���ĕ�����̑I��͈͂��w�肷��B�͈�
-�w��̎�ނ�query�ɗ^����V���{���Ɠ����B�O�u�����̒l�Ɣ͈͎w���
-�g�ݍ��킹��`dic-lookup-w3m-read-query-prefix-arg-alist'�Ŏw�肷��B
-���Ƃ���C-u��sentense�AC-u C-u��region�ȂǁB
+前置引数を与えると、その値によって文字列の選択範囲を指定する。範囲
+指定の種類はqueryに与えるシンボルと同じ。前置引数の値と範囲指定の
+組み合わせは`dic-lookup-w3m-read-query-prefix-arg-alist'で指定する。
+たとえばC-uでsentense、C-u C-uでregionなど。
 
-�O�u������query�̒l�ɗD�悷��B���Ƃ���sentence���w�肵��
-dic-lookup-w3m�̌Ăяo�����L�[�o�C���h���Ă����A�ꍇ�ɂ���đO�u��
-����region��paragraph���w�肷��悤�ɂ���ƁA�L�[�o�C���h�̐��ƃL�[
-�X�g���[�N��ߖ�ł���B
-query�ւ̃V���{���̎w��ƑO�u�����̎w��͖|��T�C�g�ł̎g�p��z��
-���Ă���B
+前置引数はqueryの値に優先する。たとえばsentenceを指定した
+dic-lookup-w3mの呼び出しをキーバインドしておき、場合によって前置引
+数でregionやparagraphを指定するようにすると、キーバインドの数とキー
+ストロークを節約できる。
+queryへのシンボルの指定と前置引数の指定は翻訳サイトでの使用を想定
+している。
 
-�O�u�����ƃe�L�X�g�̑I��͈͂̑Ή��͕ϐ�
-dic-lookup-w3m-read-query-prefix-arg-alist���Q�ƁB
+前置引数とテキストの選択範囲の対応は変数
+dic-lookup-w3m-read-query-prefix-arg-alistを参照。
 
 
 dic-lookup-w3m-bury-buffer (z)
 
-w3m�o�b�t�@���B���āA`w3m'���N������O�̃E�C���h�E�̃��C�A�E�g�ɖ߂��B
+w3mバッファを隠して、`w3m'を起動する前のウインドウのレイアウトに戻す。
 
 
 dic-lookup-w3m-filter-toggle-eword-anchor (C-c l)
 
-�p�P��炵��������Ɏ��������p�̃A���J�[��t����t�B���^���g�O������B
-�����Ȃ��ŌĂяo���ƃt�B���^���g�O������Bflag�̒l��turnoff�Ȃ�t�B
-���^�𖳌��ɂ���Bturnoff�ł�nil�ł��Ȃ���΃t�B���^��L���ɂ���B
-�t�B���^��L���ɂ���ƁA�y�[�W���ɂ��邷�ׂẲp�P��炵���������
-�����G���W��``dic-lookup-w3m-favorite-ej-engine''���������郊���N
-������B
+英単語らしい文字列に辞書検索用のアンカーを付けるフィルタをトグルする。
+引数なしで呼び出すとフィルタをトグルする。flagの値がturnoffならフィ
+ルタを無効にする。turnoffでもnilでもなければフィルタを有効にする。
+フィルタを有効にすると、ページ中にあるすべての英単語らしい文字列に
+検索エンジン``dic-lookup-w3m-favorite-ej-engine''を検索するリンク
+をつける。
 
 
 dic-lookup-w3m-jtxt2w3m
 
-���{��̃e�L�X�g���A�e�P��Ɏ����ւ̃����N��t����html�ɕϊ�����w3m�ŊJ���B
-�~�j�o�b�t�@�ɓ��͂����e�L�X�g�܂��̓J�����g�o�b�t�@�̃e�L�X�g����
-�Ղ�html�ɕϊ�����w3m�ŊJ���B���{��̊e�P�ꂩ�玫���փ����N�𒣂�B
-�����͍��ꎫ�T�̂ق��a�p��������T�ȂǓ��{�ꂪ���o����ɂȂ��Ă���Ύg����B
-`dic-lookup-w3m'�Ɠ����悤�ɁA�O�u�����ŕϊ�����e�L�X�g�͈̔͂��w
-��ł���B�O�u�����Ȃ��ŁAquery����̏ꍇ�̓J�����g�o�b�t�@�S�̂�
-�ϊ�����B
-�`�ԑf��̓G���W��(MeCab, ChaSen)�̐ݒ��
-`dic-lookup-w3m-morpheme-cmd'�A`dic-lookup-w3m-morpheme-args'�A
-`dic-lookup-w3m-morpheme-coding-system'�A
-`dic-lookup-w3m-morpheme-eos'�ł����Ȃ��B
-�K�؂Ȍ`�ԑf��͊킪����Γ��{��ȊO�̌���ɂ��g����͂��B
+日本語のテキストを、各単語に辞書へのリンクを付けたhtmlに変換してw3mで開く。
+ミニバッファに入力したテキストまたはカレントバッファのテキストを簡
+易なhtmlに変換してw3mで開く。日本語の各単語から辞書へリンクを張る。
+辞書は国語辞典のほか和英や日中辞典など日本語が見出し語になっていれば使える。
+`dic-lookup-w3m'と同じように、前置引数で変換するテキストの範囲を指
+定できる。前置引数なしで、queryが空の場合はカレントバッファ全体を
+変換する。
+形態素解析エンジン(MeCab, ChaSen)の設定を
+`dic-lookup-w3m-morpheme-cmd'、`dic-lookup-w3m-morpheme-args'、
+`dic-lookup-w3m-morpheme-coding-system'、
+`dic-lookup-w3m-morpheme-eos'でおこなう。
+適切な形態素解析器があれば日本語以外の言語にも使えるはず。
 http://sourceforge.jp/projects/mecab-chinese/
 http://code.google.com/p/imdict-chinese-analyzer/
 http://d.hatena.ne.jp/asanote/20090319/1237452770
@@ -217,195 +217,195 @@ http://d.hatena.ne.jp/asanote/20090319/1237452770
 
 dic-lookup-w3m-last-engine
 
-�Ō�Ƀ~�j�o�b�t�@����ǂݍ���Ŏg�p�����T�C�g���g�p���Č�������B
-�L�[�o�C���h����N�������T�C�g�́A�Ō�Ƀ~�j�o�b�t�@����ǂݍ����
-�g�p�����T�C�g�ɂȂ�Ȃ��B
+最後にミニバッファから読み込んで使用したサイトを使用して検索する。
+キーバインドから起動したサイトは、最後にミニバッファから読み込んで
+使用したサイトにならない。
 
 
 dic-lookup-w3m-next-anchor-line
 
-�|�C���g�̂���s����̍s�̍ŏ��̃A���J�[�Ƀ|�C���g���ړ�����B
-��s�ɕ����̃A���J�[�������Ă��ŏ��̂ЂƂɂ����ړ����Ȃ��̂ŁA������
-����A���J�[�ɑ������ǂ蒅����B`dic-lookup-w3m-previous-anchor-line'���Q�ƁB
+ポイントのある行より後の行の最初のアンカーにポイントを移動する。
+一行に複数のアンカーがあっても最初のひとつにしか移動しないので、遠くに
+あるアンカーに早くたどり着ける。`dic-lookup-w3m-previous-anchor-line'も参照。
 
 
 dic-lookup-w3m-previous-anchor-line
 
-�|�C���g�̂���s���O�̍s�̍Ō�̃A���J�[�Ƀ|�C���g���ړ�����B
-��s�ɕ����̃A���J�[�������Ă��ŏ��̂ЂƂɂ����ړ����Ȃ��̂ŁA������
-����A���J�[�ɑ������ǂ蒅����B`dic-lookup-w3m-next-anchor-line'���Q�ƁB
+ポイントのある行より前の行の最後のアンカーにポイントを移動する。
+一行に複数のアンカーがあっても最初のひとつにしか移動しないので、遠くに
+あるアンカーに早くたどり着ける。`dic-lookup-w3m-next-anchor-line'も参照。
 
 
 dic-lookup-w3m-search-engine-menu
 
-search engine�̈ꗗ��\������B
-�\����``dic-lookup-w3m-search-engine-alist''�ɏo�����鏇�B
-C-u�Ŗ��O�Ń\�[�g�AC-u C-u�Ő����Ń\�[�g�B
+search engineの一覧を表示する。
+表示は``dic-lookup-w3m-search-engine-alist''に出現する順。
+C-uで名前でソート、C-u C-uで説明でソート。
 
 
 dic-lookup-w3m-select-last-window (x)
 
-w3m���Ăяo���O�ɕ\�����Ă����E�C���h�E��I������B
+w3mを呼び出す前に表示していたウインドウを選択する。
 
 
 dic-lookup-w3m-toggle-filter (f)
 
-w3m��filter��on/off��؂�ւ���B
+w3mのfilterのon/offを切り替える。
 
 
 dic-lookup-w3m-toggle-phonetic-image (F)
 
-�����L����inline image���t�H���g�ɕϊ����ĕ\�����邩�ǂ�����؂�ւ���B
-inline image��\������Ǝ��Ԃ������邽�߃t�H���g�ɒu��������B
-``w3m-filter''�Ƀt�H���g�ɕϊ����邽�߂̃t�B���^�[����`����Ă���T�C
-�g�̂ݗL���B
-�t�B���^�[�͊֐�`dic-lookup-w3m-filter-convert-phonetic-symbol'���Ă�
-�o���悤�ɂȂ��Ă��Ȃ���΂Ȃ�Ȃ��B
+発音記号のinline imageをフォントに変換して表示するかどうかを切り替える。
+inline imageを表示すると時間がかかるためフォントに置き換える。
+``w3m-filter''にフォントに変換するためのフィルターが定義されているサイ
+トのみ有効。
+フィルターは関数`dic-lookup-w3m-filter-convert-phonetic-symbol'を呼び
+出すようになっていなければならない。
 
 
 dic-lookup-w3m-txt2html
 
-�J�����g�o�b�t�@�̃e�L�X�g���ȈՂ�html�ɕϊ�����B
-�o�b�t�@���̊e�p�P��炵�������񂩂玫���ւ̃����N�𒣂�B
-�ϊ����ʂ�emacs�̐V�K�o�b�t�@�ɏo�͂���B�t�@�C���ɕۑ����ĕʂ�web�u��
-�E�U�ŕ\���o����B
+カレントバッファのテキストを簡易なhtmlに変換する。
+バッファ内の各英単語らしい文字列から辞書へのリンクを張る。
+変換結果はemacsの新規バッファに出力する。ファイルに保存して別のwebブラ
+ウザで表示出来る。
 
 
 dic-lookup-w3m-txt2w3m
 
-�J�����g�o�b�t�@�̃e�L�X�g���ȈՂ�html�ɕϊ�����w3m�ŊJ���B
-�o�b�t�@���̊e�p�P�ꂩ�玫���ւ̃����N�𒣂�B
+カレントバッファのテキストを簡易なhtmlに変換してw3mで開く。
+バッファ内の各英単語から辞書へのリンクを張る。
 
 
 
 
-�ϐ�:
+変数:
 
 dic-lookup-w3m-buffer-name
 
-�����̌������ʂ�\�����邽�߂�w3m�o�b�t�@�̖��O�B
-non-nil�Ȃ�Aw3m�Z�b�V�����̃o�b�t�@���B������w3m�Z�b�V����������
-�Ƃ��A��ɂ��̃o�b�t�@�Ō������s���B�����o�b�t�@���̃Z�b�V��������
-�݂��Ȃ��Ƃ��͐V����w3m�Z�b�V�������J�n���āA���̃o�b�t�@��������
-�ϐ��ɕێ�����B
-nil�Ȃ�`w3m-goto-url'���I������Z�b�V�����Ō������s���B(w3m�̃f�t�H
-���g�̓���B)
-���w3m�Z�b�V�����̕Е��ɓǂ݂���web�T�C�g��\�����āA���������
-������\������Ƃ����g������z��B
+辞書の検索結果を表示するためのw3mバッファの名前。
+non-nilなら、w3mセッションのバッファ名。複数のw3mセッションがある
+とき、常にこのバッファで検索を行う。もしバッファ名のセッションが存
+在しないときは新しいw3mセッションを開始して、そのバッファ名をこの
+変数に保持する。
+nilなら`w3m-goto-url'が選択するセッションで検索を行う。(w3mのデフォ
+ルトの動作。)
+二つのw3mセッションの片方に読みたいwebサイトを表示して、もう一方に
+辞書を表示するという使い方を想定。
 
 
 dic-lookup-w3m-config-files
 
-�����T�C�g�̒�`���L�q�����t�@�C���̃��X�g�B
-dic-lookup-w3m.el�����[�h���ꂽ�Ƃ��A���̃��X�g�ɂ���V���{����require�����B
-�V���{���͎����T�C�g�̒�`�t�@�C����provide���Ă����K�v������B
-���Ƃ��Ε�ꂲ�ƂɎ����T�C�g�̃Z�b�g���`���邱�Ƃ�z��B
-���X�g���L�q���鏇�Ԃɒ��ӁB�t�@�C�������[�h���鏇�Ԃɂ����
-`w3m-filter-rules'�Œ�`�����t�B���^�̎��s�������ς��B����T�C�g��
-�΂��郋�[���������̃t�@�C���ɏ�����Ă���ꍇ�A���[�h���鏇�ԂŌ��ʂ�
-�ς��\��������B
+辞書サイトの定義を記述したファイルのリスト。
+dic-lookup-w3m.elがロードされたとき、このリストにあるシンボルがrequireされる。
+シンボルは辞書サイトの定義ファイルでprovideしておく必要がある。
+たとえば母語ごとに辞書サイトのセットを定義することを想定。
+リストを記述する順番に注意。ファイルをロードする順番によって
+`w3m-filter-rules'で定義されるフィルタの実行順序が変わる。同一サイトに
+対するルールが複数のファイルに書かれている場合、ロードする順番で結果が
+変わる可能性がある。
 
 
 dic-lookup-w3m-enable-search-engine-list
 
-�g�p���錟���G���W���̃��X�g�B
-`w3m-search-engine-alist' �ɂ��錟���G���W���̂����A�g�p����
-���G���W���̖��O�𐳋K�\���ŋL�q����B���S�Ɉ�v������ɂ̓p�^�[��
-�̑O���`^', `$'���K�v�B�p�^�[���̂ǂꂩ�Ƀ}�b�`���������G���W����
-����`w3m-search-engine-alist'�ɒǉ�����A�����I���̕⊮���Ɍ����B
-nil�Ȃ�`w3m-search-engine-alist'�ɂ��邷�ׂẴG���W�����g���B
+使用する検索エンジンのリスト。
+`w3m-search-engine-alist' にある検索エンジンのうち、使用した
+いエンジンの名前を正規表現で記述する。完全に一致させるにはパターン
+の前後に`^', `$'が必要。パターンのどれかにマッチした検索エンジンだ
+けが`w3m-search-engine-alist'に追加され、辞書選択の補完候補に現れる。
+nilなら`w3m-search-engine-alist'にあるすべてのエンジンを使う。
 
 
 dic-lookup-w3m-favorite-ej-engine
 
-�p�P�ꂩ�烊���N�𒣂�f�t�H���g��search engine.
-`dic-lookup-w3m-filter-toggle-eword-anchor'�Q�ƁB
+英単語からリンクを張るデフォルトのsearch engine.
+`dic-lookup-w3m-filter-toggle-eword-anchor'参照。
 
 
 dic-lookup-w3m-filter-convert-phonetic-symbol
 
-�����L����inline image���t�H���g�ɕϊ����ĕ\�����邩�ǂ����̃t���O�B
-non-nil�Ȃ�A�\�ȏꍇ�̓t�H���g�ɕϊ�����B
-nil�Ȃ�inline image�̂܂܁B
-`dic-lookup-w3m-toggle-phonetic-image'�Ŏg�p�B
+発音記号のinline imageをフォントに変換して表示するかどうかのフラグ。
+non-nilなら、可能な場合はフォントに変換する。
+nilならinline imageのまま。
+`dic-lookup-w3m-toggle-phonetic-image'で使用。
 
 
 dic-lookup-w3m-filter-disable-translation-anchor
 
-web�y�[�W�ɖ|��{�^�������邩�ǂ����̃t���O�B
-non-nil�Ȃ�y�[�W�|��{�^����t���Ȃ��B
-nil�Ȃ�`dic-lookup-w3m-filter-translation-anchor'���Ăяo����web�y�[�W
-�ɖ|��{�^��������B
+webページに翻訳ボタンをつけるかどうかのフラグ。
+non-nilならページ翻訳ボタンを付けない。
+nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebページ
+に翻訳ボタンをつける。
 
 
 dic-lookup-w3m-filter-do-show-candidates-heading
 
-�P��̌�⃊�X�g�̑O�ɕ\�����錩�o���B
+単語の候補リストの前に表示する見出し。
 
 
 dic-lookup-w3m-filter-excite-always-show-first-entry
 
-excite�����ōŏ��̌��o����̓��e��\������B
-excite�̎��������ŕ����̌��o���ꂪ���������ꍇ�ł��A�ŏ��̌��o�����
-���e��\������B
+excite辞書で最初の見出し語の内容を表示する。
+exciteの辞書検索で複数の見出し語が見つかった場合でも、最初の見出し語の
+内容を表示する。
 
 
 dic-lookup-w3m-filter-related-links-heading
 
-�֘A�T�C�g�̃��X�g�̑O�ɕ\�����錩�o���B
+関連サイトのリストの前に表示する見出し。
 
 
 dic-lookup-w3m-google-translator-langs
 
-google�|��ŗL���ɂ��錾��̃��X�g�B
+google翻訳で有効にする言語のリスト。
 ((LANGS1) (LANGS2))
-LANGS1�ALANGS2�͌��ꖼ�̃��X�g�BLANGS1 X LANGS2�̑g�ݍ��킹�Ŗ|��
-���ł���悤�ɂ���B
-nil�̏ꍇ�͂��ׂĂ̌����Ώۂɂ���Bnil X nil�͋N�����x���Ȃ�B
+LANGS1、LANGS2は言語名のリスト。LANGS1 X LANGS2の組み合わせで翻訳
+ができるようにする。
+nilの場合はすべての言語を対象にする。nil X nilは起動が遅くなる。
 
 
 dic-lookup-w3m-inline-image-inherit
 
-inline image�̕\��/��\���؂�ւ��K���B
-inline image�̕\�����[����`dic-lookup-w3m-inline-image-rules'�ɒ�
-�`����Ă��Ȃ��T�C�g�̃f�t�H���g�̓���̎w��B
-non-nil�Ȃ�inline image�̕\���^��\���̏�Ԃ�؂�ւ��Ȃ��B(���̑O
-�ɕ\�������y�[�W�Ɠ����B)
-nil�Ȃ�`w3m-default-display-inline-images'�̒l�ɏ]���B
+inline imageの表示/非表示切り替え規則。
+inline imageの表示ルールが`dic-lookup-w3m-inline-image-rules'に定
+義されていないサイトのデフォルトの動作の指定。
+non-nilならinline imageの表示／非表示の状態を切り替えない。(その前
+に表示したページと同じ。)
+nilなら`w3m-default-display-inline-images'の値に従う。
 
 
 dic-lookup-w3m-inline-image-rules
-w3m��inline image��\�����邩�ǂ������T�C�g���ƂɎw�肷�郊�X�g�B
+w3mでinline imageを表示するかどうかをサイトごとに指定するリスト。
  ((REGEXP . FLAG) ...)
-FLAG��'turnoff�Ȃ琳�K�\���Ƀ}�b�`�����T�C�g�ł�inline image��\�����Ȃ��B
-turnoff, nil�ȊO�Ȃ�\������B
-FLAG��nil�ł��邩�A�܂��̓T�C�g���ǂ̐��K�\���ɂ��}�b�`���Ȃ������ꍇ��
-`dic-lookup-w3m-inline-image-inherit'�̎w��ɏ]���B
-`w3m-toggle-inline-images'�Q�ƁB
+FLAGが'turnoffなら正規表現にマッチしたサイトではinline imageを表示しない。
+turnoff, nil以外なら表示する。
+FLAGがnilであるか、またはサイトがどの正規表現にもマッチしなかった場合は
+`dic-lookup-w3m-inline-image-inherit'の指定に従う。
+`w3m-toggle-inline-images'参照。
 
 
 dic-lookup-w3m-load-hook
 
-dic-lookup-w3m�����[�h������ɌĂ΂��t�b�N�B
+dic-lookup-w3mをロードした後に呼ばれるフック。
 
 
 dic-lookup-w3m-morpheme-args
 
-�`�ԑf��̓G���W���̈����B
+形態素解析エンジンの引数。
 
 
 dic-lookup-w3m-morpheme-cmd
 
-�`�ԑf��̓G���W���̃R�}���h�B
+形態素解析エンジンのコマンド。
 
 
 dic-lookup-w3m-morpheme-eos
-�`�ԑf��̓G���W���̏o�͂̕����\��������B
+形態素解析エンジンの出力の文末表示文字列。
 
 dic-lookup-w3m-read-query-prefix-arg-alist
 
-dic-lookup-w3m'�̑O�u�����ƃe�L�X�g�̑I��͈͂̑Ή��B
-�Ȃ�            point�Bregion��I��������Ԃł�region
+dic-lookup-w3m'の前置引数とテキストの選択範囲の対応。
+なし            point。regionを選択した状態ではregion
 C-u 2           line
 C-u             sentence
 C-u 3           region
@@ -418,90 +418,90 @@ C-u C-u C-u C-u buffer
 
 dic-lookup-w3m-related-site-list
 
-query�Ɋ֘A�������������₷�����邽�߂ɕ\������T�C�g�̃��X�g�B
+queryに関連した検索をしやすくするために表示するサイトのリスト。
 `(category
   ((search-engine . display-name)..))
  ..
-`dic-lookup-w3m-filter-related-links'�Q�ƁB
+`dic-lookup-w3m-filter-related-links'参照。
 
 
 dic-lookup-w3m-search-engine-aliases
 
-search engine�̕ʖ��̃��X�g�B
-search engine��ʂ̊o���₷�����O�œo�^����B
+search engineの別名のリスト。
+search engineを別の覚えやすい名前で登録する。
 `((ALIAS ENGINE-NAME)..)
 
 
 dic-lookup-w3m-search-engine-alist
 
-�����G���W���̃��X�g�B
-�ŏ���4�̃����o�[��`w3m-search-engine-alist'�Q�ƁB
+検索エンジンのリスト。
+最初の4個のメンバーは`w3m-search-engine-alist'参照。
 
-5�Ԗڂ͂��̌����G���W���̐����B
-6�Ԗڂ�`dic-lookup-w3m-suitable-engine'�ɓn�����B
-�l��list�܂���symbol�Blist�̂Ƃ���(query-pattern engine-regexp replacement)�B
-query��QUERY-REGEXP�Ɉ�v�����玫��engine�̖��O��ENGINE-REGEXP�Ƀ}�b�`
-����������REPLACEMENT�ɒu�����������̂�V���������G���W���ɂ���B
-symbol�̂Ƃ��͊֐����Ƃ݂Ȃ���`dic-lookup-w3m-suitable-engine'���󂯎����
-����search-engine query search-engine-alist�ŌĂяo���B
-�֐��͌����Ɏg�������G���W������Ԃ��Ȃ���΂Ȃ�Ȃ��B
+5番目はその検索エンジンの説明。
+6番目は`dic-lookup-w3m-suitable-engine'に渡す情報。
+値はlistまたはsymbol。listのときは(query-pattern engine-regexp replacement)。
+queryがQUERY-REGEXPに一致したら辞書engineの名前のENGINE-REGEXPにマッチ
+した部分をREPLACEMENTに置き換えたものを新しい辞書エンジンにする。
+symbolのときは関数名とみなして`dic-lookup-w3m-suitable-engine'が受け取った
+引数search-engine query search-engine-alistで呼び出す。
+関数は検索に使う辞書エンジン名を返さなければならない。
 
 
 dic-lookup-w3m-suitable-engine-pattern
 
-����������ɂ���Ď����������I�ɐ؂�ւ��邽�߂̋K���B
-�Ⴆ�Ήp�a���T�œ��{�ꕶ������������悤�Ƃ����ꍇ�ɘa�p���T�ɐ؂�ւ���
-��������B`dic-lookup-w3m-suitable-engine'�Ŏg�p�B
+検索文字列によって辞書を自動的に切り替えるための規則。
+例えば英和辞典で日本語文字列を検索しようとした場合に和英辞典に切り替えて
+検索する。`dic-lookup-w3m-suitable-engine'で使用。
 
 
 dic-lookup-w3m-translator-site-list
 
-web�y�[�W��|�󂷂�translator�̃��X�g�B
-web�y�[�W�ɖ|��{�^�������āA�etranslator�Ƀ����N����B
-`dic-lookup-w3m-filter-translation-anchor'�Ŏg�p�B
+webページを翻訳するtranslatorのリスト。
+webページに翻訳ボタンをつけて、各translatorにリンクする。
+`dic-lookup-w3m-filter-translation-anchor'で使用。
 
 
-�T�C�g�̒ǉ��ɂ���:
+サイトの追加について:
 
-dic-lookup-w3m��emacs-w3m��w3m-search.el���g���Ď����T�C�g��query�𑗂�
-�Ď����������Ă��܂��B��{�I�ɂ�google�Ō�������̂Ǝ����������̂ɈႢ
-�͂���܂���B
-w3m-search.el�ɂ͂������̌����G���W���̃T�C�g���o�^����Ă��܂��B
-dic-lookup-w3m��w3m-search��w3m-search-engine-alist�Ɏ����T�C�g��ǉ�
-����`�Ō������������Ă��܂��B�������A���ڒǉ�����̂ł͂Ȃ��A
-dic-lookup-w3m-search-engine-alist�ɒ�`���āA��������H����
-w3m-search-engine-alist�ɒǉ����Ă��܂��B�V�����T�C�g��ǉ�����ꍇ��
-dic-lookup-w3m-search-engine-alist�ɒǉ����Ă��������B
-
-
-�����T�C�g�ɂ���:
-
-�o�^����Ă���T�C�g��2008�N�����̂��̂ł��B���ł������Ǝg����Ƃ���
-������܂����A�g���Ȃ��Ƃ��������܂��B
-���ɁA�T�C�g��URL�͕ς���Ă��Ȃ��Ă��T�C�g���o�͂���html�̃p�^�[������
-����Ă��邽�߂ɁA�t�B���^��������������Ȃ��T�C�g�������Ǝv���܂��B
+dic-lookup-w3mはemacs-w3mのw3m-search.elを使って辞書サイトにqueryを送っ
+て辞書を引いています。基本的にはgoogleで検索するのと辞書を引くのに違い
+はありません。
+w3m-search.elにはいくつかの検索エンジンのサイトが登録されています。
+dic-lookup-w3mはw3m-searchのw3m-search-engine-alistに辞書サイトを追加
+する形で検索を実現しています。ただし、直接追加するのではなく、
+dic-lookup-w3m-search-engine-alistに定義して、それを加工して
+w3m-search-engine-alistに追加しています。新しいサイトを追加する場合は
+dic-lookup-w3m-search-engine-alistに追加してください。
 
 
-�t�B���^�ɂ���:
+辞書サイトについて:
 
-dic-lookup-w3m��emacs-w3m��w3m-filter.el���g���āA�����T�C�g�̏o�͂Ƀt�B
-���^�������Č��₷�����Ă��܂��B���̑��A�֘A�T�C�g�̕\����stem�ɂ��P
-��̌��̕\���ɂ����̃t�B���^�@�\���g���Ă��܂��B
-�������Aw3m-filter.el�������̊֐��͗~�����@�\���s�����Ă����̂�
-defadvice�ŋ@�\���g�����ď㏑�����Ă��܂��B�@�\�͏�ʌ݊��ɂȂ�悤��
-��������ł����Adic-lookup-w3m�����[�h���邱�Ƃ�emacs-w3m�{���̋@�\
-�����܂������Ȃ��Ȃ邱�Ƃ����邩������܂���B
-�V���Ɏ����T�C�g��ǉ�����Ƃ��́A�t�B���^���[�����ǉ������ق����悢��
-���傤�B���̂Ƃ��t�B���^�֐��̈ꕔ��defadvice�ɂ����w3m-filter.el�ł�
-�Ȃ�dic-lookup-w3m.el�̂��̂��L���ɂȂ��Ă���̂Œ��ӂ��Ă��������B
+登録されているサイトは2008年末頃のものです。今でもちゃんと使えるところ
+もありますが、使えないところもあります。
+特に、サイトのURLは変わっていなくてもサイトが出力するhtmlのパターンが変
+わっているために、フィルタが正しくかからないサイトが多いと思います。
 
 
-�����:
+フィルタについて:
 
-2011�N6������ emacs-23.3, emacs-w3m-version 1.4.438, w3m version
-w3m/0.5.3�œ����Ă��܂��B
-���̊��͎����Ă��Ȃ��̂ł킩��܂���B
-2008�N���ɍ���Ă��炠�܂�ς���Ă��Ȃ��̂ŁA2008�N���̊��Ȃ瓮����
-�v���܂��B
+dic-lookup-w3mはemacs-w3mのw3m-filter.elを使って、辞書サイトの出力にフィ
+ルタをかけて見やすくしています。その他、関連サイトの表示やstemによる単
+語の候補の表示にもこのフィルタ機能を使っています。
+ただし、w3m-filter.elいくつかの関数は欲しい機能が不足していたので
+defadviceで機能を拡張して上書きしています。機能は上位互換になるように
+したつもりですが、dic-lookup-w3mをロードすることでemacs-w3m本来の機能
+がうまく動かなくなることがあるかもしれません。
+新たに辞書サイトを追加するときは、フィルタルールも追加したほうがよいで
+しょう。このときフィルタ関数の一部はdefadviceによってw3m-filter.elでは
+なくdic-lookup-w3m.elのものが有効になっているので注意してください。
 
-������ ������ ���������� �Ă� ���������������������� �ǂ��� ����
+
+動作環境:
+
+2011年6月現在 emacs-23.3, emacs-w3m-version 1.4.438, w3m version
+w3m/0.5.3で動いています。
+他の環境は試していないのでわかりません。
+2008年末に作ってからあまり変わっていないので、2008年頃の環境なら動くと
+思います。
+
+ｄｌｗ あっと ｕｓｅｒｓ てん ｓｏｕｒｃｅｆｏｒｇｅ どっと ｊｐ
