@@ -2482,6 +2482,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-delete-regions
 	 "</textarea>" "<span id=result_box " nil t)
 	(w3m-filter-replace-regexp "\r\\([\n]\r\\)+" "</p><p>")
+	(w3m-filter-delete-regions "<div id=\"gt-edit\"" "</body>" nil t)
 	(w3m-filter-delete-regions "<div id=res-translit" "</body>" nil t)
 	(dic-lookup-w3m-filter-eword-anchor dic-lookup-w3m-favorite-ej-engine)
 	)
