@@ -2264,6 +2264,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	"http://dictionary.goo.ne.jp%s"
 	"<a href=\"\\(/leaf/.*/m0u/[^/]*/\\)" 1)
        ("\\`http://dictionary\\.goo\\.ne\\.jp/"
+	(w3m-filter-delete-regions "<body[^>]*>" "<div class=\"wordTitle\">" t t t)
 	(w3m-filter-delete-regions "<body[^>]*>" "<dl class=\"allList\">" t t t)
 	(w3m-filter-delete-regions "<body[^>]*>" "^<!-- inner tab -->" t nil t t)
 	(w3m-filter-delete-regions "<!--c34-->" "</body>" nil t)
@@ -2279,17 +2280,15 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	)
        ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/ej/"
 	dic-lookup-w3m-filter-related-links "ej-goo" ej)
-       ("\\`http://dictionary\\.goo\\.ne\\.jp/leaf/ej/"
-	dic-lookup-w3m-filter-related-links "ej-goo" ej
-	"http://dictionary.goo.ne.jp/leaf/ej/%s/m0u/"
-	)
+       ("\\`http://dictionary\\.goo\\.ne\\.jp/leaf/ej3/"
+	dic-lookup-w3m-filter-related-links "ej-goo" ej "/m0u/%s/")
        ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/je/"
 	dic-lookup-w3m-filter-related-links "je-goo" ej)
-       ("\\`http://dictionary\\.goo\\.ne\\.jp/leaf/je/"
+       ("\\`http://dictionary\\.goo\\.ne\\.jp/leaf/je2/"
 	dic-lookup-w3m-filter-related-links "je-goo" ej "/m0u/%s/")
        ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/jn/"
 	dic-lookup-w3m-filter-related-links "jj-goo" jj)
-       ("\\`http://dictionary\\.goo\\.ne\\.jp/leaf/jn/"
+       ("\\`http://dictionary\\.goo\\.ne\\.jp/leaf/jn2/"
 	dic-lookup-w3m-filter-related-links "jj-goo" jj "/m0u/%s/")
        ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/cj/"
 	dic-lookup-w3m-filter-related-links "cj-goo" cj)
