@@ -2078,10 +2078,10 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
        ("\\`http://kotobank\\.jp/"
        	(w3m-filter-delete-regions
 	 "<body[^>]*>"
-	 "\\(<div class=\"full\">\\|<ol id=\"wordAgree\">\\|<ul class=\"word_dic\">\\)" t t t t)
+	 "\\(<div class=\"full\">\\|<ol id=\"wordAgree\">\\|<div class=\"word_dic\">\\)" t t t t)
 	(w3m-filter-replace-regexp "<img [^>]*src=\"/i/word.png\"[^>]*>" "")
 	(w3m-filter-delete-regions
-	 "\\(<div id=\"banner_app\">\\|<h2 id=\"word_connect\">\\)"
+	 "\\(<div id=\"banner_app\">\\|<h2 id=\"word_connect\">\\|<p id=\"word_bottom\">\\)"
 	 "</body>" nil t t nil)
 	)
        ("\\`http://kotobank\\.jp/ejword/"
