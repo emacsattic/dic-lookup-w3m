@@ -1751,7 +1751,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	  '("" dic-lookup-w3m-filter-translation-anchor)) ; ページ翻訳ボタン
 
        ;; yahoo dic
-       ("\\`http://dic\\.\\(search\\.\\)?yahoo\\.co\\.jp/d?search"
+       ("\\`http://dic\\.\\(search\\.\\)?yahoo\\.co\\.jp//?d?search"
 	(w3m-filter-delete-regions "<body[^>]*>" "<!-- /navi -->" t nil t)
 	(w3m-filter-delete-regions "<body[^>]*>" "<div id=\"mIn\">" t t t)
 	(w3m-filter-delete-regions "<!-- QR -->" "</body>" nil t)
@@ -1761,9 +1761,9 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<img src=\"http://i.yimg.jp/images/clear.gif\"[^>]*>" "")
 	(dic-lookup-w3m-filter-eword-anchor "ej-yahoo")
 	)
-       ("\\`http://dic\\.search\\.yahoo\\.co\\.jp/dsearch.*dic_id=jj"
+       ("\\`http://dic\\.search\\.yahoo\\.co\\.jp//?dsearch.*dic_id=jj"
 	dic-lookup-w3m-filter-related-links "jj-yahoo" jj)
-       ("\\`http://dic\\.search\\.yahoo\\.co\\.jp/dsearch.*dic_id=ejje"
+       ("\\`http://dic\\.search\\.yahoo\\.co\\.jp//?dsearch.*dic_id=ejje"
 	dic-lookup-w3m-filter-related-links "ej-yahoo" ej)
        ;; ("\\`http://dic\\.search\\.yahoo\\.co\\.jp/dsearch.*dic_id=ejje"
        ;; 	dic-lookup-w3m-filter-convert-phonetic-symbol
@@ -1773,7 +1773,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
        ;; 	dic-lookup-w3m-filter-convert-phonetic-symbol
        ;; 	dic-lookup-w3m-filter-yahoo-ej1-symbol-alist
        ;; 	"<img src=\"[^\"]+/\\([A-Z0-9_]+\\)\\.gif\"[^>]*>")
-       ("\\`http://dic\\.search\\.yahoo\\.co\\.jp/dsearch"
+       ("\\`http://dic\\.search\\.yahoo\\.co\\.jp//?dsearch"
 	dic-lookup-w3m-filter-show-candidates "ej-yahoo")
 
        ;; excite dic
