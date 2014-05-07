@@ -1777,6 +1777,10 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	dic-lookup-w3m-filter-show-candidates "ej-yahoo")
 
        ;; excite dic
+       ("\\`http://www\\.excite\\.co\\.jp/dictionary/japanese/\\?search="
+	(w3m-filter-replace-regexp "<p>le=\"\">" "<p>")
+	(w3m-filter-replace-regexp "<br [^>]*</p>" "<br /></p>")
+	)
        ("\\`http://www\\.excite\\.co\\.jp/dictionary/.*search="
 	(dic-lookup-w3m-filter-excite-jump-to-1stcontent
 	 "http://www.excite.co.jp%s"
@@ -1811,9 +1815,9 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<a href=\"./?search=\\3&itemid=\\1\">\\2</a>")
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
 	 dic-lookup-w3m-filter-excite-jj-symbol-alist
-	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource.aspx\\?set=.*&amp;name=\\([A-Za-z_0-9]+\\)[^>]*>")
+	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource\\.aspx\\?set=.*&amp;name=\\([A-Za-z_0-9]+\\)[^>]*>")
 	(w3m-filter-replace-regexp
-	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource\\.aspx\\?set=unicode&amp;name=\\([^\"]+\\)\"[^>]*>" "&#x\\1\;")
+	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource\\.aspx\\?set=unicode&amp;name=\\([^&\"]+\\)[^>]*>" "&#x\\1\;")
 	(dic-lookup-w3m-filter-related-links "jj-excite" jj)
 	)
        ("\\`http://www\\.excite\\.co\\.jp/dictionary/chinese_japanese/\\?search="
