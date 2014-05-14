@@ -63,6 +63,8 @@
 (require 'w3m)
 (require 'w3m-search)
 (require 'w3m-filter)
+(eval-when-compile
+  (require 'w3m-cookie))
 (setq w3m-use-filter t)
 
 (defconst dic-lookup-w3m-version "1.0"
