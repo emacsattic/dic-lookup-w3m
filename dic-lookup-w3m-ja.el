@@ -1718,6 +1718,7 @@ nilの場合はすべての言語を対象にする。nil X nilは起動が遅�
 	     arg)))))))
 
 ;; google translator (aliases)
+(defvar dic-lookup-w3m-search-engine-aliases '())
 (mapc
  #'(lambda (e) (add-to-list 'dic-lookup-w3m-search-engine-aliases e))
  '(("tr-ej-google" "tr-enja-google")
@@ -2669,6 +2670,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
    ("\\`http://education\\.yahoo\\.com/reference/[^/]+/" t)
    ))
 
+(defvar dic-lookup-w3m-related-site-list '())
 (add-to-list
  'dic-lookup-w3m-related-site-list
  '(ej

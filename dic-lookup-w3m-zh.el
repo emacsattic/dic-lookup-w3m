@@ -1,6 +1,6 @@
 ;;; dic-lookup-w3m-zh.el --- look up dictionaries on the Internet
 
-;; Copyright (C) 2009, 2010, 2011, 2012  mcprvmec
+;; Copyright (C) 2009, 2010, 2011, 2012, 2014  mcprvmec
 
 ;; Author: mcprvmec
 
@@ -27,6 +27,7 @@
 
 ;; 实例
 
+(defvar dic-lookup-w3m-search-engine-alist '())
 (mapc
  #'(lambda (elem) (add-to-list 'dic-lookup-w3m-search-engine-alist elem))
  '(
@@ -116,6 +117,7 @@
 	"<font color=red>\\([^<]*\\)</font>" "<strong>\\1</strong>")
        ))))
 
+(defvar dic-lookup-w3m-related-site-list '())
 (add-to-list
  'dic-lookup-w3m-related-site-list
  '(cc
