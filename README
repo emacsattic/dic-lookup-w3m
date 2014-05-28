@@ -20,7 +20,7 @@ emacs-w3mで実現されているものです。dic-lookup-w3mはそれを少し
 dic-lookup-w3mを使うにはemacs, emacs-w3m, w3mが必要です。まずemacs-w3m
 でwebブラウズが出来ることを確認してください。
 http://emacs-w3m.namazu.org/index-ja.html
-ほかに必須ではありませんがstem.elがあると便利です。
+この他に、必須ではありませんがstem.elがあると便利です。
 stem.elがある場合は検索語句から英語の活用語尾を取り除いて見出し語の候
 補を表示します。過去形や複数形などを検索したとき、元の形を入力しなおさ
 ずに候補をクリックするだけで再度辞書が引きなおせます。
@@ -30,7 +30,7 @@ http://www.namazu.org/~tsuchiya/sdic/index.html
 http://openlab.ring.gr.jp/edict/lookup/
 
 dic-lookup-w3mのelispファイル*.elとstem.elをemacsのロードパスが通って
-いるところにおいてください。
+いるところに置いてください。
 
 .emacsに次のどちらかを追加してください。
 (autoload 'dic-lookup-w3m "dic-lookup-w3m" "w3mで辞書を引く" t)
