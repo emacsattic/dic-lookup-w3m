@@ -275,16 +275,21 @@
     utf-8 nil "プログレッシブ和英中辞典(第３版)")
 
    ;; 漢字の書き順
-   ;; 書き順でGO
+   ;; 書き順でGO Alpha.Inc
    ;;("kanji-kakijun" "http://www.winttk.com/kakijun/dbf/profile.cgi"
    ;; shift_jis "key=%s&hor=1&max=1" "漢字の書き順")
-   ("kanji-kakijun"
-    "http://www.google.co.jp/search?q=site:www.winttk.com/kakijun %s"
+   ("kanji-kakijun-alphainc"
+    "http://www.google.co.jp/search?q=site:www.kkjn.jp+\"「%s」の書き順と書き方\"&lr=lang_ja&ie=UTF-8&oe=UTF-8"
     utf-8 nil "漢字の書き順")
 
+   ;; 漢字ひつじゅん君
+   ("kanji-kakijun-hitsujunkun"
+    "http://www.google.co.jp/search?q=site:www.human.gr.jp/hitsujun+%s&ie=UTF-8&oe=UTF-8"
+    utf-8 nil "小学校で学習する漢字の書き順")
+    
    ;; 正しい漢字の書き順
-   ("kanji-kakijun-main.jp" "http://kakijun.main.jp/main/u_kensaku.cgi?KANJI=%s"
-    utf-8 nil  "正しい漢字の書き順")
+   ("kanji-kakijun-kakijun.jp" "http://kakijun.jp/main/u_kensaku.cgi?KANJI=%s"
+    utf-8 nil "正しい漢字の書き順")
 
    ;; goo
    ("ej-goo" "http://dictionary.goo.ne.jp/srch/ej/%s/m0u/"
@@ -2108,9 +2113,9 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	"jj-kotobank" jj "http://kotobank.jp/word/%s")
 
        ;; 書き順でGO
-       ("\\`http://www\\.winttk\\.com/kakijun/"
+       ("\\`http://www\\.kkjn\\.jp/"
 	(w3m-filter-delete-regions	
-	 "<body[^>]*>" "<div id=\"cont\" class=\"adc\">" t t t)
+	 "<body[^>]*>" "<!-- kaki-res2 -->" t t t)
 	)
 
        ;; 漢字ひつじゅん君
@@ -2121,7 +2126,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 1))
 
        ;;  "正しい漢字の書き順"
-       ("http://kakijun\\.main\\.jp/page/"
+       ("http://kakijun\\.jp/page/"
 	(w3m-filter-delete-regions	
 	 "<body[^>]*>"
 	 "<img src=.* id=\"HJ_0gif\">" t t t t)
@@ -2664,9 +2669,9 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
    ("\\`http://ocndictionary\\.goo\\.ne\\.jp/search\\.php" . t)
    ("\\`http://www5\\.mediagalaxy\\.co\\.jp/CGI/sanshushadj/search\\.cgi" . t)
    ;; ("\\`http://ejje\\.weblio\\.jp/content/" . t)
-   ("\\`http://www\\.winttk\\.com/kakijun/" t)
+   ("\\`http://www\\.kkjn\\.jp/" t)
    ("\\`http://www\\.human\\.gr\\.jp/hitsujun/" t)
-   ("\\`http://kakijun\\.main\\.jp/page/" t)
+   ("\\`http://kakijun\\.jp/page/" t)
    ("\\`http://education\\.yahoo\\.com/reference/[^/]+/" t)
    ))
 
