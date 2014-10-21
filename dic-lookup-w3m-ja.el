@@ -1824,7 +1824,6 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource\\.aspx\\?set=.*&amp;name=\\([A-Za-z_0-9]+\\)[^>]*>")
 	(w3m-filter-replace-regexp
 	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource\\.aspx\\?set=unicode&amp;name=\\([^&\"]+\\)[^>]*>" "&#x\\1\;")
-	(w3m-filter-replace-regexp "<div style=\"float:left\">" "")
 	(w3m-filter-replace-regexp "</div><div style=\"margin-left:1.2em;\">" "")
 	(dic-lookup-w3m-filter-related-links "jj-excite" jj)
 	)
@@ -2209,6 +2208,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<!-- google_ad_section_end -->" "</body>" nil t)
 	(w3m-filter-replace-regexp
 	 "<img src=\"http://www.westatic.com/img/icons/wRenew/iconPBDict.png\" alt=\"\">" "")
+	(w3m-filter-replace-regexp "</div><div style=\"margin-left:1em;\">" "")
 	)
        ("\\`http://cjjc\\.weblio\\.jp/content/"
 	(w3m-filter-delete-regions
