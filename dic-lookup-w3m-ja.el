@@ -279,7 +279,7 @@
    ;;("kanji-kakijun" "http://www.winttk.com/kakijun/dbf/profile.cgi"
    ;; shift_jis "key=%s&hor=1&max=1" "漢字の書き順")
    ("kanji-kakijun-alphainc"
-    "http://www.google.co.jp/search?q=site:www.kkjn.jp+\"「%s」の書き順と書き方\"&lr=lang_ja&ie=UTF-8&oe=UTF-8"
+    "http://www.google.co.jp/search?q=「%s」の書き順と書き方+site:www.kkjn.jp&lr=lang_ja&ie=UTF-8&oe=UTF-8"
     utf-8 nil "漢字の書き順")
 
    ;; 漢字ひつじゅん君
@@ -1824,6 +1824,8 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource\\.aspx\\?set=.*&amp;name=\\([A-Za-z_0-9]+\\)[^>]*>")
 	(w3m-filter-replace-regexp
 	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource\\.aspx\\?set=unicode&amp;name=\\([^&\"]+\\)[^>]*>" "&#x\\1\;")
+	(w3m-filter-replace-regexp "<div style=\"float:left\">" "")
+	(w3m-filter-replace-regexp "</div><div style=\"margin-left:1.2em;\">" "")
 	(dic-lookup-w3m-filter-related-links "jj-excite" jj)
 	)
        ("\\`http://www\\.excite\\.co\\.jp/dictionary/chinese_japanese/\\?search="
@@ -2679,13 +2681,13 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 (add-to-list
  'dic-lookup-w3m-related-site-list
  '(ej
-   (("ej-yahoo" . "Y!")
-    ("ej-excite" . "excite")
+   (("ej-excite" . "excite")
+    ("ej-weblio" . "weblio")
+    ("ej-yahoo" . "Y!")
     ("ej-alc" . "alc")
     ("ej-infoseek" . "infoseek")
     ("ej-goo" . "goo")
     ("ej-ocn" . "ocn")
-    ("ej-weblio" . "weblio")
     ("ee-webster" . "webster")
     ("corpus-erek" . "コパerek")
     ("corpus-bnc" . "コパbnc")
@@ -2729,6 +2731,9 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
     ;;("thesaurus-j-yahoo" . "類語Y!")
     ("thesaurus-j-weblio" . "類語weblio")
     ("thesaurus-j-goo" . "類語goo")
+    ("kanji-kakijun-kakijun.jp" . "筆")
+    ("kanji-kakijun-alphainc" . "順")
+    ("kanji-kakijun-hitsujunkun" . "順")
     ("corpus-j-kotonoha" . "Jコパ")
     ("corpus-j-caseframe-get" . "格")
     ("etc-yahoo" . "百科")
