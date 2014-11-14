@@ -2190,9 +2190,15 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-replace-regexp
 	 "<img src=\"http://www.westatic.com/img/icons/iconWlaAdFL.png\"[^>]*>"
 	 "")
+	(w3m-filter-replace-regexp "<h2>発音記号</h2>" " 発音記号")
+	(w3m-filter-replace-regexp "<div class=phoneticEjjeWrp>\\(.*\\)</div>" "\\1")
+	(w3m-filter-replace-regexp "<h2 class=audioEjjeTtl>音声を聞く</h2>" "")
+	(w3m-filter-replace-regexp
+	 "<div [^>]*playSwfSound('http://ejje.westatic.com/audio/', '\\([^']+\\)'[^>]*><img [^>]*></div>"
+	 "<a href=\"http://ejje.westatic.com/audio/\\1.wav\">♪再生</a>")
 	(w3m-filter-replace-regexp
 	 "<div [^>]*playSwfSound('http://www.westatic.com/wbr/CHUJITEN/', '\\([^']+\\)'[^>]*><img [^>]*></div>"
-	 "<a href=\"http://www.westatic.com/wbr/CHUJITEN/\\1.wav\">♪ダウンロード再生</a>")
+	 "<a href=\"http://www.westatic.com/wbr/CHUJITEN/\\1.wav\">♪再生</a>")
 	(w3m-filter-replace-regexp
 	 "<td [^>]*><span [^>]*>用例</span></td>"
 	 "<td valign=\"top\"><span>[例]</span></td>")
