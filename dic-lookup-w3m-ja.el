@@ -1749,7 +1749,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
 (eval-after-load "w3m-filter"
   '(mapc
-    '(lambda (elem)
+    #'(lambda (elem)
        (add-to-list 'w3m-filter-rules elem))
     (reverse
      `(
@@ -1794,6 +1794,8 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-delete-regions
 	 "<body>" "<div class=\"dictionary_history\">" t t)
 	(w3m-filter-delete-regions
+	 "<div class=\"dictionary_history\">" "<div class=\"content\">" t t) ;最近検索した語句
+	(w3m-filter-delete-regions
 	 "<div class=\"content\">" "<div class=\"wordDetails\">" nil t)
 	(w3m-filter-delete-regions
 	 "<div class=\"content cnja\">" "<div class=\"wordDetails\">" nil t)
@@ -1812,7 +1814,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(dic-lookup-w3m-filter-related-links "ej-excite" ej)
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
 	 dic-lookup-w3m-filter-excite-ej-symbol-alist
-	 "<img src=\"http://eiwa\\.excite\\.co\\.jp/images/\\(NEW_EJJE\\|COMP_EJ\\)/gaiji/\\([a-z0-9]+\\)\\.gif\"[^>]*>"
+	 "<img src=\"http://dictionary\\.eiwa\\.excite\\.co\\.jp/images/\\(NEW_EJJE\\|COMP_EJ\\)/gaiji/\\([a-z0-9]+\\)\\.gif\"[^>]*>"
 	 2)
 	)
        ("\\`http://www\\.excite\\.co\\.jp/dictionary/japanese/\\?search="
@@ -2202,6 +2204,16 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-replace-regexp
 	 "<td [^>]*><span [^>]*>用例</span></td>"
 	 "<td valign=\"top\"><span>[例]</span></td>")
+	;;(w3m-filter-replace-regexp "<p class=level0>\\([^<]*\\)</p>" "\\1")
+	;;(w3m-filter-replace-regexp "<p class=lvlNH>\\([^<]*\\)</p>" "\\1")
+	;;(w3m-filter-replace-regexp "<p class=lvlAH>\\([^<]*\\)</p>" "\\1")
+	;;(w3m-filter-replace-regexp "<p class=lvlB>\\([^<]*\\)</p>" "\\1")
+	(w3m-filter-replace-regexp "<p[^>]*>" " " "<div class=level0>" nil nil nil "div")
+	(w3m-filter-replace-regexp "</p>" "" "<div class=level0>" nil nil nil "div")
+	(w3m-filter-replace-regexp "<br[^>]*>" "" "<div class=level0>" nil nil nil "div")
+	(w3m-filter-replace-regexp "</div>" "" "<div class=level0>" nil nil nil "div")
+	(w3m-filter-replace-regexp "<div[^>]*>" " " "<div class=level0>" nil nil nil "div")
+	(w3m-filter-replace-regexp "<p class=\\(lvlB\\|lvlAH\\|lvlNH\\|level0\\)>" "")
        	(dic-lookup-w3m-filter-related-links "ej-weblio" ej)
 	(dic-lookup-w3m-filter-show-candidates "ej-weblio")
 	(w3m-filter-delete-regions
@@ -2258,7 +2270,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<td *align=\"center\">" "<td align=\"left\">")
 	(w3m-filter-replace-regexp
 	 "</?center>" "")
-	 )
+	)
 
        ;; pinyin chinese1
        ("\\`http://www\\.chinese1\\.jp/pinyin/gb2312/jp\\.asp"
