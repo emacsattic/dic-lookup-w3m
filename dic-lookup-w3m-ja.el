@@ -117,6 +117,11 @@
     "http://www.oup.com/oald-bin/web_getald7index1a.pl?search_word=%s"
     utf-8 nil "Oxford Advanced Learner's Dictionary")
 
+   ;; macmillan 英英
+   ("ee-macmillan"
+    "http://www.macmillandictionary.com/dictionary/british/%s"
+    utf-8 nil "MACMILLAN Dictionary")
+
    ;; onelook 英英
    ("ee-onelook" "http://www.onelook.com/?w=%s&ls=a"
     nil nil "約1000の辞書を一括検索")
@@ -1883,6 +1888,18 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(dic-lookup-w3m-filter-related-links "ee-cambridge" ee)
 	(dic-lookup-w3m-filter-eword-anchor "ee-cambridge")
 	(dic-lookup-w3m-filter-show-candidates "ee-cambridge")
+	)
+
+       ;; macmillan
+       ("\\`http://www\\.macmillandictionary\\.com/dictionary/british/"
+	(w3m-filter-delete-regions
+	 "<body[^>]*>" "<div id=\"headwordleft\">" t t t)
+	(w3m-filter-delete-regions
+	 "<span class=\"headword-definition\">" "<!-- End of DIV thesaurus-layer-->" t t t)
+       	)
+       ("\\`http://www.macmillandictionary.com/spellcheck/british/"
+	(w3m-filter-delete-regions
+	 "<body[^>]*>" "<div id=\"search-results\">" t t t)
 	)
 
        ;; yahoo.com
