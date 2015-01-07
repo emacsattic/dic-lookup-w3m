@@ -1895,7 +1895,14 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-delete-regions
 	 "<body[^>]*>" "<div id=\"headwordleft\">" t t t)
 	(w3m-filter-delete-regions
-	 "<span class=\"headword-definition\">" "<!-- End of DIV thesaurus-layer-->" t t t)
+	 "<span class=\"headword-definition\">"
+	 "<!-- End of DIV thesaurus-layer-->" t t t)
+	(w3m-filter-replace-regexp
+	 "<img [^>]*src=[^>]*data-src-mp3=\\(\"[^\"]+\"\\)[^>]*>"
+	 "<a href=\\1>♪</a>")
+	(dic-lookup-w3m-filter-related-links "ee-macmillan" ee)
+	(dic-lookup-w3m-filter-eword-anchor "ee-macmillan")
+	(dic-lookup-w3m-filter-show-candidates "ee-macmillan")
        	)
        ("\\`http://www.macmillandictionary.com/spellcheck/british/"
 	(w3m-filter-delete-regions
@@ -2741,6 +2748,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
     ("ee-cambridge" . "cambridge")
     ("ee-longman" . "longman")
     ("ee-oxford" . "oxford")
+    ("ee-macmillan" . "macmillan")
     ("ee-onelook" . "onelook")
     ("ee-dict.org" . "dict.org")
     ("ee-yahoo.com" . "yahoo")
