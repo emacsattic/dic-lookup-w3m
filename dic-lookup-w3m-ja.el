@@ -1,6 +1,6 @@
 ;;; dic-lookup-w3m-ja.el --- look up dictionaries on the Internet
 
-;; Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014  mcprvmec
+;; Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014, 2015  mcprvmec
 
 ;; Author: mcprvmec
 
@@ -1710,8 +1710,8 @@ nilの場合はすべての言語を対象にする。nil X nilは起動が遅�
 		  'dic-lookup-w3m-search-engine-alist
 		  (list
 		   (format "tr-%s%s-google" l1 l2)
-		   "http://translate.google.com/" 'utf-8
-		   (format "langpair=%s|%s&ie=utf-8&oe=utf-8&text=%%s"
+		   "https://translate.google.com/" 'utf-8
+		   (format "sl=%s&tl=%s&js=n&prev=_t&hl=ja&ie=utf-8&text=%%s"
 			   l1 l2)
 		   (concat (assoc-default l1 langs)
 			   "-" (assoc-default l2 langs))))
@@ -2527,13 +2527,13 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	dic-lookup-w3m-filter-eword-anchor "ej-excite")
 
        ;; google translator
-       ("\\`http://translate\\.google\\.com"
+       ("https://translate\\.google\\.com"
 	(w3m-filter-delete-regions
-	 "<body[^>]*>" "<textarea [^>]*name=text[^>]*>" t nil t t)
-	(w3m-filter-replace-regexp
-	 "\\(</textarea>\\)" "<hr>\\1")
+	 "<body[^>]*>" "<textarea [^>]*id=source[^>]*>" t nil t t)
 	(w3m-filter-delete-regions
-	 "</textarea>" "<span id=result_box " nil t)
+	 "</textarea>" "<span id=result_box[^>]*>" t t nil t)
+	(w3m-filter-replace-regexp "\\(</textarea>\\)" "<hr>")
+	(w3m-filter-replace-regexp "<span title=\"[^\"]*\"[^>]*>" "<span>")
 	(w3m-filter-replace-regexp "\r\\([\n]\r\\)+" "</p><p>")
 	(w3m-filter-delete-regions "<div id=\"gt-edit\"" "</body>" nil t)
 	(w3m-filter-delete-regions "<div id=res-translit" "</body>" nil t)
