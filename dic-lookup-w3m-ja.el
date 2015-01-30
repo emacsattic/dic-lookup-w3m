@@ -1643,7 +1643,7 @@ nilの場合はすべての言語を対象にする。nil X nilは起動が遅�
 
 ;; google translator
 (defvar dic-lookup-w3m-google-translator-langs
-  '(("ja") nil)
+  '(("ja" "en") nil)
   ;;'(("ja" "en") ("en" "ko" "zh-CN" "es"))
   "*google翻訳で有効にする言語のリスト。
 \((LANGS1) (LANGS2))
@@ -1715,12 +1715,12 @@ nilの場合はすべての言語を対象にする。nil X nilは起動が遅�
 			   l1 l2)
 		   (concat (assoc-default l1 langs)
 			   "-" (assoc-default l2 langs))))
-		 (add-to-list
+		 (add-to-list		;url翻訳は動かない
 		  'dic-lookup-w3m-search-engine-alist
 		  (list
 		   (format "tr-%s%s-url-google" l1 l2)
 		   (format
-		    "http://translate.google.com/?langpair=%s|%s&ie=utf-8&oe=utf-8&text=%%s"
+		    "https://translate.google.com/translate?sl=%s&tl=%s&js=n&prev=_t&ie=UTF-8&u=%%s"
 		    l1 l2)
 		   'utf-8 nil
 		   (concat (assoc-default l1 langs)
@@ -2232,11 +2232,11 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	;;(w3m-filter-replace-regexp "<p class=lvlNH>\\([^<]*\\)</p>" "\\1")
 	;;(w3m-filter-replace-regexp "<p class=lvlAH>\\([^<]*\\)</p>" "\\1")
 	;;(w3m-filter-replace-regexp "<p class=lvlB>\\([^<]*\\)</p>" "\\1")
-	(w3m-filter-replace-regexp "<p[^>]*>" " " "<div class=level0>" nil nil nil "div")
-	(w3m-filter-replace-regexp "</p>" "" "<div class=level0>" nil nil nil "div")
-	(w3m-filter-replace-regexp "<br[^>]*>" "" "<div class=level0>" nil nil nil "div")
-	(w3m-filter-replace-regexp "</div>" "" "<div class=level0>" nil nil nil "div")
-	(w3m-filter-replace-regexp "<div[^>]*>" " " "<div class=level0>" nil nil nil "div")
+	;; (w3m-filter-replace-regexp "<p[^>]*>" " " "<div class=level0>" nil nil nil "div")
+	;; (w3m-filter-replace-regexp "</p>" "" "<div class=level0>" nil nil nil "div")
+	;; (w3m-filter-replace-regexp "<br[^>]*>" "" "<div class=level0>" nil nil nil "div")
+	;; (w3m-filter-replace-regexp "</div>" "" "<div class=level0>" nil nil nil "div")
+	;; (w3m-filter-replace-regexp "<div[^>]*>" " " "<div class=level0>" nil nil nil "div")
 	(w3m-filter-replace-regexp "<p class=\\(lvlB\\|lvlAH\\|lvlNH\\|level0\\)>" "")
        	(dic-lookup-w3m-filter-related-links "ej-weblio" ej)
 	(dic-lookup-w3m-filter-show-candidates "ej-weblio")
