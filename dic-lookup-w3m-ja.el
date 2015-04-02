@@ -1831,6 +1831,8 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource\\.aspx\\?set=.*&amp;name=\\([A-Za-z_0-9]+\\)[^>]*>")
 	(w3m-filter-replace-regexp
 	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource\\.aspx\\?set=unicode&amp;name=\\([^&\"]+\\)[^>]*>" "&#x\\1\;")
+	(w3m-filter-replace-regexp
+	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource\\.aspx\\?set=DJR3-ugi&amp;name=\\([^&\"]+\\)[^>]*>" "&#x\\1\;")
 	(w3m-filter-replace-regexp "</div><div style=\"margin-left:1.2em;\">" "")
 	(dic-lookup-w3m-filter-related-links "jj-excite" jj)
 	)
@@ -3134,15 +3136,15 @@ Fix me!"
   '(
     ("GE040" . "&#x3280;")		; 丸一
     ("GE041" . "&#x3281;")		; 丸二
-    ("G6971" . "&#x2776;")		; 丸1
-    ("G6972" . "&#x2777;")		; 丸2
-    ("G6973" . "&#x2778;")		; 丸3
-    ("G6974" . "&#x2779;")		; 丸4
-    ("G6975" . "&#x277A;")		; 丸5
-    ("G6976" . "&#x277B;")		; 丸6
-    ("G6977" . "&#x277C;")		; 丸7
-    ("G6978" . "&#x277D;")		; 丸8
-    ("G6979" . "&#x277E;")		; 丸9
+    ("G6971" . "&#x2776;")		; 黒丸1
+    ("G6972" . "&#x2777;")		; 黒丸2
+    ("G6973" . "&#x2778;")		; 黒丸3
+    ("G6974" . "&#x2779;")		; 黒丸4
+    ("G6975" . "&#x277A;")		; 黒丸5
+    ("G6976" . "&#x277B;")		; 黒丸6
+    ("G6977" . "&#x277C;")		; 黒丸7
+    ("G6978" . "&#x277D;")		; 黒丸8
+    ("G6979" . "&#x277E;")		; 黒丸9
     ("sign_man" . "&#x25C9;")		; ◉ 二重丸
     )
   "excite国語辞典の発音記号とフォントの変換テーブル。")
