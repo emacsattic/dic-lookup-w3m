@@ -2320,12 +2320,15 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	"http://dictionary.goo.ne.jp%s"
 	"<a href=\"\\(/leaf/.*/m0u/[^/]*/\\)" 1)
        ("\\`http://dictionary\\.goo\\.ne\\.jp/"
-	(w3m-filter-delete-regions "<body[^>]*>" "<div class=\"wordTitle\">" t t t)
-	(w3m-filter-delete-regions "<body[^>]*>" "<dl class=\"allList\">" t t t)
-	(w3m-filter-delete-regions "<body[^>]*>" "^<!-- inner tab -->" t nil t t)
-	(w3m-filter-delete-regions "<!--c34-->" "</body>" nil t)
-	(w3m-filter-delete-regions "<!--/result-->" "</body>" nil t)
-	(dic-lookup-w3m-filter-eword-anchor "ej-goo")
+	(w3m-filter-delete-regions
+	 "<body[^>]*>" "<div class=[^>]*contents-wrap-[ab][^>]*>" t t t t)
+	(w3m-filter-delete-regions "<!-- contents-wrap-[ab] -->" "</body>" nil t t)
+	(w3m-filter-delete-regions
+	 "<div class=\"social-button sp-hidden\">" "<!-- social-button -->")
+	(w3m-filter-replace-regexp "<dl class=\"list-search-a-in\">" "")
+	(w3m-filter-replace-regexp "</dl>" "")
+	(w3m-filter-replace-regexp "<[/]*dt[^>]*>" "")
+	 (dic-lookup-w3m-filter-eword-anchor "ej-goo")
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
 	 dic-lookup-w3m-filter-ocn-ej-symbol-alist
 	 "<img src=\"[^>]*/img[^>]*/\\([a-z_0-9]+\\)\\.gif\"[^>]*>")
