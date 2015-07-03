@@ -1816,6 +1816,9 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(dic-lookup-w3m-filter-eword-anchor "ej-excite")
 	)
        ("\\`http://www\\.excite\\.co\\.jp/dictionary/.*english.*/.*search="
+	(w3m-filter-replace-regexp
+	 "<br>\\([0-9]*\\)\\(a?\\) " "<br><b>\\1</b><i>\\2</i> ")
+	(dic-lookup-w3m-filter-eword-anchor "ej-excite")
 	(dic-lookup-w3m-filter-related-links "ej-excite" ej)
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
 	 dic-lookup-w3m-filter-excite-ej-symbol-alist
