@@ -286,6 +286,9 @@
    ("kanji-kakijun-alphainc"
     "http://www.google.co.jp/search?q=「%s」の書き順と書き方+site:www.kkjn.jp&lr=lang_ja&ie=UTF-8&oe=UTF-8"
     utf-8 nil "漢字の書き順")
+   ("kanji-kakijun-kkjn.jp"		;画像がsvg
+    "http://www.kkjn.jp/dbf/profile.cgi"
+    shift_jis "key=%s&hor=3&max=1&tpl=view&label=1" "漢字の書き順")
 
    ;; 漢字ひつじゅん君
    ("kanji-kakijun-hitsujunkun"
@@ -295,6 +298,10 @@
    ;; 正しい漢字の書き順
    ("kanji-kakijun-kakijun.jp" "http://kakijun.jp/main/u_kensaku.cgi?KANJI=%s"
     utf-8 nil "正しい漢字の書き順")
+
+   ;; 漢字書き順・筆順(書き方)調べ無料辞典
+   ("kanji-kakijun-quus.net" "http://kanji.quus.net/search/"
+    utf-8 "srji=%s" "漢字書き順・筆順(書き方)調べ無料辞典")
 
    ;; goo
    ("ej-goo" "http://dictionary.goo.ne.jp/srch/ej/%s/m0u/"
@@ -2170,6 +2177,15 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<img src=\"\\([^\"]*\\)\".* id=\"HJ_0gif\">" 1)
 	)
 
+       ;; 漢字書き順・筆順(書き方)調べ無料辞典
+       ("\\`http://kanji.quus.net/kakijyun/"
+	(w3m-filter-replace-regexp
+	 "\\(<img src=\"\\([^\"]*\\)\".*動画/アニメーション[^>]*>\\)"
+	 "\\1\n<p><a href=\\2>書き順の動画を表示する</a> M-x image-toggle-animation</p>")
+	;; (dic-lookup-w3m-filter-refresh-url
+	;;  "%s" "<img src=\"\\([^\"]*\\)\".*動画/アニメーション" 1)
+	)
+
        ;; gigadict
        ("\\`http://cgi\\.geocities\\.jp/abelinternational/cgi/kanjidic\\.cgi"
 	dic-lookup-w3m-filter-related-links "Kanji-gigadict" kanji)
@@ -2724,6 +2740,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
    ("\\`http://www\\.kkjn\\.jp/" t)
    ("\\`http://www\\.human\\.gr\\.jp/hitsujun/" t)
    ("\\`http://kakijun\\.jp/page/" t)
+   ("\\`http://kanji\\.quus.net/kakijyun/" t)
    ("\\`http://education\\.yahoo\\.com/reference/[^/]+/" t)
    ))
 
