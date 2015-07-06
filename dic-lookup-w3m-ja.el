@@ -296,8 +296,11 @@
     utf-8 nil "小学校で学習する漢字の書き順")
     
    ;; 正しい漢字の書き順
-   ("kanji-kakijun-kakijun.jp" "http://kakijun.jp/main/u_kensaku.cgi?KANJI=%s"
-    utf-8 nil "正しい漢字の書き順")
+   ;; ("kanji-kakijun-kakijun.jp" "http://kakijun.jp/main/u_kensaku.cgi?KANJI=%s"
+   ;;  utf-8 nil "正しい漢字の書き順")
+   ("kanji-kakijun-kakijun.jp"
+    "http://www.google.co.jp/search?q=「%s」の書き方+site:kakijun.jp&lr=lang_ja&ie=UTF-8&oe=UTF-8"
+    utf-8 nil "漢字の書き順")
 
    ;; 漢字書き順・筆順(書き方)調べ無料辞典
    ("kanji-kakijun-quus.net" "http://kanji.quus.net/search/"
@@ -2168,13 +2171,12 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
        ("http://kakijun\\.jp/page/"
 	(w3m-filter-delete-regions	
 	 "<body[^>]*>"
-	 "<img src=.* id=\"HJ_0gif\">" t t t t)
+	 "<img src=.* id=\"kjanimation\">" t t t t)
 	(w3m-filter-replace-regexp
-	 "\\(<img src=\\(\"[^\"]*\"\\).* id=\"HJ_0gif\">\\)"
-	 "\\1\n<p><a href=\\2>GIF動画</a> M-x image-toggle-animation</p>")
-	(dic-lookup-w3m-filter-refresh-url
-	 "%s"
-	 "<img src=\"\\([^\"]*\\)\".* id=\"HJ_0gif\">" 1)
+	 "\\(<img src=\\(\"[^\"]*\"\\).* id=\"kjanimation\">\\)"
+	 "\\1\n<p><a href=\\2>書き順の動画を表示する</a> M-x image-toggle-animation</p>")
+	;; (dic-lookup-w3m-filter-refresh-url
+	;;  "%s" "<img src=\"\\([^\"]*\\)\".* id=\"kjanimation\">" 1)
 	)
 
        ;; 漢字書き順・筆順(書き方)調べ無料辞典
