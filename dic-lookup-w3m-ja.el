@@ -1774,7 +1774,9 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
        ;; yahoo dic
        ("\\`http://dic\\.\\(search\\.\\)?yahoo\\.co\\.jp//?d?search"
 	(w3m-filter-delete-regions "<body[^>]*>" "<!-- /navi -->" t nil t)
+	(w3m-filter-delete-regions "<body[^>]*>" "<div id=\"DSr2\">" t t t)
 	(w3m-filter-delete-regions "<body[^>]*>" "<div id=\"mIn\">" t t t)
+	(w3m-filter-delete-regions "<div class=\"DSo\">" "</body>" nil t)
 	(w3m-filter-delete-regions "<!-- QR -->" "</body>" nil t)
 	(w3m-filter-replace-regexp
 	 "<img src=\"http://img.yahoo.co.jp/images/clear.gif\"[^>]*>" "")
