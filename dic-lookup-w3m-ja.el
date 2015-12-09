@@ -70,19 +70,19 @@
     utf-8 nil "すべての辞書")
 
    ;; excite
-   ("ej-excite" "http://www.excite.co.jp/dictionary/english_japanese/?search=%s"
+   ("ej-excite" "http://www.excite.co.jp/world/ej_dictionary/?search=%s"
     utf-8 nil "新英和中辞典第６版、新和英中辞典第４版（研究社）")
-   ("jj-excite" "http://www.excite.co.jp/dictionary/japanese/?search=%s"
+   ("jj-excite" "http://www.excite.co.jp/world/j_dictionary/?search=%s"
     utf-8 nil "大辞林第二版（三省堂）")
-   ("cj-excite" "http://www.excite.co.jp/dictionary/chinese_japanese/?search=%s"
+   ("cj-excite" "http://www.excite.co.jp/world/cj_dictionary/?search=%s"
     utf-8 nil "デイリーコンサイス中日辞典（三省堂）")
-   ("jc-excite" "http://www.excite.co.jp/dictionary/japanese_chinese/?search=%s"
+   ("jc-excite" "http://www.excite.co.jp/world/jc_dictionary/?search=%s"
     utf-8 nil "デイリーコンサイス日中辞典（三省堂）")
    ("ej-computer-excite"
-    "http://www.excite.co.jp/dictionary/english_japanese/?dictionary=COMP_EJ&search=%s"
+    "http://www.excite.co.jp/world/ej_dictionary/?dictionary=COMP_EJ&search=%s"
     utf-8 nil "英和コンピュータ用語辞典")
    ("je-computer-excite"
-    "http://www.excite.co.jp/dictionary/english_japanese/?dictionary=COMP_EJ&search=%s"
+    "http://www.excite.co.jp/world/ej_dictionary/?dictionary=COMP_EJ&search=%s"
     utf-8 nil "英和コンピュータ用語辞典")
 
 
@@ -1798,14 +1798,14 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	dic-lookup-w3m-filter-show-candidates "ej-yahoo")
 
        ;; excite dic
-       ("\\`http://www\\.excite\\.co\\.jp/dictionary/japanese/\\?search="
+       ("\\`http://www\\.excite\\.co\\.jp/world/j_dictionary/.*\\?search="
 	(w3m-filter-replace-regexp "<p>le=\"\">" "<p>")
 	(w3m-filter-replace-regexp "<br [^>]*</p>" "<br /></p>")
 	)
-       ("\\`http://www\\.excite\\.co\\.jp/dictionary/.*search="
+       ("\\`http://www\\.excite\\.co\\.jp/world/.*dictionary/.*search="
 	(dic-lookup-w3m-filter-excite-jump-to-1stcontent
 	 "http://www.excite.co.jp%s"
-	 "<a href=\"\\(/dictionary/.*/\\?search=[^>]*\\(block\\|itemid\\|;id\\)=[^>]*\\)\">" 1)
+	 "<a href=\"\\(/world/.*dictionary.*/ITEM-.*/\\?search=[^>]*\\)\">" 1)
 	(w3m-filter-delete-regions
 	 "<body>" "<div class=\"dictionary_history\">" t t)
 	(w3m-filter-delete-regions
@@ -1825,7 +1825,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<img src=\"?http://image\.excite\.co\.jp/jp/1pt\.gif\"?[^>]*>" "")
 	(dic-lookup-w3m-filter-eword-anchor "ej-excite")
 	)
-       ("\\`http://www\\.excite\\.co\\.jp/dictionary/.*english.*/.*search="
+       ("\\`http://www\\.excite\\.co\\.jp/world/\\(ej\\|je\\)_dictionary/.*search="
 	(w3m-filter-replace-regexp
 	 "<br>\\([0-9]*\\)\\(a?\\) " "<br><b>\\1</b><i>\\2</i> ")
 	(dic-lookup-w3m-filter-eword-anchor "ej-excite")
@@ -1835,7 +1835,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<img src=\"http://dictionary\\.eiwa\\.excite\\.co\\.jp/images/\\(NEW_EJJE\\|COMP_EJ\\)/gaiji/\\([a-z0-9]+\\)\\.gif\"[^>]*>"
 	 2)
 	)
-       ("\\`http://www\\.excite\\.co\\.jp/dictionary/japanese/\\?search="
+       ("\\`http://www\\.excite\\.co\\.jp/world/j_dictionary/.*\\?search="
 	(w3m-filter-replace-regexp
 	 "<span class=\"NetDicItemLink\" ItemID=\"\\([^\"]+\\)\">\\(\\([^<]+\\).*\</span>\\)"
 	 "<a href=\"./?search=\\3&itemid=\\1\">\\2</a>")
@@ -1849,14 +1849,14 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-replace-regexp "</div><div style=\"margin-left:1.2em;\">" "")
 	(dic-lookup-w3m-filter-related-links "jj-excite" jj)
 	)
-       ("\\`http://www\\.excite\\.co\\.jp/dictionary/chinese_japanese/\\?search="
+       ("\\`http://www\\.excite\\.co\\.jp/world/cj_dictionary/.*\\?search="
 	(dic-lookup-w3m-filter-related-links "cj-excite" cj)
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
 	 dic-lookup-w3m-filter-excite-cj-symbol-alist
 	 "<img src=\"?http://image\\.excite\\.co\\.jp/jp/dictionary/\\(pinyin\\|chinese_japanese\\)/\\([a-z_0-9]+\\)\\.gif\"?[^>]*>"
 	 2)
 	)
-       ("\\`http://www\\.excite\\.co\\.jp/dictionary/japanese_chinese/\\?search="
+       ("\\`http://www\\.excite\\.co\\.jp/world/jc_dictionary/.*\\?search="
 	(dic-lookup-w3m-filter-related-links "jc-excite" cj)
 	(w3m-filter-replace-regexp
 	 "\\(<img src=\"http://image\\.excite\\.co\\.jp/jp/dictionary/japanese_chinese/\\(yakugo\\|youyaku\\)\.gif\"[^>]*/>\\)\\([^<]+\\)\\(&nbsp;\\)"
@@ -1866,7 +1866,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<img src=\"?http://image\\.excite\\.co\\.jp/jp/dictionary/\\(pinyin\\|japanese_chinese\\)/\\([a-z_0-9]+\\)\\.gif\"?[^>]*>"
 	 2)
 	)
-       ("\\`http://www\\.excite\\.co\\.jp/dictionary/.*search="
+       ("\\`http://www\\.excite\\.co\\.jp/world/.*dictionary/.*search="
 	dic-lookup-w3m-filter-show-candidates "ej-excite")
 
        ;; alc
@@ -2701,10 +2701,11 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
 (mapc
  #'(lambda (elem) (add-to-list 'dic-lookup-w3m-inline-image-rules elem))
- '(("\\`http://www\\.excite\\.co\\.jp/dictionary/english_japanese/\\?search=" . t)
-   ("\\`http://www\\.excite\\.co\\.jp/dictionary/japanese/\\?search=" . t)
-   ("\\`http://www\\.excite\\.co\\.jp/dictionary/chinese_japanese/\\?search=" . t)
-   ("\\`http://www\\.excite\\.co\\.jp/dictionary/japanese_chinese/\\?search=" . t)
+ '(("\\`http://www\\.excite\\.co\\.jp/world/ej_dictionary/.*\\?search=" . t)
+   ("\\`http://www\\.excite\\.co\\.jp/world/j_dictionary/.*\\?search=" . t)
+   ("\\`http://www\\.excite\\.co\\.jp/world/cj_dictionary/.*\\?search=" . t)
+   ("\\`http://www\\.excite\\.co\\.jp/world/jc_dictionary/.*\\?search=" . t)
+   ("\\`http://www\\.excite\\.co\\.jp/world/" . turnoff)
    ("\\`http://dic\\.search\\.yahoo\\.co\\.jp/dsearch\\?" . t)
    ("\\`http://eow\\.alc\\.co\\.jp/.*/UTF-8/" . turnoff)
    ("\\`http://home\\.alc\\.co\\.jp/db/owa/bdicn_sch" . turnoff)
@@ -2715,7 +2716,6 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
    ("\\`http://erek\\.ta2o\\.net/" . turnoff)
    ("\\`http://www\\.kotonoha\\.gr\\.jp/demo/search_result\\?query_string=" . turnoff)
    ;;("\\`http://www\\.kotonoha\\.gr\\.jp/demo" . turnoff)
-   ("\\`http://www\\.excite\\.co\\.jp/world/" . turnoff)
    ("\\`http://honyaku\\.yahoo\\.co\\.jp/transtext" . turnoff)
    ("\\`http://translate\\.google\\.com/translate_t" . turnoff)
    ("\\`http://babelfish\\.yahoo\\.com/translate_txt" . turnoff)
