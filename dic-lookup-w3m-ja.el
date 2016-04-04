@@ -2233,6 +2233,12 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<!-- START Espritline Affiliate CODE -->"
 	 "<!-- END Espritline Affiliate CODE -->")
 	(w3m-filter-delete-regions "<div class=adBoxHE>" "</body>" nil t)
+	(w3m-filter-delete-regions "<div class=\"behindHeadWrp\"" "</div>")
+	(w3m-filter-delete-regions "<div class=hideDictWrp>"
+				   "<div class=kiji>" nil t)
+	(w3m-filter-replace-regexp "\\(<table class=wrp>\\)" "<hr>")
+	(w3m-filter-replace-regexp "\\(<div class=phraseEjCntAnc>\\)" "<hr>\\1")
+	(w3m-filter-delete-regions "<div style=\"float:right;\">" "</div>")
 	;; (w3m-filter-replace-regexp "<span>用例</span>" "[用例]")
 	;; (w3m-filter-replace-regexp "<div class=KejjeYrTtl>用例</div>" "[用例]")
 	;; (dic-lookup-w3m-filter-convert-phonetic-symbol
@@ -2243,6 +2249,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-replace-regexp
 	 "<img src=\"http://www.westatic.com/img/icons/iconWlaAdFL.png\"[^>]*>"
 	 "")
+	(w3m-filter-replace-regexp "<h2 class=midashigo [^>]*>\\([^<]*\\)</h2>" "")
 	(w3m-filter-replace-regexp "<h2>発音記号</h2>" " 発音記号")
 	(w3m-filter-replace-regexp "<div class=phoneticEjjeWrp>\\(.*\\)</div>" "\\1")
 	(w3m-filter-replace-regexp "<h2 class=audioEjjeTtl>音声を聞く</h2>" "")
@@ -2250,15 +2257,16 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<div [^>]*playSwfSound('http://ejje.westatic.com/audio/', '\\([^']+\\)'[^>]*><img [^>]*></div>"
 	 "<a href=\"http://ejje.westatic.com/audio/\\1.wav\">♪再生</a>")
 	(w3m-filter-replace-regexp
-	 "<div [^>]*playSwfSound('http://www.westatic.com/wbr/CHUJITEN/', '\\([^']+\\)'[^>]*><img [^>]*></div>"
+	 "<div [^>]*playSwfSound('http://www.westatic.com/wbr/CHUJITEN/', '\\([^']+\\)'.*</tr>"
 	 "<a href=\"http://www.westatic.com/wbr/CHUJITEN/\\1.wav\">♪再生</a>")
+	(w3m-filter-delete-regions "<td class=summaryR>" "</td>")
 	(w3m-filter-replace-regexp
 	 "<td [^>]*><span [^>]*>用例</span></td>"
 	 "<td valign=\"top\"><span>[例]</span></td>")
-	;;(w3m-filter-replace-regexp "<p class=level0>\\([^<]*\\)</p>" "\\1")
-	;;(w3m-filter-replace-regexp "<p class=lvlNH>\\([^<]*\\)</p>" "\\1")
-	;;(w3m-filter-replace-regexp "<p class=lvlAH>\\([^<]*\\)</p>" "\\1")
-	;;(w3m-filter-replace-regexp "<p class=lvlB>\\([^<]*\\)</p>" "\\1")
+	(w3m-filter-replace-regexp "<p class=level0>\\([^<]*\\)</p>" "\\1")
+	(w3m-filter-replace-regexp "<p class=lvlNH>\\([^<]*\\)</p>" "\\1 ")
+	(w3m-filter-replace-regexp "<p class=lvlAH>\\([^<]*\\)</p>" "\\1 ")
+	(w3m-filter-replace-regexp "<p class=lvlB>\\([^<]*\\)</p>" "\\1 ")
 	;; (w3m-filter-replace-regexp "<p[^>]*>" " " "<div class=level0>" nil nil nil "div")
 	;; (w3m-filter-replace-regexp "</p>" "" "<div class=level0>" nil nil nil "div")
 	;; (w3m-filter-replace-regexp "<br[^>]*>" "" "<div class=level0>" nil nil nil "div")
