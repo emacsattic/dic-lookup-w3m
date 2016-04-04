@@ -2254,7 +2254,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-replace-regexp "<div class=phoneticEjjeWrp>\\(.*\\)</div>" "\\1")
 	(w3m-filter-replace-regexp "<h2 class=audioEjjeTtl>音声を聞く</h2>" "")
 	(w3m-filter-replace-regexp
-	 "<div [^>]*playSwfSound('http://ejje.westatic.com/audio/', '\\([^']+\\)'[^>]*><img [^>]*></div>"
+	 "<div [^>]*playSwfSound('http://ejje.westatic.com/audio/', '\\([^']+\\)'.*</tr>"
 	 "<a href=\"http://ejje.westatic.com/audio/\\1.wav\">♪再生</a>")
 	(w3m-filter-replace-regexp
 	 "<div [^>]*playSwfSound('http://www.westatic.com/wbr/CHUJITEN/', '\\([^']+\\)'.*</tr>"
