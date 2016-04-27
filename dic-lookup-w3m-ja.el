@@ -2228,11 +2228,11 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(dic-lookup-w3m-filter-related-links "thesaurus-j-weblio" jj)
 	)
        ("\\`http://ejje\\.weblio\\.jp/content/"
-	(w3m-filter-delete-regions "<body[^>]*>" "<div ID=topic>" t nil t)
+	(w3m-filter-delete-regions "<body[^>]*>" "<div class=subMenuTop>" t nil t)
 	(w3m-filter-delete-regions
 	 "<!-- START Espritline Affiliate CODE -->"
 	 "<!-- END Espritline Affiliate CODE -->")
-	(w3m-filter-delete-regions "<div class=adBoxHE>" "</body>" nil t)
+	(w3m-filter-delete-regions "<p class=copyRt>" "</body>" nil t)
 	(w3m-filter-delete-regions "<div class=\"behindHeadWrp\"" "</div>")
 	(w3m-filter-delete-regions "<div class=hideDictWrp>"
 				   "<div class=kiji>" nil t)
@@ -2302,6 +2302,20 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-replace-regexp
 	 "<object data=\"\\([^\"]+\\)\" type=\"application/x-mplayer2\"[^>]*>"
 	 "<a href=\"\\1\">[手話を再生]</a>")
+	)
+      ("\\`http://ejje.weblio.jp/sentence/content/"
+	(w3m-filter-delete-regions
+	 "<body[^>]*>" "<div class=subMenuTop>" t nil t)
+	(w3m-filter-delete-regions
+	 "<span class=addToSlBtnCntner>" "</span>")
+	)
+      ("\\`http://ejje.weblio.jp/english-thesaurus/content/"
+	(w3m-filter-delete-regions
+	 "<body[^>]*>" "<div class=subMenuTop>" t nil t)
+	)
+       ("\\`http://ejje.weblio.jp/concordance/content/"
+	(w3m-filter-delete-regions
+	 "<body[^>]*>" "<div class=subMenuTop>" t nil t)
 	)
 
        ;; yahoo encyclopedia
