@@ -149,4 +149,4 @@
 
 (provide 'dic-lookup-w3m-zh)
 
-;;; dic-lookup-w3m-zh.el ends here.
+;;; dic-lookup-w3m-zh.el ends here

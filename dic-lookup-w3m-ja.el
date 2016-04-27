@@ -1,6 +1,6 @@
 ;;; dic-lookup-w3m-ja.el --- look up dictionaries on the Internet
 
-;; Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014, 2015  mcprvmec
+;; Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014, 2015, 2016  mcprvmec
 
 ;; Author: mcprvmec
 
@@ -70,21 +70,21 @@
     utf-8 nil "すべての辞書")
 
    ;; excite
-   ("ej-excite" "http://www.excite.co.jp/world/ej_dictionary/"
-    utf-8 "search=%s" "新英和中辞典第６版（研究社）")
-   ("ej-excite" "http://www.excite.co.jp/world/je_dictionary/"
-    utf-8 "search=%s" "新和英中辞典第４版（研究社）")
-   ("jj-excite" "http://www.excite.co.jp/world/j_dictionary/"
-    utf-8 "search=%s" "大辞林第二版（三省堂）")
-   ("cj-excite" "http://www.excite.co.jp/world/cj_dictionary/"
-    utf-8 "search=%s" "デイリーコンサイス中日辞典（三省堂）")
-   ("jc-excite" "http://www.excite.co.jp/world/jc_dictionary/"
-    utf-8 "search=%s" "デイリーコンサイス日中辞典（三省堂）")
-   ("ej-computer-excite" "http://www.excite.co.jp/world/ej_dictionary/"
-    utf-8 "dictionary=COMP_EJ;search=%s" "英和コンピュータ用語辞典")
-   ("je-computer-excite" "http://www.excite.co.jp/world/je_dictionary/"
-    utf-8 "dictionary=COMP_EJ;search=%s" "英和コンピュータ用語辞典")
-
+   ("ej-excite"
+    "http://www.excite.co.jp/world/ej_dictionary/NEW_EJJE/beginswith/%s/"
+    utf-8 nil "新英和中辞典第６版（研究社）")
+   ("je-excite"
+    "http://www.excite.co.jp/world/ej_dictionary/NEW_EJJE/beginswith/%s/"
+    utf-8 nil "新和英中辞典第４版（研究社）")
+   ("jj-excite" "http://www.excite.co.jp/world/j_dictionary/beginswith/%s/"
+    utf-8 nil "大辞林第二版（三省堂）")
+   ("cj-excite" "http://www.excite.co.jp/world/cj_dictionary/beginswith/%s/"
+    utf-8 nil "デイリーコンサイス中日辞典（三省堂）")
+   ("jc-excite" "http://www.excite.co.jp/world/jc_dictionary/beginswith/%s/"
+    utf-8 nil "デイリーコンサイス日中辞典（三省堂）")
+   ("ej-computer-excite"
+    "http://www.excite.co.jp/world/ej_dictionary/COMP_EJ/beginswith/%s/"
+    utf-8 nil "英和コンピュータ用語辞典")
 
    ;; ALC
    ("ej-alc" "http://eow.alc.co.jp/%s/UTF-8/" utf-8 nil "英辞郎")
@@ -1827,19 +1827,19 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-delete-regions "<div id=\"sidebar\">"  "</body>" nil t)
 	(w3m-filter-replace-regexp
 	 "<img src=\"?http://image\.excite\.co\.jp/jp/1pt\.gif\"?[^>]*>" "")
-	;;(dic-lookup-w3m-filter-eword-anchor "ej-excite")
+	(dic-lookup-w3m-filter-eword-anchor "ej-excite")
 	)
-       ("\\`http://www\\.excite\\.co\\.jp/world/\\(ej\\|je\\)_dictionary/NEW_EJJE/.*"
+       ("\\`http://www\\.excite\\.co\\.jp/world/\\(ej\\|je\\)_dictionary/.*/"
 	(w3m-filter-replace-regexp
 	 "<br>\\([0-9]*\\)\\(a?\\) " "<br><b>\\1</b><i>\\2</i> ")
 	(dic-lookup-w3m-filter-eword-anchor "ej-excite")
-	;;(dic-lookup-w3m-filter-related-links "ej-excite" ej)
+	(dic-lookup-w3m-filter-related-links "ej-excite" ej)
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
 	 dic-lookup-w3m-filter-excite-ej-symbol-alist
 	 "<img src=\"http://dictionary\\.eiwa\\.excite\\.co\\.jp/images/\\(NEW_EJJE\\|COMP_EJ\\)/gaiji/\\([a-z0-9]+\\)\\.gif\"[^>]*>"
 	 2)
 	)
-       ("\\`http://www\\.excite\\.co\\.jp/world/j_dictionary/ITEM.*"
+       ("\\`http://www\\.excite\\.co\\.jp/world/j_dictionary/.*"
 	(w3m-filter-replace-regexp
 	 "<span class=\"NetDicItemLink\" ItemID=\"\\([^\"]+\\)\">\\(\\([^<]+\\).*\</span>\\)"
 	 "<a href=\"./?search=\\3&itemid=\\1\">\\2</a>")
@@ -1851,17 +1851,17 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-replace-regexp
 	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource\\.aspx\\?set=DJR3-ugi&amp;name=\\([^&\"]+\\)[^>]*>" "&#x\\1\;")
 	(w3m-filter-replace-regexp "</div><div style=\"margin-left:1.2em;\">" "")
-	;;(dic-lookup-w3m-filter-related-links "jj-excite" jj)
+	(dic-lookup-w3m-filter-related-links "jj-excite" jj)
 	)
-       ("\\`http://www\\.excite\\.co\\.jp/world/cj_dictionary/ITEM.*"
-	;;(dic-lookup-w3m-filter-related-links "cj-excite" cj)
+       ("\\`http://www\\.excite\\.co\\.jp/world/cj_dictionary/.*"
+	(dic-lookup-w3m-filter-related-links "cj-excite" cj)
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
 	 dic-lookup-w3m-filter-excite-cj-symbol-alist
 	 "<img src=\"?http://image\\.excite\\.co\\.jp/jp/dictionary/\\(pinyin\\|chinese_japanese\\)/\\([a-z_0-9]+\\)\\.gif\"?[^>]*>"
 	 2)
 	)
-       ("\\`http://www\\.excite\\.co\\.jp/world/jc_dictionary/ITEM.*"
-	;;(dic-lookup-w3m-filter-related-links "jc-excite" cj)
+       ("\\`http://www\\.excite\\.co\\.jp/world/jc_dictionary/.*"
+	(dic-lookup-w3m-filter-related-links "jc-excite" cj)
 	(w3m-filter-replace-regexp
 	 "\\(<img src=\"http://image\\.excite\\.co\\.jp/jp/dictionary/japanese_chinese/\\(yakugo\\|youyaku\\)\.gif\"[^>]*/>\\)\\([^<]+\\)\\(&nbsp;\\)"
 	 "\\1<a href=\"/dictionary/chinese_japanese/?search=\\3\">\\3</a>\\4")
@@ -1870,8 +1870,8 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<img src=\"?http://image\\.excite\\.co\\.jp/jp/dictionary/\\(pinyin\\|japanese_chinese\\)/\\([a-z_0-9]+\\)\\.gif\"?[^>]*>"
 	 2)
 	)
-       ;;("\\`http://www\\.excite\\.co\\.jp/world/.*dictionary/NEW_EJJE/.*"
-       ;;dic-lookup-w3m-filter-show-candidates "ej-excite")
+       ("\\`http://www\\.excite\\.co\\.jp/world/.*dictionary/NEW_EJJE/.*"
+	dic-lookup-w3m-filter-show-candidates "ej-excite")
 
        ;; alc
        ("\\`http://eow\\.alc\\.co\\.jp/[^/]+/UTF-8"

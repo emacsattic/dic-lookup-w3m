@@ -965,7 +965,7 @@ C-uで名前でソート、C-u C-uで説明でソート。"
 (provide 'dic-lookup-w3m)
 
 (defvar dic-lookup-w3m-load-hook nil
-  "*Hook run after loading the dic-lookup-w3m module.")
+  "*Hook run after loading the `dic-lookup-w3m' module.")
 
 (run-hooks 'dic-lookup-w3m-load-hook)
 
