@@ -87,7 +87,7 @@
 (defvar dic-lookup-w3m-favorite-ej-engine "ec-ichiba")
 
 (eval-after-load "w3m-filter"
-  '(mapc
+  #'(mapc
     '(lambda (elem)
        (add-to-list 'w3m-filter-rules elem))
     (reverse
