@@ -669,20 +669,25 @@ stem.elはsdicに含まれています。またlookupにstem-english.elという
 	(if before "\\1")
 	)))))
 
-(defun dic-lookup-w3m-filter-refresh-url (url new-url &optional regexp subexp)
+(defun dic-lookup-w3m-filter-refresh-url (url new-url &optional regexp subexp timer)
   "htmlの<meta http-equiv=\"refresh\" ...>を使って新しいページに移動する。
 辞書の見出し語の一覧のページから、最初の見出し語の説明のページに自
 動的に移動するのに使う。"
-  (goto-char (point-min))
-  (w3m-filter-replace-regexp
-   url
-   "\\(<head[^>]*>\\)"
-   (format
-    "\\1<meta http-equiv=\"refresh\" content=\"0; url=%s\">"
-    (format new-url
-	    (or (and regexp (re-search-forward regexp nil t)
-		     (match-string (or subexp 0)))
-		"")))))
+  (let ((timer (or timer 5))
+	(refresh-url
+	 (format new-url
+		 (or (and regexp (re-search-forward regexp nil t)
+			  (match-string (or subexp 0)))
+		     ""))))
+    (goto-char (point-min))
+    (w3m-filter-replace-regexp
+     url
+     "\\(<head[^>]*>\\)"
+     (format
+      "\\1\n<meta http-equiv=\"refresh\" content=\"%d; url=%s\" />"
+      timer refresh-url))	   ; http-equiv="refresh" doesn't work
+    ;;(setq w3m-current-refresh (cons timer refresh-url))
+    (run-with-timer timer nil 'w3m-goto-url refresh-url)))
 
 (defvar dic-lookup-w3m-filter-convert-phonetic-symbol t
   "*発音記号のinline imageをフォントに変換して表示するかどうかのフラグ。
