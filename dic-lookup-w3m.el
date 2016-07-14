@@ -691,7 +691,7 @@ stem.elはsdicに含まれています。またlookupにstem-english.elという
     (run-with-timer
      timer nil
      (lambda (refresh-url timer)
-       (if (>= (float-time (current-idle-time)) (- timer 1))
+       (if (>= (float-time (current-idle-time)) (- timer 0.5))
 	   (w3m-goto-url refresh-url)))
      refresh-url timer)
     ))

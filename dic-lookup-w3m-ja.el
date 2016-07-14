@@ -2926,10 +2926,10 @@ gooの辞書検索で複数の見出し語が見つかった場合でも、最�
 
 (defvar dic-lookup-w3m-filter-excite-ej-symbol-alist
   '(
-    ("a121" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078134&offset=0522&frommenu=true\">&#x2020;</a> ") ; ダガー
-    ("a122" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078134&offset=0522&frommenu=true\">&#x2021;</a> ") ; ダブルダガー
-    ("a123" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078134&offset=0522&frommenu=true\">&#x2021;&#x2021;</a> ") ; ダブルダガー x2
-    ("a124" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078134&offset=0522&frommenu=true\">&#x2DA;</a>")	; 上丸
+    ("a121" . "<a href=\"./?block=00078134&offset=0522&frommenu=true\">&#x204E;</a> ") ; *
+    ("a122" . "<a href=\"./?block=00078134&offset=0522&frommenu=true\">&#x2051;</a> ") ; **
+    ("a123" . "<a href=\"./?block=00078134&offset=0522&frommenu=true\">&#x2042;</a> ") ; ***
+    ("a124" . "<a href=\"./?block=00078134&offset=0522&frommenu=true\">&#x2DA;</a>") ; 上丸
     ("a125" . "&#x306;")		; ブリーヴ(短音符)
     ("a126" . "≪")
     ("a127" . "≫")
@@ -3123,30 +3123,30 @@ gooの辞書検索で複数の見出し語が見つかった場合でも、最�
     ("a279" . "☆")
     ("a27a" . "<sup>&#x259;</sup>")	; シュワー
     ;; a27b-a320なし
-    ("a321" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[名]</strong></a>")
-    ("a322" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[代]</strong></a>")
-    ("a323" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[形]</strong></a>")
-    ("a324" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[動]</strong></a>")
-    ("a325" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[副]</strong></a>")
-    ("a326" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[接]</strong></a>")
-    ("a327" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[前]</strong></a>")
-    ("a328" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[冠]</strong></a>")
-    ("a329" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[間]</strong></a>")
-    ("a32a" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[助</strong></a>")
-    ("a32b" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>動]</strong></a>")
-    ("a32c" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>[接</strong></a>")
-    ("a32d" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>頭]</strong></a>")
-    ("a32e" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>尾]</strong></a>")
-    ("a32f" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078142&offset=1398&frommenu=true\"><strong>[U]</strong></a>")
-    ("a330" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078142&offset=1398&frommenu=true\"><strong>[C]</strong></a>")
-    ("a331" . "<a href=\"?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1464&frommenu=true\">(単)</a>")
-    ("a332" . "<a href=\"?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1464&frommenu=true\">(複)</a>")
-    ("a333" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078142&offset=0478&frommenu=true\"><strong>[A]</strong></a>")
-    ("a334" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078142&offset=0478&frommenu=true\"><strong>[P]</strong></a>")
-    ("a335" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>(自)</strong></a>")
-    ("a336" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078138&offset=1038&frommenu=true\"><strong>(他)</strong></a>")
-    ("a337" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078148&offset=1848&frommenu=true\"><strong>[成</strong></a>")
-    ("a338" . "<a href=\"./?search=&match=&dictionary=NEW_EJJE&block=00078148&offset=1848&frommenu=true\"><strong>句]</strong></a>")
+    ("a321" . "<a href=\"./?block=00078138&offset=1038&frommenu=true\"><strong>[名]</strong></a>")
+    ("a322" . "<a href=\"./?block=00078138&offset=1038&frommenu=true\"><strong>[代]</strong></a>")
+    ("a323" . "<a href=\"./?block=00078138&offset=1038&frommenu=true\"><strong>[形]</strong></a>")
+    ("a324" . "<a href=\"./?block=00078138&offset=1038&frommenu=true\"><strong>[動]</strong></a>")
+    ("a325" . "<a href=\"./?block=00078138&offset=1038&frommenu=true\"><strong>[副]</strong></a>")
+    ("a326" . "<a href=\"./?block=00078138&offset=1038&frommenu=true\"><strong>[接]</strong></a>")
+    ("a327" . "<a href=\"./?block=00078138&offset=1038&frommenu=true\"><strong>[前]</strong></a>")
+    ("a328" . "<a href=\"./?block=00078138&offset=1038&frommenu=true\"><strong>[冠]</strong></a>")
+    ("a329" . "<a href=\"./?block=00078138&offset=1038&frommenu=true\"><strong>[間]</strong></a>")
+    ("a32a" . "<a href=\"./?block=00078138&offset=1038&frommenu=true\"><strong>[助</strong></a>")
+    ("a32b" . "<a href=\"./?block=00078138&offset=1038&frommenu=true\"><strong>動]</strong></a>")
+    ("a32c" . "<a href=\"./?block=00078138&offset=1038&frommenu=true\"><strong>[接</strong></a>")
+    ("a32d" . "<a href=\"./?block=00078138&offset=1038&frommenu=true\"><strong>頭]</strong></a>")
+    ("a32e" . "<a href=\"./?block=00078138&offset=1038&frommenu=true\"><strong>尾]</strong></a>")
+    ("a32f" . "<a href=\"./?block=00078142&offset=1398&frommenu=true\"><strong>[U]</strong></a>")
+    ("a330" . "<a href=\"./?block=00078142&offset=1398&frommenu=true\"><strong>[C]</strong></a>")
+    ("a331" . "<a href=\"./?block=00078138&offset=1464&frommenu=true\">(単)</a>")
+    ("a332" . "<a href=\"./?block=00078138&offset=1464&frommenu=true\">(複)</a>")
+    ("a333" . "<a href=\"./?block=00078142&offset=0478&frommenu=true\"><strong>[A]</strong></a>")
+    ("a334" . "<a href=\"./?block=00078142&offset=0478&frommenu=true\"><strong>[P]</strong></a>")
+    ("a335" . "<a href=\"./?block=00078138&offset=1038&frommenu=true\"><strong>(自)</strong></a>")
+    ("a336" . "<a href=\"./?block=00078138&offset=1038&frommenu=true\"><strong>(他)</strong></a>")
+    ("a337" . "<a href=\"./?block=00078148&offset=1848&frommenu=true\"><strong>[成</strong></a>")
+    ("a338" . "<a href=\"./?block=00078148&offset=1848&frommenu=true\"><strong>句]</strong></a>")
     ("a339" . "♪")
     ("a33a" . "用例")
     ("a33b" . "☆")
