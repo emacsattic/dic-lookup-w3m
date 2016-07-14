@@ -1,6 +1,6 @@
 ;;; dic-lookup-w3m.el --- look up dictionaries on the Internet
 
-;; Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014  mcprvmec
+;; Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014, 2016  mcprvmec
 
 ;; Author: mcprvmec
 ;; Keywords: emacs-w3m, w3m, dictionary
@@ -673,7 +673,7 @@ stem.elはsdicに含まれています。またlookupにstem-english.elという
   "htmlの<meta http-equiv=\"refresh\" ...>を使って新しいページに移動する。
 辞書の見出し語の一覧のページから、最初の見出し語の説明のページに自
 動的に移動するのに使う。"
-  (let ((timer (or timer 5))
+  (let ((timer (or timer 4))
 	(refresh-url
 	 (format new-url
 		 (or (and regexp (re-search-forward regexp nil t)
@@ -685,9 +685,17 @@ stem.elはsdicに含まれています。またlookupにstem-english.elという
      "\\(<head[^>]*>\\)"
      (format
       "\\1\n<meta http-equiv=\"refresh\" content=\"%d; url=%s\" />"
-      timer refresh-url))	   ; http-equiv="refresh" doesn't work
+      timer refresh-url)) ; http-equiv="refresh" doesn't work. Fix me!
     ;;(setq w3m-current-refresh (cons timer refresh-url))
-    (run-with-timer timer nil 'w3m-goto-url refresh-url)))
+    ;; timerに設定された時間の間何も操作をしていなければ新しいページに移動する
+    (run-with-timer
+     timer nil
+     (lambda (refresh-url timer)
+       (if (>= (float-time (current-idle-time)) (- timer 1))
+	   (w3m-goto-url refresh-url)))
+     refresh-url timer)
+    ))
+
 
 (defvar dic-lookup-w3m-filter-convert-phonetic-symbol t
   "*発音記号のinline imageをフォントに変換して表示するかどうかのフラグ。
