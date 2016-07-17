@@ -87,7 +87,7 @@
     utf-8 nil "英和コンピュータ用語辞典")
 
    ;; ALC
-   ("ej-alc" "http://eow.alc.co.jp/%s/UTF-8/" utf-8 nil "英辞郎")
+   ("ej-alc" "http://eow.alc.co.jp/search?q=%s" utf-8 nil "英辞郎")
    ("ej-alc-business-put" "http://home.alc.co.jp/db/owa/bdicn_sch" utf-8
     "w=%s" "ビジネス英語辞書")
    ("ej-alc-gogen-put" "http://home.alc.co.jp/db/owa/etm_sch" shift_jis
@@ -1811,11 +1811,9 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-delete-regions
 	 "<body>" "<div class=\"dictionary_history\">" t t)
 	(w3m-filter-delete-regions
-	 "<div class=\"dictionary_history\">" "<div class=\"content\">" t t) ;最近検索した語句
+	 "<div class=\"content\">" "<div class=\"wordDetails\">" t t)
 	(w3m-filter-delete-regions
-	 "<div class=\"content\">" "<div class=\"wordDetails\">" nil t)
-	(w3m-filter-delete-regions
-	 "<div class=\"content cnja\">" "<div class=\"wordDetails\">" nil t)
+	 "<div class=\"content cnja\">" "<div class=\"wordDetails\">" t t)
 	(w3m-filter-replace-regexp
 	 "<div class=\"wordDetails\">" "<br><div class=\"wordDetails\">")
 	(w3m-filter-replace-regexp
@@ -1825,6 +1823,9 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<div class=\"sectionAside\">" "</body>" nil t t)
 	(w3m-filter-delete-regions "<div id=\"curationNews\"" "</body>" nil t)
 	(w3m-filter-delete-regions "<div id=\"sidebar\">"  "</body>" nil t)
+	(w3m-filter-replace-regexp
+	 "\\(<div class=\"dictionary_history\">\\(.*\n\\)*.*\\)\\(<div class=\"content\">\\(.*\n\\)*.*\\)\\(</body>\\)"
+	 "\\3 \\1 \\5") ;最近検索した語句
 	(w3m-filter-replace-regexp
 	 "<img src=\"?http://image\.excite\.co\.jp/jp/1pt\.gif\"?[^>]*>" "")
 	(dic-lookup-w3m-filter-eword-anchor "ej-excite")
@@ -1876,7 +1877,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	dic-lookup-w3m-filter-show-candidates "ej-excite")
 
        ;; alc
-       ("\\`http://eow\\.alc\\.co\\.jp/[^/]+/UTF-8"
+       ("\\`http://eow\\.alc\\.co\\.jp/search"
 	(w3m-filter-delete-regions
 	 "<body[^>]*>" "<div id=\"resultsArea\">" t nil t t)
 	(w3m-filter-delete-regions "<span class=\"kana\">" "</span>")
@@ -2262,6 +2263,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<div [^>]*playSwfSound('http://www.westatic.com/wbr/CHUJITEN/', '\\([^']+\\)'.*</tr>"
 	 "<a href=\"http://www.westatic.com/wbr/CHUJITEN/\\1.wav\">♪再生</a>")
 	(w3m-filter-delete-regions "<td class=summaryR>" "</td>")
+	(w3m-filter-replace-regexp "<tr><td><span>ピン留め</span></td></tr>" "")
 	(w3m-filter-replace-regexp
 	 "<td [^>]*><span [^>]*>用例</span></td>"
 	 "<td valign=\"top\"><span>[例]</span></td>")
@@ -2736,7 +2738,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
    ("\\`http://www\\.excite\\.co\\.jp/world/jc_dictionary/.*\\?search=" . t)
    ("\\`http://www\\.excite\\.co\\.jp/world/" . turnoff)
    ("\\`http://dic\\.search\\.yahoo\\.co\\.jp/dsearch\\?" . t)
-   ("\\`http://eow\\.alc\\.co\\.jp/.*/UTF-8/" . turnoff)
+   ("\\`http://eow\\.alc\\.co\\.jp/search" . turnoff)
    ("\\`http://home\\.alc\\.co\\.jp/db/owa/bdicn_sch" . turnoff)
    ("\\`http://www\\.merriam-webster\\.com/dictionary/" . turnoff)
    ("\\`http://dictionary\\.cambridge\\.org/results.asp\\?searchword=" . turnoff)
