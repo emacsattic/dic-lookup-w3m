@@ -1832,6 +1832,8 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	)
        ("\\`http://www\\.excite\\.co\\.jp/world/\\(ej\\|je\\)_dictionary/.*/"
 	(w3m-filter-replace-regexp
+	 "<p align=right> \\(<[^>]+>次へ</a>\\)</p>" "<p>\\1</p>")
+	(w3m-filter-replace-regexp
 	 "<br>\\([0-9]*\\)\\(a?\\) " "<br><b>\\1</b><i>\\2</i> ")
 	(w3m-filter-replace-regexp
 	 "<br>\\([a-z]\\) " "<br><i>\\1</i> ")
