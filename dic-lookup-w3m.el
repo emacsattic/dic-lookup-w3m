@@ -669,11 +669,14 @@ stem.elはsdicに含まれています。またlookupにstem-english.elという
 	(if before "\\1")
 	)))))
 
+(defvar dic-lookup-w3m-filter-refresh-url-timer 3
+  "*`dic-lookup-w3m-filter-refresh-url'が呼ばれた時からこの変数に設定された秒数の間何も操作をしていなければ新しいページに移動する。")
+
 (defun dic-lookup-w3m-filter-refresh-url (url new-url &optional regexp subexp timer)
   "htmlの<meta http-equiv=\"refresh\" ...>を使って新しいページに移動する。
 辞書の見出し語の一覧のページから、最初の見出し語の説明のページに自
 動的に移動するのに使う。"
-  (let ((timer (or timer 4))
+  (let ((timer (or timer dic-lookup-w3m-filter-refresh-url-timer))
 	(refresh-url
 	 (format new-url
 		 (or (and regexp (re-search-forward regexp nil t)
