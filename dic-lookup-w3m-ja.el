@@ -2372,8 +2372,8 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
        ;; goo
        ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/"
 	dic-lookup-w3m-filter-goo-jump-to-1stcontent
-	"http://dictionary.goo.ne.jp%s"
-	"<a href=\"\\(/leaf/.*/m0u/[^/]*/\\)" 1)
+	"http://dictionary.goo.ne.jp/%s"
+	"<a href=\"/\\(.*/meaning/m0u/.*\\)\"" 1)
        ("\\`http://dictionary\\.goo\\.ne\\.jp/"
 	(w3m-filter-delete-regions
 	 "<body[^>]*>" "<div class=[^>]*contents-wrap-[ab][^>]*>" t t t t)
