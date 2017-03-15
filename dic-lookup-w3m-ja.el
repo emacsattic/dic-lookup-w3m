@@ -1883,8 +1883,12 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-delete-regions
 	 "<body[^>]*>" "<div id=\"resultsArea\">" t nil t t)
 	(w3m-filter-delete-regions "<span class=\"kana\">" "</span>")
+	(w3m-filter-delete-regions "<span class=\"tango\">" "</span>")
 	(dic-lookup-w3m-filter-related-links "ej-alc" ej)
 	(dic-lookup-w3m-filter-eword-anchor "ej-alc")
+	(w3m-filter-replace-regexp
+	 "<a href='javascript:goPage(\"\\([0-9]+\\)\")'>"
+	 (format "<a href=\"%s&pg=%s\">" w3m-current-url "\\1"))
 	)
 
        ;; alc business term dic

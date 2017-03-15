@@ -460,10 +460,10 @@ nilなら`w3m-default-display-inline-images'の値に従う。")
 ;; w3m-filter.elのw3m-filter-replace-regexpを修正
 (defadvice w3m-filter-replace-regexp
   (around replace-match-without-case-conversion (url regexp to-string))
-  "Replace all occurrences of REGEXP with TO-STRING."
+  "Replace all occurrences of REGEXP with TO-STRING. TO-STRING can be a function."
   (goto-char (point-min))
   (while (re-search-forward regexp nil t)
-    (replace-match to-string t)))
+    (replace-match (eval to-string) t)))
 
 (ad-activate 'w3m-filter-replace-regexp)
 
