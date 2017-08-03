@@ -2268,6 +2268,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-replace-regexp
 	 "<div [^>]*playSwfSound('http://www.westatic.com/wbr/CHUJITEN/', '\\([^']+\\)'.*</tr>"
 	 "<a href=\"http://www.westatic.com/wbr/CHUJITEN/\\1.wav\">♪再生</a>")
+	(w3m-filter-delete-regions "<td class=summaryC>" "</table>")
 	(w3m-filter-delete-regions "<td class=summaryR>" "</td>")
 	(w3m-filter-replace-regexp "<tr><td><span>ピン留め</span></td></tr>" "")
 	(w3m-filter-delete-regions "<div id=\"leadToVocabIndexBtnWrp" "</td>" nil t) ;学習レベル
