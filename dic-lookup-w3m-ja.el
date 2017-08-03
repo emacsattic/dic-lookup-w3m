@@ -307,23 +307,23 @@
     utf-8 "srji=%s" "漢字書き順・筆順(書き方)調べ無料辞典")
 
    ;; goo
-   ("ej-goo" "http://dictionary.goo.ne.jp/srch/ej/%s/m0u/"
+   ("ej-goo" "https://dictionary.goo.ne.jp/srch/ej/%s/m0u/"
     utf-8 nil "小学館 プログレッシブ英和中辞典 第4版")
-   ("je-goo" "http://dictionary.goo.ne.jp/srch/je/%s/m0u/"
+   ("je-goo" "https://dictionary.goo.ne.jp/srch/je/%s/m0u/"
     utf-8 nil "小学館 プログレッシブ和英中辞典 第3版")
-   ("jj-goo" "http://dictionary.goo.ne.jp/srch/jn/%s/m0u/"
+   ("jj-goo" "https://dictionary.goo.ne.jp/srch/jn/%s/m0u/"
     utf-8 nil "小学館 デジタル大辞泉")
-   ("jj-yojijukugo-goo" "http://dictionary.goo.ne.jp/srch/idiom/%s/m0u/"
+   ("jj-yojijukugo-goo" "https://dictionary.goo.ne.jp/srch/idiom/%s/m0u/"
     utf-8 nil "三省堂 新明解四字熟語辞典")
-   ("it-goo" "http://dictionary.goo.ne.jp/srch/it/%s/m0u/"
+   ("it-goo" "https://dictionary.goo.ne.jp/srch/it/%s/m0u/"
     utf-8 nil "IT用語辞典")
-   ("all-goo" "http://dictionary.goo.ne.jp/srch/all/%s/m0u/"
+   ("all-goo" "https://dictionary.goo.ne.jp/srch/all/%s/m0u/"
     utf-8 nil "すべての辞書")
-   ("thesaurus-j-goo" "http://dictionary.goo.ne.jp/srch/thsrs/%s/m0u/"
+   ("thesaurus-j-goo" "https://dictionary.goo.ne.jp/srch/thsrs/%s/m0u/"
     utf-8 nil "小学館 使い方の分かる　類語例解辞典 新装版")
-   ("cj-goo" "http://dictionary.goo.ne.jp/srch/cj/%s/m0u/"
+   ("cj-goo" "https://dictionary.goo.ne.jp/srch/cj/%s/m0u/"
     utf-8 nil "三省堂 デイリーコンサイス中日辞典（第2版）")
-   ("jc-goo" "http://dictionary.goo.ne.jp/srch/jc/%s/m0u/"
+   ("jc-goo" "https://dictionary.goo.ne.jp/srch/jc/%s/m0u/"
     utf-8 nil "三省堂 デイリーコンサイス日中辞典")
 
    ;; ocn goo
@@ -2374,11 +2374,11 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	nil nil "</head>")
 
        ;; goo
-       ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/"
+       ("\\`https://dictionary\\.goo\\.ne\\.jp/srch/"
 	dic-lookup-w3m-filter-goo-jump-to-1stcontent
-	"http://dictionary.goo.ne.jp/%s"
+	"https://dictionary.goo.ne.jp/%s"
 	"<a href=\"/\\(.*/meaning/m0u/.*\\)\"" 1)
-       ("\\`http://dictionary\\.goo\\.ne\\.jp/"
+       ("\\`https://dictionary\\.goo\\.ne\\.jp/"
 	(w3m-filter-delete-regions
 	 "<body[^>]*>" "<div class=[^>]*contents-wrap-[ab][^>]*>" t t t t)
 	(w3m-filter-delete-regions "<!-- contents-wrap-[ab] -->" "</body>" nil t t)
@@ -2396,21 +2396,21 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(w3m-filter-delete-regions "<ul class=\"enditMean\">" "</ul>")
 	(w3m-filter-replace-regexp "\\(<div id=\"spoLine\">\\)" "<br>\\1")
 	)
-       ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/ej/"
+       ("\\`https://dictionary\\.goo\\.ne\\.jp/srch/ej/"
 	dic-lookup-w3m-filter-related-links "ej-goo" ej)
-       ("\\`http://dictionary\\.goo\\.ne\\.jp/leaf/ej3/"
+       ("\\`https://dictionary\\.goo\\.ne\\.jp/leaf/ej3/"
 	dic-lookup-w3m-filter-related-links "ej-goo" ej "/m0u/%s/")
-       ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/je/"
+       ("\\`https://dictionary\\.goo\\.ne\\.jp/srch/je/"
 	dic-lookup-w3m-filter-related-links "je-goo" ej)
-       ("\\`http://dictionary\\.goo\\.ne\\.jp/leaf/je2/"
+       ("\\`https://dictionary\\.goo\\.ne\\.jp/leaf/je2/"
 	dic-lookup-w3m-filter-related-links "je-goo" ej "/m0u/%s/")
-       ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/jn/"
+       ("\\`https://dictionary\\.goo\\.ne\\.jp/srch/jn/"
 	dic-lookup-w3m-filter-related-links "jj-goo" jj)
-       ("\\`http://dictionary\\.goo\\.ne\\.jp/leaf/jn2/"
+       ("\\`https://dictionary\\.goo\\.ne\\.jp/leaf/jn2/"
 	dic-lookup-w3m-filter-related-links "jj-goo" jj "/m0u/%s/")
-       ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/cj/"
+       ("\\`https://dictionary\\.goo\\.ne\\.jp/srch/cj/"
 	dic-lookup-w3m-filter-related-links "cj-goo" cj)
-       ("\\`http://dictionary\\.goo\\.ne\\.jp/leaf/cj/"
+       ("\\`https://dictionary\\.goo\\.ne\\.jp/leaf/cj/"
 	(dic-lookup-w3m-filter-related-links "cj-goo" cj "/m0u/%s/")
 	(w3m-filter-replace-regexp
 	 "\\(<span class=\"ex\">[^<]*</span>\\)" "\\1 - ")
@@ -2422,9 +2422,9 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "【同】\\([^<)]+\\)\\([^<]*\\)</span>"
 	 "【同】<a href=\"/srch/cj/\\1/m0u/\">\\1</a>\\2</span>")
 	)
-       ("\\`http://dictionary\\.goo\\.ne\\.jp/srch/jc/"
+       ("\\`https://dictionary\\.goo\\.ne\\.jp/srch/jc/"
 	dic-lookup-w3m-filter-related-links "jc-goo" cj)
-       ("\\`http://dictionary\\.goo\\.ne\\.jp/leaf/jc/"
+       ("\\`https://dictionary\\.goo\\.ne\\.jp/leaf/jc/"
 	(dic-lookup-w3m-filter-related-links "jc-goo" cj "/m0u/%s/")
 	(w3m-filter-replace-regexp
 	 "<span class=\"btn_sound\">\\([^>]*>\\)<img src=\"/img/btn_sound.gif\"></a></span>"
@@ -2433,7 +2433,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "\\(<div class=\"prog_example\">\\|<br />\\)\\([^>]*\\)\\(　<span class=\"pinyin\">\\)"
 	 "\\1<a href=\"/srch/cj/\\2/m0u/\">\\2</a>\\3")
 	)
-       ("\\`http://dictionary\\.goo\\.ne\\.jp/"
+       ("\\`https://dictionary\\.goo\\.ne\\.jp/"
 	dic-lookup-w3m-filter-show-candidates "ej-goo")
 
        ;; ocn goo
@@ -2739,12 +2739,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
 (mapc
  #'(lambda (elem) (add-to-list 'dic-lookup-w3m-inline-image-rules elem))
- '(("\\`http://www\\.excite\\.co\\.jp/world/ej_dictionary/.*\\?search=" . t)
-   ("\\`http://www\\.excite\\.co\\.jp/world/j_dictionary/.*\\?search=" . t)
-   ("\\`http://www\\.excite\\.co\\.jp/world/cj_dictionary/.*\\?search=" . t)
-   ("\\`http://www\\.excite\\.co\\.jp/world/jc_dictionary/.*\\?search=" . t)
-   ("\\`http://www\\.excite\\.co\\.jp/world/" . turnoff)
-   ("\\`http://dic\\.search\\.yahoo\\.co\\.jp/dsearch\\?" . t)
+ '(("\\`http://dic\\.search\\.yahoo\\.co\\.jp/dsearch\\?" . t)
    ("\\`http://eow\\.alc\\.co\\.jp/search" . turnoff)
    ("\\`http://home\\.alc\\.co\\.jp/db/owa/bdicn_sch" . turnoff)
    ("\\`http://www\\.merriam-webster\\.com/dictionary/" . turnoff)
@@ -2788,8 +2783,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 (add-to-list
  'dic-lookup-w3m-related-site-list
  '(ej
-   (("ej-excite" . "excite")
-    ("ej-weblio" . "weblio")
+   (("ej-weblio" . "weblio")
     ("ej-yahoo" . "Y!")
     ("ej-alc" . "alc")
     ("ej-infoseek" . "infoseek")
@@ -2821,14 +2815,13 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
     ("ee-babylon" . "babylon")
     ("ee-wiktionary" . "wiktionary")
     ("ej-yahoo" . "EJ-Y!")
-    ("ej-excite" . "EJ-excite")
+    ("ej-weblio" . "EJ-weblio")
     )))
 
 (add-to-list
  'dic-lookup-w3m-related-site-list
  '(jj
-   (("jj-excite" . "国excite")
-    ("jj-yahoo" . "国Y!")
+   (("jj-yahoo" . "国Y!")
     ("jj-goo" . "国goo")
     ("jj-weblio" . "国weblio")
     ("jj-chuuta" . "国チュウ")
@@ -2847,9 +2840,9 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
     ("etc-yahoo" . "百科")
     ("ja.wikipedia" . "Wikipedia")
     ("jj-wiktionary" . "Wiktionary")
-    ("ej-excite" . "JE-excite")
+    ("ej-weblio" . "JE-weblio")
     ("je-yahoo" . "JE-Y!")
-    ("jc-excite" . "中")
+    ("jc-goo" . "中")
     ("JK-gigadict" . "韓"))))
 
 (add-to-list
@@ -2859,15 +2852,14 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
     ("Kanji-gigadict" . "漢gigadict")
     ("KKanji-gigadict" . "教育漢字gigadict")
     ("kanji-foks" . "漢foks")
-    ("jj-excite" . "国excite")
-    ("cj-excite" . "中日")
-    ("jc-excite" . "日中"))))
+    ("jj-weblio" . "国weblio")
+    ("cj-weblio" . "中日")
+    ("jc-weblio" . "日中"))))
 
 (add-to-list
  'dic-lookup-w3m-related-site-list
  '(cj
-   (("cj-excite" . "CJ-excite")
-    ("cj-kitajiro" . "CJ北")
+   (("cj-kitajiro" . "CJ北")
     ("cj-goo" . "CJ-goo")
     ("cj-naver" . "CJ-naver")
     ("cj-bitex" . "CJ-bitex")
@@ -2875,7 +2867,6 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
     ("cj-jcdic" . "CJ-jcdic")
     ("cj-weblio" . "CJJC-weblio")
     ("cj-hjenglish" . "CJ-hjenglish")
-    ("jc-excite" . "JC-excite")
     ("jc-kitajiro" . "JC北")
     ("jc-bitex" . "JC-bitex")
     ("jc-tonko-jikai" . "JC敦煌")
@@ -2896,8 +2887,8 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
     ("pinyin-ctrans" . "py-ctrans")
     ("pinyin-dokochina" . "py-dokochina")
     ("pinyin-seikei" . "py-seikei")
-    ("cj-excite" . "中日")
-    ("jc-excite" . "日中"))))
+    ("cj-goo" . "中日")
+    ("jc-goo" . "日中"))))
 
 (defvar dic-lookup-w3m-suitable-engine-pattern
   '("[^\000-\177]" "\\(^\\|-\\)\\(ej-\\)" "\\1je-")

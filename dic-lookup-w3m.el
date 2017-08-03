@@ -1,6 +1,6 @@
 ;;; dic-lookup-w3m.el --- look up dictionaries on the Internet
 
-;; Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014, 2016  mcprvmec
+;; Copyright (C) 2008, 2009, 2010, 2011, 2012, 2014, 2016, 2017  mcprvmec
 
 ;; Author: mcprvmec
 ;; Keywords: emacs-w3m, w3m, dictionary
