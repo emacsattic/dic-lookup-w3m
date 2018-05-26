@@ -99,7 +99,7 @@
 	dic-lookup-w3m-filter-related-links "cc-thefreedictionary" cc)
 
        ("\\`http://www\\.iciba\\.com/"
-	(w3m-filter-delete-regions "<body[^>]*>" "<div id=\"content\">" t t t)
+	(dic-lookup-w3m-filter-delete-regions "<body[^>]*>" "<div id=\"content\">" t t t)
 	(dic-lookup-w3m-filter-related-links "ce-ichiba" cc)
 	(dic-lookup-w3m-filter-show-candidates "ec-ichiba")
        	(dic-lookup-w3m-filter-eword-anchor dic-lookup-w3m-favorite-ej-engine)
@@ -109,11 +109,11 @@
 	)
 
        ("\\`http://www\\.zdic\\.net/"
-	(w3m-filter-replace-regexp "<img src=\"/images/logo.gif\">" "")
+	(dic-lookup-w3m-filter-replace-regexp "<img src=\"/images/logo.gif\">" "")
 	)
 
        ("\\`http://china\\.fl\\.kansai-u\\.ac\\.jp/t/text/datalist\\.aspx"
-	w3m-filter-replace-regexp
+	dic-lookup-w3m-filter-replace-regexp
 	"<font color=red>\\([^<]*\\)</font>" "<strong>\\1</strong>")
        ))))
 

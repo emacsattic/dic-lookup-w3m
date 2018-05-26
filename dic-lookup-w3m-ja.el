@@ -1773,14 +1773,14 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
        ;; yahoo dic
        ("\\`http://dic\\.\\(search\\.\\)?yahoo\\.co\\.jp//?d?search"
-	(w3m-filter-delete-regions "<body[^>]*>" "<!-- /navi -->" t nil t)
-	(w3m-filter-delete-regions "<body[^>]*>" "<div id=\"DSr2\">" t t t)
-	(w3m-filter-delete-regions "<body[^>]*>" "<div id=\"mIn\">" t t t)
-	(w3m-filter-delete-regions "<div class=\"DSo\">" "</body>" nil t)
-	(w3m-filter-delete-regions "<!-- QR -->" "</body>" nil t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-delete-regions "<body[^>]*>" "<!-- /navi -->" t nil t)
+	(dic-lookup-w3m-filter-delete-regions "<body[^>]*>" "<div id=\"DSr2\">" t t t)
+	(dic-lookup-w3m-filter-delete-regions "<body[^>]*>" "<div id=\"mIn\">" t t t)
+	(dic-lookup-w3m-filter-delete-regions "<div class=\"DSo\">" "</body>" nil t)
+	(dic-lookup-w3m-filter-delete-regions "<!-- QR -->" "</body>" nil t)
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<img src=\"http://img.yahoo.co.jp/images/clear.gif\"[^>]*>" "")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<img src=\"http://i.yimg.jp/images/clear.gif\"[^>]*>" "")
 	(dic-lookup-w3m-filter-eword-anchor "ej-yahoo")
 	)
@@ -1801,41 +1801,41 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
        ;; excite dic 2017/4/27サービス終了
        ;; ("\\`http://www\\.excite\\.co\\.jp/world/j_dictionary/"
-       ;; 	(w3m-filter-replace-regexp "<p>le=\"\">" "<p>")
-       ;; 	(w3m-filter-replace-regexp "<br [^>]*</p>" "<br /></p>")
+       ;; 	(dic-lookup-w3m-filter-replace-regexp "<p>le=\"\">" "<p>")
+       ;; 	(dic-lookup-w3m-filter-replace-regexp "<br [^>]*</p>" "<br /></p>")
        ;; 	)
        ;; ("\\`http://www\\.excite\\.co\\.jp/world/.*dictionary/"
        ;; 	(dic-lookup-w3m-filter-excite-jump-to-1stcontent
        ;; 	 "http://www.excite.co.jp%s"
        ;; 	 "<a href=\"\\(/world/.*dictionary.*/ITEM-.*/\\?search=[^>]*\\)\">" 1)
-       ;; 	(w3m-filter-delete-regions
+       ;; 	(dic-lookup-w3m-filter-delete-regions
        ;; 	 "<body>" "<div class=\"dictionary_history\">" t t)
-       ;; 	(w3m-filter-delete-regions
+       ;; 	(dic-lookup-w3m-filter-delete-regions
        ;; 	 "<div class=\"content\">" "<div class=\"wordDetails\">" t t)
-       ;; 	(w3m-filter-delete-regions
+       ;; 	(dic-lookup-w3m-filter-delete-regions
        ;; 	 "<div class=\"content cnja\">" "<div class=\"wordDetails\">" t t)
-       ;; 	(w3m-filter-replace-regexp
+       ;; 	(dic-lookup-w3m-filter-replace-regexp
        ;; 	 "<div class=\"wordDetails\">" "<br><div class=\"wordDetails\">")
-       ;; 	(w3m-filter-replace-regexp
+       ;; 	(dic-lookup-w3m-filter-replace-regexp
        ;; 	 "\\(<div class=\"dictionary_history\">\\)" "\\1<br>")
-       ;; 	(w3m-filter-delete-regions "<body>" "<div class=\"section\">" t t)
-       ;; 	(w3m-filter-delete-regions
+       ;; 	(dic-lookup-w3m-filter-delete-regions "<body>" "<div class=\"section\">" t t)
+       ;; 	(dic-lookup-w3m-filter-delete-regions
        ;; 	 "<div class=\"sectionAside\">" "</body>" nil t t)
-       ;; 	(w3m-filter-delete-regions "<div id=\"curationNews\"" "</body>" nil t)
-       ;; 	(w3m-filter-delete-regions "<div id=\"sidebar\">"  "</body>" nil t)
-       ;; 	(w3m-filter-replace-regexp
+       ;; 	(dic-lookup-w3m-filter-delete-regions "<div id=\"curationNews\"" "</body>" nil t)
+       ;; 	(dic-lookup-w3m-filter-delete-regions "<div id=\"sidebar\">"  "</body>" nil t)
+       ;; 	(dic-lookup-w3m-filter-replace-regexp
        ;; 	 "\\(<div class=\"dictionary_history\">\\(.*\n\\)*.*\\)\\(<div class=\"content\">\\(.*\n\\)*.*\\)\\(</body>\\)"
        ;; 	 "\\3 \\1 \\5") ;最近検索した語句
-       ;; 	(w3m-filter-replace-regexp
+       ;; 	(dic-lookup-w3m-filter-replace-regexp
        ;; 	 "<img src=\"?http://image\.excite\.co\.jp/jp/1pt\.gif\"?[^>]*>" "")
        ;; 	(dic-lookup-w3m-filter-eword-anchor "ej-excite")
        ;; 	)
        ;; ("\\`http://www\\.excite\\.co\\.jp/world/\\(ej\\|je\\)_dictionary/.*/"
-       ;; 	(w3m-filter-replace-regexp
+       ;; 	(dic-lookup-w3m-filter-replace-regexp
        ;; 	 "<p align=right> \\(<[^>]+>次へ</a>\\)</p>" "<p>\\1</p>")
-       ;; 	(w3m-filter-replace-regexp
+       ;; 	(dic-lookup-w3m-filter-replace-regexp
        ;; 	 "<br>\\([0-9]*\\)\\(a?\\) " "<br><b>\\1</b><i>\\2</i> ")
-       ;; 	(w3m-filter-replace-regexp
+       ;; 	(dic-lookup-w3m-filter-replace-regexp
        ;; 	 "<br>\\([a-z]\\) " "<br><i>\\1</i> ")
        ;; 	(dic-lookup-w3m-filter-eword-anchor "ej-excite")
        ;; 	(dic-lookup-w3m-filter-related-links "ej-excite" ej)
@@ -1845,17 +1845,17 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
        ;; 	 2)
        ;; 	)
        ;; ("\\`http://www\\.excite\\.co\\.jp/world/j_dictionary/.*"
-       ;; 	(w3m-filter-replace-regexp
+       ;; 	(dic-lookup-w3m-filter-replace-regexp
        ;; 	 "<span class=\"NetDicItemLink\" ItemID=\"\\([^\"]+\\)\">\\(\\([^<]+\\).*\</span>\\)"
        ;; 	 "<a href=\"./?search=\\3&itemid=\\1\">\\2</a>")
        ;; 	(dic-lookup-w3m-filter-convert-phonetic-symbol
        ;; 	 dic-lookup-w3m-filter-excite-jj-symbol-alist
        ;; 	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource\\.aspx\\?set=.*&amp;name=\\([A-Za-z_0-9]+\\)[^>]*>")
-       ;; 	(w3m-filter-replace-regexp
+       ;; 	(dic-lookup-w3m-filter-replace-regexp
        ;; 	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource\\.aspx\\?set=unicode&amp;name=\\([^&\"]+\\)[^>]*>" "&#x\\1\;")
-       ;; 	(w3m-filter-replace-regexp
+       ;; 	(dic-lookup-w3m-filter-replace-regexp
        ;; 	 "<img src=\"http://b2b\\.dejizo\\.jp/Resource\\.aspx\\?set=DJR3-ugi&amp;name=\\([^&\"]+\\)[^>]*>" "&#x\\1\;")
-       ;; 	(w3m-filter-replace-regexp "</div><div style=\"margin-left:1.2em;\">" "")
+       ;; 	(dic-lookup-w3m-filter-replace-regexp "</div><div style=\"margin-left:1.2em;\">" "")
        ;; 	(dic-lookup-w3m-filter-related-links "jj-excite" jj)
        ;; 	)
        ;; ("\\`http://www\\.excite\\.co\\.jp/world/cj_dictionary/.*"
@@ -1867,7 +1867,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
        ;; 	)
        ;; ("\\`http://www\\.excite\\.co\\.jp/world/jc_dictionary/.*"
        ;; 	(dic-lookup-w3m-filter-related-links "jc-excite" cj)
-       ;; 	(w3m-filter-replace-regexp
+       ;; 	(dic-lookup-w3m-filter-replace-regexp
        ;; 	 "\\(<img src=\"http://image\\.excite\\.co\\.jp/jp/dictionary/japanese_chinese/\\(yakugo\\|youyaku\\)\.gif\"[^>]*/>\\)\\([^<]+\\)\\(&nbsp;\\)"
        ;; 	 "\\1<a href=\"/dictionary/chinese_japanese/?search=\\3\">\\3</a>\\4")
        ;; 	(dic-lookup-w3m-filter-convert-phonetic-symbol
@@ -1880,29 +1880,29 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
        ;; alc
        ("\\`http://eow\\.alc\\.co\\.jp/search"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div id=\"resultsArea\">" t nil t t)
-	(w3m-filter-delete-regions "<span class=\"kana\">" "</span>")
-	(w3m-filter-delete-regions "<span class=\"tango\">" "</span>")
+	(dic-lookup-w3m-filter-delete-regions "<span class=\"kana\">" "</span>")
+	(dic-lookup-w3m-filter-delete-regions "<span class=\"tango\">" "</span>")
 	(dic-lookup-w3m-filter-related-links "ej-alc" ej)
 	(dic-lookup-w3m-filter-eword-anchor "ej-alc")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<a href='javascript:goPage(\"\\([0-9]+\\)\")'>"
 	 (format "<a href=\"%s&pg=%s\">" w3m-current-url "\\1"))
 	)
 
        ;; alc business term dic
        ("\\`http://home\\.alc\\.co\\.jp/db/owa/bdicn_sch"
-	w3m-filter-delete-regions
+	dic-lookup-w3m-filter-delete-regions
 	"<body bgcolor=\"#FFFFFF\">" "<!--▲input_form-->" t)
 
        ;; webster
        ("\\`http://www\\.merriam-webster\\.com/\\(dictionary\\|thesaurus\\)/.+"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div class=\"definition\">" t t t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<div class=\"browse learn_more\">" "</body>")
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<div id=\"page_wrapper\">" "<div class=\"page_content\">")
 	(dic-lookup-w3m-filter-related-links "ee-webster" ee)
 	(dic-lookup-w3m-filter-eword-anchor "ee-webster")
@@ -1911,7 +1911,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
        ;; cambridge
        ("\\`http://dictionary\\.cambridge\\.org/dictionary/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div class=\"cdo-section\">" t t t)
 	(dic-lookup-w3m-filter-related-links "ee-cambridge" ee)
 	(dic-lookup-w3m-filter-eword-anchor "ee-cambridge")
@@ -1920,12 +1920,12 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
        ;; macmillan
        ("\\`http://www\\.macmillandictionary\\.com/dictionary/british/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div id=\"headwordleft\">" t t t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<span class=\"headword-definition\">"
 	 "<!-- End of DIV thesaurus-layer-->" t t t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<img [^>]*src=[^>]*data-src-mp3=\\(\"[^\"]+\"\\)[^>]*>"
 	 "<a href=\\1>♪</a>")
 	(dic-lookup-w3m-filter-related-links "ee-macmillan" ee)
@@ -1933,23 +1933,23 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(dic-lookup-w3m-filter-show-candidates "ee-macmillan")
        	)
        ("\\`http://www.macmillandictionary.com/spellcheck/british/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div id=\"search-results\">" t t t)
 	)
 
        ;; yahoo.com
        ("\\`http://education\\.yahoo\\.com/reference/[^/]+/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<p class='bodytext'>" t t t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<font face=\"arial\" size=\"-2\">Visit our partner's site</font>"
 	 "\\'" nil nil nil t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>"
 	 "<div id=\"yedusearchresultspaginationtop\"[^>]*>" t t t t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div id=\"yeduarticlenavigationtop\"[^>]*>" t t t t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<img [^>]*src=\"http://l.yimg.com/a/i/edu/ref/ahd/t/pron.jpg\"[^<]*>"
 	 "♪")
 	(dic-lookup-w3m-filter-related-links "ee-yahoo.com" ee)
@@ -1957,26 +1957,26 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	(dic-lookup-w3m-filter-show-candidates "ee-yahoo.com")
 	)
        ("\\`http://education\\.yahoo\\.com/reference/dict_en_es/"
-	(w3m-filter-delete-regions "<body[^>]*>" "Your search: " t t t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions "<body[^>]*>" "Your search: " t t t)
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div id=\"yeduarticlenavigationtop\"[^>]*>" t t t t)
 	)
 
        ;; kotonoha
        ("\\`http://www\\.kotonoha\\.gr\\.jp/shonagon"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<div id=\"wrapper\">" "<!-- END of header -->")
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<div id=\"headerB\">" "<p>検索文字列：" t t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<div id=\"headerB\">" "<h2>検索結果</h2>" t t)
 	)
        ("\\`http://www\\.kotonoha\\.gr\\.jp/shonagon"
-	(w3m-filter-replace-regexp "class=\"cell01\"" "align=\"right\"")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp "class=\"cell01\"" "align=\"right\"")
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<td class=\"cell02\">\\([^<]*\\)</td>"
 	 "<td class=\"cell02\"><strong>\\1</strong></td>")
-	(w3m-filter-replace-regexp "<td\\([ >]\\)" "<td nowrap\\1")
+	(dic-lookup-w3m-filter-replace-regexp "<td\\([ >]\\)" "<td nowrap\\1")
 	)
        ("\\`http://www\\.kotonoha\\.gr\\.jp/shonagon/?$"
 	dic-lookup-w3m-filter-refresh-url
@@ -1984,28 +1984,28 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
        ;; 青空文庫 日本語用例検索
        ("\\`http://www.tokuteicorpus.jp/team/jpling/kwic/search.cgi"
-	(w3m-filter-replace-regexp "<font color=\"crimson\">" "<strong>")
-	(w3m-filter-replace-regexp "</font>" "</strong>")
+	(dic-lookup-w3m-filter-replace-regexp "<font color=\"crimson\">" "<strong>")
+	(dic-lookup-w3m-filter-replace-regexp "</font>" "</strong>")
 	)
 
        ;; erek corpus
        ("\\`http://erek\\.ta2o\\.net/"
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<div class=\"kwicright\">\\([^<]*\\)</div>" "<span>\\1</span>")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<div class=\"kwiccenter\"\\(.*\n.*\\)</div>" "<span\\1</span>")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<div class=\"kwicleft\">\\([^<]*\\)</div>" "<span>\\1</span>")
 	)
        ;; jrek corpus
        ("\\`http://jrek\\.ta2o\\.net/"
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<td class=\"kwicright\"\\([^>]*\\)>" "<td align=\"left\"\\1 nowrap>")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<td class=\"kwiccenter\"\\([^>]*\\)>" "<td align=\"center\"\\1 nowrap>")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<td class=\"kwicleft\"\\([^>]*\\)>" "<td align=\"right\"\\1 nowrap>")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<span class=\"sortid\">[0-9]*</span>" "")
 	)
 
@@ -2015,7 +2015,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
        ;; Dictionary.com
        ("http://\\(thesaurus\\|dictionary\\)\\.reference\\.com/browse/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body onload=\"initpage();\">" "<div id=\"contentResults\">" t t)
 	(dic-lookup-w3m-filter-related-links "thesaurus-rogets" ej)
 	)
@@ -2026,45 +2026,45 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
        ;; RNN時事英語辞典
        ("\\`http://rnnnews\\.jp/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body>" "<div id=\"body\">" t t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<img src=\"../../img/related.gif\"[^>]*>" "関連:")
 	(dic-lookup-w3m-filter-eword-anchor dic-lookup-w3m-favorite-ej-engine)
 	)
 
        ;; bitex
        ("\\`http://bitex-cn\\.com/search_result\\.php"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body>" "<div class=\"center03\">" t t)
 	(dic-lookup-w3m-filter-related-links "cj-bitex" cj)
 	)
 
        ;; 敦煌辞海
        ("\\`http://www\\.onlinedic\\.com/search\\.php"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<!-- Main -->" t t t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<td width=\"250\" bgcolor=\"#E5F2FB\" valign=\"top\">"
 	 "</body>" nil t)
 	(dic-lookup-w3m-filter-related-links "cj-tonko-jikai" cj)
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
 	 dic-lookup-w3m-filter-onlinedic-symbol-alist
 	 "<img [^>]+images/\\([a-z0-9_]+\\)\\.gif[^>]*>")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "\\(<\\(table\\|td\\) [^>]*\\)\\(width=\"[0-9]+\"\\)\\([^>]*>\\)"
 	 "\\1\\4")
-	(w3m-filter-replace-regexp "</?font[^>]*>" "")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp "</?font[^>]*>" "")
+	(dic-lookup-w3m-filter-replace-regexp
 	 "\\(<td class=\"line1\">中国語：</td><td class=\"line2\">\\)\\([^<]+\\)</td>"
 	 "\\1\\2 ⇒<a href=\"http://mandarinspot.com/annotate?text=\\2&spaces=1&phs=pinyin&show=both\">pinyin</a>")
 	)
 
        ;; 楽訳中国語辞書
        ("\\`http://www\\.jcdic\\.com/search\\.php"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div class='result'>" t t t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<!--Adsense開始-->" "<!-- Footer -->")
 	(dic-lookup-w3m-filter-related-links "cj-tonko-jikai" cj)
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
@@ -2072,36 +2072,36 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	 "<img [^>]+images/\\([a-z0-9_]+\\)\\.gif[^>]*>")
 	)
        ("\\`http://www\\.jcdic\\.com/chinese_convert/index\\.php"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<td class=\"redword\">&nbsp;</td>" t nil t)
-	(w3m-filter-delete-regions "</form>" "</body>" t t)
+	(dic-lookup-w3m-filter-delete-regions "</form>" "</body>" t t)
 	(dic-lookup-w3m-filter-conv-pinyin
 	 "<div class=\"convert\">\\(.*\\)</div>")
 	)
 
        ;; MandarinSpot
        ("http://mandarinspot\\.com/annotate"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div id=\"annotated\">" t nil t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<div class=\"mid\" style=\"\">" "</body" nil t)
 	(dic-lookup-w3m-filter-word-anchor
 	 "cj-goo" "<div class=\"zh\">\\([^<]*\\)</div>" 1)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<div class=\"\\(py\\|zh\\)\">\\([^<]*\\)</div>"
 	 "<span class=\"\\1\">\\2 </span>")
 	)
 
        ;; PinYin.JP
        ("http://pinyin\\.jp/hz2py\\.cgi"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<textarea name=hz cols=50 rows=5>" t t t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "</table>" "</body" nil t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "</textarea>"
 	 "変換後のピンイン</td><td><table class=t2><tr><td>" t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<textarea name=hz cols=50 rows=5>\\([^<]*\\)</textarea>" "\\1<br>")
 	)
        ;; hjenglish 中日
@@ -2116,7 +2116,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
        ;; inforseek dic
        ("\\`http://dictionary\\.infoseek\\.ne\\.jp/"
-       	w3m-filter-delete-regions
+       	dic-lookup-w3m-filter-delete-regions
        	"<body[^>]*>"
        	"\\(<ul class=\"search_list\">\\|<div class=\"word_block\">\\)"
        	t t t t)
@@ -2141,11 +2141,11 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
        ;; kotobank
        ("\\`http://kotobank\\.jp/"
-       	(w3m-filter-delete-regions
+       	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>"
 	 "\\(<div class=\"full\">\\|<ol id=\"wordAgree\">\\|<div class=\"word_dic\">\\)" t t t t)
-	(w3m-filter-replace-regexp "<img [^>]*src=\"/i/word.png\"[^>]*>" "")
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-replace-regexp "<img [^>]*src=\"/i/word.png\"[^>]*>" "")
+	(dic-lookup-w3m-filter-delete-regions
 	 "\\(<div id=\"banner_app\">\\|<h2 id=\"word_connect\">\\|<p id=\"word_bottom\">\\)"
 	 "</body>" nil t t nil)
 	)
@@ -2169,7 +2169,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
        ;; 書き順でGO
        ("\\`http://www\\.kkjn\\.jp/"
-	(w3m-filter-delete-regions	
+	(dic-lookup-w3m-filter-delete-regions	
 	 "<body[^>]*>" "<!-- kaki-res2 -->" t t t)
 	)
 
@@ -2182,10 +2182,10 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
        ;;  "正しい漢字の書き順"
        ("http://kakijun\\.jp/page/"
-	(w3m-filter-delete-regions	
+	(dic-lookup-w3m-filter-delete-regions	
 	 "<body[^>]*>"
 	 "<img src=.* id=\"kjanimation\">" t t t t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "\\(<img src=\\(\"[^\"]*\"\\).* id=\"kjanimation\">\\)"
 	 "\\1\n<p><a href=\\2>書き順の動画を表示する</a> M-x image-toggle-animation</p>")
 	;; (dic-lookup-w3m-filter-refresh-url
@@ -2194,7 +2194,7 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
        ;; 漢字書き順・筆順(書き方)調べ無料辞典
        ("\\`http://kanji.quus.net/kakijyun/"
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "\\(<img src=\"\\([^\"]*\\)\".*動画/アニメーション[^>]*>\\)"
 	 "\\1\n<p><a href=\\2>書き順の動画を表示する</a> M-x image-toggle-animation</p>")
 	;; (dic-lookup-w3m-filter-refresh-url
@@ -2217,11 +2217,11 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
        ("\\`http://www\\.ctrans\\.org/search\\.php.*&opts=jp"
 	dic-lookup-w3m-filter-related-links "jc-kitajiro" cj)
        ("\\`http://www\\.ctrans\\.org/"
-	(w3m-filter-delete-regions "<p class=\"edit\">" "</p>")
+	(dic-lookup-w3m-filter-delete-regions "<p class=\"edit\">" "</p>")
 	(dic-lookup-w3m-filter-word-anchor
 	 "pinyin-mandarinspot"
 	 "<span class=\"cn\" xml:lang=\"zh\" lang=\"zh\">\\(.*\\)</span>" 1)
-	;; (w3m-filter-replace-regexp
+	;; (dic-lookup-w3m-filter-replace-regexp
 	;;  "<span class=\"cn\" xml:lang=\"zh\" lang=\"zh\">\\(.*\\)</span>"
 	;;  "・ \\1 ⇒<a href=\"http://mandarinspot.com/annotate?text=\\1&spaces=1&phs=pinyin&show=both\">pinyin</a>")
 	(dic-lookup-w3m-filter-conv-pinyin
@@ -2230,142 +2230,142 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
        ;; weblio
        ("\\`http://thesaurus\\.weblio\\.jp/content/"
-	(w3m-filter-delete-regions "<div ID=base>" "<form[^>]*>" nil t nil t)
-	(w3m-filter-delete-regions "<div ID=formBoxWrp>" "<div ID=formBoxL>")
-	(w3m-filter-delete-regions "<div ID=formBoxR>" "</div>")
-	(w3m-filter-delete-regions "</form>" "<div class=kiji>" t t)
+	(dic-lookup-w3m-filter-delete-regions "<div ID=base>" "<form[^>]*>" nil t nil t)
+	(dic-lookup-w3m-filter-delete-regions "<div ID=formBoxWrp>" "<div ID=formBoxL>")
+	(dic-lookup-w3m-filter-delete-regions "<div ID=formBoxR>" "</div>")
+	(dic-lookup-w3m-filter-delete-regions "</form>" "<div class=kiji>" t t)
 	(dic-lookup-w3m-filter-related-links "thesaurus-j-weblio" jj)
 	)
        ("\\`http://ejje\\.weblio\\.jp/content/"
-	(w3m-filter-delete-regions "<body[^>]*>" "<div class=subMenuTop>" t t t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions "<body[^>]*>" "<div class=subMenuTop>" t t t)
+	(dic-lookup-w3m-filter-delete-regions
 	 "<!-- START Espritline Affiliate CODE -->"
 	 "<!-- END Espritline Affiliate CODE -->")
-	(w3m-filter-delete-regions "<p class=copyRt>" "</body>" nil t)
-	(w3m-filter-delete-regions "<div class=\"behindHeadWrp\"" "</div>")
-	(w3m-filter-delete-regions "<div class=hideDictWrp>"
+	(dic-lookup-w3m-filter-delete-regions "<p class=copyRt>" "</body>" nil t)
+	(dic-lookup-w3m-filter-delete-regions "<div class=\"behindHeadWrp\"" "</div>")
+	(dic-lookup-w3m-filter-delete-regions "<div class=hideDictWrp>"
 				   "<div class=kiji>" nil t)
-	(w3m-filter-replace-regexp "\\(<table class=wrp>\\)" "<hr>")
-	(w3m-filter-replace-regexp "\\(<div class=phraseEjCntAnc>\\)" "<hr>\\1")
-	(w3m-filter-delete-regions "<div style=\"float:right;\">" "</div>")
-	;; (w3m-filter-replace-regexp "<span>用例</span>" "[用例]")
-	;; (w3m-filter-replace-regexp "<div class=KejjeYrTtl>用例</div>" "[用例]")
+	(dic-lookup-w3m-filter-replace-regexp "\\(<table class=wrp>\\)" "<hr>")
+	(dic-lookup-w3m-filter-replace-regexp "\\(<div class=phraseEjCntAnc>\\)" "<hr>\\1")
+	(dic-lookup-w3m-filter-delete-regions "<div style=\"float:right;\">" "</div>")
+	;; (dic-lookup-w3m-filter-replace-regexp "<span>用例</span>" "[用例]")
+	;; (dic-lookup-w3m-filter-replace-regexp "<div class=KejjeYrTtl>用例</div>" "[用例]")
 	;; (dic-lookup-w3m-filter-convert-phonetic-symbol
 	;;  dic-lookup-w3m-filter-weblio-ej-symbol-alist
 	;;  "<img [^>]*src=\"http://www\\.weblio\\.jp/[^>]*/\\([^/\" ]+\\)\\.\\(gif\\|png\\)\"[^>]*>")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<img src=\"http://www.westatic.com/img/showMorePlus.png\"[^>]*>" "")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<img src=\"http://www.westatic.com/img/icons/iconWlaAdFL.png\"[^>]*>"
 	 "")
-	(w3m-filter-replace-regexp "<h2 class=midashigo [^>]*>\\([^<]*\\)</h2>" "")
-	(w3m-filter-replace-regexp "<h2>発音記号</h2>" " 発音記号")
-	(w3m-filter-replace-regexp "<div class=phoneticEjjeWrp>\\(.*\\)</div>" "\\1")
-	(w3m-filter-replace-regexp "<h2 class=audioEjjeTtl>音声を聞く</h2>" "")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp "<h2 class=midashigo [^>]*>\\([^<]*\\)</h2>" "")
+	(dic-lookup-w3m-filter-replace-regexp "<h2>発音記号</h2>" " 発音記号")
+	(dic-lookup-w3m-filter-replace-regexp "<div class=phoneticEjjeWrp>\\(.*\\)</div>" "\\1")
+	(dic-lookup-w3m-filter-replace-regexp "<h2 class=audioEjjeTtl>音声を聞く</h2>" "")
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<div [^>]*playSwfSound('http://ejje.westatic.com/audio/', '\\([^']+\\)'.*</tr>"
 	 "<a href=\"http://ejje.westatic.com/audio/\\1.wav\">♪再生</a>")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<div [^>]*playSwfSound('http://www.westatic.com/wbr/CHUJITEN/', '\\([^']+\\)'.*</tr>"
 	 "<a href=\"http://www.westatic.com/wbr/CHUJITEN/\\1.wav\">♪再生</a>")
-	(w3m-filter-delete-regions "<td class=summaryC>" "</table>")
-	(w3m-filter-delete-regions "<td class=summaryR>" "</td>")
-	(w3m-filter-replace-regexp "<tr><td><span>ピン留め</span></td></tr>" "")
-	(w3m-filter-delete-regions "<div id=\"leadToVocabIndexBtnWrp" "</td>" nil t) ;学習レベル
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-delete-regions "<td class=summaryC>" "</table>")
+	(dic-lookup-w3m-filter-delete-regions "<td class=summaryR>" "</td>")
+	(dic-lookup-w3m-filter-replace-regexp "<tr><td><span>ピン留め</span></td></tr>" "")
+	(dic-lookup-w3m-filter-delete-regions "<div id=\"leadToVocabIndexBtnWrp" "</td>" nil t) ;学習レベル
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<td [^>]*><span [^>]*>用例</span></td>"
 	 "<td valign=\"top\"><span>[例]</span></td>")
-	(w3m-filter-replace-regexp "\\(<span class=lvlUAH>[^<]*</span>\\)" "<b>\\1</b>")
-	(w3m-filter-replace-regexp "<p class=level0>\\([^<]*\\)</p>" "\\1")
-	(w3m-filter-replace-regexp "<p class=lvlNH>\\([^<]*\\)</p>" "<b>\\1</b> ")
-	(w3m-filter-replace-regexp "<p class=lvlAH>\\([^<]*\\)</p>" "<i>\\1</i> ")
-	(w3m-filter-replace-regexp "<p class=lvlB>\\([^<]*\\)</p>" "\\1 ")
-	;; (w3m-filter-replace-regexp "<p[^>]*>" " " "<div class=level0>" nil nil nil "div")
-	;; (w3m-filter-replace-regexp "</p>" "" "<div class=level0>" nil nil nil "div")
-	;; (w3m-filter-replace-regexp "<br[^>]*>" "" "<div class=level0>" nil nil nil "div")
-	;; (w3m-filter-replace-regexp "</div>" "" "<div class=level0>" nil nil nil "div")
-	;; (w3m-filter-replace-regexp "<div[^>]*>" " " "<div class=level0>" nil nil nil "div")
-	(w3m-filter-replace-regexp "<p class=\\(lvlB\\|lvlAH\\|lvlNH\\|level0\\)>" "")
+	(dic-lookup-w3m-filter-replace-regexp "\\(<span class=lvlUAH>[^<]*</span>\\)" "<b>\\1</b>")
+	(dic-lookup-w3m-filter-replace-regexp "<p class=level0>\\([^<]*\\)</p>" "\\1")
+	(dic-lookup-w3m-filter-replace-regexp "<p class=lvlNH>\\([^<]*\\)</p>" "<b>\\1</b> ")
+	(dic-lookup-w3m-filter-replace-regexp "<p class=lvlAH>\\([^<]*\\)</p>" "<i>\\1</i> ")
+	(dic-lookup-w3m-filter-replace-regexp "<p class=lvlB>\\([^<]*\\)</p>" "\\1 ")
+	;; (dic-lookup-w3m-filter-replace-regexp "<p[^>]*>" " " "<div class=level0>" nil nil nil "div")
+	;; (dic-lookup-w3m-filter-replace-regexp "</p>" "" "<div class=level0>" nil nil nil "div")
+	;; (dic-lookup-w3m-filter-replace-regexp "<br[^>]*>" "" "<div class=level0>" nil nil nil "div")
+	;; (dic-lookup-w3m-filter-replace-regexp "</div>" "" "<div class=level0>" nil nil nil "div")
+	;; (dic-lookup-w3m-filter-replace-regexp "<div[^>]*>" " " "<div class=level0>" nil nil nil "div")
+	(dic-lookup-w3m-filter-replace-regexp "<p class=\\(lvlB\\|lvlAH\\|lvlNH\\|level0\\)>" "")
        	(dic-lookup-w3m-filter-related-links "ej-weblio" ej)
 	(dic-lookup-w3m-filter-show-candidates "ej-weblio")
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<!-- begin ad tag-->" "<!-- End ad tag -->")
 	)
        ("\\`http://www\\.weblio\\.jp/content/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div ID=tpc>" t nil t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<!-- google_ad_section_end -->" "</body>" nil t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<img src=\"http://www.westatic.com/img/icons/wRenew/iconPBDict.png\" alt=\"\">" "")
-	(w3m-filter-replace-regexp "</div><div style=\"margin-left:1em;\">" "")
+	(dic-lookup-w3m-filter-replace-regexp "</div><div style=\"margin-left:1em;\">" "")
 	)
        ("\\`http://cjjc\\.weblio\\.jp/content/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div ID=topic>" t nil t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<td ID=trnsBxHTL>" "</body>" nil t)
        	(dic-lookup-w3m-filter-related-links "cj-weblio" cj)
 	)
        ("\\`http://shuwa\\.weblio\\.jp/content/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div ID=topic>" t nil t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<div id=sideRankBoxS>" "</body>" nil t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<object data=\"\\([^\"]+\\)\" type=\"application/x-mplayer2\"[^>]*>"
 	 "<a href=\"\\1\">[手話を再生]</a>")
 	)
       ("\\`http://ejje.weblio.jp/sentence/content/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div class=subMenuTop>" t nil t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<span class=addToSlBtnCntner>" "</span>")
 	)
       ("\\`http://ejje.weblio.jp/english-thesaurus/content/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div class=subMenuTop>" t nil t)
 	)
        ("\\`http://ejje.weblio.jp/concordance/content/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div class=subMenuTop>" t nil t)
 	)
 
        ;; yahoo encyclopedia
        ("\\`http://100\\.yahoo.co\\.jp/"
-	(w3m-filter-delete-regions "<body>" "<!-- /header -->" t)
+	(dic-lookup-w3m-filter-delete-regions "<body>" "<!-- /header -->" t)
 	(dic-lookup-w3m-filter-related-links "encyclopedia-yahoo" jj)
 	)
 
        ;; dokochina pinyin
        ("\\`http://dokochina\\.com/simplified\\.php"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>"
 	 "<DIV STYLE='overflow-x:scroll; width:600px'><table border=0 cellspacing=0 cellpadding=0 bgcolor=#FFFFFF>" t t t)
-	(w3m-filter-delete-regions "<!--**********-->" "</body>" nil t)
+	(dic-lookup-w3m-filter-delete-regions "<!--**********-->" "</body>" nil t)
 	)
 
        ;; 書虫 pinyin
        ("http://www\\.frelax\\.com/cgi-local/pinyin/hz2py\\.cgi"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "</form>" t nil t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<table border=\"4\" cellpadding=\"2\" cellspacing=\"0\" bordercolor=\"#996633\">"
 	 "<table border=\"0\">")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<td *align=\"center\">" "<td align=\"left\">")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "</?center>" "")
 	)
 
        ;; pinyin chinese1
        ("\\`http://www\\.chinese1\\.jp/pinyin/gb2312/jp\\.asp"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<table border=\"0\" cellpadding=\"0\" cellspacing=\"10\">" t t t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "^<div align=\"right\">" "</body>" nil t t)
 	(dic-lookup-w3m-filter-related-links "pinyin-chinese1" pinyin)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<input type=\"submit\" value=\"S\" name=\"S\" style=\"width: 15; height: 20\">" "")
 	)
 
@@ -2380,22 +2380,22 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	"https://dictionary.goo.ne.jp/%s"
 	"<a href=\"/\\(.*/meaning/m0u/.*\\)\"" 1)
        ("\\`https://dictionary\\.goo\\.ne\\.jp/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div class=[^>]*contents-wrap-[ab][^>]*>" t t t t)
-	(w3m-filter-delete-regions "<!-- contents-wrap-[ab] -->" "</body>" nil t t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions "<!-- contents-wrap-[ab] -->" "</body>" nil t t)
+	(dic-lookup-w3m-filter-delete-regions
 	 "<div class=\"social-button sp-hidden\">" "<!-- social-button -->")
-	(w3m-filter-replace-regexp "<dl class=\"list-search-a-in\">" "")
-	(w3m-filter-replace-regexp "</dl>" "")
-	(w3m-filter-replace-regexp "<[/]*dt[^>]*>" "")
+	(dic-lookup-w3m-filter-replace-regexp "<dl class=\"list-search-a-in\">" "")
+	(dic-lookup-w3m-filter-replace-regexp "</dl>" "")
+	(dic-lookup-w3m-filter-replace-regexp "<[/]*dt[^>]*>" "")
 	 (dic-lookup-w3m-filter-eword-anchor "ej-goo")
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
 	 dic-lookup-w3m-filter-ocn-ej-symbol-alist
 	 "<img src=\"[^>]*/img[^>]*/\\([a-z_0-9]+\\)\\.gif\"[^>]*>")
-	(w3m-filter-delete-regions "<div class=\"buttons-panel\">"
+	(dic-lookup-w3m-filter-delete-regions "<div class=\"buttons-panel\">"
 				   "</div>" nil t)
-	(w3m-filter-delete-regions "<ul class=\"enditMean\">" "</ul>")
-	(w3m-filter-replace-regexp "\\(<div id=\"spoLine\">\\)" "<br>\\1")
+	(dic-lookup-w3m-filter-delete-regions "<ul class=\"enditMean\">" "</ul>")
+	(dic-lookup-w3m-filter-replace-regexp "\\(<div id=\"spoLine\">\\)" "<br>\\1")
 	)
        ("\\`https://dictionary\\.goo\\.ne\\.jp/srch/ej/"
 	dic-lookup-w3m-filter-related-links "ej-goo" ej)
@@ -2413,13 +2413,13 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	dic-lookup-w3m-filter-related-links "cj-goo" cj)
        ("\\`https://dictionary\\.goo\\.ne\\.jp/leaf/cj/"
 	(dic-lookup-w3m-filter-related-links "cj-goo" cj "/m0u/%s/")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "\\(<span class=\"ex\">[^<]*</span>\\)" "\\1 - ")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "\\(<span class=\"pinyin\">\\)" " \\1")
 	(dic-lookup-w3m-filter-word-anchor
 	 "pinyin-mandarinspot" "<span class=\"ex\">\\([^<]*\\)</span>" 1)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "【同】\\([^<)]+\\)\\([^<]*\\)</span>"
 	 "【同】<a href=\"/srch/cj/\\1/m0u/\">\\1</a>\\2</span>")
 	)
@@ -2427,10 +2427,10 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 	dic-lookup-w3m-filter-related-links "jc-goo" cj)
        ("\\`https://dictionary\\.goo\\.ne\\.jp/leaf/jc/"
 	(dic-lookup-w3m-filter-related-links "jc-goo" cj "/m0u/%s/")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<span class=\"btn_sound\">\\([^>]*>\\)<img src=\"/img/btn_sound.gif\"></a></span>"
 	 "\\1→中日</a>")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "\\(<div class=\"prog_example\">\\|<br />\\)\\([^>]*\\)\\(　<span class=\"pinyin\">\\)"
 	 "\\1<a href=\"/srch/cj/\\2/m0u/\">\\2</a>\\3")
 	)
@@ -2439,10 +2439,10 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
        ;; ocn goo
        ("\\`http://ocndictionary\\.goo\\.ne\\.jp/search\\.php"
-	(w3m-filter-delete-regions "<body[^>]*>" "<dl class=\"allList\">" t nil t t)
-	(w3m-filter-delete-regions "<!--l14_4-->\r" "<!--/result-->")
-	(w3m-filter-delete-regions "<!--/rbox-->" "</body>" nil t)
-	(w3m-filter-delete-regions "<div id=\"rside\">" "</body>" nil t)
+	(dic-lookup-w3m-filter-delete-regions "<body[^>]*>" "<dl class=\"allList\">" t nil t t)
+	(dic-lookup-w3m-filter-delete-regions "<!--l14_4-->\r" "<!--/result-->")
+	(dic-lookup-w3m-filter-delete-regions "<!--/rbox-->" "</body>" nil t)
+	(dic-lookup-w3m-filter-delete-regions "<div id=\"rside\">" "</body>" nil t)
 	(dic-lookup-w3m-filter-eword-anchor "ej-ocn")
 	(dic-lookup-w3m-filter-convert-phonetic-symbol
 	 dic-lookup-w3m-filter-ocn-ej-symbol-alist
@@ -2457,99 +2457,99 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
        ;; NAVER 韓日、日韓
        ("\\`http://krdic\\.naver\\.jp/\\(search\\|entry\\)/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div class=\"[^\"]*section3" t t t t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "韓国語 動詞,形容詞活用情報</a>" "</body>" t t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "\\(var g_query = \"\\([^\"]*\\)\";\\(?:\n.*\\)*\\)<a href=[^>]*>例文もっと見る</a>"
 	 "\\1<a href=\"/search/ex/1/\\2\">例文もっと見る</a>")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "\\(var g_query = \"\\([^\"]*\\)\";\\(?:\n.*\\)*\\)<a href=[^>]*getParams('example', \\([0-9]*\\)[^>]*>前ページ</a>"
 	 "\\1<a href=\"/search/ex/\\3/\\2\">前ページ</a>")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "\\(var g_query = \"\\([^\"]*\\)\";\\(?:\n.*\\)*\\)<a href=[^>]*getParams('example', \\([0-9]*\\)[^>]*>次ページ</a>"
 	 "\\1<a href=\"/search/ex/\\3/\\2\">次ページ</a>")
 	)
        ("\\`http://krdic\\.naver\\.jp/entry/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div class=\"spot_area\">" t t t t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<div class=\"list_select\">" "<div class=\"section\">" nil t)
 	)
        ;; NAVER 中日、日中
        ("http://cndic\\.naver\\.jp/\\(srch\\|cje\\|jce\\)/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div class=\"word_view\">" t t t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<div class=\"pron\">" "<div class=\"into\">" nil t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<a href=[^>]*>中日もっと見る</a>\\(\\(\n\\|[^\n]\\)*var g_query = \"\\([^\"]*\\)\";\\)"
 	 "<a href=\"/srch/cj/1/\\3\">中日もっと見る</a>\\1")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<a title=\"前ページ\"[^>]*getParams('cjentry', \\([0-9]*\\)[^>]*>.*</a>\\(\\(?:\n\\|[^\n]\\)*var g_query = \"\\([^\"]*\\)\";\\)"
 	 "<a href=\"/srch/cj/\\1/\\3\">前ページ</a>\\2")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<a title=\"次ページ\"[^>]*getParams('cjentry', \\([0-9]*\\)[^>]*>.*</a>\\(\\(?:\n\\|[^\n]\\)*var g_query = \"\\([^\"]*\\)\";\\)"
 	 "<a href=\"/srch/cj/\\1/\\3\">次ページ</a>\\2")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<a href=[^>]*>例文もっと見る</a>\\(\\(\n\\|[^\n]\\)*var g_query = \"\\([^\"]*\\)\";\\)"
 	 "<a href=\"/srch/ex/1/\\3\">例文もっと見る</a>\\1")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<a title=\"前ページ\"[^>]*getParams('example', \\([0-9]*\\)[^>]*>.*</a>\\(\\(?:\n\\|[^\n]\\)*var g_query = \"\\([^\"]*\\)\";\\)"
 	 "<a href=\"/srch/ex/\\1/\\3\">前ページ</a>\\2")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<a title=\"次ページ\"[^>]*getParams('example', \\([0-9]*\\)[^>]*>.*</a>\\(\\(?:\n\\|[^\n]\\)*var g_query = \"\\([^\"]*\\)\";\\)"
 	 "<a href=\"/srch/ex/\\1/\\3\">次ページ</a>\\2")
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<div style=\"top: 413px; left: 90px; display:none\" class=\"ly_play example_play\" id=\"div_exmple_pingyin\">"
 	 "<!-- //CONTENT -->")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<a [^>]*pUrl=\"\\([^|]+\\)|\\([^|]+\\)[^>]*><img [^>]*></a>"
 	 " ♪<a href=\"\\1\" type=\"audio/mpeg\">女性</a>|<a href=\"\\2\" type=\"audio/x-wav\">男性</a>")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<a [^>]*><img [^>]*pUrl=\"\\([^|]+\\)|\\([^|]+\\)[^>]*></a>"
 	 " ♪<a href=\"\\1\" type=\"audio/mpeg\">女性</a>|<a href=\"\\2\" type=\"audio/x-wav\">男性</a>")
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<a href=\"#\" class=\"x\" title=\"削除\"" "</a>")
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<a href=\"#\" alt=\"クリア\" title=\"クリア\" class=\"btn_delete"
 	 "</a>")
 	)
        ("http://cndic\\.naver\\.jp/srch/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div class=\"zoom_lv\" id=\"zoom\">" t t t t)
 	)
        ("http://cndic.naver.jp/cje/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<div class=\"pron\">" "<div class=\"section\">")
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<div style=\"visibility: hidden; left: 15px; top: 114px;\" class=\"controller control0\">"
 	 "</body>" nil t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<a [^>]*strokeOrdFile=\"\\([^\"]+\\)\"[^>]*>書き順を表示[^<]*</a>"
 	 "<a href=\"http://dicimg.naver.com/cndic/chinese/stroke/\\1\" type=\"application/x-shockwave-flash\">書き順</a>")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<span class=\"eword\">" "<br><span class=\"eword\">")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<a href=\"#\" class=\"play\"[^>]*><img [^>]*clickcr(this,'pos.examlisten'[^>]*></a>"
 	 "&nbsp;")
-	(w3m-filter-delete-regions "<button class=\"repeat\"" "</button>")
-	(w3m-filter-delete-regions "<button class=\"speed\"" "</button>")
+	(dic-lookup-w3m-filter-delete-regions "<button class=\"repeat\"" "</button>")
+	(dic-lookup-w3m-filter-delete-regions "<button class=\"speed\"" "</button>")
 	)
 
        ;; Glosbe 多言語オンライン辞書、翻訳メモリ
        ("\\`http://\\([a-z]+\.\\)?glosbe\.com/[^/]+/[^/]+/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div [^>]*id=\"wordListWidget\">" t t t t)
-	(w3m-filter-delete-regions "<div id=\"footer\">" "</body>" nil t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-delete-regions "<div id=\"footer\">" "</body>" nil t)
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<a [^>]*class=\"meaningLink\"[^<]*><img [^>]*src=\"http://glosbe.com/resources/resources_img/edit.png\"/></a>"
 	 "")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<a [^>]*class=\"[^\"]*audio[^>]*data-url=\\(\"[^\"]+\"\\)[^>]*><img [^>]*/></a>"
 	 " <a href=\\1\">♪</a>")
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<aside><div authorUrl=[^>]*>" "</div></aside>" nil nil t)
 	)
 
@@ -2559,179 +2559,179 @@ nilなら`dic-lookup-w3m-filter-translation-anchor'を呼び出してwebペー�
 
        ;; yahoo translator
        ("\\`http://honyaku\\.yahoo\\.co\\.jp/transtext"
-	(w3m-filter-delete-regions 
+	(dic-lookup-w3m-filter-delete-regions 
 	 "<body>" "<textarea [^>]*id=\"textText\"" t t nil t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "</textarea>" "<textarea [^>]*id=\"trn_textText\"" t t nil t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<textarea [^>]*id=\"textText\"[^>]*>\\([^<]*\\)</textarea>"
 	 "<p>\\1</p>")
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "<textarea [^>]*id=\"trn_textText\"[^>]*>\\([^<]*\\)</textarea>"
 	 "<hr><p>\\1</p>")
-	(w3m-filter-delete-regions "<wbr" ">")
+	(dic-lookup-w3m-filter-delete-regions "<wbr" ">")
 	(dic-lookup-w3m-filter-eword-anchor dic-lookup-w3m-favorite-ej-engine)
-	(w3m-filter-replace-regexp "\n" "<br>\n")
-	(w3m-filter-delete-regions "</div><!-- /#transafter -->" "</body>"
+	(dic-lookup-w3m-filter-replace-regexp "\n" "<br>\n")
+	(dic-lookup-w3m-filter-delete-regions "</div><!-- /#transafter -->" "</body>"
 				   nil t)
 	)
 
        ;; excite translator
        ("\\`http://www\\.excite\\.co\\.jp/world/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<textarea [^>]*name=\"before\"[^>]*>" t nil t t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "\\(<textarea [^>]*name=\"after\"[^>]*>\\)" "\\1<br>")
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "</textarea>" "<textarea [^>]*name=\"after\"[^>]*>" nil nil t t)
-	(w3m-filter-delete-regions "</textarea>" "</body>" nil t)
-	(w3m-filter-replace-regexp "\r\\([\n]\r\\)+" "</p><p>")
-	(w3m-filter-replace-regexp "\r" "<br>")
+	(dic-lookup-w3m-filter-delete-regions "</textarea>" "</body>" nil t)
+	(dic-lookup-w3m-filter-replace-regexp "\r\\([\n]\r\\)+" "</p><p>")
+	(dic-lookup-w3m-filter-replace-regexp "\r" "<br>")
 	)
        ("\\`http://www\\.excite\\.co\\.jp/world/english/"
 	dic-lookup-w3m-filter-eword-anchor "ej-excite")
 
        ;; google translator
        ("https://translate\\.google\\.com"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<textarea [^>]*id=source[^>]*>" t nil t t)
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "</textarea>" "<span id=result_box[^>]*>" t t nil t)
-	(w3m-filter-replace-regexp "\\(</textarea>\\)" "<hr>")
-	(w3m-filter-replace-regexp "<span title=\"[^\"]*\"[^>]*>" "<span>")
-	(w3m-filter-replace-regexp "\r\\([\n]\r\\)+" "</p><p>")
-	(w3m-filter-delete-regions "<div id=\"gt-edit\"" "</body>" nil t)
-	(w3m-filter-delete-regions "<div id=res-translit" "</body>" nil t)
+	(dic-lookup-w3m-filter-replace-regexp "\\(</textarea>\\)" "<hr>")
+	(dic-lookup-w3m-filter-replace-regexp "<span title=\"[^\"]*\"[^>]*>" "<span>")
+	(dic-lookup-w3m-filter-replace-regexp "\r\\([\n]\r\\)+" "</p><p>")
+	(dic-lookup-w3m-filter-delete-regions "<div id=\"gt-edit\"" "</body>" nil t)
+	(dic-lookup-w3m-filter-delete-regions "<div id=res-translit" "</body>" nil t)
 	(dic-lookup-w3m-filter-eword-anchor dic-lookup-w3m-favorite-ej-engine)
 	)
 
        ;; yahoo.com translator
        ("http://babelfish\\.yahoo\\.com/translate_txt"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<div id=\"result\">" t t t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "\\(<textarea [^>]*name=\"trtext\"[^>]*>\\)" "\\1<hr>")
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "</div></div>" "<textarea [^>]*name=\"trtext\"[^>]*>" nil nil t t)
-	(w3m-filter-delete-regions "</textarea>" "</body>" nil t)
-	(w3m-filter-replace-regexp "\\([^\r]\\)$" "\\1<br>")
-	(w3m-filter-replace-regexp "\r\\([\n]\r\\)+" "<p>")
-	(w3m-filter-replace-regexp "\r" "<br>")
+	(dic-lookup-w3m-filter-delete-regions "</textarea>" "</body>" nil t)
+	(dic-lookup-w3m-filter-replace-regexp "\\([^\r]\\)$" "\\1<br>")
+	(dic-lookup-w3m-filter-replace-regexp "\r\\([\n]\r\\)+" "<p>")
+	(dic-lookup-w3m-filter-replace-regexp "\r" "<br>")
 	(dic-lookup-w3m-filter-eword-anchor dic-lookup-w3m-favorite-ej-engine)
 	)
 
        ;; freetranslation translator
        ("\\`http://.*\\.freetranslation\\.com"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<textarea [^>]*name=\"dsttext\"[^>]*>" t nil t t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "\\(<textarea [^>]*name=\"srctext\"[^>]*>\\)" "\\1<hr>")
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "</textarea>" "<textarea [^>]*name=\"srctext\"[^>]*>" nil nil t t)
-	(w3m-filter-delete-regions "</textarea>" "</body>" nil t)
-	(w3m-filter-replace-regexp "\r\\([\n]\r\\)+" "</p><p>")
-	(w3m-filter-replace-regexp "\r" "<br>")
+	(dic-lookup-w3m-filter-delete-regions "</textarea>" "</body>" nil t)
+	(dic-lookup-w3m-filter-replace-regexp "\r\\([\n]\r\\)+" "</p><p>")
+	(dic-lookup-w3m-filter-replace-regexp "\r" "<br>")
 	)
        ("\\`http://tets9\\.freetranslation\\.com/"
 	dic-lookup-w3m-filter-eword-anchor dic-lookup-w3m-favorite-ej-engine)
 
        ;; ;; ocn translator サービス終了 2012年10月11日
        ;; ("\\`http://cgi01\\.ocn\\.ne\\.jp/cgi-bin/translation/index\\.cgi"
-       ;; 	(w3m-filter-delete-regions
+       ;; 	(dic-lookup-w3m-filter-delete-regions
        ;; 	 "<body[^>]*>" "<textarea [^>]*name=\"sourceText\"[^>]*>" t nil t t)
-       ;; 	(w3m-filter-replace-regexp
+       ;; 	(dic-lookup-w3m-filter-replace-regexp
        ;; 	 "\\(<textarea [^>]*name=\"responseText\"[^>]*>\\)" "\\1<hr>")
-       ;; 	(w3m-filter-delete-regions
+       ;; 	(dic-lookup-w3m-filter-delete-regions
        ;; 	 "</textarea>" "<textarea [^>]*name=\"responseText\"[^>]*>" nil nil t t)
-       ;; 	(w3m-filter-delete-regions "</textarea>" "</body>" nil t)
-       ;; 	(w3m-filter-replace-regexp "\r\\([\n]\r\\)+" "</p><p>")
-       ;; 	(w3m-filter-replace-regexp "\r" "<br>")
+       ;; 	(dic-lookup-w3m-filter-delete-regions "</textarea>" "</body>" nil t)
+       ;; 	(dic-lookup-w3m-filter-replace-regexp "\r\\([\n]\r\\)+" "</p><p>")
+       ;; 	(dic-lookup-w3m-filter-replace-regexp "\r" "<br>")
        ;; 	(dic-lookup-w3m-filter-eword-anchor "ej-ocn")
        ;; 	)
 
        ;; livedoor translator
        ("http://livedoor-translate\\.naver\\.jp/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<textarea [^>]*name=\"translateParams.originalText\"[^>]*>" t nil t t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "\\(<textarea [^>]*name=\"text02\"[^>]*>\\)" "\\1<hr>")
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "</textarea>" "<textarea [^>]*name=\"text02\"[^>]*>" nil nil t t)
-	(w3m-filter-delete-regions "</textarea>" "</body>" nil t)
-	(w3m-filter-delete-regions "<!--/MdAd01-->" "</html>")
-	(w3m-filter-delete-regions "<!--/MdAd02-->" "</html>")
-	(w3m-filter-replace-regexp "\\(\\. \\|。\\)" "\\1<br>")
+	(dic-lookup-w3m-filter-delete-regions "</textarea>" "</body>" nil t)
+	(dic-lookup-w3m-filter-delete-regions "<!--/MdAd01-->" "</html>")
+	(dic-lookup-w3m-filter-delete-regions "<!--/MdAd02-->" "</html>")
+	(dic-lookup-w3m-filter-replace-regexp "\\(\\. \\|。\\)" "\\1<br>")
 	)
        ("\\`http://livedoor-translate\\.naver\\.jp/"
 	dic-lookup-w3m-filter-eword-anchor dic-lookup-w3m-favorite-ej-engine)
 
        ;; fresheye translator
        ("\\`http://mt\\.fresheye\\.com/ft_.*result.cgi"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<textarea [^>]*name=\"gen_text\"[^>]*>" t nil t t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "\\(<textarea [^>]*name=\"gen_text2\"[^>]*>\\)" "\\1<hr>")
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "</textarea>" "<textarea [^>]*name=\"gen_text2\"[^>]*>" nil nil t t)
-	(w3m-filter-delete-regions "</textarea>" "</body>" nil t nil t)
-	(w3m-filter-replace-regexp "\n" "<br>")
+	(dic-lookup-w3m-filter-delete-regions "</textarea>" "</body>" nil t nil t)
+	(dic-lookup-w3m-filter-replace-regexp "\n" "<br>")
 	(dic-lookup-w3m-filter-eword-anchor dic-lookup-w3m-favorite-ej-engine)
 	)
 
        ;; So-net translator
        ("\\`http://so-net\\.web\\.transer\\.com/text_trans_sn\\.php"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<textarea [^>]*name=\"text\"[^>]*>" t nil t t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "\\(<textarea [^>]*name=\"translatedText\"[^>]*>\\)" "\\1<hr>")
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "</textarea>"
 	 "<textarea [^>]*name=\"translatedText\"[^>]*>" nil nil t t)
-	(w3m-filter-delete-regions "</textarea>" "</body>" nil t)
-	(w3m-filter-replace-regexp "\n" "<br>")
+	(dic-lookup-w3m-filter-delete-regions "</textarea>" "</body>" nil t)
+	(dic-lookup-w3m-filter-replace-regexp "\n" "<br>")
 	(dic-lookup-w3m-filter-eword-anchor dic-lookup-w3m-favorite-ej-engine)
 	)
 
        ;; nifty translator
        ("\\`http://honyaku-result\\.nifty\\.com/LUCNIFTY/text/text.php"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<textarea [^>]*id=\"txtTransArea\"[^>]*>" t nil t t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "\\(<textarea [^>]*id=\"txtTransArea2\"[^>]*>\\)" "\\1<hr>")
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "</textarea>"
 	 "<textarea [^>]*id=\"txtTransArea2\"[^>]*>" nil nil t t)
-	(w3m-filter-delete-regions "</textarea>" "</body>" nil t)
-	(w3m-filter-replace-regexp "\n" "<br>")
+	(dic-lookup-w3m-filter-delete-regions "</textarea>" "</body>" nil t)
+	(dic-lookup-w3m-filter-replace-regexp "\n" "<br>")
 	(dic-lookup-w3m-filter-eword-anchor dic-lookup-w3m-favorite-ej-engine)
 	)
 
        ;; magicalgate translator
        ;; http://ag.magicalgate.net
        ("http://221\\.243\\.5\\.2/impulse/TextTranslator"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<textarea [^>]*name=\"srcText\"[^>]*>" t nil t t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "\\(<textarea[^>]*name=\"resultText\"[^>]*>\\)" "\\1<hr>")
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "</textarea>"
 	 "<textarea[^>]*name=\"resultText\"[^>]*>" nil nil t t)
-	(w3m-filter-delete-regions "</textarea>" "</body>" nil t)
-	(w3m-filter-replace-regexp "\n" "<br>")
+	(dic-lookup-w3m-filter-delete-regions "</textarea>" "</body>" nil t)
+	(dic-lookup-w3m-filter-replace-regexp "\n" "<br>")
 	(dic-lookup-w3m-filter-eword-anchor dic-lookup-w3m-favorite-ej-engine)
 	)
 
        ;; infoseek translator
        ("\\`http://translation\\.infoseek\\.co\\\.jp/"
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "<body[^>]*>" "<textarea [^>]*name=\"original\"[^>]*>" t nil t t)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 "\\(<textarea [^>]*name=\"converted\"[^>]*>\\)" "\\1<hr>")
-	(w3m-filter-delete-regions
+	(dic-lookup-w3m-filter-delete-regions
 	 "</textarea>"
 	 "<textarea [^>]*name=\"converted\"[^>]*>" nil nil t t)
-	(w3m-filter-delete-regions "</textarea>" "</body>" nil t)
-	(w3m-filter-replace-regexp "\n" "<br>")
+	(dic-lookup-w3m-filter-delete-regions "</textarea>" "</body>" nil t)
+	(dic-lookup-w3m-filter-replace-regexp "\n" "<br>")
 	(dic-lookup-w3m-filter-eword-anchor dic-lookup-w3m-favorite-ej-engine)
 	)
        ))))
@@ -3835,7 +3835,7 @@ webページに翻訳ボタンをつけて、各translatorにリンクする。
 
 (defun dic-lookup-w3m-filter-translation-anchor2
   (url category heading &optional regexp before)
-  (w3m-filter-replace-regexp
+  (dic-lookup-w3m-filter-replace-regexp
    url
    (concat "\\(" (or regexp "<body[^>]*>") "\\)")
    (concat

@@ -440,32 +440,30 @@ nilなら`w3m-default-display-inline-images'の値に従う。")
 (ad-activate 'w3m-filter)
 
 ;; w3m-filter.elのw3m-filter-delete-regionsを修正
-(defadvice w3m-filter-delete-regions
-  (around exclude-matched-strings (url start end &optional exclude-s exclude-e
-				       regexp-s regexp-e))
-  "Delete regions surrounded with a START pattern and an END pattern."
-  (goto-char (point-min))
-  (let (p (i 0))
-    (while (and (if regexp-s (re-search-forward start nil t)
-		  (search-forward start nil t))
-		(setq p (if exclude-s (match-end 0) (match-beginning 0)))
-		(if regexp-e (re-search-forward end nil t)
-		  (search-forward end nil t)))
-      (delete-region p (if exclude-e (match-beginning 0) (match-end 0)))
-      (+ i 1))
-    (setq ad-return-value (> i 0))))
-
-(ad-activate 'w3m-filter-delete-regions)
+;; exclude-matched-strings
+(defun dic-lookup-w3m-filter-delete-regions
+    (url start end &optional exclude-s exclude-e
+	 regexp-s regexp-e)
+"Delete regions surrounded with a START pattern and an END pattern."
+(goto-char (point-min))
+(let (p (i 0))
+  (while (and (if regexp-s (re-search-forward start nil t)
+		(search-forward start nil t))
+	      (setq p (if exclude-s (match-end 0) (match-beginning 0)))
+	      (if regexp-e (re-search-forward end nil t)
+		(search-forward end nil t)))
+    (delete-region p (if exclude-e (match-beginning 0) (match-end 0)))
+    (+ i 1))
+  (setq ad-return-value (> i 0))))
 
 ;; w3m-filter.elのw3m-filter-replace-regexpを修正
-(defadvice w3m-filter-replace-regexp
-  (around replace-match-without-case-conversion (url regexp to-string))
+;;replace-match-without-case-conversion
+(defun dic-lookup-w3m-filter-replace-regexp
+    (url regexp to-string)
   "Replace all occurrences of REGEXP with TO-STRING. TO-STRING can be a function."
   (goto-char (point-min))
   (while (re-search-forward regexp nil t)
     (replace-match (eval to-string) t)))
-
-(ad-activate 'w3m-filter-replace-regexp)
 
 (defun dic-lookup-w3m-filter-word-anchor (url search-engine regexp subexp)
   "webページ中の文字列に対して、辞書検索用のアンカーを作成する。
@@ -502,8 +500,9 @@ min-lengthより短い文字列にはアンカーを作成しない。"
     (goto-char (point-min))
     (re-search-forward "<body[^>]+>\\|<body>" nil t)
     (goto-char (match-beginning 0))
-    (while (re-search-forward "\\(<[^>]+>\\)\\([^>]*\\)<" nil t)
-      (setq s (match-beginning 2) e (match-end 2))
+    (while ;;(re-search-forward "\\(<[^>]+>\\)\\([^>]*\\)<" nil t)
+	(re-search-forward "\\(<[^>\"]+\\(\"[^\"]+\"\\)?[^>]*>\\)\\([^>\"]*\\)<" nil t)
+      (setq s (match-beginning 3) e (match-end 3))
       (cond ((string-match "^<a[^a-z]" (match-string 1)) (setq inhref t))
 	    ((string-match "^</a[^a-z]" (match-string 1)) (setq inhref nil)))
       (goto-char e)
@@ -597,7 +596,7 @@ stem.elはsdicに含まれています。またlookupにstem-english.elという
     (mapc #'(lambda (s) (setq candidates2 (delete s candidates2)))
 	  candidates)
     (if (or candidates candidates2)
-	(w3m-filter-replace-regexp
+	(dic-lookup-w3m-filter-replace-regexp
 	 url
 	 (concat "\\(" (or regexp "<body[^>]*>") "\\)")
 	 (concat
@@ -645,7 +644,7 @@ stem.elはsdicに含まれています。またlookupにstem-english.elという
 		    (nth 2 (assoc search-engine w3m-search-engine-alist)))))
 	(site-list (cadr (assoc category dic-lookup-w3m-related-site-list))))
     (unless (equal query "")
-      (w3m-filter-replace-regexp
+      (dic-lookup-w3m-filter-replace-regexp
        url
        (concat "\\(" (or regexp "<body[^>]*>") "\\)")
        (concat
@@ -683,7 +682,7 @@ stem.elはsdicに含まれています。またlookupにstem-english.elという
 			  (match-string (or subexp 0)))
 		     ""))))
     (goto-char (point-min))
-    (w3m-filter-replace-regexp
+    (dic-lookup-w3m-filter-replace-regexp
      url
      "\\(<head[^>]*>\\)"
      (format

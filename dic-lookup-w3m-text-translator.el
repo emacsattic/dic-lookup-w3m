@@ -49,7 +49,7 @@
     (if (null str)
 	(message "filtering failed. %s" func-or-regexp)
       (goto-char (point-min))
-      (w3m-filter-delete-regions "" "<body" "</body>")
+      (dic-lookup-w3m-filter-delete-regions "" "<body" "</body>")
       (insert (format "<body><p>%s</p><body>" str)))))
 
 (defadvice text-translator-extract-tag-exclusion-string
